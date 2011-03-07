@@ -1,0 +1,31 @@
+\theoremstyle{definition}
+\newtheorem*{definice}{Definice}
+\newtheorem*{dukaz}{Důkaz}
+\newtheorem*{poznamka}{Poznámka}
+\newtheorem*{priklad}{Příklad}
+
+\theoremstyle{plain}
+\newtheorem*{veta}{Věta}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{tvrzeni}{Tvrzení}
+
+% \setcounter{veta}{0}
+\numberwithin{equation}{section}
+
+\usepackage[sans]{dsfont}
+% Znaceni velkych mnozin (jako realnych cisel a podobne)
+\newcommand\m[1]{\mathds { #1 }}
+\newcommand\p[1]{\mathcal{ #1 }}
+	% dalsi napriklad: mathbf, mathcal, mathbb, mathscr (vyzaduje mathrsfs),
+	%                  mathfrak \usepackage{eufm}
+	%                  boldsymbol \usepackage{bm}
+\newcommand\R[0]{\m R}
+\newcommand\N[0]{\m N}
+\newcommand\Z[0]{\m Z}
+\newcommand\Q[0]{\m Q}
+\newcommand\C[0]{\m C}
+
+\newcommand\mtrx[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\renewcommand{\epsilon}{\varepsilon}
+	% dalsi hezka recka pismena v \usepackage{upgreek} - napr:
+	%		\upbeta \uplambda \upvarepsilon \upphi ...

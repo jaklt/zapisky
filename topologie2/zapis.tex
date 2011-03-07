@@ -1,0 +1,209 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{../basic}
+\usepackage{../math}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0.0pt} % podtrzeni titulku
+\newcommand{\dusledky}{\medskip\noindent {\bf Důsledky: }}
+
+\newcommand\BX{$\beta X$}
+\newcommand\Tich{$T_{3.5}$}
+\newcommand\Hausd{$T_2$}
+\newcommand\close{\overline}
+\newcommand{\betaClose}[1]{\close #1 ^{\beta X}}
+
+\begin{document}
+%% 1. hodina
+\section{Čechovsky úplné prostory}
+\lemma
+	$bX$ kompaktifikace úplně regulárního prostoru X, $f: \beta X \to
+	bX$, $f$ je spojité rzšíření $id: X \to X$. Potom $f[\beta
+	X\setminus X] = bX \setminus X$
+\dukaz
+	$f[X]$ je hustý v $bX$, tedy $f[\beta X] \supseteq \close X^{bX} = bX$,
+	$f$ je na.
+
+	Sporem: nechť $p \in \beta X \setminus X$ takový, že $f(p) \in
+	X$. Označme $x = f(p)$. $\beta X$ je hausdorfův, tedy existuje (v $\beta
+	X$) $U$, $V$, že $p \in U, x \in V, U \cap V = \emptyset$.
+
+	$V \cap X$ je množina otevřená v $X$, existuje tedy $W \subseteq bX$,
+	otevřené v $bX$, že $W \cap X = V$. $f$ je spojité, $f(p) = x$, $W$ okolí x
+	v $bX$, existuje $U_1$ otevřené okolí $p$ v $\beta X$, že $f[U_1] \subseteq
+	W$.
+	
+	$U \cap V$ otevřené v \BX, $f[U \cap U_1] \subset W$, $X$ hustý v
+	$\beta X$, existuje $z \in U \cap U_1 \cap W$, $f(z) \in W, f(z) \notin z,
+	V \cap U_1 \cap U = \emptyset$, takže $f$ nerozšiřuje $id: X \to
+	X$, spor.
+
+	(poslední odstavec nefunguje/nedává smysl)
+	\qed
+
+\veta $X$ je \Tich. Pak následující je ekvivalentní:
+\begin{enumerate}
+	\item Pro každou kompaktifikaci $bX$ prostoru $X$ je přírustek $bX \setminus X$ množina typu $F_\sigma$ v $bX$.
+	\item Přírustek $\beta X \setminus X$ je množina typu $F_\sigma$ v $\beta X$.
+	\item Existuje kompaktifikace $cX$ prostoru $X$ taková, že $cX \setminus X$ je $F_\sigma$ v $cX$.
+\end{enumerate}
+
+\dukaz
+	\qed
+
+\definice \Tich~$X$ se nazývá {\bf Čechovsky úplný}, jestliže splňuje
+	kteroukoliv z podmínek 1., 2., 3. předchozí věty.
+
+\veta Tichonovův prostor $X$ je Čechovsky úplný $\iff$ existuje spočetný systém
+	$\{\p G_n: n \in \omega\}$ otevřených pokrytí prostoru $X$ s následující
+	vlastností:
+
+	Kdykoliv $\p F$ soubor uzavřených množin, který má konečnou průnikovou
+	vlastnost a takový, že $(\forall n \in \omega) (\exists F \in \p F), F
+	\subseteq G$, potom $\bigcap \p F \neq \emptyset$.
+\dukaz
+\noindent$\Leftarrow$: $X$ je \Tich,~$X \subseteq \beta X,~\{\p G_i : i \in
+	\omega \}$ je soubor otevřených pokrytí s vlastnostmi z věty. Označme $\p
+	G_i = \{G_{a,i} : a \in A_i\}$, každá množina $G_{a,i}$ je otevřená v $X$,
+	máme $V_{a,i}$ otevřené množiny v \BX, aby platilo, že $G_{a,i} = X \cap
+	V_{a,i}$. Tedy:
+		$$\bigcap_{i \in \omega}~\bigcup_{a \in A_i} V_{a,i} \supseteq X$$
+	
+	Potřebujeme ukázat, že platí rovnost. (pak $\beta X \setminus X$ je
+	$F_\sigma$ v \BX)
+
+	Zvolme libovolně $x \in \bigcap_{i \in \omega}~\bigcup_{a \in A_i}
+	V_{a,i}$, označme $\p B(x)$ bázi okolí bodu $x$ v prostoru \BX. Dále
+	označme
+		$$\p F = \{X \cap \betaClose B : B \in \p B(x)\}$$
+	
+	Platí, že $X \cap \betaClose B$ pro libovolné $B \in \p B(x)$ je
+	uzavřené v $X$, neprázdné ($X$ je husté v \BX). $\p F$ má konečnou
+	průnikovou vlastnost.
+
+	Pro $i \in \omega$ libovolné: $x \in \bigcup_{a \in A_i} V_{a,i}$, tedy
+	existuje $a_0 \in A_i$, $x \in V_{a_0,i}$, existuje tedy $B \in \p B(x), x
+	\in B \subseteq \betaClose B \subseteq V_{a_0,i}$
+		$$G_{a_0,i} = V_{a_0,i} \cap X,~\close B \cap X \in \p F,~
+		  \text{tedy } \close B \cap X \subseteq G_{a_0,i}$$
+
+	Tedy $\bigcap \p F \neq \emptyset$, ale $\bigcap \p F = \{x\}$, tedy $x
+	\in X$ a tedy platí rovnost.
+
+
+\medskip\noindent$\Rightarrow$: Nechť $X$ je Čechovsky úplný, $\beta X \supseteq X$,
+
+	existují otevřené (v \BX) množiny $O_{x,i}$, tak že $X = \bigcap_{i \in
+	\omega} G_i$.
+
+	Pro $i \in \omega, x \in X, x \in G_i$, existuje otevřená množina (v \BX)
+	$O_{x,i}$, tak, že:
+		$$x \in O_{x,i} \subseteq \betaClose O_{x,i} \subseteq G_i$$
+		$$\{X \cap O_{x,i} : x \in X\} = \p G_i,~\text{je otevřené pokrytí}$$
+
+	Máme ukázat, že pro $\{\p G_i : i \in \omega \}$ platí tvrzení věty.
+
+	Nechť $\p F$ je soubor uzavřených podmnožin prostoru $X$, splňující (1) má
+	konečnou průnikovou vlastnost, (2) $i \in \omega (\exists G \in \p G_i)
+	(\exists F \in \p F), F \subseteq G$
+		$$\bigcap \{\betaClose F : F \in \p F\} \neq \emptyset \text{, z
+		  kompaktnosti } \beta X$$
+
+	Zvolme $x \in \bigcap \{\betaClose F : F \in \p F\}$, potřebujeme ukázat, že $x \in X$.
+
+	Sporem: $x \in \beta X \setminus X$, tedy existuje $i \in \omega,~x \notin G_i,~\p G_i$ sestává z množin tvaru $O \cap X$, kde $O$ je otevřená v \BX a $\betaClose O \subseteq G_i$.
+
+	$(\exists F \in \p F) (\exists O \cap X \in \p G_i)~F \subseteq O \cap X,~ \betaClose F \subseteq O \subseteq G_i \not\ni x_i$, tedy $x \not\in \bigcap \{\betaClose F : F \in \p F\}$
+
+	\qed
+
+\veta[Boireova] Je-li $X$ Čechovsky úplný, pak každý soubor $\{U_n : n \in
+	\omega\}$ otevřených hustých množin v prostoru $X$ má průnik hustý v X.
+\dukaz
+	\qed
+
+\veta Platí:
+\begin{itemize}
+	\item Je-li $X$ Čechovsky úplný, $Y \subseteq X$ uzavřená množina, pak $Y$ je Čechovsky úplný.
+	\item Je-li $Y \subseteq X$ podmnožina typu $G_\delta$, pak podprostor $Y$ je Čechovsky úplný.
+\end{itemize}
+\dukaz
+	\qed
+
+\veta Suma $\Sigma_{a \in A}$ je Čechovsky úplná $\iff$ všechny $X_a$ jsou Čechovsky úplné.
+
+\veta Kartézský součin spočetně mnoha Čechovsky úplných prostorů je Čechovsky úplný.
+\dukaz $\{ X_n : n \in \omega \}$ soubor Čechovsky úplných prostorů, zvolme
+	$bX_n$ kompaktifikaci $X_n$
+		$$\prod_{n \in \omega} bX_n \supseteq \prod_{n \in \omega}
+		  X_n,~\prod_{n \in \omega} bX_n \text{ je kompaktní prostor}$$
+	Položme
+		$$H_{n,m} = \prod_{j \neq n} bX_j \times F_{n,m},~H_{n,m} \text{ je
+		  uzavřené v } \prod_{j \in \omega} bX_j$$
+		$$H_{n,m} \cap \prod_{j \in \omega} bX_j \neq \emptyset~(F_{n,m}
+		  \subseteq bX \setminus X_n). \bigcup_{n \in \omega} H_{n,m} =
+		  \prod_{n \in \omega} bX_n \setminus \prod_{n \in \omega} X_n.$$
+	Tedy $\prod X_n$ je Čechovsky úplný.
+	\qed
+
+%% 2. hodina
+\section{Parakompaktní prostory}
+\definice $X$ je topologický prostor, $\p M \subseteq \p P(X)$. $\p M$ se nazývá.
+\begin{enumerate}[(a)]
+	\item {\bf lokálně konečný}, jestliže ke každému bodu $x \in X$ existuje
+	$O$ okolí bodu $x$, tak, že
+		$$\{M \in \p M : M \cap O \neq \emptyset \}$$
+	je konečný.
+
+	\item {\bf diskrétní}, jestliže ke každému bodu $x \in X$ existuje $O$
+	okolí bodu $x$, tak, že
+		$$|\{ M \in \p M : M \cap O \neq \emptyset \}| \leq 1$$
+
+	\item {\bf $\sigma$-lokálně konečný} (respektive {\bf $\sigma$-diskrétní}), pokud $\p M = \bigcup_{n \in \omega} \p M_n$, tak, že každý soubor $\p M_n$ je lokálně konečný (respektive diskrétní)
+\end{enumerate}
+
+\priklad $\{(a, a+1), a = p / 2, p \in \Z\}$ je lokálně konečný, $\{(a, a+1), a = p / 2^n, p \in \Z\}$ je $\sigma$-lokálně konečný
+
+\poznamka
+\begin{enumerate}[(a)]
+	\item $\p M$ diskrétní $\implies$ $\p M$ lokálně konečný
+	\item $\p M$ lokálně konečný: $\close{\bigcup \{M : M \in \p M\}} = \bigcup \{\close M : M \in \p M\}$ Tedy $\p M$ má vlastnost zachování uzávěru.
+\end{enumerate}
+
+\veta[A. H. Stone]
+	Buď $X$ metrizovatelný prostor. Ke každému otevřenému pokrytí $\p U$ prostoru $X$ existuje otevřené pokrytí $\p V$, které je lokálně konečné a $\sigma$-diskrétní, a které zjemňuje $\p U$.
+\dukaz \qed
+
+\dusledky
+\begin{enumerate}
+	\item Nechť topologický prostor $X$ je metrizovatelný. Potom $X$ má
+	$\sigma$-lokálně konečnou bázi (za $\p U=\{B_\rho(x, \frac{1}{n}) : x \in
+	X\}$, $n \in \omega \setminus \{0\}$)
+
+	\item Nechť $X$ je metrizovatelný. Potom $X$ má $\sigma$-diskrétní otevřenou bázi.
+\end{enumerate}
+
+\definice Topologický prostor $X$ se nazývá {\bf parakompaktní}, jestliže je
+	\Hausd~a jestliže ke každému otevřenému pokrytí $\p U$ existuje lokálně
+	konečné otevřenépokrytí $\p V$, které zjemňuje $\p U$.
+
+\priklad Každý metrizovatelný prostor je kompaktní (Stoneova věta). Každý
+	kompaktní prostor je parakompaktní.
+
+(Příkladem nějakého nemetrizovatelného parakompaktu je například velký součin
+kompaktů)
+
+\definice Topologický prostor $X$ se nazývá {\bf kolektivně kompaktní}, je-li
+	$T_1$ a jestliže ke každému diskrétnímu souboru $\p F$ sestávajícího z
+	uzavřených množin existuje soubor $\{\p U(F) : F \in \p F\}$, že pro každé
+	$F \in \p F$, $F \subseteq \p U(F)$, každá množina $\p U(F)$ je otevřená,
+	pro každou dvojici $F, F' \in \p F, F \neq F' \implies \p U(F) \cap \p
+	U(F') = \emptyset$
+
+\veta Každý parakompaktní prostor je kolektivně normální.
+\dukaz \qed
+
+\lemma[1] Každé otevřené $\sigma$-lokálně konečné pokrytí topologického prostoru $X$ má lokální konečné zjemnění (ne nutně z otevřených množin).
+\dukaz \qed
+
+\end{document}
