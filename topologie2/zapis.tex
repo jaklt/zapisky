@@ -5,7 +5,7 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0.0pt} % podtrzeni titulku
-\newcommand{\dusledky}{\medskip\noindent {\bf Důsledky: }}
+\newcommand{\head}[1]{\medskip\noindent {\bf #1}}
 
 \newcommand\BX{$\beta X$}
 \newcommand\Tich{$T_{3.5}$}
@@ -43,9 +43,11 @@
 
 \veta $X$ je \Tich. Pak následující je ekvivalentní:
 \begin{enumerate}
-	\item Pro každou kompaktifikaci $bX$ prostoru $X$ je přírustek $bX \setminus X$ množina typu $F_\sigma$ v $bX$.
+	\item Pro každou kompaktifikaci $bX$ prostoru $X$ je přírustek $bX
+		\setminus X$ množina typu $F_\sigma$ v $bX$.
 	\item Přírustek $\beta X \setminus X$ je množina typu $F_\sigma$ v $\beta X$.
-	\item Existuje kompaktifikace $cX$ prostoru $X$ taková, že $cX \setminus X$ je $F_\sigma$ v $cX$.
+	\item Existuje kompaktifikace $cX$ prostoru $X$ taková, že $cX \setminus X$
+		je $F_\sigma$ v $cX$.
 \end{enumerate}
 
 \dukaz
@@ -109,11 +111,16 @@
 		$$\bigcap \{\betaClose F : F \in \p F\} \neq \emptyset \text{, z
 		  kompaktnosti } \beta X$$
 
-	Zvolme $x \in \bigcap \{\betaClose F : F \in \p F\}$, potřebujeme ukázat, že $x \in X$.
+	Zvolme $x \in \bigcap \{\betaClose F : F \in \p F\}$, potřebujeme ukázat,
+	že $x \in X$.
 
-	Sporem: $x \in \beta X \setminus X$, tedy existuje $i \in \omega,~x \notin G_i,~\p G_i$ sestává z množin tvaru $O \cap X$, kde $O$ je otevřená v \BX a $\betaClose O \subseteq G_i$.
+	Sporem: $x \in \beta X \setminus X$, tedy existuje $i \in \omega,~x \notin
+	G_i,~\p G_i$ sestává z množin tvaru $O \cap X$, kde $O$ je otevřená v \BX a
+	$\betaClose O \subseteq G_i$.
 
-	$(\exists F \in \p F) (\exists O \cap X \in \p G_i)~F \subseteq O \cap X,~ \betaClose F \subseteq O \subseteq G_i \not\ni x_i$, tedy $x \not\in \bigcap \{\betaClose F : F \in \p F\}$
+	$(\exists F \in \p F) (\exists O \cap X \in \p G_i)~F \subseteq O \cap X,~
+	\betaClose F \subseteq O \subseteq G_i \not\ni x_i$, tedy $x \not\in
+	\bigcap \{\betaClose F : F \in \p F\}$
 
 	\qed
 
@@ -124,13 +131,16 @@
 
 \veta Platí:
 \begin{itemize}
-	\item Je-li $X$ Čechovsky úplný, $Y \subseteq X$ uzavřená množina, pak $Y$ je Čechovsky úplný.
-	\item Je-li $Y \subseteq X$ podmnožina typu $G_\delta$, pak podprostor $Y$ je Čechovsky úplný.
+	\item Je-li $X$ Čechovsky úplný, $Y \subseteq X$ uzavřená množina, pak $Y$
+		je Čechovsky úplný.
+	\item Je-li $Y \subseteq X$ podmnožina typu $G_\delta$, pak podprostor $Y$
+		je Čechovsky úplný.
 \end{itemize}
 \dukaz
 	\qed
 
-\veta Suma $\Sigma_{a \in A}$ je Čechovsky úplná $\iff$ všechny $X_a$ jsou Čechovsky úplné.
+\veta Suma $\Sigma_{a \in A}$ je Čechovsky úplná $\iff$ všechny $X_a$ jsou
+	Čechovsky úplné.
 
 \veta Kartézský součin spočetně mnoha Čechovsky úplných prostorů je Čechovsky úplný.
 \dukaz $\{ X_n : n \in \omega \}$ soubor Čechovsky úplných prostorů, zvolme
@@ -159,7 +169,9 @@
 	okolí bodu $x$, tak, že
 		$$|\{ M \in \p M : M \cap O \neq \emptyset \}| \leq 1$$
 
-	\item {\bf $\sigma$-lokálně konečný} (respektive {\bf $\sigma$-diskrétní}), pokud $\p M = \bigcup_{n \in \omega} \p M_n$, tak, že každý soubor $\p M_n$ je lokálně konečný (respektive diskrétní)
+	\item {\bf $\sigma$-lokálně konečný} (respektive {\bf $\sigma$-diskrétní}),
+		pokud $\p M = \bigcup_{n \in \omega} \p M_n$, tak, že každý soubor $\p
+		M_n$ je lokálně konečný (respektive diskrétní)
 \end{enumerate}
 
 \priklad $\{(a, a+1), a = p / 2, p \in \Z\}$ je lokálně konečný, $\{(a, a+1), a = p / 2^n, p \in \Z\}$ je $\sigma$-lokálně konečný
@@ -171,21 +183,24 @@
 \end{enumerate}
 
 \veta[A. H. Stone]
-	Buď $X$ metrizovatelný prostor. Ke každému otevřenému pokrytí $\p U$ prostoru $X$ existuje otevřené pokrytí $\p V$, které je lokálně konečné a $\sigma$-diskrétní, a které zjemňuje $\p U$.
+	Buď $X$ metrizovatelný prostor. Ke každému otevřenému pokrytí $\p U$
+	prostoru $X$ existuje otevřené pokrytí $\p V$, které je lokálně konečné a
+	$\sigma$-diskrétní, a které zjemňuje $\p U$.
 \dukaz \qed
 
-\dusledky
+\head{Důsledky:}
 \begin{enumerate}
 	\item Nechť topologický prostor $X$ je metrizovatelný. Potom $X$ má
 	$\sigma$-lokálně konečnou bázi (za $\p U=\{B_\rho(x, \frac{1}{n}) : x \in
 	X\}$, $n \in \omega \setminus \{0\}$)
 
-	\item Nechť $X$ je metrizovatelný. Potom $X$ má $\sigma$-diskrétní otevřenou bázi.
+	\item Nechť $X$ je metrizovatelný. Potom $X$ má $\sigma$-diskrétní
+		otevřenou bázi.
 \end{enumerate}
 
 \definice Topologický prostor $X$ se nazývá {\bf parakompaktní}, jestliže je
 	\Hausd~a jestliže ke každému otevřenému pokrytí $\p U$ existuje lokálně
-	konečné otevřenépokrytí $\p V$, které zjemňuje $\p U$.
+	konečné otevřené pokrytí $\p V$, které zjemňuje $\p U$.
 
 \priklad Každý metrizovatelný prostor je kompaktní (Stoneova věta). Každý
 	kompaktní prostor je parakompaktní.
@@ -193,7 +208,7 @@
 (Příkladem nějakého nemetrizovatelného parakompaktu je například velký součin
 kompaktů)
 
-\definice Topologický prostor $X$ se nazývá {\bf kolektivně kompaktní}, je-li
+\definice Topologický prostor $X$ se nazývá {\bf kolektivně normální}, je-li
 	$T_1$ a jestliže ke každému diskrétnímu souboru $\p F$ sestávajícího z
 	uzavřených množin existuje soubor $\{\p U(F) : F \in \p F\}$, že pro každé
 	$F \in \p F$, $F \subseteq \p U(F)$, každá množina $\p U(F)$ je otevřená,
@@ -203,7 +218,53 @@ kompaktů)
 \veta Každý parakompaktní prostor je kolektivně normální.
 \dukaz \qed
 
-\lemma[1] Každé otevřené $\sigma$-lokálně konečné pokrytí topologického prostoru $X$ má lokální konečné zjemnění (ne nutně z otevřených množin).
+\lemma[1] Každé otevřené $\sigma$-lokálně konečné pokrytí topologického
+	prostoru $X$ má lokální konečné zjemnění (ne nutně z otevřených množin).
 \dukaz \qed
+
+%% 3. hodina
+\lemma[2] Buď $X$ regulární prostor. Má-li každé otevřené pokrytí X lokálně
+	konečné zjemnění, pak každé otevřené pokrytí prostoru X má lokálně konečné
+	uzavřené zjemnění.
+\dukaz \qed
+
+\lemma[3] Buď $X$ topologický prostor. Má-li každé otevřené pokrytí prostoru
+	$X$ uzavřené lokálně konečné zjemnění, pak každé otevřené pokrytí prostoru
+	$X$ má otevřené lokálně konečné zjemnění.
+\dukaz \qed
+
+\begin{veta}
+Pro každý \Hausd~prostor $X$ jsou následující výroky ekvivalentní.
+	\begin{enumerate}[(a)]
+		\item $X$ je parakompaktní.
+		\item $X$ je regulární a každé otevřené pokrytí prostoru $X$ má
+			$\sigma$-lokálně konečné otevřené zjemnění.
+		\item $X$ je regulární a každé otevřené pokrytí prostoru $X$ má lokálně
+			konečné zjemnění (sestávající z libovolných množin).
+		\item Každé otevřené pokrytí prostoru $X$ má lokálně konečné uzavřené
+			zjemnění.
+	\end{enumerate}
+\end{veta}
+
+\head {Důsledek:} Každý Lindelöfův prostor je parakompaktní.
+
+\definice Nechť $\p U$ je pokrytí prostoru $X$, pokrytí $\p V$ se nazývá {\bf
+	hvězdicovitým zjemněním} pokrytí $\p U$, značíme $\p V \prec^\star \p U$,
+	jestliže $\{st(x,\p V) : x \in X\}$ zjemňuje $\p U$, $st(x, \p V) = \bigcup
+	\{ V \in \p V : x \in V\}$ je hvězda bodu vůči $\p V$.
+
+	Analogicky pro $M \subseteq X$:
+		$$st(M, \p V) = \bigcup \{ V \in \p V : M \cap V \neq \emptyset \}$$
+		$$st^n(x, \p V) = st(st^{n-1}(x, \p V), \p V),~\text{pro } n > 1$$
+
+\head {Poznámka:} Uniformita $\Omega$ indukuje topologii:
+	$$U \subseteq X~\text{je otevřená} \leftrightarrow \forall x \in U~\exists V \text{okolí } \triangle,~V \in \Omega,~V[x] \subseteq U,~V[x] = \{ y :~<x,y> \in V\}$$
+	$$U \subseteq X~\text{je otevřená} \leftrightarrow \forall x \in U~\text{existuje uniformní pokrytí } \p V \in \Omega,\text{ že } st(x, \p V) \subseteq U$$.
+	Topologický prostor $X$ je uniformizovatelný $iff$ $X$ je úplně regulární.
+
+\veta Hausdorfův prostor $X$ je parakompaktní $\iff$ ke každému otevřenému
+	pokrytí prostoru $X$ existuje otevřené hvězdicovíté zjěmnění.
+\dukaz \qed
+
 
 \end{document}
