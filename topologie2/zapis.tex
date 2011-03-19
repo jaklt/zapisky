@@ -7,11 +7,15 @@
 \renewcommand{\headrulewidth}{0.0pt} % podtrzeni titulku
 \newcommand{\head}[1]{\medskip\noindent {\bf #1}}
 
-\newcommand\BX{$\beta X$}
+\newcommand\BX{\ensuremath{\beta X}}
 \newcommand\Tich{$T_{3.5}$}
 \newcommand\Hausd{$T_2$}
 \newcommand\close{\overline}
 \newcommand{\betaClose}[1]{\close #1 ^{\beta X}}
+
+\usepackage{verbatim}
+% \renewcommand\dukaz{\begin{comment}}
+% \renewcommand\qed{\end{comment}}
 
 \begin{document}
 %% 1. hodina
@@ -25,33 +29,47 @@
 	$f$ je na.
 
 	Sporem: nechť $p \in \beta X \setminus X$ takový, že $f(p) \in
-	X$. Označme $x = f(p)$. $\beta X$ je hausdorfův, tedy existuje (v $\beta
-	X$) $U$, $V$, že $p \in U, x \in V, U \cap V = \emptyset$.
+	X$. Označme $x = f(p)$. \BX je hausdorfův, tedy existuje (v \BX) $U$, $V$,
+	že $p \in U, x \in V, U \cap V = \emptyset$.
 
 	$V \cap X$ je množina otevřená v $X$, existuje tedy $W \subseteq bX$,
-	otevřené v $bX$, že $W \cap X = V$. $f$ je spojité, $f(p) = x$, $W$ okolí x
-	v $bX$, existuje $U_1$ otevřené okolí $p$ v $\beta X$, že $f[U_1] \subseteq
-	W$.
+	otevřené v $bX$, že $W \cap X = V \cap X$. $f$ je spojité, $f(p) = x$, $W$
+	okolí x v $bX$, existuje $U_1$ otevřené okolí $p$ v $\beta X$, že $f[U_1]
+	\subseteq W$.
 	
 	$U \cap V$ otevřené v \BX, $f[U \cap U_1] \subset W$, $X$ hustý v
-	$\beta X$, existuje $z \in U \cap U_1 \cap W$, $f(z) \in W, f(z) \notin z,
+	$\beta X$, existuje $z \in U \cap U_1 \cap X$, $f(z) \in W, f(z) \neq z,
 	V \cap U_1 \cap U = \emptyset$, takže $f$ nerozšiřuje $id: X \to
 	X$, spor.
 
-	(poslední odstavec nefunguje/nedává smysl)
 	\qed
 
 \veta $X$ je \Tich. Pak následující je ekvivalentní:
 \begin{enumerate}
 	\item Pro každou kompaktifikaci $bX$ prostoru $X$ je přírustek $bX
 		\setminus X$ množina typu $F_\sigma$ v $bX$.
-	\item Přírustek $\beta X \setminus X$ je množina typu $F_\sigma$ v $\beta X$.
+	\item Přírustek $\beta X \setminus X$ je množina typu $F_\sigma$ v \BX.
 	\item Existuje kompaktifikace $cX$ prostoru $X$ taková, že $cX \setminus X$
 		je $F_\sigma$ v $cX$.
 \end{enumerate}
 
 \dukaz
-	\qed
+1 $\rightarrow$ 2 $\rightarrow$ 3: triviálně
+
+2 $\rightarrow$ 1: Buď $bX$ libovolná kompaktifikace prostoru $X$, $id: X \to
+	X$ se spojitě rozšiřuje na $f : \beta X \to bX$. Podle lemmatu $f[\BX
+	\setminus X] = bX \setminus X$. Podle (2), $\BX \setminus X = \bigcup_{n
+	\in \omega} F_n$, kde každá množina $F_n$ je uzavřená v $\BX \setminus X$.
+	$f[F_n]$ je uzavřené v $bX$. $bX \setminus X = \bigcup_{n \in \omega}
+	f[F_n]$ tedy $bX \setminus X$ je množina typu $F_\sigma$ v $bX$.
+
+3 $\rightarrow$ 1: $cX$ buď kompaktifikace $X$, že $cX \setminus X = \bigcup_{n
+	\in \omega} F_n$, že všechny $F_n$ jsou uzavřené v $cX$. $id : X \to X$ se
+	spojitě rozšířuje na $f : \BX \to cX$. $f^{-1}[F_n]$ je (ze spojitosti)
+	uzavřené v \BX. $f^{-1}[F_n] \subseteq \beta X \setminus X$ dle lemmatu,
+	$\BX \setminus X = \bigcup_{n \in \omega} f^{-1}[F_n]$, tedy $\beta X
+	\setminus X$ je typu $F_\sigma$ v \BX.
+\qed
 
 \definice \Tich~$X$ se nazývá {\bf Čechovsky úplný}, jestliže splňuje
 	kteroukoliv z podmínek 1., 2., 3. předchozí věty.
@@ -99,7 +117,7 @@
 	\omega} G_i$.
 
 	Pro $i \in \omega, x \in X, x \in G_i$, existuje otevřená množina (v \BX)
-	$O_{x,i}$, tak, že:
+	$O_{x,i}$ tak, že:
 		$$x \in O_{x,i} \subseteq \betaClose O_{x,i} \subseteq G_i$$
 		$$\{X \cap O_{x,i} : x \in X\} = \p G_i,~\text{je otevřené pokrytí}$$
 
@@ -120,13 +138,27 @@
 
 	$(\exists F \in \p F) (\exists O \cap X \in \p G_i)~F \subseteq O \cap X,~
 	\betaClose F \subseteq O \subseteq G_i \not\ni x_i$, tedy $x \not\in
-	\bigcap \{\betaClose F : F \in \p F\}$
+	\bigcap \{\betaClose F : F \in \p F\}$, spor.
 
 	\qed
 
-\veta[Boireova] Je-li $X$ Čechovsky úplný, pak každý soubor $\{U_n : n \in
+\veta[Baireova] Je-li $X$ Čechovsky úplný, pak každý soubor $\{U_n : n \in
 	\omega\}$ otevřených hustých množin v prostoru $X$ má průnik hustý v X.
 \dukaz
+	Zvolme $\{\p G_i : i \in \omega\}$ jako v předchozí větě.
+
+	Indukcí: $U_0$ je otevřené husté, zvolme $x \in U_0$ a okolí $O_0$ bodu
+	$x_0$ tak, že $O_0 \subseteq U_0$ a součastně existuje $G \in \p G_0$, že
+	$\close O_0 \subseteq G$.
+
+	Zvolme $O_n$ otevřené, $U_{n+1}$ otevřené husté, existuje $x_{n+1} \in O_n
+	\cap U_{n+1}$, bod $x_{n+1}$ má otevřené okolí $O_{n+1}$ tak, že $O_{n+1}
+	\subseteq U_{n+1} \cap O_n$ a pro nějaké $G \in \p G_{n+1}$ je $\close
+	O_{n+1} \subseteq G$. $\{\close O_n : n \in \omega\}$ $X$ je Čechovsky
+	úplný, tedy $\bigcap \{\close O_n : n \in \omega\} \neq \emptyset$.
+
+	Průnik je hustý, protože náš výsledek nezáleží na prvotní volbě $x$ a $U_0$
+	(popřípadě pořadí dalších).
 	\qed
 
 \veta Platí:
@@ -137,6 +169,7 @@
 		je Čechovsky úplný.
 \end{itemize}
 \dukaz
+	Průniková vlastnost $G_\delta$ v $G_\delta$ je $G_\delta$.
 	\qed
 
 \veta Suma $\Sigma_{a \in A}$ je Čechovsky úplná $\iff$ všechny $X_a$ jsou
@@ -161,16 +194,16 @@
 \definice $X$ je topologický prostor, $\p M \subseteq \p P(X)$. $\p M$ se nazývá.
 \begin{enumerate}[(a)]
 	\item {\bf lokálně konečný}, jestliže ke každému bodu $x \in X$ existuje
-	$O$ okolí bodu $x$, tak, že
+	$O$ okolí bodu $x$ tak, že
 		$$\{M \in \p M : M \cap O \neq \emptyset \}$$
 	je konečný.
 
 	\item {\bf diskrétní}, jestliže ke každému bodu $x \in X$ existuje $O$
-	okolí bodu $x$, tak, že
+	okolí bodu $x$ tak, že
 		$$|\{ M \in \p M : M \cap O \neq \emptyset \}| \leq 1$$
 
 	\item {\bf $\sigma$-lokálně konečný} (respektive {\bf $\sigma$-diskrétní}),
-		pokud $\p M = \bigcup_{n \in \omega} \p M_n$, tak, že každý soubor $\p
+		pokud $\p M = \bigcup_{n \in \omega} \p M_n$ tak, že každý soubor $\p
 		M_n$ je lokálně konečný (respektive diskrétní)
 \end{enumerate}
 
@@ -216,7 +249,53 @@ kompaktů)
 	U(F') = \emptyset$
 
 \veta Každý parakompaktní prostor je kolektivně normální.
-\dukaz \qed
+\dukaz[nekontrolováno] Postupně:
+\begin{enumerate}[(a)]
+\item Každý parakopaktní prostor je regulární.
+
+	Mějme $x \in X,~F \subseteq X$. $F$ uzavřené, $x \notin F$.
+
+	$X$ je Hausdorfův, pro každé $y \in F$ zvolme dvě disjunktní otevřené
+	množiny, $U_y \ni x$, $V_y \ni y$.
+		$$\p U = \{V_y : y \in F\} \cup \{X \setminus F\}.$$
+	$\p U$ je otevřené pokrytí $X$, $X$ je parakompaktní, buď $\p V$ otevřené
+	lokálně konečné zjemnění $\p U$. Systém $\p V$ je lokálně konečný, tedy
+	existuje $W$ okolí $x$ tak, že $\p V_0 := \{V \in \p V : V \cap W \neq
+	\emptyset\}$ je konečné.
+
+	Je-li $V \in \p V$: Pokud $V \cap F \neq \emptyset$, pak $V \subseteq
+	V_y$ pro nějaké $y \in F$. Označme toto $y$ jako $y(V)$.
+
+	Množina $W \cap \bigcap \{U_{y(V)} : V \in \p V_0\}$ je otevřená množina
+	($\p V_0$ je konečné), obsahuje bod $x$ a současně neprotíná žádné $V \in
+	\p V$, takové, že $V \cap F \neq \emptyset$.
+	
+	Položíme-li tedy $G = \{V \in \p V : V \cap F \neq \emptyset \}$ máme
+	disjunktní otevřené množiny obsahující $x$, $F$.
+
+\item Parakompaktní prostor je kolektivně normální.
+	
+	Zvolme libovolně diskrétní soubor $\p F$ sestávající z uzavřených množin.
+	Pro každé $F \in \p F$ a každé $x \in F$ zvolme otevřené okolí $O_x$ bodu
+	$x$ tak, že:
+		$$\close O_x \cap \bigcup \{F' : F' \in \p F, F' \neq F\} = \emptyset.$$
+	Položme $\p U = \{O_x : x \in \bigcup \p F\} \cup \{X \setminus \bigcup \p F$. $\p U$ je otevřené pokrytí prostoru $X$, $X$ je parakompaktní, nechť $\p V$ je lokálně konečné pokrytí $X$, které zjemňuje $\p U$.
+
+	Máme-li $F \in \p F$, $F \neq F'$, $x \in F'$, $x \in V \in \p V$. Protože
+	$V \subseteq O_x: \close V \cap F = \emptyset$. $\p V$ je lokálně konečný:
+		$$\emptyset = F \cap \close{\bigcup \{V \in \p V: \exists F' \neq F, V
+		\cap F' \neq \emptyset\}}$$
+
+	Tedy stačí položit:
+		$$U(F) = \bigcup \{V \in \p V: V \cap F \neq \emptyset\} \setminus
+		\close{\bigcup \{V \in \p V : V \cap \bigcup (\p F \setminus \{F\}) \neq
+		\emptyset \}}$$
+
+	Zřejmě $U(F)$ je otevřené, $U(F) \supseteq F$, pro $F \neq F': U(F) \cap
+	U(F') = \emptyset$.
+
+\end{enumerate}
+\qed
 
 \lemma[1] Každé otevřené $\sigma$-lokálně konečné pokrytí topologického
 	prostoru $X$ má lokální konečné zjemnění (ne nutně z otevřených množin).
@@ -259,8 +338,8 @@ Pro každý \Hausd~prostor $X$ jsou následující výroky ekvivalentní.
 
 \head {Poznámka:} Uniformita $\Omega$ indukuje topologii:
 	$$U \subseteq X~\text{je otevřená} \leftrightarrow \forall x \in U~\exists V \text{okolí } \triangle,~V \in \Omega,~V[x] \subseteq U,~V[x] = \{ y :~<x,y> \in V\}$$
-	$$U \subseteq X~\text{je otevřená} \leftrightarrow \forall x \in U~\text{existuje uniformní pokrytí } \p V \in \Omega,\text{ že } st(x, \p V) \subseteq U$$.
-	Topologický prostor $X$ je uniformizovatelný $iff$ $X$ je úplně regulární.
+	$$U \subseteq X~\text{je otevřená} \leftrightarrow \forall x \in U~\text{existuje uniformní pokrytí } \p V \in \Omega,\text{ že } st(x, \p V) \subseteq U.$$
+	Topologický prostor $X$ je uniformizovatelný $\iff$ $X$ je úplně regulární.
 
 \veta Hausdorfův prostor $X$ je parakompaktní $\iff$ ke každému otevřenému
 	pokrytí prostoru $X$ existuje otevřené hvězdicovíté zjěmnění.
