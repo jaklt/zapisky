@@ -13,7 +13,7 @@
 \newcommand\close{\overline}
 \newcommand{\betaClose}[1]{\close #1 ^{\beta X}}
 
-\usepackage{verbatim}
+% \usepackage{verbatim}
 % \renewcommand\dukaz{\begin{comment}}
 % \renewcommand\qed{\end{comment}}
 
@@ -345,5 +345,56 @@ Pro každý \Hausd~prostor $X$ jsou následující výroky ekvivalentní.
 	pokrytí prostoru $X$ existuje otevřené hvězdicovíté zjěmnění.
 \dukaz \qed
 
+%% 4. hodina
+\veta Je-li prostor $X$ parakompaktní, $Y \subseteq X$ množina typu $F_\sigma$,
+	pak podprostor $Y$ je parakompaktní.
+\dukaz \qed
+
+\head {Důsledek:} Parakompaktnost je dědičná na uzavřeném podprostoru.
+
+\section{Metrizační věty}
+\lemma Buď $\p C_n$ posloupnost pokrytí množiny $X$ takové, že $\p C_0 =
+	\{X\}$, pro $n \geq 0$, že $\p C_{n+1} \prec^{\star\star\star} \p C_n$. Pak
+	existuje nezáporná reálná funkce $d : X \times X \to \m R$ taková, že:
+
+	\begin{enumerate}[(a)]
+		\item $d(x,y) = d(y,x) \geq 0$
+		\item $d(x,y) \leq d(x,z) + d(z,y)$
+	\end{enumerate}
+	A platí: označíme-li $B_d(x,\epsilon) = \{y \in X : d(x,y) < \epsilon \}$, potom
+	\begin{enumerate}[(a)]
+		\setcounter{enumi}{2}
+		\item $\p C_{n+1} \prec^{\star} \{ B_d(x,2^{-n}) : x \in X\} \prec^{\star} \p C_n$
+	\end{enumerate}
+\dukaz \qed
+
+\veta [P. S. Uryshon] Buď $X$ uniformizovatelný prostor. Pak $X$ je
+	metrizovatelný $\iff$ jeho topologie je indukována uniformitou se spočetnou
+	bází.
+
+\definice [Diagonální zobrazení]
+	Prostor $Y_\alpha (\alpha \in A)$, zobrazení $f_\alpha : X \to Y_\alpha (\alpha \in A)$,
+	diagonální součin je:
+		$$\triangle_{\alpha \in A} f_\alpha : X \to \Sigma_{\alpha \in A} Y_\alpha;~((\triangle_{\alpha \in A} f_\alpha(x))_\alpha = f_\alpha(x))$$
+
+\veta [Bing, Nagata, Smirnov] Pro regulární prostor $X$ jsou následující výroky
+	ekvivalentní:
+	\begin{enumerate}[(a)]
+		\item $X$ je metrizovatelný
+		\item $X$ má $\sigma$-lokálně konečnou otevřenou bázi
+		\item $X$ má $\sigma$-diskrétní otevřenou bázi
+	\end{enumerate}
+\dukaz (a) $\rightarrow$ (c): Stoneova věta
+
+(c) $\rightarrow$ (b): triviální
+
+(b) $\rightarrow$ (a): (zatím chybí)
+\qed
+
+\definice $H$ je metrický ježek s $A$ ostny. Pokud $H = [0,1] \times A / q$, $(0, \alpha)~q~(0, \beta);~\alpha,~\beta \in A$.
+
+\head {Důsledek:}
+	Každý metrizovatelný prostor lze vnořit do spočetného součinu metrických
+	ježků.
 
 \end{document}
