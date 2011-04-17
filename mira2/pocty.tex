@@ -1,0 +1,67 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{../basic}
+\usepackage{../math}
+
+\begin{document}
+\section{Kritéria konvergence L-integrálu}
+\begin{itemize}
+	\item {\bf Srovnávací:} Je-li $f$ měřitelná, $g \in L^1$ a $|f| \leq g$ potom $f \in L^1$
+	\item {\bf Limitní srovnávací kritérium:} Nechť $f,g : (a,b) \to \R$ jsou spojité nezáporné. Potom
+		\begin{enumerate}
+			\item Pokud $\lim_{x \to a+} \frac{f(x)}{g(x)} \in (0, +\infty)$, potom konverguje $\int_a^b f \iff \int_a^b g$
+			\item Pokud $\lim_{x \to a+} \frac{f(x)}{g(x)} = 0$, potom konverguje $\int_a^b f \Leftarrow \int_a^b g$
+			\item Pokud $\lim_{x \to a+} \frac{f(x)}{g(x)} = +\infty$, potom $\int_a^b f = +\infty \Leftarrow \int_a^b g = +\infty$
+		\end{enumerate}
+\end{itemize}
+
+\section{Záměna limity a integrálu}
+	$f_n$ měřitelná, $f_n \to f$ s.v. Kdy $$(\star)~\lim \int f = \int \lim f \text{ platí?}$$
+\begin{enumerate}
+	\item {\bf Levi:} $f_n \geq 0$, $f_n \nearrow f \implies (\star)$.
+
+		  Důsledek: $\int f_1 > +\infty, f_n \nearrow f \implies (\star)$ nebo $\int f_1 < -\infty, f_n \searrow f \implies (\star)$
+	\item {\bf Lebesgue:} $g \in L^1$, $|f_n| \leq g \forall n$ (s.v.): $f_n \to f \implies (\star)$
+	\item $f_n \rightrightarrows f$ na $X$, $f_n \in L(\mu)$, $\mu(X) < +\infty \implies f \in L^1(\mu)$ a $(\star)$.
+\end{enumerate}
+
+\section{Záměna sumy a integrálu}
+$(X, \p C, \mu)$, $f_n$ měřitelné, $s = \sum f_n$, kdy platí:
+	$$(\star)~\int_X \sum f_n d\mu = \sum \int_X f_n d\mu$$
+
+Víme:
+\begin{enumerate}
+	\item $f_n \geq 0 \implies (\star)$ (Levi)
+	\item $\sum \int |f_n| < +\infty \implies (\star)$ a $s \in L^1$ (Lebesgue)
+	\item $\mu(X) < +\infty$, $f_n \in L^1$, $\sum f_n \rightrightarrows$ na $X$ $\implies (\star)$ a $s \in L^1$
+\end{enumerate}
+
+\section{Integrály závislé na parametru}
+$(X, \p C, \mu)$, $I$, $f(x,\alpha)$, jaké vlastnosti má: $F(\alpha) = \int_X f(x,\alpha)~d\mu(x)$, $\alpha \in I$?
+
+\veta[O spojité závislosti na parametru]
+	Nechť:
+	\begin{enumerate}
+		\item $\forall \alpha \in I$: $f(\cdot, \alpha)$ je měřitelná
+		\item $\forall x \in X$: $f(x, \cdot)$ je spojité v $\alpha_0 \in I$
+		\item $\exists g \in L^1(X)$: $|f(x, \alpha)| \leq g(x)~\forall x \in X,~\forall \alpha \in I$
+	\end{enumerate}
+
+	Potom $F$ je spojité v $\alpha_0$.
+
+\veta[O derivování podle parametru] $I$ je otevřený interval, nechť:
+	\begin{enumerate}
+		\item $\forall \alpha \in I$: $f(\cdot, \alpha)$ je měřitelná
+		\item $\forall x \in X$: $\frac{\partial f}{\partial x}(x,\alpha)$ je konečná na $I$
+		\item $\exists g \in L^1$: $|\frac{\partial f}{\partial \alpha}(x,\alpha)| \leq g(x)~\forall x \in X~\forall \alpha \in I$
+		\item $\exists \alpha_0$, že $f(\cdot, \alpha_0) \in L^1(X)$
+	\end{enumerate}
+
+	Potom je funkce $f(\cdot,\alpha)$ integrovatelná, $F(\alpha)$ je diferencovatelná a:
+		$$F'(\alpha) = \int_X \frac{\partial f}{\partial \alpha}(x,\alpha)~d\mu(x),~\alpha \in I$$
+
+\veta[Fubini]
+	Nechť $f \in L^*(\R^{p+q})$. Potom pro s.v. $x \in \R^p$ existuje: $\varphi(x) := \int_{\R^p} f_x~d\lambda_q$,
+	pro s.v. $y \in \R^q$ existuje: $\psi(y) := \int_{\R^p} f^y~d\lambda_p$ a platí:
+		$$\int_{\R^{p+q}} f~d\lambda_{p+q} = \int_{\R^q} \varphi~d\lambda_p = \int_{R^p} \psi~d\lambda_q.$$
+
+\end{document}
