@@ -8,8 +8,8 @@
 	\item {\bf Srovnávací:} Je-li $f$ měřitelná, $g \in L^1$ a $|f| \leq g$ potom $f \in L^1$
 	\item {\bf Limitní srovnávací kritérium:} Nechť $f,g : (a,b) \to \R$ jsou spojité nezáporné. Potom
 		\begin{enumerate}
-			\item Pokud $\lim_{x \to a+} \frac{f(x)}{g(x)} \in (0, +\infty)$, potom konverguje $\int_a^b f \iff \int_a^b g$
-			\item Pokud $\lim_{x \to a+} \frac{f(x)}{g(x)} = 0$, potom konverguje $\int_a^b f \Leftarrow \int_a^b g$
+			\item Pokud $\lim_{x \to a+} \frac{f(x)}{g(x)} \in (0, +\infty)$, potom konverguje $\int_a^b f \iff \int_a^b g$ konverguje
+			\item Pokud $\lim_{x \to a+} \frac{f(x)}{g(x)} = 0$, potom konverguje $\int_a^b f \Leftarrow \int_a^b g$ konverguje
 			\item Pokud $\lim_{x \to a+} \frac{f(x)}{g(x)} = +\infty$, potom $\int_a^b f = +\infty \Leftarrow \int_a^b g = +\infty$
 		\end{enumerate}
 \end{itemize}
@@ -19,14 +19,14 @@
 \begin{enumerate}
 	\item {\bf Levi:} $f_n \geq 0$, $f_n \nearrow f \implies (\star)$.
 
-		  Důsledek: $\int f_1 > +\infty, f_n \nearrow f \implies (\star)$ nebo $\int f_1 < -\infty, f_n \searrow f \implies (\star)$
-	\item {\bf Lebesgue:} $g \in L^1$, $|f_n| \leq g \forall n$ (s.v.): $f_n \to f \implies (\star)$
+		  Důsledek: $\int f_1 < +\infty, f_n \nearrow f \implies (\star)$ nebo $\int f_1 > -\infty, f_n \searrow f \implies (\star)$
+	\item {\bf Lebesgue:} $g \in L^1$, $|f_n| \leq g~\forall n$ (s.v.): $f_n \to f \implies (\star)$
 	\item $f_n \rightrightarrows f$ na $X$, $f_n \in L(\mu)$, $\mu(X) < +\infty \implies f \in L^1(\mu)$ a $(\star)$.
 \end{enumerate}
 
 \section{Záměna sumy a integrálu}
 $(X, \p C, \mu)$, $f_n$ měřitelné, $s = \sum f_n$, kdy platí:
-	$$(\star)~\int_X \sum f_n d\mu = \sum \int_X f_n d\mu$$
+	$$(\star)~\int_X \sum f_n~d\mu = \sum \int_X f_n~d\mu$$
 
 Víme:
 \begin{enumerate}
