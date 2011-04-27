@@ -19,7 +19,7 @@
 \begin{enumerate}
 	\item {\bf Levi:} $f_n \geq 0$, $f_n \nearrow f \implies (\star)$.
 
-		  Důsledek: $\int f_1 < +\infty, f_n \nearrow f \implies (\star)$ nebo $\int f_1 > -\infty, f_n \searrow f \implies (\star)$
+		  Důsledek: $\int f_1 > -\infty, f_n \nearrow f \implies (\star)$ nebo $\int f_1 < +\infty, f_n \searrow f \implies (\star)$
 	\item {\bf Lebesgue:} $g \in L^1$, $|f_n| \leq g~\forall n$ (s.v.): $f_n \to f \implies (\star)$
 	\item $f_n \rightrightarrows f$ na $X$, $f_n \in L(\mu)$, $\mu(X) < +\infty \implies f \in L^1(\mu)$ a $(\star)$.
 \end{enumerate}
@@ -31,7 +31,7 @@ $(X, \p C, \mu)$, $f_n$ měřitelné, $s = \sum f_n$, kdy platí:
 Víme:
 \begin{enumerate}
 	\item $f_n \geq 0 \implies (\star)$ (Levi)
-	\item $\sum \int |f_n| < +\infty \implies (\star)$ a $s \in L^1$ (Lebesgue)
+	\item $\sum \int |f_n| < +\infty$ respektive $\int \sum |f_n| < +\infty \implies (\star)$ a $s \in L^1$ (Lebesgue)
 	\item $\mu(X) < +\infty$, $f_n \in L^1$, $\sum f_n \rightrightarrows$ na $X$ $\implies (\star)$ a $s \in L^1$
 \end{enumerate}
 
@@ -51,7 +51,7 @@ $(X, \p C, \mu)$, $I$, $f(x,\alpha)$, jaké vlastnosti má: $F(\alpha) = \int_X 
 \veta[O derivování podle parametru] $I$ je otevřený interval, nechť:
 	\begin{enumerate}
 		\item $\forall \alpha \in I$: $f(\cdot, \alpha)$ je měřitelná
-		\item $\forall x \in X$: $\frac{\partial f}{\partial x}(x,\alpha)$ je konečná na $I$
+		\item $\forall x \in X$: $\frac{\partial f}{\partial \alpha}(x,\alpha)$ je konečná na $I$ (respektive $f(x,\cdot)$ je diferencovatelná na $I$)
 		\item $\exists g \in L^1$: $|\frac{\partial f}{\partial \alpha}(x,\alpha)| \leq g(x)~\forall x \in X~\forall \alpha \in I$
 		\item $\exists \alpha_0$, že $f(\cdot, \alpha_0) \in L^1(X)$
 	\end{enumerate}
