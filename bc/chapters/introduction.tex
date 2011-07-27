@@ -1,0 +1,133 @@
+% \chapter*{Introduction}
+% \addcontentsline{toc}{chapter}{Introduction}
+
+\chapter{Introduction}
+After Gasparov was defeated, new challenges has come. Defeat men in Go. Until
+now, there were no significant success on standart 13$\times$13 board. But many
+useful new way of playing games was invented. In ??? Monte Carlo methods were
+successfully used to defeat all other computer players of Go. After that day
+all successful programs were using Monte Carlo methods.
+% TODO so many ???s
+
+Tomáš Kozelek has shown in his work, that building Arimaa playing program using
+MCTS is possible. In this work we will focus on comparing capabilities and
+perspectives to the future given by AlphaBeta search and MCTS to game of
+Arimaa.
+
+After first computers were created it was always in human target to fight
+with/compete human mind in every occasion. First significant result was shown
+in 1997. IBM constructed/built computer with just one purpose, to defeat
+the best human player in the game of chess. It took few years of development
+and ??? milions of dolars to build computer. Fist time they wasn't successful
+[???], but after some time and more effort they defeated Gasparov with computer
+named Deep blue.
+% TODO preformulovat a upresnit/rozsirit
+[1] and [???]
+
+We will introduce the game of Arimaa and describe two algorithms \ac{MCTS} and AlphaBeta search ... TODO
+
+
+\section{Terminology}
+% TODO organise in stg like table
+\begin{description}
+\item[game bot] is game playing program
+\item[board/game position]
+\item[game tree] for arbitrary game is tree with starting positions as root and
+   with children of nodes as all possible consequent positions.
+\item[evaluation function] is function which estimate value of given position of the game. It can be used for example to compare which of two given positions is better.
+\item[minimax tree] for two player game is game tree limited to some depth with
+added values in all nodes. Values are defined recursively. In leaf of the tree
+is value defined by evaluation function. In node is the best value from nodes
+children from nodes player on turn side point of view.
+\end{description}
+
+\section{Object of research}
+The main part of this work is to develop well documented Arimaa playing program
+and try to answer the following questions:
+
+\begin{enumerate}
+\item Is MCTS competitive alpha beta search at all?
+\item Is MCTS more promising engine than AlphaBeta search in the future with
+      increasing number of cpus?
+\item How important is eval function in MCTS compared to AlphaBeta?
+\end{enumerate}
+% TODO: which area should be compared? who is more perspective in future?
+
+Disclaimer: We are not supposed to develop strong arimaa playing program. (We don't try to develop ...)
+
+\section{The Game of Arimaa}
+The game of Arimaa is pretty new game. It is carefully designed to be hard to
+play for computers, but easy to play for humans. Creator of the game Omar
+Syed [1]
+
+The game was carefully designed in order not to be possible to use methods
+well known from Chess as game-ending tables or opening tables. (TODO
+REWRITE:) Also to be significantly harder to precompute moves for huge
+number moves to future and to efficiently decide which of two given position
+is better.
+
+(TODO REWRITE:) Omar says that gasparov was not oversmarted but overcomputed ...
+In Arimaa it is significantly harder to precompute moves ??because?? and to
+efficiently decide which of two given position is better ??because??.
+
+Why we cannot use standart methods widely used in chess? (Section 2 in Kozeleks thesis)
+
+\section{Rules of the game}
+Arimaa is two-player zero-sum game with perfect information. It is designed to
+be possible to play it using the board and pieces from chess set. The starting
+player has Gold color, seconds is Silver. In the zeroth turn Gold and then
+Silver player each place all their pieces to into first two (for Gold) or last
+two (for Silver) lines of the board. Piece set consist of eight Rabbits, two
+Cats, two Dogs, two Horses, Camel and Elephant in order from weakest to
+strongest.
+
+%% TODO example picture of the starting position
+
+Players are taking turns starting with Gold. In each turn player makes move,
+which consist of one to four steps. If less than four steps were made it is
+said that player passed. After move ends, position of the board must be
+different from position before turn started.
+
+Figure is considered frozen if on one of its neighbouring squares is opponents
+stronger piece and on no figure sharing color with it. Adjacent or neighbouring
+squares are those squares lying in one position to left, right, front or
+backwards.
+
+%% TODO example picture of the frozen piece and possibility to push and pull
+
+To make step player chooses one of its non frozen figures and move it to one of
+the free adjacent squares, with one condition -- rabbits cannot step backwards.
+Instead of making simple step player can provide pull or push. Pulling is
+almost identical to simple step, but after step is done player choose one of
+the weaker piece which stayed on neighbouring of the square from which figure
+moved, and move it to position from which our piece stepped. Pushing is a kind
+of opposite to pulling. At first neighbouring weaker piece is moved to its free
+adjacent square and then our piece is placed to weaker pieces former place.
+Push and pull counts as 2 steps and can not be combined together.
+
+On the board are four special squares called traps in positions \texttt{c3},
+\texttt{c6}, \texttt{f3} and \texttt{f6}. After each step if any piece is in
+trap and has no adjacent piece sharing color with him, it is trapped and
+therefore removed from the board.
+
+Game ends when one of the players rabbit reaches opponents front line, one of
+the players has no rabbit, active player cannot move.
+
+TODO Third time repetition rule.
+TODO examples of pushing/pulling, trapping from figures
+
+
+\section{Comparison to Go and Chess}
+
+similarities with chess:
+- less stable positions
+- "infinite sequence of moves is more common"
+- however there is no possibility to create opening and ending tables
+
+similarities with go:
+- huge branching factor
+- it's hard to build evaluation function
+
+
+\section{Challenge}
+Omar Syed decided to left few thousands dollars to

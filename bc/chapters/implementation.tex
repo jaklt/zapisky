@@ -1,0 +1,52 @@
+\chapter{Implementation}
+We used Haskell as programming language. We developed set of libraries for play
+Arimaa to be used with both MCTS and AlphaBeta algorithm. On top of those
+libraries we built mentioned algorithms. The critical parts like bit operations
+and evaluate function are written in C.
+
+In Haskell is possible to program in much higher level than it is in most other
+programming languages. However it is also harder to reason about performance.
+
+We are pretty sure that more experienced Haskell programmer would write both
+engines more efficiently.
+
+
+We tried/made huge effort to keep our program rather simple and modular as much
+as possible. Therefore one can switch on or off almost every mentioned search
+extension.
+
+In step generator we let the possibility to generate Pass step switched off by
+default.
+
+Lazily generated list of steps in AlphaBeta vs. lazily sorted children in MCTS.
+(lazily generated list of steps was important)
+
+Aspiration window gave sometimes strange results so we left it unused by default.
+Using history heuristic in Alpha Beta program tends to decrease quality of our
+program and we believe that causing list of steps from given position to be
+evaluated is limiting in comparison to have them evaluated lazily. However it
+is known that importance of history heuristic grows when the depth increases
+[ZHONG] and hence for mor efficient programs HH is much more important.
+
+Our AlphaBeta algorithm lack of standart Quiescence algorithm with trap control
+or Goal check. We believe that both trap control and Goal check could be also
+included in MCTS. However we know that true power of the algorithm is to
+explore those situations. (TODO REWRITE and more optimistic)
+
+\section{Parallelization}
+In Monte Carlo Tree Search, do parallelization is much more natural than is in
+AlphaBeta search.
+
+Haskell gives us easy threading and data structure locking capabilities.
+Local mutexes are rather simple thanks to MVar structure.
+
+\section{Evaluation function}
+We wrote evaluation function completely in C to be as fast as possible.
+
+In our work we do not focus on creating strong evaluation function even though
+in order to have arimaa playing program, we need to have one. Therefore we
+developed one not so strong and with possibility to easily replace it.
+
+Our evaluation function lack of a very important part of standart evaluation
+function -- the goal check.
+Also it do not have frame and hostage detection.

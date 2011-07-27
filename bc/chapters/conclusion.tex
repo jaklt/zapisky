@@ -1,0 +1,34 @@
+% \chapter*{Conclusion}
+% \addcontentsline{toc}{chapter}{Conclusion}
+
+\chapter{Results}
+Writing two programs at once turns out to be more difficult than we thought. In
+our development we have not focussed on high time optimisations and
+sophisticated goal check and trap control in position evaluation. These three
+thinks are considered the most difficult in Arimaa bot development.
+
+\section{Conclusion}
+Using MCTS as is or as was provided by Kozelek is not enought for bot
+programming in Arimaa, but UCB formula or UCT algorithm itself can be valuable
+in yet unknown hybrid algorithm using both AlphaBeta and MCTS algorithms.
+
+??? Combine previous and consequent paragraphs ???
+
+The most prommising variant of the Arimaa playing program using MCTS algorithm
+could be some combination of MCTS and AlphaBeta. Using full four depth
+AlphaBeta search while expanding leafs of UCT. (after node expansion make
+tactiacal lookahead)
+
+REWRITE: We also believe that using more sophisticated board representation
+would help MCTS algorithm against AlphaBeta, because the cost of managing
+clever representation returns with more times you use the clever
+representation, which dominates in MCTS. (From one position MCTS often
+generates possible moves more than once in contrast of AlphaBeta).
+
+\section{Further work}
+REWRITE: To optimise playouts, find faster way how to generate steps,
+interesting ideas are described in Zhong's work [ZHONG].
+
+REWRITE: Quiescence, Goal check, Better eval at all, find more optimisations in
+existing code, use better data structures and random number generator, try
+progressive pruning.

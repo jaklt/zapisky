@@ -1,0 +1,56 @@
+
+\chapter{Algorithms}
+
+\section{Description of the AlphaBeta search}
+Alpha-Beta search is search algorithm used in minimax trees. The main purpose
+of algorithm is to reduce number of branches and nodes to be visited. The idea
+of algorithm is modified Depth First Search and works as follow:
+....
+
+As can be seen, if AlphaBeta finds solution for depth n, than it is the best
+solution in MiniMax tree for depth n.
+
+AlphaBeta search has grown in popularity in game of chess. Until now all
+successful arimaa bots were using it with various enchants.
+
+
+\section{Description of the Monte Carlo Tree search}
+We presume the reader is familiar with rules of the game Go. {???}
+
+The first attempts to use random approach as evaluating approximation of the Go
+position were in 1993 [BERND]. Generalised Bernd's algorithm:
+
+\begin{enumerate}
+\item Play random game from given position with one exception, choose only
+	  steps not filling eyes. At the end of simulation count in the result of
+	  simulation for the first step played.
+\item If there is time left go to 1.
+\item Choose move with highest ratio between number times the move won when it
+	  was played and the number of times it was played.
+\end{enumerate}
+
+Playing random simulation is also called playout.
+
+definition one handed bandit problem
+
+We use Monte Carlo Tree Search algorithm as is described in [???] and also
+modified by Kozelek.
+
+
+UCB1 algorithm is algorithm for playing multi-armed bandit problem:
+
+\begin{enumerate}
+\item Play each arm of the bandit once.
+\item Play arm maximizing the formula $\overline X_i + \sqrt{2 \log n \over n_i}$,
+	  where $\overline X_i$ is average value of the arm $i$, $n$ is number
+	  of games that were played by parent of the $i$ and $n_i$ is number of
+	  games played with arm $i$.
+\end{enumerate}
+
+Upper Confidence bounds algorithm applied to Trees (shortly UCT algorithm) is
+algorithm traversing built multi-armed bandit tree using UCB1 formula.
+
+	
+
+Standalone UCT needs set of carefully chosen extensions to be competitive. The
+MCTS is some variant of UCT algorithm with those extensions.

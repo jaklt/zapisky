@@ -1,0 +1,43 @@
+
+\chapter{Appendix 2 - User documentation}
+Source code is available in http://github.com/JackeLee/rabbocop or in included CD.
+
+\section{Compiling options}
+Additional make parameters:
+
+VERBOSE=$n$
+  For IterativeAB program, it will print actual best move and score anytime
+  it searches to desired depth.
+  For MCTS it will print actual best move and score after n iterations of
+  UCT algorithm.
+
+EVAL=fairy
+
+JUDY=1
+HASKELL\_HASH=1
+
+TODO: NULL\_MOVE CAN\_pass
+
+WINDOW=?
+	It switches on aspiration window option for AlphaBeta algorithm.
+
+noHH=1
+	It disables history heuristics optimisations for MCTS.
+
+abHH=1
+	Enables history heuristics optimisations for AlphaBeta.
+
+noHeavyPlayout=1
+	This disables heuristic in playouts.
+
+CORES=$n$ - TODO
+	Set the number of available cores in computer. It is also needed to run
+	binary with +RTS -N$n$ parameter.
+
+PROF=1
+	It enables profiling options.
+
+runtest
+	Can have
+
+play

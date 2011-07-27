@@ -1,4 +1,7 @@
-\documentclass[12pt,titlepage,fleqn]{report}
+%% Verze pro jednostranný tisk:
+% Okraje: levý 40mm, pravý 25mm, horní a dolní 25mm
+% (ale pozor, LaTeX si sám přidává 1in)
+\documentclass[12pt,a4paper,fleqn]{report}
 \setlength\textwidth{145mm}
 \setlength\textheight{247mm}
 \setlength\oddsidemargin{15mm}
@@ -6,31 +9,162 @@
 \setlength\topmargin{0mm}
 \setlength\headsep{0mm}
 \setlength\headheight{0mm}
+\let\openright=\clearpage
 
 \usepackage[utf8]{inputenc}
-% \usepackage[czech]{babel}
-\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{amsthm}
+% \usepackage{indentfirst}
 \usepackage{amsfonts}
 \usepackage{a4wide}
 \usepackage[footnote]{acronym}
 
-% \usepackage[ps2pdf,unicode]{hyperref}
 \usepackage[unicode]{hyperref}
 \hypersetup{pdftitle=Arimaa challenge - comparission study of MCTS versus alpha-beta methods}
 \hypersetup{pdfauthor=Tomáš Jakl}
 
 \acrodef{MCTS}{Monte Carlo Tree Search}
 
-\title{Bachelor thesis}
-\author{Jakl Tomáš}
-\date{\today}
+
+%%% Drobné úpravy stylu
+
+% Tato makra přesvědčují mírně ošklivým trikem LaTeX, aby hlavičky kapitol
+% sázel příčetněji a nevynechával nad nimi spoustu místa. Směle ignorujte.
+\makeatletter
+\def\@makechapterhead#1{
+  {\parindent \z@ \raggedright \normalfont
+   \Huge\bfseries \thechapter. #1
+   \par\nobreak
+   \vskip 20\p@
+}}
+\def\@makeschapterhead#1{
+  {\parindent \z@ \raggedright \normalfont
+   \Huge\bfseries #1
+   \par\nobreak
+   \vskip 20\p@
+}}
+\makeatother
+
+% Toto makro definuje kapitolu, která není očíslovaná, ale je uvedena v obsahu.
+\def\chapwithtoc#1{
+\chapter*{#1}
+\addcontentsline{toc}{chapter}{#1}
+}
 
 \begin{document}
-\maketitle
-\tableofcontents
+
+% Trochu volnější nastavení dělení slov, než je default.
+\lefthyphenmin=2
+\righthyphenmin=2
+
+%%% Titulní strana práce
+
+\pagestyle{empty}
+\begin{center}
+
+\large
+
+Charles University in Prague
+
+\medskip
+
+Faculty of Mathematics and Physics
+
+\vfill
+
+{\bf\Large BACHELOR THESIS}
+
+\vfill
+
+\centerline{\mbox{\includegraphics[width=60mm]{logo.eps}}}
+
+\vfill
+\vspace{5mm}
+
+{\LARGE Tomáš Jakl}
+
+\vspace{15mm}
+
+% Název práce přesně podle zadání
+{\LARGE\bfseries Arimaa challenge -- comparission study of MCTS versus alpha-beta methods}
+
+\vfill
+
+Department of Theoretical Computer Science and Mathematical Logic
+
+\vfill
+
+\begin{tabular}{rl}
+
+Supervisor of the bachelor thesis: & Mgr. Vladan Majerech Dr. \\
+\noalign{\vspace{2mm}}
+Study programme: & Computer Science \\
+\noalign{\vspace{2mm}}
+Specialization: & General Computer Science \\
+\end{tabular}
+
+\vfill
+
+Prague 2011
+
+\end{center}
+
 \newpage
 
-\section{Abstract}
+%%% TODO Na tomto místě mohou být napsána případná poděkování (vedoucímu práce,
+%%% konzultantovi, tomu, kdo zapůjčil software, literaturu apod.)
+
+\openright
+
+\noindent
+Poděkování.
+
+
+%%% Strana s čestným prohlášením k bakalářské práci
+
+\vglue 0pt plus 1fill
+
+\noindent
+I~declare that I~carried out this bachelor thesis independently, and only with
+the cited sources, literature and other professional sources.
+
+\medskip\noindent
+I~understand that my work relates to the rights and obligations under the Act
+No. 121/2000 Coll., the Copyright Act, as amended, in particular the fact that
+the Charles University in Prague has the right to conclude a license agreement
+on the use of this work as a school work pursuant to Section 60 paragraph 1 of
+the Copyright Act.
+
+\vspace{10mm}
+
+\hbox{\hbox to 0.5\hsize{%
+In Prague date \today
+\hss}\hbox to 0.5\hsize{%
+Tomáš Jakl
+\hss}}
+
+\vspace{20mm}
+\newpage
+
+%%% Povinná informační strana bakalářské práce (TODO)
+
+\vbox to 0.5\vsize{
+\setlength\parindent{0mm}
+\setlength\parskip{5mm}
+
+Title:
+Arimaa challenge -- comparission study of MCTS versus alpha-beta methods
+
+Author:
+Tomáš Jakl
+
+Department:
+Department of Theoretical Computer Science and Mathematical Logic
+
+Supervisor:
+Mgr. Vladan Majerech Dr., Department of Theoretical Computer Science and Mathematical Logic
+
+Abstract:
 In the world of chess programming the most successful algorithm for game tree
 search is considered AlphaBeta search, however in game of Go it is Monte
 Carlo Tree Search. Arimaa has similarities with both Go and Chess, but there
@@ -39,422 +173,57 @@ goal of this thesis is to compare capabilites given by Monte Carlo Tree Search
 algorithm and AlphaBeta search, both having the same evaluation function, in
 game of Arimaa.
 
-\chapter{Introduction}
-After Gasparov was defeated, new challenges has come. Defeat men in Go. Until
-now, there were no significant success on standart 13$\times$13 board. But many
-useful new way of playing games was invented. In ??? Monte Carlo methods were
-successfully used to defeat all other computer players of Go. After that day
-all successful programs were using Monte Carlo methods.
-% TODO so many ???s
+Keywords: Arimaa, Monte Carlo Tree Search, Alpha Beta search
 
-Tomáš Kozelek has shown in his work, that building Arimaa playing program using
-MCTS is possible. In this work we will focus on comparing capabilities and
-perspectives to the future given by AlphaBeta search and MCTS to game of
-Arimaa.
+\vss}\nobreak\vbox to 0.49\vsize{
+\setlength\parindent{0mm}
+\setlength\parskip{5mm}
 
-After first computers were created it was always in human target to fight
-with/compete human mind in every occasion. First significant result was shown
-in 1997. IBM constructed/built computer with just one purpose, to defeat
-the best human player in the game of chess. It took few years of development
-and ??? milions of dolars to build computer. Fist time they wasn't successful
-[???], but after some time and more effort they defeated Gasparov with computer
-named Deep blue.
-% TODO preformulovat a upresnit/rozsirit
-[1] and [???]
+Název práce:
+Arimaa challenge -- srovnávací studie metod MCTS a alfa-beta
 
-We will introduce the game of Arimaa and describe two algorithms \ac{MCTS} and AlphaBeta search ... TODO
+Autor:
+Tomáš Jakl
 
+Katedra:
+Katedra teoretické informatiky a matematické logiky
 
-\section{Terminology}
-% TODO organise in stg like table
-\begin{description}
-\item[game bot] is game playing program
-\item[board/game position]
-\item[game tree] for arbitrary game is tree with starting positions as root and
-   with children of nodes as all possible consequent positions.
-\item[evaluation function] is function which estimate value of given position of the game. It can be used for example to compare which of two given positions is better.
-\item[minimax tree] for two player game is game tree limited to some depth with
-added values in all nodes. Values are defined recursively. In leaf of the tree
-is value defined by evaluation function. In node is the best value from nodes
-children from nodes player on turn side point of view.
-\end{description}
+Vedoucí bakalářské práce:
+Mgr. Vladan Majerech Dr., Katedra teoretické informatiky a matematické logiky
+Jméno a příjmení s tituly
 
-\section{Object of research}
-The main part of this work is to develop well documented Arimaa playing program
-and try to answer the following questions:
+Abstrakt:
+% TODO abstrakt v rozsahu 80-200 slov; nejedná se však o opis zadání bakalářské práce
 
-\begin{enumerate}
-\item Is MCTS competitive alpha beta search at all?
-\item Is MCTS more promising engine than AlphaBeta search in the future with
-      increasing number of cpus?
-\item How important is eval function in MCTS compared to AlphaBeta?
-\end{enumerate}
-% TODO: which area should be compared? who is more perspective in future?
+Klíčová slova: Arimaa, Monte Carlo Tree Search, Alpha Beta search
 
-Disclaimer: We are not supposed to develop strong arimaa playing program. (We don't try to develop ...)
 
-\section{Arimaa}
-The game of Arimaa is pretty new game. It is carefully designed to be hard to
-play for computers, but easy to play for humans. Creator of the game Omar
-Syed [1]
+\vss}
 
-The game was carefully designed in order not to be possible to use methods
-well known from Chess as game-ending tables or opening tables. (TODO
-REWRITE:) Also to be significantly harder to precompute moves for huge
-number moves to future and to efficiently decide which of two given position
-is better.
+\newpage
 
-(TODO REWRITE:) Omar says that gasparov was not oversmarted but overcomputed ...
-In Arimaa it is significantly harder to precompute moves ??because?? and to
-efficiently decide which of two given position is better ??because??.
+\openright
+\pagestyle{plain}
+\setcounter{page}{1}
+\tableofcontents
 
-Why we cannot use standart methods widely used in chess? (Section 2 in Kozeleks thesis)
-
-\section{Rules of the game}
-
-\section{Comparison to Go and Chess}
-
-\section{Challenge}
-Omar Syed decided to left few thousands dollars to
-
-
-\chapter{Algorithms}
-
-\section{Description of the AlphaBeta search}
-Alpha-Beta search is search algorithm used in minimax trees. The main purpose
-of algorithm is to reduce number of branches and nodes to be visited. The idea
-of algorithm is modified Depth First Search and works as follow:
-....
-
-As can be seen, if AlphaBeta finds solution for depth n, than it is the best
-solution in MiniMax tree for depth n.
-
-AlphaBeta search has grown in popularity in game of chess. Until now all
-successful arimaa bots were using it with various enchants.
-
-
-\section{Description of the Monte Carlo Tree search}
-We presume the reader is familiar with rules of the game Go. {???}
-
-The first attempts to use random approach as evaluating approximation of the Go
-position were in 1993 [BERND]. Generalised Bernd's algorithm:
-
-\begin{enumerate}
-\item Play random game from given position with one exception, choose only
-	  steps not filling eyes. At the end of simulation count in the result of
-	  simulation for the first step played.
-\item If there is time left go to 1.
-\item Choose move with highest ratio between number times the move won when it
-	  was played and the number of times it was played.
-\end{enumerate}
-
-Playing random simulation is also called playout.
-
-definition one handed bandit problem
-
-We use Monte Carlo Tree Search algorithm as is described in [???] and also
-modified by Kozelek.
-
-
-UCB1 algorithm is algorithm for playing multi-armed bandit problem:
-
-\begin{enumerate}
-\item Play each arm of the bandit once.
-\item Play arm maximizing the formula $\overline X_i + \sqrt{2 \log n \over n_i}$,
-	  where $\overline X_i$ is average value of the arm $i$, $n$ is number
-	  of games that were played by parent of the $i$ and $n_i$ is number of
-	  games played with arm $i$.
-\end{enumerate}
-
-Upper Confidence bounds algorithm applied to Trees (shortly UCT algorithm) is
-algorithm traversing built multi-armed bandit tree using UCB1 formula.
-
-	
-
-Standalone UCT needs set of carefully chosen extensions to be competitive. The
-MCTS is some variant of UCT algorithm with those extensions.
-
-\chapter{Used optimisations in search engines}
-
-In order to write strong playing program in given game, it is necessary to
-enhance chosen algorithm with various extensions. In this chapter we describe
-the most used extensions for AlphaBeta or MCTS algorithm.
-
-\section{AlphaBeta}
-\subsection{Transposition table}
-COMPLETELY REWRITE: If we find in TT occurs result from previous search that is
-shallower than we need, we prefer steps from Principal Variation of given entry
-in succeeding search and use also its bounds.
-
-If we find satisfying result in TT we use its full PV and score as ours.
-
-\subsection{Iterative deepening framework}
-\subsection{Aspiration Windows}
-% TODO how to mention it?
-% \subsection{Quiescent search}
-%   Is nice way, how to reduce horizont effect ...
-%   % [Related to arimaa: http://arimaa.com/arimaa/forum/cgi/YaBB.cgi?board=devTalk;action=display;num=1122418533] <- TODO: Maybe implement this way
-%   % [http://mediocrechess.sourceforge.net/guides/quiescentsearch.html]
-\subsection{Move ordering}
-The following methods change order in which branches are selected and then
-inspected. It is very important for AlphaBeta search to have nodes well
-ordered. Because the earlier we find pruning child of the node the shorter time
-we spend in it.
-	\subsubsection{History heuristics}
-	The main idea behind this extension is that if some step is good enough
-	to cause so many pruning anywhere in the search tree and if it is valid in
-	given position it could be also good here.
-
-	It is implemented in way that we create table with statistic for every
-	combination of players, piece, position and direction.
-	  % [http://webdocs.cs.ualberta.ca/~jonathan/PREVIOUS/Courses/657/index.html]
-
-	\subsubsection{Killer moves}
-	When a step prunes branches in some position it is very natural to ask if
-	the same step could cause pruning in another branch and the same depth of
-	the tree. To go even further we take two last steps caused pruning to be
-	preferred in the search. As Zhong found out three or more Killer moves would help. [ZHONG]
-
-	\subsubsection{Null move}
-
-\subsection{Heuristics}
-All preceding optimisations do not change result given by the algorithm. They
-could only significantly decrease amount of time needed to obtain such result.
-
-The consequent optimisations are rather heuristics, because they try to
-give you approximately good result in much shorter time. In this work, we
-will not use those optimisations.
-
-
-- Negascout/PVS
-- MTD-f
-% TODO XXX: Are really heuristics?
-
-
-\section{MCTS}
-\subsection{Transposition table}
-If we look at Arimaa, Chess or Go game tree there is so many repetitions in
-nodes of the tree for almost every board position. The Transposition tables
-are used to reduce the number of repetitions in tree.
-
-To do so we bind nodes consideret the same to one. When we Transposition
-tables the game tree looks more like Direct Acyclic Graph than tree.
-
-\subsection{Progressive bias}
-- add to uct formula $+ {H_B \over n_i}$. Where $H_B$ is progressive bias
-coeficient as described in 
-\subsection{History heuristics}
-- add to uct formula $+ {hh_i \over \sqrt n_i}$. Where $hh_i$ is history
-heuristics coeficiend as is described in [KOZELEK].
-
-\subsection{Best-of-N}
-\subsection{Children caching}
-\subsection{Virtual visits}
-Initialise with $v$ visits.
-\subsection{Maturity threshold}
-
-- In MonteCarlo simulation, it should (as Kozelek wrote) significantly improve
-  strength of program by choosing random moves rather with some heuristic.
-  % TODO: really significantly??
-	- One way how to choose step is to generate all steps and chose one with
-	  the best value given by some incrementally precomputed function.
-	  % TODO check word order
-	- Another similar way how to choose step is from all possible generated
-	  steps choose at random $r$ of them and from these $r$ choose one with the
-	  highest value given by the same function as above.
-
-All-Moves-As-First Heuristics (TODO)
-
-\section{General}
-The following extensions are considered must have in every successful Arimaa
-bot and do not depend on used algorithm.
-
-	\subsection{Zobrist keys}
-	Motivation ...
-
-	For every element of $Piece\times Player\times Position$ the random 64 bit
-	number is generated. ...
-
-	How nodes are stored in Transposition table entries
-
-	\subsection{Bitboards}
-	Because Arimaa could be played with standart chess set it is also possible
-	to use from world of chess well known board representation called
-	Bitboards. One may say that bitboards suits even better for Arimaa than for
-	Chess.
-
-\section{Comparison of used optimisations}
-
-\subsection{History heuristic}
-In MCTS we prefer moves that were often chosen in going through tree. In
-AlphaBeta value of move is increasing when branch using selected step is
-pruned. Every time we order branches of the search tree by value given by
-history heuristics. This approach should increase amount of pruning.
-
-\subsection{Transposition table}
-
-
-\chapter{Implementation}
-We used Haskell as programming language. We developed set of libraries for play
-Arimaa to be used with both MCTS and AlphaBeta algorithm. On top of those
-libraries we built mentioned algorithms. The critical parts like bit operations
-and evaluate function are written in C.
-
-In Haskell is possible to program in much higher level than it is in most other
-programming languages. However it is also harder to reason about performance.
-
-We are pretty sure that more experienced Haskell programmer would write both
-engines more efficiently.
-
-
-We tried/made huge effort to keep our program rather simple and modular as much
-as possible. Therefore one can switch on or off almost every mentioned search
-extension.
-
-In step generator we let the possibility to generate Pass step switched off by
-default.
-
-Lazily generated list of steps in AlphaBeta vs. lazily sorted children in MCTS.
-(lazily generated list of steps was important)
-
-Aspiration window gave sometimes strange results so we left it unused by default.
-Using history heuristic in Alpha Beta program tends to decrease quality of our
-program and we believe that causing list of steps from given position to be
-evaluated is limiting in comparison to have them evaluated lazily. However it
-is known that importance of history heuristic grows when the depth increases
-[ZHONG] and hence for mor efficient programs HH is much more important.
-
-Our AlphaBeta algorithm lack of standart Quiescence algorithm with trap control
-or Goal check. We believe that both trap control and Goal check could be also
-included in MCTS. However we know that true power of the algorithm is to
-explore those situations. (TODO REWRITE and more optimistic)
-
-\section{Parallelization}
-In Monte Carlo Tree Search, do parallelization is much more natural than is in
-AlphaBeta search.
-
-Haskell gives us easy threading and data structure locking capabilities.
-Local mutexes are rather simple thanks to MVar structure.
-
-\section{Evaluation function}
-We wrote evaluation function completely in C to be as fast as possible.
-
-In our work we do not focus on creating strong evaluation function even though
-in order to have arimaa playing program, we need to have one. Therefore we
-developed one not so strong and with possibility to easily replace it.
-
-Our evaluation function lack of a very important part of standart evaluation
-function -- the goal check.
-Also it do not have frame and hostage detection.
-
-\chapter{Methodology}
-\begin{enumerate}% {0}
-\item Study possible and most used method used in Arimaa, Chess and Go.
-\item Develop two arimaa playing programs using two earlier described
-	  algorithms and all listed optimisatoin methods for them.
-\item Compare those engines playing offline matches.
-\item Analise engines time cost centres. Where are bottlenecks.
-\end{enumerate}
-
-\begin{enumerate}
-\item playing 3s/10s/30s time limit
-\item playing with heap 100MB, 200MB, 400MB
-\item using one, two, four, eight cores
-\item run AB to same level of search and give MCTS the same amount of time to play
-\end{enumerate}
-If game ends to time limit we do not use/count its result into final statistics.
-
-Work on bot is never ending so we try to develop two comparable bots and try to
-measure how changes in settings affect their win:loss rate.
-
-\chapter{Results}
-Writing two programs at once turns out to be more difficult than we thought. In
-our development we have not focussed on high time optimisations and
-sophisticated goal check and trap control in position evaluation. These three
-thinks are considered the most difficult in Arimaa bot development.
-
-\section{Conclusion}
-Using MCTS as is or as was provided by Kozelek is not enought for bot
-programming in Arimaa, but UCB formula or UCT algorithm itself can be valuable
-in yet unknown hybrid algorithm using both AlphaBeta and MCTS algorithms.
-
-??? Combine previous and consequent paragraphs ???
-
-The most prommising variant of the Arimaa playing program using MCTS algorithm
-could be some combination of MCTS and AlphaBeta. Using full four depth
-AlphaBeta search while expanding leafs of UCT. (after node expansion make
-tactiacal lookahead)
-
-REWRITE: We also believe that using more sophisticated board representation
-would help MCTS algorithm against AlphaBeta, because the cost of managing
-clever representation returns with more times you use the clever
-representation, which dominates in MCTS. (From one position MCTS often
-generates possible moves more than once in contrast of AlphaBeta).
-
-\section{Further work}
-REWRITE: To optimise playouts, find faster way how to generate steps,
-interesting ideas are described in Zhong's work [ZHONG].
-
-REWRITE: Quiescence, Goal check, Better eval at all, find more optimisations in
-existing code, use better data structures and random number generator, try
-progressive pruning.
+%%% Chapters
+\include{chapters/introduction}
+\include{chapters/algorithms}
+\include{chapters/optimisations}
+\include{chapters/implementation}
+\include{chapters/methodology}
+\include{chapters/conclusion}
 
 \appendix
-\chapter{Literature}
-[1] Web page arimaa.com
-[2] Peter Auer, Nicol` Cesa-Bianchi, and Paul Fischer. Finite-time analysis of
-    the o multiarmed bandit problem. Mach. Learn., 47(2-3):235–256, 2002.
-[BERND] Bernd Brugmann. Monte Carlo go. Technical report, 1993.
-[KOZELEK]
-[ZHONG]  Zhong: Building a strong Arimaa playing program.
-[15] Chaslot, Winonds, ..., Progressive strategies for Monte-Carlo Tree Search, 2007.
+\include{chapters/literature}
 
-\chapter{List of Abbreviations/Glossary}
+\chapwithtoc{List of Abbreviations/Glossary}
 
 \chapter{Appendix 1}
 - tables that weren't placed into text.
 
-\chapter{Appendix 2 - User documentation}
-Source code is available in http://github.com/JackeLee/rabbocop or in included CD.
+\include{chapters/documentation}
 
-\section{Compiling options}
-Additional make parameters:
-
-VERBOSE=$n$
-  For IterativeAB program, it will print actual best move and score anytime
-  it searches to desired depth.
-  For MCTS it will print actual best move and score after n iterations of
-  UCT algorithm.
-
-EVAL=fairy
-
-JUDY=1
-HASKELL\_HASH=1
-
-TODO: NULL\_MOVE CAN\_pass
-
-WINDOW=?
-	It switches on aspiration window option for AlphaBeta algorithm.
-
-noHH=1
-	It disables history heuristics optimisations for MCTS.
-
-abHH=1
-	Enables history heuristics optimisations for AlphaBeta.
-
-noHeavyPlayout=1
-	This disables heuristic in playouts.
-
-CORES=$n$ - TODO
-	Set the number of available cores in computer. It is also needed to run
-	binary with +RTS -N$n$ parameter.
-
-PROF=1
-	It enables profiling options.
-
-runtest
-	Can have
-
-play
-
+\openright
 \end{document}
