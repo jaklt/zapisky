@@ -71,6 +71,8 @@ coeficient as described in
 - add to uct formula $+ {hh_i \over \sqrt n_i}$. Where $hh_i$ is history
 heuristics coeficiend as is described in Kozeleks thesis\cite{KOZELEK}.
 
+Similar approach is All-Moves-As-First Heuristics however it updates statistics only for all steps that were used in this simulation (in each node) (TODO)
+
 \subsection{Best-of-N}
 \subsection{Children caching}
 \subsection{Virtual visits}
@@ -86,8 +88,6 @@ Initialise with $v$ visits.
 	- Another similar way how to choose step is from all possible generated
 	  steps choose at random $r$ of them and from these $r$ choose one with the
 	  highest value given by the same function as above.
-
-All-Moves-As-First Heuristics (TODO)
 
 \section{General}
 The following extensions are considered must have in every successful Arimaa

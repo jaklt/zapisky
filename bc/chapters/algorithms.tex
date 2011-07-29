@@ -1,18 +1,57 @@
-
 \chapter{Algorithms}
 
+The basic algorithm to search game tree is Minimax search. It is searching
+minimax tree in depth first search order and therefore the search do not ends
+until all nodes at certain depth are explored. It is quite noneffective with
+huge branching factor which Arimaa, Chess or Go have.
+
 \section{Description of the AlphaBeta search}
-Alpha-Beta search is search algorithm used in minimax trees. The main purpose
-of algorithm is to reduce number of branches and nodes to be visited. The idea
-of algorithm is modified Depth First Search and works as follow:
-....
-
-As can be seen, if AlphaBeta finds solution for depth n, than it is the best
-solution in MiniMax tree for depth n.
-
 AlphaBeta search has grown in popularity in game of chess. Until now all
-successful arimaa bots were using it with various enchants.
+successful arimaa bots were using it with various enchants. AlphaBeta search is
+natural optimisation of Minimax search. The main purpose of algorithm is to
+reduce number of branches and nodes to be visited.
 
+During the search we are trimming bounds (window) of the minimax value. The
+pseudocode of the algorithm is shown in Listing \ref{alphabeta}.
+
+\lstset{language=Python, caption=Pseudocode of AlphaBeta search, label=alphabeta}
+\begin{lstlisting}
+alphabeta (node, depth, alpha, beta):
+    if  depth = 0 or node is a terminal node:
+        return evaluate(node)
+    if  is maximizing node:
+        for each child of node
+            score = alphabeta(child, depth-1, alpha, beta,
+                              oponent(Player))
+            alpha = max(alpha, score)
+
+            if beta <= alpha: break  # Beta cut-off
+        return alpha
+    else:
+        for each child of node:
+            score = alphabeta(child, depth-1, alpha, beta,
+                              oponent(Player))
+            beta = min(beta, score)
+
+            if beta <= alpha: break  # Alpha cut-off
+        return beta
+\end{lstlisting}
+
+In maximizing nodes we are improving lower estimate (alpha) of the minimax
+value and in minimizing nodes the upper estimate (beta). If value from a child
+forces these bounds to meet we know that better approximation of this node is
+not possible and so we return our estimate, we say we pruned the search in
+node.
+
+As can be proven, if AlphaBeta finds solution for depth n, than it is the best
+solution in MiniMax tree for depth n\cite{knuth:alphabeta}.
+
+A lot of time is spared if the pruning children of nodes are listed as first.
+However in the worst case if children are sorted in opposite order to the
+optimal, the whole minimax tree is searched. Consequently it is very important
+to have nodes well ordered.
+
+% TODO place somewhere principal variation is sequence of moves from root of the tree to best value given by minimax search algorithm
 
 \section{Description of the Monte Carlo Tree search}
 We presume the reader is familiar with rules of the game Go. {???}
@@ -51,6 +90,5 @@ Upper Confidence bounds algorithm applied to Trees (shortly UCT algorithm) is
 algorithm traversing built multi-armed bandit tree using UCB1 formula.
 
 	
-
 Standalone UCT needs set of carefully chosen extensions to be competitive. The
 MCTS is some variant of UCT algorithm with those extensions.

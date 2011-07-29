@@ -18,6 +18,21 @@
 \usepackage{amsfonts}
 \usepackage{a4wide}
 \usepackage[footnote]{acronym}
+\usepackage{listings}
+\lstset{
+	captionpos=b,
+	breaklines=true,
+	flexiblecolumns=false,
+	literate={+}{{$+$}}1 {/}{{$/$}}1 {*}{{$*$}}1 {=}{{$=$}}1
+               {>}{{$>$}}1 {<}{{$<$}}1 {\\}{{$\lambda$}}1
+               {\\\\}{{\char`\\\char`\\}}1
+               {->}{{$\rightarrow$}}2 {>=}{{$\geq$}}2 {<-}{{$\leftarrow$}}2
+               {<=}{{$\leq$}}2 {=>}{{$\Rightarrow$}}2 
+               {\ .}{{$\circ$}}2 {\ .\ }{{$\circ$}}2
+               {>>}{{>>}}2 {>>=}{{>>=}}2
+               {|}{{$\mid$}}1
+	}
+	% more on http://www.haskell.org/haskellwiki/Literate_programming
 
 \usepackage[unicode]{hyperref}
 \hypersetup{pdftitle=Arimaa challenge - comparission study of MCTS versus alpha-beta methods}

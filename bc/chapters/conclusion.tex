@@ -26,9 +26,20 @@ representation, which dominates in MCTS. (From one position MCTS often
 generates possible moves more than once in contrast of AlphaBeta).
 
 \section{Further work}
-REWRITE: To optimise playouts, find faster way how to generate steps,
-interesting ideas are described in Zhong's work [ZHONG].
+% TODO it should be further work from our point of view (to attack another similar topics to ours)
 
-REWRITE: Quiescence, Goal check, Better eval at all, find more optimisations in
-existing code, use better data structures and random number generator, try
-progressive pruning.
+\begin{enumerate}
+\item Find way how to implement some kind of Quiescence search to MCTS and compare with similar approach in AlphaBeta.
+\item ...
+\item Optimise playouts using more sophisticated way how to generate steps. Interesting ideas are described in Zhong's work.\cite{ZHONG}
+\end{enumerate}
+
+The quality of bots can be improved by:
+\begin{enumerate}
+\item create better evaluation function,
+\item try progressive pruning methods\cite{progressive-strategies},
+\item use more optimised data structures and random number generator,
+
+Goal check??
+
+\end{enumerate}
