@@ -1,20 +1,24 @@
 \chapter{Algorithms}
+In this chapter we introduce two algorithms for searching minimax trees
+AlphaBeta search and Monte Carlo Tree Search (MCTS). Both algorithms became
+successful and dominating in some field. AlphaBeta search in game of Chess and
+MCTS in game of Go. (TODO reformulate)
 
-The basic algorithm to search game tree is Minimax search. It is searching
-minimax tree in depth first search order and therefore the search do not ends
-until all nodes at certain depth are explored. It is quite noneffective with
-huge branching factor which Arimaa, Chess or Go have.
+The trivial algorithm to search game tree could be Minimax search. It is
+searching minimax tree in depth first search order and therefore the search do
+not ends until all nodes at certain depth are explored. It is quite
+noneffective with huge branching factor which Arimaa, Chess or Go have.
 
 \section{Description of the AlphaBeta search}
-AlphaBeta search has grown in popularity in game of chess. Until now all
+AlphaBeta search has grown in popularity in game of Chess. Until now all
 successful arimaa bots were using it with various enchants. AlphaBeta search is
 natural optimisation of Minimax search. The main purpose of algorithm is to
 reduce number of branches and nodes to be visited.
 
-During the search we are trimming bounds (window) of the minimax value. The
-pseudocode of the algorithm is shown in Listing \ref{alphabeta}.
+During the search we are trimming bounds (window) of the best minimax value.
+The pseudocode of the algorithm is shown in Listing~\ref{alphabeta}.
 
-\lstset{language=Python, caption=Pseudocode of AlphaBeta search, label=alphabeta}
+\lstset{language=Python, caption=Pseudocode of the AlphaBeta search, label=alphabeta}
 \begin{lstlisting}
 alphabeta (node, depth, alpha, beta):
     if  depth = 0 or node is a terminal node:
@@ -43,40 +47,54 @@ forces these bounds to meet we know that better approximation of this node is
 not possible and so we return our estimate, we say we pruned the search in
 node.
 
-As can be proven, if AlphaBeta finds solution for depth n, than it is the best
-solution in MiniMax tree for depth n\cite{knuth:alphabeta}.
+As can be proven, if AlphaBeta finds solution for depth $n$, then it is the best
+solution in MiniMax tree for depth $n$~\cite{knuth:alphabeta}. In optimal case
+instead of examining $\mathcal O(b^d)$ nodes is only examined $\mathcal
+O(b^{d/2})$ of them, where $b$ is branching factor of the game and $d$ is
+searched depth~\cite{ZHONG}.
 
 A lot of time is spared if the pruning children of nodes are listed as first.
 However in the worst case if children are sorted in opposite order to the
 optimal, the whole minimax tree is searched. Consequently it is very important
 to have nodes well ordered.
 
-% TODO place somewhere principal variation is sequence of moves from root of the tree to best value given by minimax search algorithm
 
 \section{Description of the Monte Carlo Tree search}
-We presume the reader is familiar with rules of the game Go. {???}
+Monte Carlo methods was formerly used for approximation of mathematical,
+physical, biological and others processes where full calculation would be
+difficult or even impossible. For example in mathematics it is used for numeric
+integration or estimate the $\pi$. In games without perfect information, such
+as poker, backgammon, or scrabble, using randomness has shown to be beneficial
+too~\cite{MonteCarloMethod, MonteCarloGo}.
 
-The first attempts to use random approach as evaluating approximation of the Go
-position were in 1993 [BERND]. Generalised Bernd's algorithm:
+In game of Go was always a huge troublesome to build efficient evaluation
+function. Unlike poker or backgammon, Go is a game with perfect information and
+hence it is not so natural to use Monte Carlo methods. The first attempts to
+use random approach as evaluating approximation of the Go position were in
+1993. We present generalised Bernd's algorithm~\cite{BERND,KOZELEK}:
 
 \begin{enumerate}
-\item Play random game from given position with one exception, choose only
-	  steps not filling eyes. At the end of simulation count in the result of
-	  simulation for the first step played.
+\item Play random game from given position to the end, with one exception,
+	choose only steps not filling eyes. At the end of simulation count in the
+	result of simulation for the first step played.
 \item If there is time left go to 1.
 \item Choose move with highest ratio between number times the move won when it
 	  was played and the number of times it was played.
 \end{enumerate}
 
-Playing random simulation is also called playout.
-
-definition one handed bandit problem
-
-We use Monte Carlo Tree Search algorithm as is described in [???] and also
-modified by Kozelek.
+However Bernd showed that after some time his algorithm indicates no further
+improvement. It was necessary to realize that the main problem was that it
+searched all branches with the same probability. (TODO) .... It should give more
+promising branches more attention.
 
 
-UCB1 algorithm is algorithm for playing multi-armed bandit problem:
+\subsection{Bandit Problem}
+A $K$-armed bandit, is slot machine with $K$ arms. When arm is drawn it
+produces reward. Distribution of each arm reward is independent on other arms
+and previous draws of this arm. The task is to choose best strategy to maximize
+sum of reward through iterative plays.~\cite{MoGo,MultiarmedBandit}
+
+In~\cite{MultiarmedBandit} is presented thee UCB1 algorithm (where UCB stands for Upper Confidence Bounds) for Bandit Problem:
 
 \begin{enumerate}
 \item Play each arm of the bandit once.
@@ -86,9 +104,60 @@ UCB1 algorithm is algorithm for playing multi-armed bandit problem:
 	  games played with arm $i$.
 \end{enumerate}
 
-Upper Confidence bounds algorithm applied to Trees (shortly UCT algorithm) is
-algorithm traversing built multi-armed bandit tree using UCB1 formula.
 
+\subsection{UCT algorithm}
+UCT is Upper Confidence bound to Trees or in other words UCB applied to minimax
+trees. The main idea is to consider each node of minimax tree as multiarmed
+bandit problem and each child of the node as independent arm.
+
+In MoGo they used UCB1 algorithm extended to searching minimax tree called UCT.
+MoGo \cite{MoGo}
+
+UCT is algorithm traversing built multi-armed bandit tree using UCB1 formula.
+
+Playing random simulation is also called playout.
+
+We presume the reader is familiar with rules of the game Go. (TODO ???)
 	
 Standalone UCT needs set of carefully chosen extensions to be competitive. The
 MCTS is some variant of UCT algorithm with those extensions.
+
+UCB1 formula itself presumes the random involved variables are identically distributed and independent which is not true in UCT.
+As MCTS we call UCT algorithm with various of extensions.
+
+MCTS algorithm starts with a tree containing only the root node representing starting position.
+MCTS consist of four steps, which we repeat until time is up:
+\begin{enumerate}
+\item Selection
+\item Expansion
+\item Simulation
+\item Backpropagation
+\end{enumerate}
+\cite{progressive-strategies}
+
+\lstset{language=Python, caption=Pseudocode of the MonteCarlo Tree Search, label=mcts:alg}
+\begin{lstlisting}
+playOneSequence(rootNode):
+    node[0] = rootNode
+    i = 0
+    while node[i] is not visited for first time:
+        node[i+1] = descendByUCB1(node[i])
+        i = i + 1
+
+    createNode(node[i])
+    node[i].value = getValueByMC(node[i])
+
+    for j in {0, ..., i-1}:
+        updateValue(node[j],-node[i].value)
+\end{lstlisting}
+
+We use Monte Carlo Tree Search algorithm as is described in~\cite{MoGo} and also
+modified by Kozelek~\cite{KOZELEK}.
+
+We modified Kozelek's UCB1 exploration formula to form:
+	$$
+	\overline X_i + c \sqrt{\frac{log~n}{n_i}} + \frac{h_i}{n_i} + \frac{hh_i}{\sqrt{n_i}}
+	$$
+where $\overline X_i + c \sqrt{\frac{log~n}{n_i}}$ is a generalised UCB1
+formula, $h_i$ is heuristics evaluated for step leading to this position, and
+$hh_i$ is history heuristic value.

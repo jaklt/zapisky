@@ -24,21 +24,34 @@
 	breaklines=true,
 	flexiblecolumns=false,
 	literate={+}{{$+$}}1 {/}{{$/$}}1 {*}{{$*$}}1 {=}{{$=$}}1
-               {>}{{$>$}}1 {<}{{$<$}}1 {\\}{{$\lambda$}}1
-               {\\\\}{{\char`\\\char`\\}}1
-               {->}{{$\rightarrow$}}2 {>=}{{$\geq$}}2 {<-}{{$\leftarrow$}}2
-               {<=}{{$\leq$}}2 {=>}{{$\Rightarrow$}}2 
-               {\ .}{{$\circ$}}2 {\ .\ }{{$\circ$}}2
-               {>>}{{>>}}2 {>>=}{{>>=}}2
-               {|}{{$\mid$}}1
+             {>}{{$>$}}1 {<}{{$<$}}1 {\\}{{$\lambda$}}1
+             {->}{{$\rightarrow$}}2 {>=}{{$\geq$}}2 {<-}{{$\leftarrow$}}2
+             {<=}{{$\leq$}}2 {=>}{{$\Rightarrow$}}2 
+             {|}{{$\mid$}}1
 	}
+% \lstloadlanguages{Haskell}
+% \lstnewenvironment{code}
+% 	{\lstset{}%
+% 	  \csname lst@SetFirstLabel\endcsname}
+% 	{\csname lst@SaveFirstLabel\endcsname}
+% 	\lstset{
+% 	  basicstyle=\small\ttfamily,
+% 	  flexiblecolumns=false,
+% 	  basewidth={0.5em,0.45em},
+% 	  literate={+}{{$+$}}1 {/}{{$/$}}1 {*}{{$*$}}1 {=}{{$=$}}1
+% 			   {>}{{$>$}}1 {<}{{$<$}}1 {\\}{{$\lambda$}}1
+% 			   {\\\\}{{\char`\\\char`\\}}1
+% 			   {->}{{$\rightarrow$}}2 {>=}{{$\geq$}}2 {<-}{{$\leftarrow$}}2
+% 			   {<=}{{$\leq$}}2 {=>}{{$\Rightarrow$}}2 
+% 			   {\ .}{{$\circ$}}2 {\ .\ }{{$\circ$}}2
+% 			   {>>}{{>>}}2 {>>=}{{>>=}}2
+% 			   {|}{{$\mid$}}1               
+% 	}
 	% more on http://www.haskell.org/haskellwiki/Literate_programming
 
 \usepackage[unicode]{hyperref}
 \hypersetup{pdftitle=Arimaa challenge - comparission study of MCTS versus alpha-beta methods}
 \hypersetup{pdfauthor=Tomáš Jakl}
-
-\acrodef{MCTS}{Monte Carlo Tree Search}
 
 
 %%% Drobné úpravy stylu
@@ -132,7 +145,9 @@ Prague 2011
 \openright
 
 \noindent
-Poděkování.
+Poděkování
+%I would like to thank to dr. Majerech Vladan for revealing this topic, which
+%turned out to be more interesting than it seemed at first time.
 
 
 %%% Strana s čestným prohlášením k bakalářské práci
@@ -205,12 +220,11 @@ Katedra teoretické informatiky a matematické logiky
 
 Vedoucí bakalářské práce:
 Mgr. Vladan Majerech Dr., Katedra teoretické informatiky a matematické logiky
-Jméno a příjmení s tituly
 
 Abstrakt:
 % TODO abstrakt v rozsahu 80-200 slov; nejedná se však o opis zadání bakalářské práce
 
-Klíčová slova: Arimaa, Monte Carlo Tree Search, Alpha Beta search
+Klíčová slova: Arimaa, Monte Carlo Tree Search, Alpha Beta search, UCT
 
 
 \vss}
@@ -234,6 +248,13 @@ Klíčová slova: Arimaa, Monte Carlo Tree Search, Alpha Beta search
 \include{chapters/literature}
 
 \chapwithtoc{List of Abbreviations/Glossary}
+\begin{acronym}
+	\acro{MCTS}{Monte Carlo Tree Search}
+	\acro{UCB}{Upper Confidence Bounds}
+	\acro{UCT}{Upper Confidence bound to Trees or in other words UCB applied to minimax trees}
+	\acro{filling eye}{}
+\end{acronym}
+
 
 \chapter{Appendix 1}
 - tables that weren't placed into text.

@@ -5,41 +5,66 @@ enhance chosen algorithm with various extensions. In this chapter we describe
 the most used extensions for AlphaBeta or MCTS algorithm.
 
 \section{AlphaBeta}
-\subsection{Transposition table}
+\subsection{Transposition Table}\label{AlphaBeta:TT}
+If we look at Arimaa, Chess or Go game tree there is so many repetitions in
+nodes of the tree for almost every position on the board. The Transposition tables
+are used to reduce the number of repetitions in tree.
+
 COMPLETELY REWRITE: If we find in TT occurs result from previous search that is
 shallower than we need, we prefer steps from Principal Variation of given entry
 in succeeding search and use also its bounds.
 
 If we find satisfying result in TT we use its full PV and score as ours.
 
-\subsection{Iterative deepening framework}
+\subsection{Iterative Deepening Framework}
+Because there is no way how to determine how long the AlphaBeta search to given
+depth will take we need to find some time management tool. This is method in
+which we are iteratively starting new deeper and deeper searches. Thanks to
+exponential growth of th minimax tree with increasing depth we know that
+searching one level more cost us approximately a lot more than previous
+shallower searching.
+
+Iterative deepening used with other optimisation methods such as History
+Heuristics or Transposition Table often cause time save if we compare it to
+just searching to maximal possible depth, because we can sort moves using
+information gained from previous shallower searches~\cite{COX}.
+
 \subsection{Aspiration Windows}
 % TODO how to mention it?
 % \subsection{Quiescent search}
 %   Is nice way, how to reduce horizont effect ...
 %   % [Related to arimaa: http://arimaa.com/arimaa/forum/cgi/YaBB.cgi?board=devTalk;action=display;num=1122418533] <- TODO: Maybe implement this way
 %   % [http://mediocrechess.sourceforge.net/guides/quiescentsearch.html]
+
 \subsection{Move ordering}
 The following methods change order in which branches are selected and then
 inspected. It is very important for AlphaBeta search to have nodes well
 ordered. Because the earlier we find pruning child of the node the shorter time
 we spend in it.
+
 	\subsubsection{History heuristics}
 	The main idea behind this extension is that if some step is good enough
 	to cause so many pruning anywhere in the search tree and if it is valid in
 	given position it could be also good here.
 
-	It is implemented in way that we create table with statistic for every
-	combination of players, piece, position and direction.
-	  % [http://webdocs.cs.ualberta.ca/~jonathan/PREVIOUS/Courses/657/index.html]
+	It is implemented in way that we create table with score for every element
+	from combination of players, piece, position and direction. During
+	AlphaBeta search we increase score for element every time such combination
+	causes pruning or causes the best score. It is believed that the deeper
+	cut-off happens the more relevant it is and therefore the score is
+	incremented by $d^2$ or $2^d$ where $d$ is actual searched depth.
+
+	During searching are nodes of the minimax tree sorted in order by
+	decreasing score from History Heuristic table~\cite{COX}.
 
 	\subsubsection{Killer moves}
 	When a step prunes branches in some position it is very natural to ask if
 	the same step could cause pruning in another branch and the same depth of
 	the tree. To go even further we take two last steps caused pruning to be
-	preferred in the search. As Zhong found out three or more Killer moves would help. [ZHONG]
+	preferred in the search. As Zhong found out three or more Killer moves would help~\cite{ZHONG}.
 
 	\subsubsection{Null move}
+
 
 \subsection{Heuristics}
 All preceding optimisations do not change result given by the algorithm. They
@@ -55,41 +80,75 @@ will not use those optimisations.
 % TODO XXX: Are really heuristics?
 
 
-\section{MCTS}
-\subsection{Transposition table}
-If we look at Arimaa, Chess or Go game tree there is so many repetitions in
-nodes of the tree for almost every board position. The Transposition tables
-are used to reduce the number of repetitions in tree.
+\section{Monte Carlo Tree Search}
+In AlphaBeta search we made great effort in sorting nodes of the searched tree
+properly. In MCTS we need to use optimisations which helps us to gain better
+and more informations from each iteration of algorithm on top of that.
+(TODO too complicated, rewrite)
 
-To do so we bind nodes consideret the same to one. When we Transposition
-tables the game tree looks more like Direct Acyclic Graph than tree.
+We chose to implement only heuristic Tomáš Kozelek described as
+useful~\cite{KOZELEK}.
+
+\subsection{Transposition table}
+The motivation is the same as is in the AlphaBeta algorithm
+(see~\ref{AlphaBeta:TT}). However in MCTS we are increasingly building game
+tree instead of just exploring branches to some depth. A natural use of
+Transposition table for MCTS is to share statistics for the same transpositions
+in built game tree.
+
+To do so we bind nodes considered the same to one. Bound nodes share their
+children nodes, visit count and score statistic. We say that two nodes are the
+same if they are in the same depth in minimax tree and if they represent the
+same transposition. The game tree became Directed Acyclic Graph.
+
+In implementation during the computation we keep table of all transpositions
+and when any node is expanded we bind it to transposition in table if exists.
+
+In Kozelek's work (\cite{KOZELEK}) is binding visit count and score statistic
+as dangerous, nevertheless we believe that if some node proved to be not worth
+trying in another branches it stands the same in here. (TODO is it
+syntactically correct?)
 
 \subsection{Progressive bias}
 - add to uct formula $+ {H_B \over n_i}$. Where $H_B$ is progressive bias
 coeficient as described in 
+\cite{progressive-strategies}
 \subsection{History heuristics}
-- add to uct formula $+ {hh_i \over \sqrt n_i}$. Where $hh_i$ is history
-heuristics coeficiend as is described in Kozeleks thesis\cite{KOZELEK}.
+- add to uct formula $+ {hh_i \over n_i}$. Where $hh_i$ is history
+heuristics coeficiend as is described in Kozeleks thesis~\cite{KOZELEK}.
 
 Similar approach is All-Moves-As-First Heuristics however it updates statistics only for all steps that were used in this simulation (in each node) (TODO)
 
 \subsection{Best-of-N}
-\subsection{Children caching}
-\subsection{Virtual visits}
-Initialise with $v$ visits.
-\subsection{Maturity threshold}
-
+In random simulations, we may want to sacrifice true randomness for gaining
+more objective results from playouts~\cite{HeavyPlayouts}.
+	- One way how to choose step is to generate all steps and chose one with
+	  the best value given by some incrementally precomputed function.
 - In MonteCarlo simulation, it should (as Kozelek wrote) significantly improve
   strength of program by choosing random moves rather with some heuristic.
   % TODO: really significantly??
-	- One way how to choose step is to generate all steps and chose one with
-	  the best value given by some incrementally precomputed function.
 	  % TODO check word order
 	- Another similar way how to choose step is from all possible generated
 	  steps choose at random $r$ of them and from these $r$ choose one with the
 	  highest value given by the same function as above.
 
-\section{General}
+\subsection{Children caching}
+In order to decrease amount of time spent in Monte Carlo Tree 
+
+\subsection{Maturity threshold}
+TODO: Is another technique how to shorted time used in node selection. We
+expand only nodes which had at least $threshold_maternity + depth\_of(node)$
+visit count.
+
+This creates 
+
+\subsection{Virtual visits}
+In node expansion initialise new node with $v$ virtual visits. This small
+change increases the power of the algorithm significantly. Kozelek
+experimentally determined the best performance of algorithm for $v \in
+\{4,5\}$~\cite{KOZELEK}. The same holds in our case.
+
+\section{Independent optimisations}
 The following extensions are considered must have in every successful Arimaa
 bot and do not depend on used algorithm.
 

@@ -38,6 +38,11 @@ added values in all nodes. Values are defined recursively. In leaf of the tree
 is value calculated by evaluation function. In nonleaf node is the value
 defined as the best value from nodes children from nodes active player point
 of view.
+\item[Principal variation] is best sequence of moves for actual player leading
+from root of the tree to leaf in minimax if we presume both players play their
+best.
+\item[Transposition] is 
+\item[Branching factor] 
 \end{description}
 
 \section{The Game of Arimaa}
@@ -57,7 +62,7 @@ efficiently decide which of two given position is better ??because??.
 
 Why we cannot use standart methods widely used in chess? (Section 2 in Kozeleks thesis)
 
-\section{Rules of the game\cite{arimaa.com}}
+\section{Rules of the game~\cite{arimaa.com}}
 Arimaa is two-player zero-sum game with perfect information. It is designed to
 be possible to play it using the board and pieces from chess set. The starting
 player has Gold color, second is Silver. In the zeroth turn Gold and then
@@ -117,7 +122,7 @@ ruin good position with just one bad move. For example stepping out of trap an
 therefore let another piece to be trapped or unfreezing rabbit near goalline.
 Unlike in Chess starting position is not predefined and there are about
 $4.207\times10^{15}$ different possible openings which makes it hard for arimaa
-bot programmer to use any kind of opening tables\cite{COX}.
+bot programmer to use any kind of opening tables~\cite{COX}.
 
 In Arimaa it is also very hard to build good static evaluation function. Even
 human players often do not know for example if in certain position it is better
@@ -130,19 +135,19 @@ making wrong step is in Go a lot harder.
 In game of Go if we omit filling eye any random playing sequence leads to end,
 which is not so easily achievable in Arimaa and Chess. Christ Cox showed in his
 work that in Arimaa branching factor of average position is around 20,000. With
-comparison in Chess it is only 35 and in Go 200 \cite{COX}.
+comparison in Chess it is only 35 and in Go 200~\cite{COX}.
 
-% TODO? position in arimaa vs tactic in chess \cite{COX}
+% TODO? position in arimaa vs tactic in chess ~\cite{COX}
 
 \section{Challenge}
 Omar Syed decided to left a prize 10,000 USD for programmer or group of
 programmers who develop Arimaa playing program which win Arimaa Computer
 Championship and then defeat three chosen top human players before the year
 2020. Omar Syed believes that this motivation will help further improvements in
-area of AI game programming\cite{syed}.
+area of AI game programming~\cite{syed}.
 
 So far computers were not even close to defeat one of the chosen human
-players\cite{arimaa.com}. ... (TODO add facts)
+players~\cite{arimaa.com}. ... (TODO add facts)
 
 \section{Object of research}
 The main part of this work is to develop well documented Arimaa playing program
