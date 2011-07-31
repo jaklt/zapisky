@@ -1,35 +1,32 @@
-% \chapter*{Introduction}
-% \addcontentsline{toc}{chapter}{Introduction}
-
 \chapter{Introduction}
 After Gasparov was defeated, new challenges has come. Defeat men in Go. Until
 now, there were no significant success on standart 13$\times$13 board. But many
-useful new way of playing games was invented. In ??? Monte Carlo methods were
+useful new way of playing games was invented. In 2006 Monte Carlo methods were
 successfully used to defeat all other computer players of Go. After that day
-all successful programs were using Monte Carlo methods.
-% TODO so many ???s
+all successful programs were using Monte Carlo methods~\cite{MoGo}.
+
+We will introduce the game of Arimaa and describe two algorithms \ac{MCTS} and the AlphaBeta search ... 
+
 
 Tomáš Kozelek has shown in his work, that building Arimaa playing program using
 MCTS is possible. In this work we will focus on comparing capabilities and
-perspectives to the future given by AlphaBeta search and MCTS to game of
-Arimaa.
+perspectives to the future given by AlphaBeta search and MCTS in game of
+Arimaa. In order to do that we 
 
-After first computers were created it was always in human target to fight
-with/compete human mind in every occasion. First significant result was shown
-in 1997. IBM constructed/built computer with just one purpose, to defeat
-the best human player in the game of chess. It took few years of development
+After first computers were created it was always in human target to compete
+human mind in every occasion. First significant result was shown in 1997. IBM's
+employees constructed a computer with just one purpose, to defeat Gary Kasparov
+-- the best human player in the game of chess. It took few years of development
 and ??? milions of dolars to build computer. Fist time they wasn't successful
 [???], but after some time and more effort they defeated Gasparov with computer
 named Deep blue.
 % TODO preformulovat a upresnit/rozsirit
-[1] and [???]
+\cite{arimaa.com}
 
-We will introduce the game of Arimaa and describe two algorithms \ac{MCTS} and AlphaBeta search ... TODO
-
+TODO
 
 \section{Terminology}
 \begin{description}
-\item[Game bot] is game playing program.
 \item[Game tree] for arbitrary game is tree with starting positions as root and
    with children of nodes as all possible consequent positions.
 \item[Evaluation function] is function which estimates value of given position of the game. It can be used for example to compare which of two given positions is better.
@@ -43,9 +40,13 @@ from root of the tree to leaf in minimax if we presume both players play their
 best.
 \item[Transposition] is 
 \item[Branching factor] 
+\item[Game bot] is game playing program.
 \end{description}
 
 \section{The Game of Arimaa}
+> Even simple rules can lead to interesting games.
+
+
 The game of Arimaa is pretty new game. It is carefully designed to be hard to
 play for computers, but easy to play for humans. Creator of the game Omar
 Syed [1]
@@ -110,7 +111,7 @@ call it goal,
 \item or the same position is repeated in third time in the row.
 \end{enumerate}
 
-Player wins if he scores goal or opponent is eliminated, is immobilised or
+Player wins if he scores goal or opponent is eliminated, immobilised or
 repeated position for third time.
 
 %TODO figures with examples of pushing/pulling, immobilisations, trapping, ...
@@ -160,4 +161,3 @@ and try to answer the following questions:
 \item How important is evaluation function in MCTS compared to AlphaBeta?
 \end{enumerate}
 % TODO: which area should be compared? who is more perspective in future?
-

@@ -1,13 +1,9 @@
-% \chapter*{Conclusion}
-% \addcontentsline{toc}{chapter}{Conclusion}
-
-\chapter{Results}
+\chapter{Conclusion}
 Writing two programs at once turns out to be more difficult than we thought. In
 our development we have not focussed on high time optimisations and
 sophisticated goal check and trap control in position evaluation. These three
 thinks are considered the most difficult in Arimaa bot development.
 
-\section{Conclusion}
 Using MCTS as is or as was provided by Kozelek is not enought for bot
 programming in Arimaa, but UCB formula or UCT algorithm itself can be valuable
 in yet unknown hybrid algorithm using both AlphaBeta and MCTS algorithms.
@@ -34,7 +30,9 @@ What was done. What we achieved. What we get from it. ...
 \item Find way how to implement some kind of Quiescence search to MCTS and compare with similar approach in AlphaBeta.
 \item ...
 \item Optimise playouts using more sophisticated way how to generate steps. Interesting ideas are described in Zhong's work~\cite{ZHONG}.
+\item try patterns heuristics in playout generation~\cite{PatternsGo,PatternsArimaa}.
 \end{enumerate}
+Goal check??
 
 The quality of bots can be improved by:
 \begin{enumerate}
@@ -42,7 +40,5 @@ The quality of bots can be improved by:
 \item try progressive pruning  methods~\cite{progressive-strategies,
 MonteCarloGo},
 \item use more optimised data structures and random number generator,
-
-Goal check??
-
+\item We learned from \ref{pic:generalTuning} that 
 \end{enumerate}

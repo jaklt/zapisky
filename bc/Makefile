@@ -5,7 +5,15 @@ SOURCES= chapters/algorithms.tex \
 		 chapters/introduction.tex \
 		 chapters/literature.tex \
 		 chapters/methodology.tex \
-		 chapters/optimisations.tex
+		 chapters/optimisations.tex \
+		 chapters/results.tex \
+		 graphs/graphs.plot
+
+FIGURES= graphs/general.eps \
+		 graphs/generalTuning.eps \
+		 graphs/mctsTuning.eps \
+		 graphs/memory.eps \
+		 graphs/cores.eps
 
 all: thesis.pdf
 
@@ -15,7 +23,10 @@ thesis.pdf: thesis.ps
 thesis.ps: thesis.dvi
 	dvips -o $@ -D600 -t a4 $<
 
-thesis.dvi: thesis.tex ${SOURCES} $(wildcard *.tex)
+${FIGURES}: graphs/graphs.plot
+	cd graphs; gnuplot graphs.plot
+
+thesis.dvi: thesis.tex ${SOURCES} $(wildcard *.tex) ${FIGURES}
 	cslatex $<
 	cslatex $<
 

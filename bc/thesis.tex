@@ -18,7 +18,9 @@
 \usepackage{amsfonts}
 \usepackage{a4wide}
 \usepackage[footnote]{acronym}
+\usepackage{gnuplottex}
 \usepackage{listings}
+\renewcommand{\lstlistingname}{Algorithm}
 \lstset{
 	captionpos=b,
 	breaklines=true,
@@ -48,6 +50,7 @@
 % 			   {|}{{$\mid$}}1               
 % 	}
 	% more on http://www.haskell.org/haskellwiki/Literate_programming
+
 
 \usepackage[unicode]{hyperref}
 \hypersetup{pdftitle=Arimaa challenge - comparission study of MCTS versus alpha-beta methods}
@@ -124,7 +127,7 @@ Department of Theoretical Computer Science and Mathematical Logic
 
 \begin{tabular}{rl}
 
-Supervisor of the bachelor thesis: & Mgr. Vladan Majerech Dr. \\
+Supervisor of the bachelor thesis: & Mgr. Vladan Majerech, Dr. \\
 \noalign{\vspace{2mm}}
 Study programme: & Computer Science \\
 \noalign{\vspace{2mm}}
@@ -192,7 +195,7 @@ Department:
 Department of Theoretical Computer Science and Mathematical Logic
 
 Supervisor:
-Mgr. Vladan Majerech Dr., Department of Theoretical Computer Science and Mathematical Logic
+Mgr. Vladan Majerech, Dr., Department of Theoretical Computer Science and Mathematical Logic
 
 Abstract:
 In the world of chess programming the most successful algorithm for game tree
@@ -219,7 +222,7 @@ Katedra:
 Katedra teoretické informatiky a matematické logiky
 
 Vedoucí bakalářské práce:
-Mgr. Vladan Majerech Dr., Katedra teoretické informatiky a matematické logiky
+Mgr. Vladan Majerech, Dr., Katedra teoretické informatiky a matematické logiky
 
 Abstrakt:
 % TODO abstrakt v rozsahu 80-200 slov; nejedná se však o opis zadání bakalářské práce
@@ -242,6 +245,7 @@ Klíčová slova: Arimaa, Monte Carlo Tree Search, Alpha Beta search, UCT
 \include{chapters/optimisations}
 \include{chapters/implementation}
 \include{chapters/methodology}
+\include{chapters/results}
 \include{chapters/conclusion}
 
 \appendix
@@ -257,7 +261,7 @@ Klíčová slova: Arimaa, Monte Carlo Tree Search, Alpha Beta search, UCT
 
 
 \chapter{Appendix 1}
-- tables that weren't placed into text.
+TODO Memory/Heap and time/cost statistics.
 
 \include{chapters/documentation}
 

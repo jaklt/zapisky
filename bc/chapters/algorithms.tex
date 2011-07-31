@@ -16,7 +16,7 @@ natural optimisation of Minimax search. The main purpose of algorithm is to
 reduce number of branches and nodes to be visited.
 
 During the search we are trimming bounds (window) of the best minimax value.
-The pseudocode of the algorithm is shown in Listing~\ref{alphabeta}.
+The pseudocode of the algorithm is shown in~\ref{alphabeta}.
 
 \lstset{language=Python, caption=Pseudocode of the AlphaBeta search, label=alphabeta}
 \begin{lstlisting}
@@ -26,7 +26,7 @@ alphabeta (node, depth, alpha, beta):
     if  is maximizing node:
         for each child of node
             score = alphabeta(child, depth-1, alpha, beta,
-                              oponent(Player))
+                              opponent(Player))
             alpha = max(alpha, score)
 
             if beta <= alpha: break  # Beta cut-off
@@ -34,7 +34,7 @@ alphabeta (node, depth, alpha, beta):
     else:
         for each child of node:
             score = alphabeta(child, depth-1, alpha, beta,
-                              oponent(Player))
+                              opponent(Player))
             beta = min(beta, score)
 
             if beta <= alpha: break  # Alpha cut-off
@@ -128,10 +128,10 @@ As MCTS we call UCT algorithm with various of extensions.
 MCTS algorithm starts with a tree containing only the root node representing starting position.
 MCTS consist of four steps, which we repeat until time is up:
 \begin{enumerate}
-\item Selection
-\item Expansion
-\item Simulation
-\item Backpropagation
+\item \emph{Selection}
+\item \emph{Expansion}
+\item \emph{Simulation}
+\item \emph{Backpropagation}
 \end{enumerate}
 \cite{progressive-strategies}
 

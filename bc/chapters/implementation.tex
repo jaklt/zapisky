@@ -1,44 +1,56 @@
 \chapter{Implementation}
-We used Haskell as programming language. We developed set of libraries for play
-Arimaa to be used with both MCTS and AlphaBeta algorithm. On top of those
+We developed set of libraries for play Arimaa to be used with both MCTS and
+AlphaBeta algorithm using haskell as programming language. On top of those
 libraries we built mentioned algorithms. The critical parts like bit operations
-and evaluate function are written in C.
+and evaluate function were written in C.
 
-In Haskell is possible to program in much higher level than it is in most other
-programming languages. However it is also harder to reason about performance.
+Haskell differs from other common used languages whith its lazynes. Which means
+that only values that are truly needed for computation are evaluated. For
+example we may define infinite list of prime numbers and then ask for third
+element of this list which causes only the first three prime numbers to be
+computed.
 
-We are pretty sure that more experienced Haskell programmer would write both
-engines more efficiently.
+This paradigm is applied naturaly in the AlphaBeta search. When we are
+exploring some node and in one of the first child's the cut-off occurs we
+spared time not generating others.
 
+% In a tree node during MCTS when children hashing mechanism is switched on,
+% instead of alocating more space for $C$ cached nodes, actual nodes are lazily
+% sorted in decreasing order and only $\mathcal{O}(C\log n)$ sorting realy
+% hapends.
 
-We tried/made huge effort to keep our program rather simple and modular as much
-as possible. Therefore one can switch on or off almost every mentioned search
-extension.
+In Haskell it is possible to program in much higher level than it is in most
+other programming languages. However it is also harder to reason about
+performance. We are pretty sure that more experienced Haskell programmer would
+write both engines more efficiently.
 
-In step generator we let the possibility to generate Pass step switched off by
-default.
+\subsubsection{Parameter tuning}
 
-Lazily generated list of steps in AlphaBeta vs. lazily sorted children in MCTS.
-(lazily generated list of steps was important)
+We made huge effort to keep our program rather simple and modular as much as
+possible. Therefore one can switch on or off a lot of mentioned search
+extension. In step generator we let the possibility to generate Pass step
+switched off by default.
 
 Aspiration window gave sometimes strange results so we left it unused by default.
 Using history heuristic in Alpha Beta program tends to decrease quality of our
 program and we believe that causing list of steps from given position to be
 evaluated is limiting in comparison to have them evaluated lazily. However it
-is known that importance of history heuristic grows when the depth increases
-[ZHONG] and hence for mor efficient programs HH is much more important.
+is known that importance of history heuristic grows when the depth increaseand
+hence for mor efficient programs HH is much more important~\cite{ZHONG}.
 
-Our AlphaBeta algorithm lack of standart Quiescence algorithm with trap control
-or Goal check. We believe that both trap control and Goal check could be also
-included in MCTS. However we know that true power of the algorithm is to
-explore those situations. (TODO REWRITE and more optimistic)
+Our AlphaBeta algorithm lack of standart Quiescence extension with trap control
+or the Goal check. We believe that both the Trap control and the Goal check
+could be somehow also included in MCTS.
 
 \section{Parallelization}
-In Monte Carlo Tree Search, do parallelization is much more natural than is in
-AlphaBeta search.
+In Monte Carlo Tree Search, make bot to be parallel is much more natural than
+it is in AlphaBeta search. For each CPU one thread is created and there is only
+one shared tree for all of them.
 
-Haskell gives us easy threading and data structure locking capabilities.
+Haskell gave us easy threading and data structure locking capabilities.
 Local mutexes are rather simple thanks to MVar structure.
+
+
 
 \section{Evaluation function}
 We wrote evaluation function completely in C to be as fast as possible.
