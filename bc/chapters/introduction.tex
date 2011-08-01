@@ -1,29 +1,21 @@
 \chapter{Introduction}
+After first computers were created it was always in human target to compete
+human mind in every occasion. First significant result was shown in 1997. IBM's
+employees constructed a computer named Deep blue with just one purpose, to
+defeat Gary Kasparov -- the best human player in the game of chess.
+
 After Gasparov was defeated, new challenges has come. Defeat men in Go. Until
 now, there were no significant success on standart 13$\times$13 board. But many
 useful new way of playing games was invented. In 2006 Monte Carlo methods were
-successfully used to defeat all other computer players of Go. After that day
-all successful programs were using Monte Carlo methods~\cite{MoGo}.
+used to defeat all other computer players of Go. After that day all successful
+programs were using Monte Carlo methods~\cite{MoGo}.
 
-We will introduce the game of Arimaa and describe two algorithms \ac{MCTS} and the AlphaBeta search ... 
+We will introduce the game of Arimaa and describe two algorithms \ac{MCTS} and
+the AlphaBeta search with various of extensions.
 
-
-Tomáš Kozelek has shown in his work, that building Arimaa playing program using
-MCTS is possible. In this work we will focus on comparing capabilities and
-perspectives to the future given by AlphaBeta search and MCTS in game of
-Arimaa. In order to do that we 
-
-After first computers were created it was always in human target to compete
-human mind in every occasion. First significant result was shown in 1997. IBM's
-employees constructed a computer with just one purpose, to defeat Gary Kasparov
--- the best human player in the game of chess. It took few years of development
-and ??? milions of dolars to build computer. Fist time they wasn't successful
-[???], but after some time and more effort they defeated Gasparov with computer
-named Deep blue.
-% TODO preformulovat a upresnit/rozsirit
 \cite{arimaa.com}
 
-TODO
+TODO TODO
 
 \section{Terminology}
 \begin{description}
@@ -38,30 +30,33 @@ of view.
 \item[Principal variation] is best sequence of moves for actual player leading
 from root of the tree to leaf in minimax if we presume both players play their
 best.
-\item[Transposition] is 
-\item[Branching factor] 
+\item[Transposition] is TODO
+\item[Branching factor] TODO
 \item[Game bot] is game playing program.
 \end{description}
 
 \section{The Game of Arimaa}
-> Even simple rules can lead to interesting games.
-
+\begin{flushright}
+\emph{Even simple rules can lead to interesting games.\\
+-- Omar Syer}
+\end{flushright}
 
 The game of Arimaa is pretty new game. It is carefully designed to be hard to
-play for computers, but easy to play for humans. Creator of the game Omar
-Syed [1]
+play for computers, but easy to play for humans. Creator of the game Omar Syed
+sais that gasparov was not oversmarted but overcomputed~\cite{arimaa.com}.
+
 
 The game was carefully designed in order not to be possible to use methods
-well known from Chess as game-ending tables or opening tables. (TODO
-REWRITE:) Also to be significantly harder to precompute moves for huge
-number moves to future and to efficiently decide which of two given position
-is better.
+well known from Chess as game-ending tables or opening tables. 
 
-(TODO REWRITE:) Omar says that gasparov was not oversmarted but overcomputed ...
-In Arimaa it is significantly harder to precompute moves ??because?? and to
-efficiently decide which of two given position is better ??because??.
+The rules of the game are so simple that even small kids can play it.
 
-Why we cannot use standart methods widely used in chess? (Section 2 in Kozeleks thesis)
+TODO
+
+% (TODO REWRITE:) Also to be significantly harder to precompute moves for huge number moves to future and to efficiently decide which of two given position is better.
+
+% (TODO REWRITE:)  ... In Arimaa it is significantly harder to precompute moves ??because?? and to efficiently decide which of two given position is better ??because??. 
+% Why we cannot use standart methods widely used in chess? (Section 2 in Kozeleks thesis)
 
 \section{Rules of the game~\cite{arimaa.com}}
 Arimaa is two-player zero-sum game with perfect information. It is designed to
@@ -74,13 +69,13 @@ order from weakest to strongest.
 
 %% TODO example picture of the starting position
 
-Players are taking turns starting with Gold. In each turn player makes move,
-which consist of one to four steps. If less than four steps were made it is
-said that player passed. After move ends, position of the board must be
-different from position before turn started.
+Players are taking turns starting with Gold. In each turn a player makes move,
+which consist of one to four steps. Player may Pass and do not use remaining
+steps. After move ends, position of the board must be different from position
+before move started.
 
 Figure is considered frozen if on one of its neighbouring squares is opponents
-stronger piece and on no figure sharing color with it. Adjacent or neighbouring
+stronger piece, and on no figure sharing color with it. Adjacent or neighbouring
 squares are those squares lying in one position to left, right, front or
 backwards.
 
@@ -88,13 +83,13 @@ backwards.
 
 To make step player chooses one of its non frozen figures and move it to one of
 the free adjacent squares, with one exception -- rabbits cannot step backwards.
-Instead of making simple step player can provide pull or push. Pulling is
-almost identical to simple step, but after step is done player choose one of
-the weaker piece which stayed on neighbouring of the square from which figure
-moved, and move it to position from which our piece stepped. Pushing is a kind
-of opposite to pulling. At first neighbouring weaker piece is moved to its free
-adjacent square and then our piece is placed to weaker pieces former place.
-Push and pull counts as 2 steps and can not be combined together.
+Instead of making a simple step player can provide pull or push. Pulling is
+almost identical to the simple step, but after step is done player choose one
+of the weaker piece which stayed on neighbouring of the square from which
+figure moved, and move it to position from which our piece stepped. Pushing is
+a kind of opposite to pulling. At first neighbouring weaker piece is moved to
+its free adjacent square and then our piece is placed to weaker pieces former
+place. Push and pull counts as 2 steps and can not be combined together.
 
 On the board are four special squares called traps in positions \texttt{c3},
 \texttt{c6}, \texttt{f3} and \texttt{f6}. After each step ends if any piece is
@@ -104,10 +99,9 @@ therefore removed from the board.
 At end of the move is checked if game ended and it happens if one of the
 following conditions is fulfilled:
 \begin{enumerate}
-\item one of the players rabbit has reached opponents front line (goalline), we
-call it goal,
-\item one of the players has no rabbit left, we call it elimination,
-\item next active player cannot move, we call it immobilisation,
+\item \emph{scoring goal:} one of the players rabbit has reached opponents front line (goalline)
+\item \emph{elimination:} one of the players has no rabbit left,
+\item \emph{immobilisation:} next active player cannot move,
 \item or the same position is repeated in third time in the row.
 \end{enumerate}
 
@@ -151,8 +145,13 @@ So far computers were not even close to defeat one of the chosen human
 players~\cite{arimaa.com}. ... (TODO add facts)
 
 \section{Object of research}
-The main part of this work is to develop well documented Arimaa playing program
-and try to answer the following questions:
+Tomáš Kozelek has shown in his work, that building Arimaa playing program using
+MCTS is possible. In this work we will focus on comparing capabilities and
+perspectives to the future given by AlphaBeta search and MCTS in game of
+Arimaa.
+
+The main part of this work is to develop Arimaa playing program and try to
+answer the following questions:
 
 \begin{enumerate}
 \item Is MCTS competitive alpha beta search at all?

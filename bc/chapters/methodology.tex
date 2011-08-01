@@ -1,4 +1,7 @@
 \chapter{Methodology}
+
+At the begging we decided to follow the consequent schedule:
+
 \begin{enumerate}% {0}
 \item Study possible and most used method used in Arimaa, Chess and Go.
 \item Develop two arimaa playing programs using two earlier described
@@ -7,13 +10,14 @@
 \item Analise engines time cost centres. Where are bottlenecks.
 \end{enumerate}
 
-\begin{enumerate}
-\item playing 3s/10s/30s time limit
-\item playing with heap 100MB, 200MB, 400MB
-\item using one, two, four, eight cores
-\item run AB to same level of search and give MCTS the same amount of time to play
-\end{enumerate}
-If game ends to time limit we do not use/count its result into final statistics.
+\noindent By comparing engines we mean:
 
-Work on bot is never ending so we try to develop two comparable bots and try to
-measure how changes in settings affect their win:loss rate.
+\begin{enumerate}
+\item playing 3s/10s/30s per move time limit,
+\item playing with transposition tables of size 100MB, 200MB, or 400MB,
+\item using one, two, four, eight cores,
+% \item run AB to same level of search and give MCTS the same amount of time to play
+\end{enumerate}
+
+Work on bot is never ending so we will try to develop two comparable bots and
+try to measure how changes in settings affect their win:loss rate.

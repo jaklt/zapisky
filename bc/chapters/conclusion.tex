@@ -1,44 +1,39 @@
 \chapter{Conclusion}
 Writing two programs at once turns out to be more difficult than we thought. In
-our development we have not focussed on high time optimisations and
-sophisticated goal check and trap control in position evaluation. These three
-thinks are considered the most difficult in Arimaa bot development.
+our development we have not focussed on high time optimisations,
+sophisticated goal check and trap control in position evaluation. To handle these three topics is considered as the most difficult in Arimaa bot development.
 
 Using MCTS as is or as was provided by Kozelek is not enought for bot
-programming in Arimaa, but UCB formula or UCT algorithm itself can be valuable
-in yet unknown hybrid algorithm using both AlphaBeta and MCTS algorithms.
+programming in Arimaa, but UCB1 formula or UCT algorithm itself can be valuable
+in some combination of AlphaBeta and MCTS algorithms.
 
-??? Combine previous and consequent paragraphs ???
+Maybe in the future we will see UCT oriented algorithm which after node expansion make short tactical (AlphaBeta) lookahead.
 
-The most prommising variant of the Arimaa playing program using MCTS algorithm
-could be some combination of MCTS and AlphaBeta. Using full four depth
-AlphaBeta search while expanding leafs of UCT. (after node expansion make
-tactiacal lookahead)
+TODO What was done. What we achieved. What we get from it.
 
-REWRITE: We also believe that using more sophisticated board representation
-would help MCTS algorithm against AlphaBeta, because the cost of managing
-clever representation returns with more times you use the clever
-representation, which dominates in MCTS. (From one position MCTS often
-generates possible moves more than once in contrast of AlphaBeta).
+We believe that using more sophisticated board representation would help MCTS
+algorithm against AlphaBeta, because the cost of managing clever representation
+returns with more times you use the clever representation, which dominates in
+MCTS. (From one position or similar to it MCTS often generates in playouts
+possible moves more than once in contrast of AlphaBeta).
 
-What was done. What we achieved. What we get from it. ...
 
 \section{Further work}
 % TODO it should be further work from our point of view (to attack another similar topics to ours)
 
-\begin{enumerate}
-\item Find way how to implement some kind of Quiescence search to MCTS and compare with similar approach in AlphaBeta.
-\item ...
-\item Optimise playouts using more sophisticated way how to generate steps. Interesting ideas are described in Zhong's work~\cite{ZHONG}.
-\item try patterns heuristics in playout generation~\cite{PatternsGo,PatternsArimaa}.
-\end{enumerate}
-Goal check??
+A proceeding work could cover the following problems:
 
-The quality of bots can be improved by:
 \begin{enumerate}
-\item create better evaluation function,
-\item try progressive pruning  methods~\cite{progressive-strategies,
-MonteCarloGo},
-\item use more optimised data structures and random number generator,
-\item We learned from \ref{pic:generalTuning} that 
+\item Find way how to implement some kind of Quiescence search with Goal check and Trap control to MCTS and compare with similar approach in AlphaBeta.
+\item Optimise playouts using a more sophisticated way how to generate steps. Interesting ideas are described in Zhong's work~\cite{ZHONG}.
+\item Try patterns heuristics in playout generation (idea taken from ~\cite{PatternsGo,PatternsArimaa}).
+\end{enumerate}
+
+\noindent The quality of bots can be improved by:
+\begin{enumerate}
+\item Creating better evaluation function.
+\item Trying progressive pruning methods from ~\cite{progressive-strategies,
+MonteCarloGo}.
+\item Using more optimised data structures and random number generator.
+\item Improving step-evaluation function (as We learned from \ref{pic:generalTuning}).
 \end{enumerate}

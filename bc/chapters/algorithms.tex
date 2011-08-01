@@ -4,10 +4,10 @@ AlphaBeta search and Monte Carlo Tree Search (MCTS). Both algorithms became
 successful and dominating in some field. AlphaBeta search in game of Chess and
 MCTS in game of Go. (TODO reformulate)
 
-The trivial algorithm to search game tree could be Minimax search. It is
-searching minimax tree in depth first search order and therefore the search do
-not ends until all nodes at certain depth are explored. It is quite
-noneffective with huge branching factor which Arimaa, Chess or Go have.
+The basic algorithm to search game tree is Minimax search. It is searching
+minimax tree in depth first search order and therefore the search do not ends
+until all nodes at certain depth are explored. It is quite noneffective with
+huge branching factor which Arimaa, Chess or Go have.
 
 \section{Description of the AlphaBeta search}
 AlphaBeta search has grown in popularity in game of Chess. Until now all
@@ -42,14 +42,14 @@ alphabeta (node, depth, alpha, beta):
 \end{lstlisting}
 
 In maximizing nodes we are improving lower estimate (alpha) of the minimax
-value and in minimizing nodes the upper estimate (beta). If value from a child
-forces these bounds to meet we know that better approximation of this node is
-not possible and so we return our estimate, we say we pruned the search in
-node.
+value and in minimizing nodes the upper estimate (beta). If a value from a
+child forces these bounds to meet we know that better approximation of this
+node is not possible and so we return our estimate, we say we pruned the search
+in node.
 
-As can be proven, if AlphaBeta finds solution for depth $n$, then it is the best
-solution in MiniMax tree for depth $n$~\cite{knuth:alphabeta}. In optimal case
-instead of examining $\mathcal O(b^d)$ nodes is only examined $\mathcal
+As can be proven that if AlphaBeta finds solution for depth $n$, then it is the
+best solution in MiniMax tree for depth $n$~\cite{knuth:alphabeta}. In optimal
+case instead of examining $\mathcal O(b^d)$ nodes is only examined $\mathcal
 O(b^{d/2})$ of them, where $b$ is branching factor of the game and $d$ is
 searched depth~\cite{ZHONG}.
 

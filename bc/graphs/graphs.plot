@@ -36,11 +36,11 @@ plot "./general.dat" using 1:2 title "full" \
 		with linespoints linetype 7 linewidth 2
 
 #####################################################
-set format y "{/Times=25 %2.0f%%}"
 set nokey
 
 set xtics (1,2,4,8)
 set xrange [0:9]
+set format y "{/Times=25 %2.0f%%}"
 set format x "{/Times=25 %2.0f}"
 
 set output "cores.eps"
@@ -51,6 +51,7 @@ plot "./cores.dat" with linespoints linetype 1 linewidth 8 \
 
 set xtics (100,200,400)
 set xrange [90:410]
+set format y "{/Times=25 %2.1f%%}"
 set format x "{/Times=25 %2.0fMB}"
 
 set output "memory.eps"

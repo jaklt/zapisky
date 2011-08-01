@@ -17,17 +17,17 @@ in succeeding search and use also its bounds.
 If we find a satisfying result in TT we use its full PV and its score as ours.
 
 \subsection{Iterative Deepening Framework}
-Because there is no way how to determine how long the the AlphaBeta search to given
-depth will take we need to find some time management tool. This is a method in
-which we are iteratively starting new deeper and deeper searches. Thanks to
-the exponential growth of the minimax tree with increasing depth we know that
-a searching one level more will cost us approximately a lot more than previous
-shallower searching.
+Because there is no way how to determine how long the AlphaBeta search to
+given depth will take, we need to find some time management tool. This is a
+method in which we are iteratively starting new deeper and deeper searches.
+Thanks to the exponential growth of the minimax tree with increasing depth we
+know that a searching one level more will cost us approximately a lot more than
+previous shallower searching.
 
-Iterative deepening used with other optimisation methods such as History
-Heuristic or Transposition Table often cause a time save if we compare it to
-just searching to a maximal possible depth, because we can sort moves using
-information gained from previous shallower searches~\cite{COX}. (TODO rewrite)
+Because we can sort moves using information gained from previous shallower
+searches Iterative deepening used with other optimisation methods such as
+History Heuristic or Transposition Table often cause a time save if we compare
+it to just searching to a maximal possible depth~\cite{COX}.
 
 \subsection{Aspiration Windows}
 % TODO how to mention it?
@@ -61,9 +61,10 @@ we spend in it.
 	When a step prunes branches in some position it is very natural to ask if
 	the same step could cause pruning in another branch and the same depth of
 	the tree. To go even further we take two last steps caused pruning to be
-	preferred in the search. As Zhong found out three or more Killer moves would help~\cite{ZHONG}.
+	preferred in the search. As Zhong found out three or more Killer moves would help~\cite{ZHONG}. TODO
 
 	\subsubsection{Null move}
+	TODO
 
 
 \subsection{Heuristics}
@@ -74,20 +75,16 @@ The consequent optimisations are rather heuristics, because they try to
 give you approximately good result in much shorter time. In this work, we
 will not use those optimisations.
 
-
-- Negascout/PVS
-- MTD-f
-% TODO XXX: Are really heuristics?
+TODO Introduce  Negascout/PVS and MTD-f or delete this subsection.
 
 
 \section{Monte Carlo Tree Search}
 In AlphaBeta search we made great effort in sorting nodes of the searched tree
 properly. In MCTS we need to use optimisations which helps us to gain better
 and more informations from each iteration of algorithm on top of that.
-(TODO too complicated, rewrite)
 
-We chose to implement only heuristic Tomáš Kozelek described as
-useful~\cite{KOZELEK}.
+We chose to implement only heuristic Tomáš Kozelek described in~\cite{KOZELEK}
+as useful.
 
 \subsection{Transposition table}
 The motivation is the same as is in the AlphaBeta algorithm
@@ -125,10 +122,13 @@ pulling or making goal. Such function should also handicap players own piece
 sacrifice steps or inverse steps~\cite{KOZELEK}.
 
 \subsection{History heuristics}
-- add to uct formula $+ {hh_i \over n_i}$. Where $hh_i$ is history
-heuristics coeficiend as is described in Kozeleks thesis~\cite{KOZELEK}.
+Adds to UCB1 formula $+ {hh_i \over n_i}$. Where $hh_i$ is history
+heuristics coefficient as is described in Kozeleks thesis~\cite{KOZELEK}.
 
-Similar approach is All-Moves-As-First Heuristics however it updates statistics only for all steps that were used in this simulation (in each node) (TODO)
+TODO
+
+Similar approach is All-Moves-As-First Heuristics however it updates statistics
+only for all steps that were used in this simulation (in each node) (TODO)
 
 \subsection{Best-of-$N$}
 In random simulations, we may want to sacrifice true randomness for gaining
@@ -154,11 +154,9 @@ Using this optimisations should improve the speed of algorithm without negative
 impact on quality.
 
 \subsection{Maturity threshold}
-TODO: Is another technique how to shorted time used in node selection. We
+Is another technique how to shorten time used in node selection. We
 expand only nodes which had at least $threshold_maternity + depth\_of(node)$
 visit count.
-
-This creates 
 
 \subsection{Virtual visits}
 In node expansion initialise new node with $v$ virtual visits. This small
@@ -184,13 +182,14 @@ bot and do not depend on used algorithm.
 	Bitboards. One may say that bitboards suits even better for Arimaa than for
 	Chess.
 
-\section{Comparison of used optimisations}
-
-\subsection{History heuristic}
-In MCTS we prefer moves that were often chosen in going through tree. In
-AlphaBeta value of move is increasing when branch using selected step is
-pruned. Every time we order branches of the search tree by value given by
-history heuristics. This approach should increase amount of pruning.
-
-\subsection{Transposition table}
+% TODO
+% \section{Comparison of used optimisations}
+% 
+% \subsection{History heuristic}
+% In MCTS we prefer moves that were often chosen in going through tree. In
+% AlphaBeta value of move is increasing when branch using selected step is
+% pruned. Every time we order branches of the search tree by value given by
+% history heuristics. This approach should increase amount of pruning.
+% 
+% \subsection{Transposition table}
 

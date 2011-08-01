@@ -38,27 +38,30 @@ evaluated is limiting in comparison to have them evaluated lazily. However it
 is known that importance of history heuristic grows when the depth increaseand
 hence for mor efficient programs HH is much more important~\cite{ZHONG}.
 
-Our AlphaBeta algorithm lack of standart Quiescence extension with trap control
-or the Goal check. We believe that both the Trap control and the Goal check
-could be somehow also included in MCTS.
+Our AlphaBeta algorithm lack of standart Quiescence extension with Trap control
+or the \ac{Goal check}. We believe that both mentioned extensions could be
+somehow included in MCTS.
 
 \section{Parallelization}
 In Monte Carlo Tree Search, make bot to be parallel is much more natural than
 it is in AlphaBeta search. For each CPU one thread is created and there is only
-one shared tree for all of them.
+one shared tree for all of them. Haskell gave us easy threading and simple data
+structure locking capabilities thanks to standart MVar.
 
-Haskell gave us easy threading and data structure locking capabilities.
-Local mutexes are rather simple thanks to MVar structure.
-
-
+In a parallelised AlphaBeta search we start one thread per CPU. Every iteration
+of Iterative deepening framework creates a shared queue filled with all
+possible steps from starting position. Then each thread is taking steps eagerly
+from queue and updating the window and killer moves.
 
 \section{Evaluation function}
-We wrote evaluation function completely in C to be as fast as possible.
+We wrote evaluation function completely in C to be as fast as possible. It
+consist of hand tuned material and position evaluation, simple bonuses for
+having stronger piece advantage, controlling trap, freezing opponents piece and
+possibility to move oponents weaker piece.
 
-In our work we do not focus on creating strong evaluation function even though
-in order to have arimaa playing program, we need to have one. Therefore we
+In our work did not focus on creating strong evaluation function even though in
+order to have arimaa playing program, we need to have one. Therefore we
 developed one not so strong and with possibility to easily replace it.
 
 Our evaluation function lack of a very important part of standart evaluation
-function -- the goal check.
-Also it do not have frame and hostage detection.
+function -- the \ac{Goal check}. Also it do not have frame or hostage detection.
