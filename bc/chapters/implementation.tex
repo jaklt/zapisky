@@ -16,8 +16,8 @@ spared time not generating others.
 
 % In a tree node during MCTS when children hashing mechanism is switched on,
 % instead of alocating more space for $C$ cached nodes, actual nodes are lazily
-% sorted in decreasing order and only $\mathcal{O}(C\log n)$ sorting realy
-% hapends.
+% sorted in decreasing order and thanks to the lazynes only $\mathcal O(C\log
+% n)$ sorting realy hapends.
 
 In Haskell it is possible to program in much higher level than it is in most
 other programming languages. However it is also harder to reason about
@@ -28,7 +28,7 @@ write both engines more efficiently.
 
 We made huge effort to keep our program rather simple and modular as much as
 possible. Therefore one can switch on or off a lot of mentioned search
-extension. In step generator we let the possibility to generate Pass step
+extension. In step generator we let the possibility to generate pass step
 switched off by default.
 
 Aspiration window gave sometimes strange results so we left it unused by default.
@@ -36,11 +36,14 @@ Using history heuristic in Alpha Beta program tends to decrease quality of our
 program and we believe that causing list of steps from given position to be
 evaluated is limiting in comparison to have them evaluated lazily. However it
 is known that importance of history heuristic grows when the depth increaseand
-hence for mor efficient programs HH is much more important~\cite{ZHONG}.
+hence for mor efficient programs using history heuristic is much more
+important~\cite{ZHONG}.
 
-Our AlphaBeta algorithm lack of standart Quiescence extension with Trap control
-or the \ac{Goal check}. We believe that both mentioned extensions could be
-somehow included in MCTS.
+Our AlphaBeta algorithm lack of standart \ac{Quiescence} search extension with
+Trap control or the \ac{Goal check}. We believe that both mentioned extensions
+could be somehow included in MCTS.
+
+TODO one playout = 10 simulations?
 
 \section{Parallelization}
 In Monte Carlo Tree Search, make bot to be parallel is much more natural than

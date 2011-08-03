@@ -16,25 +16,23 @@ natural optimisation of Minimax search. The main purpose of algorithm is to
 reduce number of branches and nodes to be visited.
 
 During the search we are trimming bounds (window) of the best minimax value.
-The pseudocode of the algorithm is shown in~\ref{alphabeta}.
+The pseudocode of the algorithm is shown in~\ref{alg:alphabeta}.
 
-\lstset{language=Python, caption=Pseudocode of the AlphaBeta search, label=alphabeta}
+\lstset{language=Python, caption=Pseudocode of the AlphaBeta search, label=alg:alphabeta}
 \begin{lstlisting}
 alphabeta (node, depth, alpha, beta):
     if  depth = 0 or node is a terminal node:
         return evaluate(node)
     if  is maximizing node:
         for each child of node
-            score = alphabeta(child, depth-1, alpha, beta,
-                              opponent(Player))
+            score = alphabeta(child, depth-1, alpha, beta)
             alpha = max(alpha, score)
 
             if beta <= alpha: break  # Beta cut-off
         return alpha
     else:
         for each child of node:
-            score = alphabeta(child, depth-1, alpha, beta,
-                              opponent(Player))
+            score = alphabeta(child, depth-1, alpha, beta)
             beta = min(beta, score)
 
             if beta <= alpha: break  # Alpha cut-off
@@ -44,10 +42,10 @@ alphabeta (node, depth, alpha, beta):
 In maximizing nodes we are improving lower estimate (alpha) of the minimax
 value and in minimizing nodes the upper estimate (beta). If a value from a
 child forces these bounds to meet we know that better approximation of this
-node is not possible and so we return our estimate, we say we pruned the search
-in node.
+node is not possible and so we return our estimate, we say we pruned/cut-off
+the search in node.
 
-As can be proven that if AlphaBeta finds solution for depth $n$, then it is the
+As can be proven, if AlphaBeta finds solution for depth $n$, then it is the
 best solution in MiniMax tree for depth $n$~\cite{knuth:alphabeta}. In optimal
 case instead of examining $\mathcal O(b^d)$ nodes is only examined $\mathcal
 O(b^{d/2})$ of them, where $b$ is branching factor of the game and $d$ is
@@ -63,9 +61,9 @@ to have nodes well ordered.
 Monte Carlo methods was formerly used for approximation of mathematical,
 physical, biological and others processes where full calculation would be
 difficult or even impossible. For example in mathematics it is used for numeric
-integration or estimate the $\pi$. In games without perfect information, such
-as poker, backgammon, or scrabble, using randomness has shown to be beneficial
-too~\cite{MonteCarloMethod, MonteCarloGo}.
+integration or estimate the value of~$\pi$. In games without perfect
+information, such as poker, backgammon, or scrabble, using randomness has shown
+to be beneficial too~\cite{MonteCarloMethod, MonteCarloGo}.
 
 In game of Go was always a huge troublesome to build efficient evaluation
 function. Unlike poker or backgammon, Go is a game with perfect information and
@@ -83,10 +81,11 @@ use random approach as evaluating approximation of the Go position were in
 \end{enumerate}
 
 However Bernd showed that after some time his algorithm indicates no further
-improvement. It was necessary to realize that the main problem was that it
-searched all branches with the same probability. (TODO) .... It should give more
-promising branches more attention.
-
+improvement. It was necessary to realize that the main problem is that
+algorithm searches all branches with the same probability. It should give more
+attention to more promising branches. Question how to find fine balancing
+between exploration and exploitation is classical mathematical Multi-armed
+Bandit problem.
 
 \subsection{Bandit Problem}
 A $K$-armed bandit, is slot machine with $K$ arms. When arm is drawn it
@@ -106,58 +105,75 @@ In~\cite{MultiarmedBandit} is presented thee UCB1 algorithm (where UCB stands fo
 
 
 \subsection{UCT algorithm}
-UCT is Upper Confidence bound to Trees or in other words UCB applied to minimax
-trees. The main idea is to consider each node of minimax tree as multiarmed
-bandit problem and each child of the node as independent arm.
+UCT is abbrevation for  Upper Confidence bound to Trees. Shortly described it
+is the UCB algorithm applied to minimax trees. The main idea is to consider
+each node of minimax tree as multiarmed bandit problem and each child of the
+node as independent arm~\cite{MoGo}.
 
-In MoGo they used UCB1 algorithm extended to searching minimax tree called UCT.
-MoGo \cite{MoGo}
 
-UCT is algorithm traversing built multi-armed bandit tree using UCB1 formula.
+\subsection{MCTS}
+Monte Carlo Tree search is generic best-first-search algorithm applied to
+trees which uses a random simulation as evaluation scheme. It consist of four
+steps which are repeated as long as there is time left. We start with a tree
+containing only a root node representing starting
+position~\cite{progressive-strategies,KOZELEK}.
 
-Playing random simulation is also called playout.
+The four mentioned steps are explained in the following list:
 
-We presume the reader is familiar with rules of the game Go. (TODO ???)
-	
-Standalone UCT needs set of carefully chosen extensions to be competitive. The
-MCTS is some variant of UCT algorithm with those extensions.
-
-UCB1 formula itself presumes the random involved variables are identically distributed and independent which is not true in UCT.
-As MCTS we call UCT algorithm with various of extensions.
-
-MCTS algorithm starts with a tree containing only the root node representing starting position.
-MCTS consist of four steps, which we repeat until time is up:
 \begin{enumerate}
-\item \emph{Selection}
-\item \emph{Expansion}
-\item \emph{Simulation}
-\item \emph{Backpropagation}
+\item \emph{Selection:} Until a leaf node is reached a child of node is
+recursively selected by using best-first manner. The node selection is usually
+handled by UCT algorithm.
+\item \emph{Expansion:} The selected leaf's children are generated.
+\item \emph{Simulation} (also called \emph{playout}): Random game is played
+from given position to certain depth.
+\item \emph{Backpropagation:} The result of simulated games is stored into all
+nodes visited during Selection phase in this iteration of algorithm.
 \end{enumerate}
-\cite{progressive-strategies}
 
-\lstset{language=Python, caption=Pseudocode of the MonteCarlo Tree Search, label=mcts:alg}
+Classical approach of the Simulation phase in Go bot programming is to generate
+only steps not filling eyes and to stop playout when the end of game is
+reached (which is not possible in Arimaa)~\cite{MoGo}.
+
+The result of the Simulation phase is computed from the last position of the
+simulation by a evaluation function. The probabilistic attitude of UCT/UCB1
+requires the value of evaluation to be scaled in interval
+$[-1,1]$~\cite{KOZELEK}.
+
+A pseudocode of the full algorithm is shown in~\ref{alg:mcts} (inspired
+by~\cite{MoGo}).
+
+\lstset{language=Python, caption=Pseudocode of the MonteCarlo Tree Search, label=alg:mcts}
 \begin{lstlisting}
-playOneSequence(rootNode):
+playOneIteration():
     node[0] = rootNode
     i = 0
-    while node[i] is not visited for first time:
+    while is_not_leaf(node[i]):
         node[i+1] = descendByUCB1(node[i])
         i = i + 1
 
-    createNode(node[i])
-    node[i].value = getValueByMC(node[i])
+    expandNode(node[i])
+    node[i].value = getValueByMonteCarlo(node[i])
 
     for j in {0, ..., i-1}:
-        updateValue(node[j],-node[i].value)
+        updateValue(node[j],node[i].value)
+
+while is_time():
+    playOneIteration()
+
+print descendByUCB1(rootNode)
 \end{lstlisting}
 
-We use Monte Carlo Tree Search algorithm as is described in~\cite{MoGo} and also
-modified by Kozelek~\cite{KOZELEK}.
-
-We modified Kozelek's UCB1 exploration formula to form:
+We modified Kozelek's UCB exploration formula to form:
 	$$
-	\overline X_i + c \sqrt{\frac{log~n}{n_i}} + \frac{h_i}{n_i} + \frac{hh_i}{\sqrt{n_i}}
+	\overline X_i + c \sqrt{\frac{log~n}{n_i}} + \frac{h_i}{n_i} + \frac{hh_i}{n_i}
 	$$
 where $\overline X_i + c \sqrt{\frac{log~n}{n_i}}$ is a generalised UCB1
 formula, $h_i$ is heuristics evaluated for step leading to this position, and
 $hh_i$ is history heuristic value.
+
+One of the negatives of UCT algorithm is that UCB1 formula itself presumes the
+involved random variables are identically distributed and independent, which is
+not true in UCT~\cite{MoGo}. It was shown that the probability of selecting the
+correct move quickly converges to 100\%~\cite{UCTanalysis}.
+

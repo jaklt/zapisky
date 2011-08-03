@@ -32,18 +32,18 @@ from root of the tree to leaf in minimax if we presume both players play their
 best.
 \item[Transposition] is TODO
 \item[Branching factor] TODO
-\item[Game bot] is game playing program.
+\item[Game bot] is a game playing program.
 \end{description}
 
 \section{The Game of Arimaa}
 \begin{flushright}
-\emph{Even simple rules can lead to interesting games.\\
--- Omar Syer}
+\emph{"Even simple rules can lead to interesting games."\\
+--- Omar Syer}
 \end{flushright}
 
-The game of Arimaa is pretty new game. It is carefully designed to be hard to
+The game of Arimaa is a pretty new game. It is carefully designed to be hard to
 play for computers, but easy to play for humans. Creator of the game Omar Syed
-sais that gasparov was not oversmarted but overcomputed~\cite{arimaa.com}.
+says that Gasparov was not oversmarted but overcomputed~\cite{arimaa.com}.
 
 
 The game was carefully designed in order not to be possible to use methods
@@ -59,7 +59,7 @@ TODO
 % Why we cannot use standart methods widely used in chess? (Section 2 in Kozeleks thesis)
 
 \section{Rules of the game~\cite{arimaa.com}}
-Arimaa is two-player zero-sum game with perfect information. It is designed to
+Arimaa is a two-player zero-sum game with perfect information. It is designed to
 be possible to play it using the board and pieces from chess set. The starting
 player has Gold color, second is Silver. In the zeroth turn Gold and then
 Silver player each place all their pieces into first two (for Gold) or last two
@@ -70,11 +70,11 @@ order from weakest to strongest.
 %% TODO example picture of the starting position
 
 Players are taking turns starting with Gold. In each turn a player makes move,
-which consist of one to four steps. Player may Pass and do not use remaining
-steps. After move ends, position of the board must be different from position
-before move started.
+which consist of one to four steps. Player may \emph{pass} and do not use
+remaining steps. After move ends, the position of the board must be different
+from the position before move started.
 
-Figure is considered frozen if on one of its neighbouring squares is opponents
+Figure is considered frozen if on one of its neighbouring squares is opponent's
 stronger piece, and on no figure sharing color with it. Adjacent or neighbouring
 squares are those squares lying in one position to left, right, front or
 backwards.
@@ -96,12 +96,12 @@ On the board are four special squares called traps in positions \texttt{c3},
 in trap and has no adjacent piece sharing color with him, it is trapped and
 therefore removed from the board.
 
-At end of the move is checked if game ended and it happens if one of the
+At end of the move it is checked if game ended and it happens if one of the
 following conditions is fulfilled:
 \begin{enumerate}
-\item \emph{scoring goal:} one of the players rabbit has reached opponents front line (goalline)
+\item \emph{scoring goal:} one of the players rabbit has reached opponent's front line (goalline),
 \item \emph{elimination:} one of the players has no rabbit left,
-\item \emph{immobilisation:} next active player cannot move,
+\item \emph{immobilisation:} the next active player cannot move,
 \item or the same position is repeated in third time in the row.
 \end{enumerate}
 
@@ -119,18 +119,19 @@ Unlike in Chess starting position is not predefined and there are about
 $4.207\times10^{15}$ different possible openings which makes it hard for arimaa
 bot programmer to use any kind of opening tables~\cite{COX}.
 
-In Arimaa it is also very hard to build good static evaluation function. Even
-human players often do not know for example if in certain position it is better
-to sacrifice Camel for trapping opponents Horse and Cat and often it depends on
-many other factors. Building good evaluation function is very hard in game of
-Go also, because it requires a lot of local searching to find territories and
-determine their potential owners. On the other hand destroying good position by
-making wrong step is in Go a lot harder.
+In Arimaa it is also very hard to build a good static evaluation
+function~\cite{WorldChampion}. Even human players often do not know for example
+if in certain position it is better to sacrifice a Camel for trapping an
+opponent's Horse and a Cat and often it depends on many other factors. Building
+good evaluation function is very hard in game of Go also, because it requires a
+lot of local searching to find territories and determine their potential
+owners. On the other hand destroying good position by making wrong step is in
+Go a lot harder.
 
-In game of Go if we omit filling eye any random playing sequence leads to end,
-which is not so easily achievable in Arimaa and Chess. Christ Cox showed in his
-work that in Arimaa branching factor of average position is around 20,000. With
-comparison in Chess it is only 35 and in Go 200~\cite{COX}.
+In the game of Go if we omit filling \acsp{Eye}, then any random playing sequence
+leads to end, which is not so easily achievable in Arimaa and Chess. Christ Cox
+showed in his work that in Arimaa branching factor of average position is
+around 20,000. With comparison in Chess it is only 35 and in Go 200~\cite{COX}.
 
 % TODO? position in arimaa vs tactic in chess ~\cite{COX}
 

@@ -1,20 +1,43 @@
 \chapter{Used optimisations in search engines}
 
 In order to write a strong playing program in given game, it is necessary to
-enhance chosen algorithm with various extensions. In this chapter we describe
-the most used extensions for AlphaBeta or MCTS algorithm.
+enhance chosen algorithm with various extensions. Tuning a used set of these
+extensions and their parameters is one of the key factors in bot development.
+In this chapter we will describe the most used extensions for AlphaBeta or MCTS
+algorithms. In this chapter we will describe optimisations we tried to
+implement in our game engines.
 
 \section{AlphaBeta}
+Implementing variety of AlphaBeta extensions has long background in game of
+Chess. In~Arimaa, usually some combination of well approved enhances is
+used. TODO
+
 \subsection{Transposition Table}\label{AlphaBeta:TT}
-If we look at the game tree of Arimaa, Chess or Go there is so many repetitions in
-nodes of the tree for almost every position on the board. The Transposition table
-is used to reduce the number of repetitions in tree.
+If we look at the game tree of Arimaa there is so many repetitions in nodes of
+the tree for almost every position on the board. The Transposition table is
+used to reduce the number of repetitions.
 
-COMPLETELY REWRITE: If in TT occurs result from previous search that is
-shallower than we need, we prefer steps from Principal Variation of given entry
-in succeeding search and use also its bounds.
+In Arimaa thanks to Step-Move approach of the game, handling transpositions is
+a little harder than it is in chess. We have to worry about number of steps in
+move that were made on top of the classic transpositions handling.
 
-If we find a satisfying result in TT we use its full PV and its score as ours.
+When using transposition tables, every time we are about to explore some node,
+we look at the transposition table first. If a entry of the same transposition
+occurs from previous search, depending on its searched depth we do:
+
+\begin{itemize}
+\item If the entry's search is shallower than we need, we prefer steps from
+Principal Variation of given entry in succeeding search and adjust also our
+bounds with its.
+\item However if the entry has been searched to equal or greater depth we stop
+searching of this node and use a full Principal Variation and a score of that
+entry as result of exploring our node.
+\end{itemize}
+
+After arbitrary position is fully explored, its best value and a corresponding
+Principal Variation is saved to the Transposition table~\cite{COX}.
+
+TODO reformulate
 
 \subsection{Iterative Deepening Framework}
 Because there is no way how to determine how long the AlphaBeta search to
@@ -30,16 +53,24 @@ History Heuristic or Transposition Table often cause a time save if we compare
 it to just searching to a maximal possible depth~\cite{COX}.
 
 \subsection{Aspiration Windows}
-% TODO how to mention it?
-% \subsection{Quiescent search}
-%   Is nice way, how to reduce horizont effect ...
-%   % [Related to arimaa: http://arimaa.com/arimaa/forum/cgi/YaBB.cgi?board=devTalk;action=display;num=1122418533] <- TODO: Maybe implement this way
-%   % [http://mediocrechess.sourceforge.net/guides/quiescentsearch.html]
+Iterative Deepening itself can be further improved. The AlphaBeta search
+normally starts with $(\alpha,\beta)$ bounds (window) set to
+$(-\infty,\infty)$. When an Aspiration window is set, we start a search with
+$(prev - window, prev + window)$ window instead, where $prev$ is the value from
+previous shallower search and $window$ is certain predefined constant. If the
+result of the search fall outside the window, the new search with wider window
+must be performed.
+
+With narrower windows, more pruning during AlphaBeta search should occur and
+therefore the search to certain depth should end much earlier. However if a
+value of a search miss a window so often, the need for repetitions may actually
+linger the search\cite{AspirationWindow}.
+
 
 \subsection{Move ordering}
 The following methods change the order in which branches are selected and then
 inspected. It is very important for the AlphaBeta search to have nodes well
-ordered. Because earlier we find a pruning child of a node the shorter time
+ordered, because earlier we find a pruning child of a node the shorter time
 we spend in it.
 
 	\subsubsection{History heuristics}
@@ -47,31 +78,48 @@ we spend in it.
 	to cause so many pruning anywhere in the search tree and if it is valid in
 	given position it could be also good here.
 
-	It is implemented in way that we create a table with a score for every
-	element from combination of players, piece, position and direction. During
-	the AlphaBeta search we increase the score for element every time such
-	combination causes pruning or finds the best score. It is believed that
-	the deeper cut-off happens the more relevant it is and therefore the score
-	is incremented by $d^2$ or $2^d$ where $d$ is a actual searched depth.
+	A table of scores for every combination of player, piece, position and
+	direction is stored into memory. During the AlphaBeta search we increase a
+	score of an element every time a step with such combination causes pruning
+	or became a child with the best score for an actually searched node. It is
+	believed that the deeper cut-off happens the more relevant it is and
+	therefore the score is incremented by $d^2$ or $2^d$ where $d$ is an actual
+	searched depth.
 
 	During searching are nodes of the minimax tree sorted by score from the
 	History Heuristic table in decreasing order~\cite{COX}.
 
 	\subsubsection{Killer moves}
-	When a step prunes branches in some position it is very natural to ask if
-	the same step could cause pruning in another branch and the same depth of
-	the tree. To go even further we take two last steps caused pruning to be
-	preferred in the search. As Zhong found out three or more Killer moves would help~\cite{ZHONG}. TODO
+	When a step prunes other branches in some node it is very natural to ask,
+	if the same step could cause pruning in another branch and the same depth
+	of the tree.
+	
+	In order to answer this question the last pruning step from the same
+	position is tried right after Transposition Table's Principal Variation.
+	
+	To go even further we take two last steps causing pruning to be
+	preferred in the search. As Cox found out, three or more Killer moves
+	would not help~\cite{COX}. TODO
 
 	\subsubsection{Null move}
-	TODO
+	The main idea is that if a player is in bad position and if we skip its
+	opponent's turn and the position cannot be strongly improved, then there is
+	no chance for this position to be good.
+
+	During searching in a new-turn nodes, either the whole opponent's turn is
+	skipped (which is called Null move) or normal search is performed. In
+	reality the Null move is searched as first child of a node and it shortens
+	the time until cutoff occurs in really bad positions. Performing two Null
+	moves in row or in the root node is forbidden~\cite{COX}.
 
 
 \subsection{Heuristics}
 All preceding optimisations do not change result given by the algorithm. They
 could only significantly decrease amount of time needed to obtain such result.
 
-The consequent optimisations are rather heuristics, because they try to
+There are also other optimisations, which are rather heuristics, because they strongly depends on good children ordering and with 
+
+try to
 give you approximately good result in much shorter time. In this work, we
 will not use those optimisations.
 
@@ -80,10 +128,10 @@ TODO Introduce  Negascout/PVS and MTD-f or delete this subsection.
 
 \section{Monte Carlo Tree Search}
 In AlphaBeta search we made great effort in sorting nodes of the searched tree
-properly. In MCTS we need to use optimisations which helps us to gain better
-and more informations from each iteration of algorithm on top of that.
+properly. In MCTS we need to use optimisations which helps us to gain more and
+better informations from each iteration of algorithm on top of that.
 
-We chose to implement only heuristic Tomáš Kozelek described in~\cite{KOZELEK}
+We chosed to implement only heuristic Tomáš Kozelek described in~\cite{KOZELEK}
 as useful.
 
 \subsection{Transposition table}
@@ -117,8 +165,8 @@ progressive bias coefficient computed by step-evaluation
 function~\cite{progressive-strategies}.
 
 In Arimaa such step-evaluation function should appreciate steps with Elephant
-moving, killing an opponents piece, around previous steps, which are pushing or
-pulling or making goal. Such function should also handicap players own piece
+moving, killing an opponent's piece, around previous steps, which are pushing or
+pulling or making goal. Such function should also handicap player's own piece
 sacrifice steps or inverse steps~\cite{KOZELEK}.
 
 \subsection{History heuristics}
@@ -155,8 +203,8 @@ impact on quality.
 
 \subsection{Maturity threshold}
 Is another technique how to shorten time used in node selection. We
-expand only nodes which had at least $threshold_maternity + depth\_of(node)$
-visit count.
+expand only those nodes which had at least $threshold\_maternity +
+depth\_of(node)$ visit count.
 
 \subsection{Virtual visits}
 In node expansion initialise new node with $v$ virtual visits. This small
@@ -168,19 +216,52 @@ experimentally determined the best performance of algorithm for $v \in
 The following extensions are considered must have in every successful Arimaa
 bot and do not depend on used algorithm.
 
-	\subsection{Zobrist keys}
-	Motivation ...
-
-	For every element of $Piece\times Player\times Position$ the random 64 bit
-	number is generated. ...
-
-	How nodes are stored in Transposition table entries
-
 	\subsection{Bitboards}
 	Because Arimaa could be played with standart chess set it is also possible
 	to use from world of chess well known board representation called
-	Bitboards. One may say that bitboards suits even better for Arimaa than for
-	Chess.
+	Bitboards.
+
+	We represent board as twelve 64bit numbers, one for each combination of
+	player and piece kind. The $i$th bit of certain piece and player
+	combination is set to \texttt{1} if on $i$th square (counting from
+	\texttt{a1} to \texttt{h8} by lines) corresponding stands, otherwise it
+	is set to \texttt{0}. For example if a Golds Dog is on \texttt{b2} the 10th
+	bit in the Golds Dogs number is set to \texttt{1}.
+
+	One may say that the Bitboards suits even better for Arimaa than for Chess.
+	For instance computing simple steps is for almost all pieces just taking
+	precomputed bit number of all adjacent squares for his coordinates and
+	bit-anding it with 64bit number representing all empty
+	squares~\cite{BitboardAnalysis}.
+
+	\subsection{Zobrist keys}
+	With using Transposition table comes the need for fast determination
+	mechanism if two positions are the same, and for fast generating almost
+	unique hash keys for storing transpositions into hash table.
+	
+	Zobrist keys is also known from world of chess.
+
+	For every threesome $piece\times player\times position$ the random 64bit
+	number is generated and stored to array as
+	\texttt{zobrist[piece][player][position]}.
+
+	The zobrist key for given position corresponds to number given by function \texttt{zobrist\_key} from~\ref{alg:zobrist}.
+
+	\lstset{language=Python, caption=Computing zobrist key, label=alg:zobrist}
+	\begin{lstlisting}
+zobrist_key (board):
+    key = 0x0000000000000000      # key of empty board
+    for p in pieces_of(board):
+        hash = zobrist[piece(p)][controller(p)][position(p)]
+        key = key XOR hash
+
+    return key
+	\end{lstlisting}
+
+	In order not to compute new zorbist key again and again we
+	incrementally update its value after each step.
+
+	Actualisation of zobrist keys can be done incrementally \cite{COX} TODO
 
 % TODO
 % \section{Comparison of used optimisations}
