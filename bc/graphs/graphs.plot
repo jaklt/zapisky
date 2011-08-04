@@ -5,24 +5,26 @@ set xrange [0:33]
 set format y "%2.0f%%"
 set format x "%2.0fs"
 
-set output "mctsTuning.eps"
-
-plot "./data.dat" using 1:2 title "full" \
-		with linespoints linetype 7 linewidth 2,     \
-	"./data.dat" using 1:4 title "noTT"  \
-		with linespoints linetype 1 linewidth 2      \
-		     pointtype 8, \
-	"./data.dat" using 1:5 title "EVAL=fairy" \
-		with linespoints linetype 3 linewidth 2 \
-		     pointtype 5
-
 set output "generalTuning.eps"
 
 plot "./data.dat" using 1:2 title "full" \
-		with linespoints linetype 7 linewidth 2,     \
-	"./data.dat" using 1:3 title "noHH"  \
 		with linespoints linetype 1 linewidth 2      \
 		     pointtype 8, \
+	"./data.dat" using 1:4 title "noTT"  \
+		with linespoints linetype 7 linewidth 2,     \
+	"./data.dat" using 1:5 title "EVAL=fairy" \
+		with linespoints linetype 3 linewidth 2 \
+		     pointtype 5, \
+	"./data.dat" using 1:7 title "goal check" \
+		with linespoints linetype 5 linewidth 2
+
+set output "mctsTuning.eps"
+
+plot "./data.dat" using 1:2 title "full" \
+		with linespoints linetype 1 linewidth 2      \
+		     pointtype 8, \
+	"./data.dat" using 1:3 title "noHH"  \
+		with linespoints linetype 7 linewidth 2,     \
 	"./data.dat" using 1:6 title "noHeavyPlayout" \
 		with linespoints linetype 3 linewidth 2 \
 		     pointtype 5

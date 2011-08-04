@@ -4,7 +4,7 @@ AlphaBeta algorithm using haskell as programming language. On top of those
 libraries we built mentioned algorithms. The critical parts like bit operations
 and evaluate function were written in C.
 
-Haskell differs from other common used languages whith its lazynes. Which means
+Haskell differs from other common used languages whith its laziness. Which means
 that only values that are truly needed for computation are evaluated. For
 example we may define infinite list of prime numbers and then ask for third
 element of this list which causes only the first three prime numbers to be
@@ -16,7 +16,7 @@ spared time not generating others.
 
 % In a tree node during MCTS when children hashing mechanism is switched on,
 % instead of alocating more space for $C$ cached nodes, actual nodes are lazily
-% sorted in decreasing order and thanks to the lazynes only $\mathcal O(C\log
+% sorted in decreasing order and thanks to the laziness only $\mathcal O(C\log
 % n)$ sorting realy hapends.
 
 In Haskell it is possible to program in much higher level than it is in most

@@ -7,6 +7,7 @@ SOURCES= chapters/algorithms.tex \
 		 chapters/methodology.tex \
 		 chapters/optimisations.tex \
 		 chapters/results.tex \
+		 chapters/appendix1.tex \
 		 graphs/graphs.plot
 
 FIGURES= graphs/general.eps \

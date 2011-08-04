@@ -64,7 +64,7 @@ must be performed.
 With narrower windows, more pruning during AlphaBeta search should occur and
 therefore the search to certain depth should end much earlier. However if a
 value of a search miss a window so often, the need for repetitions may actually
-linger the search\cite{AspirationWindow}.
+linger the search~\cite{AspirationWindow}.
 
 
 \subsection{Move ordering}
@@ -134,11 +134,11 @@ better informations from each iteration of algorithm on top of that.
 We chosed to implement only heuristic Tomáš Kozelek described in~\cite{KOZELEK}
 as useful.
 
-\subsection{Transposition table}
+\subsection{Transposition Table}
 The motivation is the same as is in the AlphaBeta algorithm
 (see~\ref{AlphaBeta:TT}). However in MCTS we are increasingly building game
 tree instead of just exploring branches to some depth. A natural use of
-Transposition table for MCTS is to share statistics for the same transpositions
+Transposition Table for MCTS is to share statistics for the same transpositions
 in built game tree.
 
 To do so we bind nodes considered the same to one. Bound nodes share their
@@ -170,13 +170,19 @@ pulling or making goal. Such function should also handicap player's own piece
 sacrifice steps or inverse steps~\cite{KOZELEK}.
 
 \subsection{History heuristics}
-Adds to UCB1 formula $+ {hh_i \over n_i}$. Where $hh_i$ is history
-heuristics coefficient as is described in Kozeleks thesis~\cite{KOZELEK}.
+Tomáš Kozelek brought this optimisation used in AlphaBeta to MCTS. Similarly to
+AlphaBeta's approach, it is used to share informations gained in one branch of
+the searched tree.
 
-TODO
+In order to rate steps (TODO), we keep statistics (score and visit count) for
+each combination of player, piece, location and direction. These statistics are
+updated during the Backpropagation part of the MCTS.
 
-Similar approach is All-Moves-As-First Heuristics however it updates statistics
-only for all steps that were used in this simulation (in each node) (TODO)
+For each updated node we also update the statistics of the step leading to that
+node. (TODO - actually we update only nodes leading from this position to leafs) The $+ {hh_i \over n_i}$ expression is added to UCB1 formula.
+Where $hh_i$ is history heuristics coefficient representing the mean value of
+step leading to $i$s child of a searched node score. Original idea is described
+in Kozelek's work~\cite{KOZELEK}.
 
 \subsection{Best-of-$N$}
 In random simulations, we may want to sacrifice true randomness for gaining
@@ -232,36 +238,46 @@ bot and do not depend on used algorithm.
 	For instance computing simple steps is for almost all pieces just taking
 	precomputed bit number of all adjacent squares for his coordinates and
 	bit-anding it with 64bit number representing all empty
-	squares~\cite{BitboardAnalysis}.
+	squares~\cite{BitboardAnalysis}. TODO bit-anding vs XORing
 
 	\subsection{Zobrist keys}
-	With using Transposition table comes the need for fast determination
-	mechanism if two positions are the same, and for fast generating almost
-	unique hash keys for storing transpositions into hash table.
+	Zobrist keys are one of the optimisation methods well known from world of
+	chess. With using Transposition Table comes the need for fast determination
+	mechanism if two positions are the same, and for effective generating
+	almost unique hash keys for storing transpositions into hash table.
 	
-	Zobrist keys is also known from world of chess.
-
-	For every threesome $piece\times player\times position$ the random 64bit
+	For every tripes $piece\times player\times position$ the random 64bit
 	number is generated and stored to array as
-	\texttt{zobrist[piece][player][position]}.
+	\texttt{zobrist[piece][player][position]}. A hash value is then computed by
+	taking for each piece on board the corresponding number from the
+	precomputed \texttt{zobrist} array and \emph{XOR}ing all those numbers
+	together.
 
-	The zobrist key for given position corresponds to number given by function \texttt{zobrist\_key} from~\ref{alg:zobrist}.
+	Calculating a new hash value for board is shown in pseudocode
+	~\ref{alg:zobrist}.
 
-	\lstset{language=Python, caption=Computing zobrist key, label=alg:zobrist}
+	\lstset{language=Python, caption=Computing hash value from zobrist keys, label=alg:zobrist}
 	\begin{lstlisting}
-zobrist_key (board):
-    key = 0x0000000000000000      # key of empty board
-    for p in pieces_of(board):
-        hash = zobrist[piece(p)][controller(p)][position(p)]
-        key = key XOR hash
+    zorbist_hash (board):
+        key = 0x0000000000000000      # key of empty board
+        for p in pieces_of(board):
+            hash = zobrist[piece(p)][controller(p)][position(p)]
+            key = key XOR hash
 
-    return key
-	\end{lstlisting}
+        return key
+    \end{lstlisting}
 
-	In order not to compute new zorbist key again and again we
-	incrementally update its value after each step.
+	Computing such function every time the hash value is needed would not be
+	efficient at all. The value can be easily updated after step is made by
+	\emph{XOR}ing with:
+	\begin{center}
+		\texttt{zobrist[piece][player][from] XOR zobrist[piece][player][and]}
+	\end{center}
+	Or for push/pull steps by doing the same simultaneously with both a
+	pushing/pulling piece and a pushed/pulled piece.
 
-	Actualisation of zobrist keys can be done incrementally \cite{COX} TODO
+	Probability of collision for two zobrist hashes in typical search is less
+	than $2.2 \times 10^{-5}$~\cite{COX}.
 
 % TODO
 % \section{Comparison of used optimisations}
@@ -272,5 +288,5 @@ zobrist_key (board):
 % pruned. Every time we order branches of the search tree by value given by
 % history heuristics. This approach should increase amount of pruning.
 % 
-% \subsection{Transposition table}
+% \subsection{Transposition Table}
 

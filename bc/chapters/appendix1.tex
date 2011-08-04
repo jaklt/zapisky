@@ -1,0 +1,40 @@
+\chapter{Appendix 1}\label{statistics}
+
+\section{Statistics of the AlphaBeta searches}
+\begin{quote}
+\begin{verbatim}
+COST CENTRE            MODULE              %time %alloc
+
+makeStep               BitRepresentation    24.0   34.6
+alphaBeta              AlphaBeta            15.6   15.7
+eval                   BitEval              14.8    3.5
+getHash                Hash                  9.1    2.9
+addHash                Hash                  7.2   11.2
+isForbidden            BitEval               6.9    3.0
+generatePiecesSteps    BitRepresentation     5.7    9.3
+bits                   MyBits                3.5    6.7
+generateMoveable       BitRepresentation     3.0    4.5
+newHTables             AlphaBeta             2.2    1.6
+stepInMove             BitRepresentation     1.7    3.1
+isEnd                  BitRepresentation     1.5    0.2
+\end{verbatim}
+\end{quote}
+
+\section{Statistics of the MCTS}
+\begin{quote}
+\begin{verbatim}
+COST CENTRE            MODULE              %time %alloc
+
+getValueByMC           MonteCarloEval       23.2   27.1
+generatePiecesSteps    BitRepresentation    21.5   21.8
+makeStep               BitRepresentation    15.0   17.1
+generateMoveable       BitRepresentation    13.3   11.1
+evalStep               Eval                  7.8    4.6
+bits                   MyBits                5.7   13.0
+isEnd                  BitRepresentation     3.3    0.1
+stepToInt              BitRepresentation     1.4    0.3
+eval                   Eval                  1.0    0.2
+\end{verbatim}
+\end{quote}
+
+
