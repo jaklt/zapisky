@@ -35,7 +35,7 @@ Aspiration window gave sometimes strange results so we left it unused by default
 Using history heuristic in Alpha Beta program tends to decrease quality of our
 program and we believe that causing list of steps from given position to be
 evaluated is limiting in comparison to have them evaluated lazily. However it
-is known that importance of history heuristic grows when the depth increaseand
+is known that importance of history heuristic grows when the depth increase and
 hence for mor efficient programs using history heuristic is much more
 important~\cite{ZHONG}.
 
@@ -43,15 +43,14 @@ Our AlphaBeta algorithm lack of standart \ac{Quiescence} search extension with
 Trap control or the \ac{Goal check}. We believe that both mentioned extensions
 could be somehow included in MCTS.
 
-TODO one playout = 10 simulations?
-
 \section{Parallelization}
-In Monte Carlo Tree Search, make bot to be parallel is much more natural than
-it is in AlphaBeta search. For each CPU one thread is created and there is only
-one shared tree for all of them. Haskell gave us easy threading and simple data
-structure locking capabilities thanks to standart MVar.
+Creating parallel Monte Carlo Tree Search bot is much more natural than
+creating parallel AlphaBeta searching bot. For each CPU one thread is created
+and there is only one shared tree for all of them. Haskell gave us easy
+threading and simple data structure locking capabilities thanks to standart
+MVar (synchronizing structure).
 
-In a parallelised AlphaBeta search we start one thread per CPU. Every iteration
+In a parallelized AlphaBeta search we start one thread per CPU. Every iteration
 of Iterative deepening framework creates a shared queue filled with all
 possible steps from starting position. Then each thread is taking steps eagerly
 from queue and updating the window and killer moves.
@@ -62,9 +61,12 @@ consist of hand tuned material and position evaluation, simple bonuses for
 having stronger piece advantage, controlling trap, freezing opponents piece and
 possibility to move oponents weaker piece.
 
-In our work did not focus on creating strong evaluation function even though in
-order to have arimaa playing program, we need to have one. Therefore we
-developed one not so strong and with possibility to easily replace it.
+We used a weak one, but the code is ready for easy replacement. Our evaluation
+function does not include Goal Check, less important is its lack of frame,
+elephant blockade or hostage detection. Normally there are no incentives in
+evaluation to rotate pieces to maintain these patterns while improving our
+options.
 
-Our evaluation function lack of a very important part of standart evaluation
-function -- the \ac{Goal check}. Also it do not have frame or hostage detection.
+Well playing arimaa program needs evaluation function addressing all these
+issues.
+

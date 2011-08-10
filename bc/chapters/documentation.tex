@@ -1,43 +1,57 @@
-
 \chapter{Appendix 2 - User documentation}
-Source code is available in \url{http://github.com/JackeLee/rabbocop} or in included CD.
+We provide source codes of bots and all small tools we developed during our
+work. All is available in \url{http://github.com/JackeLee/rabbocop} or on
+included CD.
 
 \section{Compiling options}
-Additional make parameters:
+Source codes of programs are saved on CD in \texttt{rabbocop} dictionary.
+We use the make for building our programs. Simple writing \texttt{make
+IterativeAB} or \texttt{make MCTS} compiles either AlphaBeta or MCTS in its
+standart version of the bot.
 
-VERBOSE=$n$
-  For IterativeAB program, it will print actual best move and score anytime
-  it searches to desired depth.
-  For MCTS it will print actual best move and score after n iterations of
-  UCT algorithm.
 
-EVAL=fairy
+\begin{description}
+\item[VERBOSE=$n$]{
+	For IterativeAB program, this will print actual best move and score anytime
+	a depth is fully explored.
+	For MCTS it will print actual best move and score after each $n$ iterations of
+	UCT algorithm.
+	}
 
-JUDY=1
-HASKELL\_HASH=1
+\item[EVAL=fairy]{
+	Builds program using Fairy's evaluation function.}
 
-TODO: NULL\_MOVE CAN\_pass
+\item[NULL\_MOVE]{
+	Enables Null moves for AlphaBeta search.}
 
-WINDOW=?
-	It switches on aspiration window option for AlphaBeta algorithm.
+\item[canPass=1]{
+	Adds possibility to generate less than 4 moves.}
 
-noHH=1
-	It disables history heuristics optimisations for MCTS.
+\item[CORES=$X$]{
+	Compiles program with the number of available CPU's set to $X$. (Default is 1)
+	When running program compiled with CORES=X it is necessary to add +RTS -N$X$
+	as additional arguments.}
 
-abHH=1
-	Enables history heuristics optimisations for AlphaBeta.
+\item[WINDOW=$X$]{
+	It switches on aspiration window option for AlphaBeta algorithm with Window
+	set to $X$.}
 
-noHeavyPlayout=1
-	This disables heuristic in playouts.
+\item[noHH=1]{
+	Disables history heuristics optimisations for MCTS.}
 
-CORES=$n$ - TODO
-	Set the number of available cores in computer. It is also needed to run
-	binary with +RTS -N$n$ parameter.
+\item[abHH=1]{
+	Enables history heuristics optimisations for AlphaBeta.}
 
-PROF=1
-	It enables profiling options.
+\item[noHeavyPlayout=1]{
+	This disables heuristic in playouts.}
 
-runtest
-	Can have
+\item[PROF=1]{
+	Enables profiling for bots.}
 
-play
+\item[playAB, playMCTS, or playMatch]{
+	Starts new game to play by human vs AlphaBeta search, human versus MCTS or
+	AlphaBeta search versus MCT.
+	For the first time it downloads testing and graphical environments for
+	offline matches.
+	}
+\end{description}

@@ -1,8 +1,8 @@
 \chapter{Algorithms}
-In this chapter we introduce two algorithms for searching minimax trees
+In this chapter we introduce two algorithms for searching minimax trees --
 AlphaBeta search and Monte Carlo Tree Search (MCTS). Both algorithms became
-successful and dominating in some field. AlphaBeta search in game of Chess and
-MCTS in game of Go. (TODO reformulate)
+successful and dominating in some field, AlphaBeta search in game of Chess and
+MCTS in game of Go.
 
 The basic algorithm to search game tree is Minimax search. It is searching
 minimax tree in depth first search order and therefore the search do not ends
@@ -21,9 +21,9 @@ The pseudocode of the algorithm is shown in~\ref{alg:alphabeta}.
 \lstset{language=Python, caption=Pseudocode of the AlphaBeta search, label=alg:alphabeta}
 \begin{lstlisting}
 alphabeta (node, depth, alpha, beta):
-    if  depth = 0 or node is a terminal node:
+    if  depth = 0 or is_terminal(node):
         return evaluate(node)
-    if  is maximizing node:
+    if  is_maximizing(node):
         for each child of node
             score = alphabeta(child, depth-1, alpha, beta)
             alpha = max(alpha, score)
@@ -41,24 +41,24 @@ alphabeta (node, depth, alpha, beta):
 
 In maximizing nodes we are improving lower estimate (alpha) of the minimax
 value and in minimizing nodes the upper estimate (beta). If a value from a
-child forces these bounds to meet we know that better approximation of this
+child forces these bounds to meet we know that better a approximation of this
 node is not possible and so we return our estimate, we say we pruned/cut-off
 the search in node.
 
-As can be proven, if AlphaBeta finds solution for depth $n$, then it is the
+It can be proven that if AlphaBeta finds solution for depth $n$, then it is the
 best solution in MiniMax tree for depth $n$~\cite{knuth:alphabeta}. In optimal
-case instead of examining $\mathcal O(b^d)$ nodes is only examined $\mathcal
-O(b^{d/2})$ of them, where $b$ is branching factor of the game and $d$ is
+case instead of examining $\mathcal O(b^d)$ nodes is examined only $\mathcal
+O(b^{d/2})$ nodes, where $b$ is branching factor of the game and $d$ is
 searched depth~\cite{ZHONG}.
 
-A lot of time is spared if the pruning children of nodes are listed as first.
+The most time is spared if the pruning children of nodes are listed as first.
 However in the worst case if children are sorted in opposite order to the
 optimal, the whole minimax tree is searched. Consequently it is very important
-to have nodes well ordered.
+to have nodes ordered well.
 
 
 \section{Description of the Monte Carlo Tree search}
-Monte Carlo methods was formerly used for approximation of mathematical,
+Monte Carlo methods were formerly used for approximation of mathematical,
 physical, biological and others processes where full calculation would be
 difficult or even impossible. For example in mathematics it is used for numeric
 integration or estimate the value of~$\pi$. In games without perfect
@@ -83,7 +83,7 @@ use random approach as evaluating approximation of the Go position were in
 However Bernd showed that after some time his algorithm indicates no further
 improvement. It was necessary to realize that the main problem is that
 algorithm searches all branches with the same probability. It should give more
-attention to more promising branches. Question how to find fine balancing
+attention to more promising branches. The question how to find fine balancing
 between exploration and exploitation is classical mathematical Multi-armed
 Bandit problem.
 
@@ -93,7 +93,7 @@ produces reward. Distribution of each arm reward is independent on other arms
 and previous draws of this arm. The task is to choose best strategy to maximize
 sum of reward through iterative plays~\cite{MoGo,MultiarmedBandit}.
 
-In~\cite{MultiarmedBandit} is presented thee UCB1 algorithm (where UCB stands for Upper Confidence Bounds) for Bandit Problem:
+In~\cite{MultiarmedBandit} is presented three UCB1 algorithm (where UCB stands for Upper Confidence Bounds) for Bandit Problem:
 
 \begin{enumerate}
 \item Play each arm of the bandit once.
@@ -114,8 +114,8 @@ node as independent arm~\cite{MoGo}.
 \subsection{MCTS}
 Monte Carlo Tree search is generic best-first-search algorithm applied to
 trees which uses a random simulation as evaluation scheme. It consist of four
-steps which are repeated as long as there is time left. We start with a tree
-containing only a root node representing starting
+steps which are repeated as long as there is time left. The algorithm starts
+with a tree containing only a root node representing starting
 position~\cite{progressive-strategies,KOZELEK}.
 
 The four mentioned steps are explained in the following list:
@@ -125,10 +125,10 @@ The four mentioned steps are explained in the following list:
 recursively selected by using best-first manner. The node selection is usually
 handled by UCT algorithm.
 \item \emph{Expansion:} The selected leaf's children are generated.
-\item \emph{Simulation} (also called \emph{playout}): Random game is played
+\item \emph{Simulation} (also called \emph{playout}): A random game is played
 from given position to certain depth.
 \item \emph{Backpropagation:} The result of simulated games is stored into all
-nodes visited during Selection phase in this iteration of algorithm.
+nodes visited during this iteration of algorithm in the Selection phase.
 \end{enumerate}
 
 Classical approach of the Simulation phase in Go bot programming is to generate
@@ -172,8 +172,8 @@ where $\overline X_i + c \sqrt{\frac{log~n}{n_i}}$ is a generalised UCB1
 formula, $h_i$ is heuristics evaluated for step leading to this position, and
 $hh_i$ is history heuristic value.
 
-One of the negatives of UCT algorithm is that UCB1 formula itself presumes the
-involved random variables are identically distributed and independent, which is
-not true in UCT~\cite{MoGo}. It was shown that the probability of selecting the
-correct move quickly converges to 100\%~\cite{UCTanalysis}.
+One of the negatives of UCT algorithm is that UCB1 formula itself presumes for
+the involved random variables to be identically distributed and independent,
+which is not true in UCT~\cite{MoGo}. It was shown that the probability of
+selecting the correct move quickly converges to 100\%~\cite{UCTanalysis}.
 

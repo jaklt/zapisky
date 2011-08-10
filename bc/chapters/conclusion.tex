@@ -1,45 +1,57 @@
 \chapter{Conclusion}
 Writing two programs at once turns out to be more difficult than we thought. In
-our development we have not focussed on high time optimisations,
-sophisticated goal check and trap control in position evaluation. To handle these three topics is considered as the most difficult in Arimaa bot development.
+our development we have not focussed on time optimisations, sophisticated goal
+check and trap control in position evaluation. To handle these three topics is
+considered as the most difficult in Arimaa bot development.
 
-Using MCTS as is or as was provided by Kozelek is not enought for bot
-programming in Arimaa, but UCB1 formula or UCT algorithm itself can be valuable
-in some combination of AlphaBeta and MCTS algorithms.
+We developed our easily extendable game playing engine named Rabbocop with
+AlphaBeta search and Monte Carlo Tree Search. A variety of extensions were
+tried, we took an inspiration from algorithms well known in Chess, Go and
+Arimaa bot programming. We performed many tests in order to explore how used
+optimisations help to improve the bots quality and how the used algorithms
+behave with some restrictions or on better hardware.
 
-Maybe in the future we will see UCT oriented algorithm which after node expansion make short tactical (AlphaBeta) lookahead.
+From our tests it seems that MCTS behaves much better with less sophisticated
+evaluation function and for AlphaBeta it is more important to have strong
+evaluation function. The step evaluation with Best-of-N heuristic promises big
+importance with increasing power of computers and therefore it is a perfect
+place for another improvement.
 
-TODO What was done. What we achieved. What we get from it.
-We developed Rabbocop
-MCTS behaves much better with less sophisticated evaluation function.
+Maybe MCTS will be successful if we let the static evaluation function to be as
+simple as possible (for example by evaluating just material advantage), and if
+the domain knowledge will be applied in UCT tree or in playouts. We believe
+that using more sophisticated board representation would help MCTS algorithm
+against AlphaBeta, because the cost of managing clever representation returns
+with more times you use the clever representation, which dominates in MCTS.
+(From one position or similar to it MCTS in playouts often generates all
+possible moves more than once in contrast to AlphaBeta).
 
-Step Evaluation 
-
-We believe that using more sophisticated board representation would help MCTS
-algorithm against AlphaBeta, because the cost of managing clever representation
-returns with more times you use the clever representation, which dominates in
-MCTS. (From one position or similar to it MCTS often generates in playouts
-possible moves more than once in contrast of AlphaBeta).
-
-from \ref{pic:generalTuning}, with increasing number of cpus, the requirements for more memory increases too (TODO citation needed), from this picture we see, that working this can help to mcts
+Using MCTS as we had or as Kozelek provided is not enough for bot programming
+in Arimaa. The new insights are needed for MCTS algorithm to be competitive
+with today's Arimaa bots. UCB1 formula itself or UCT algorithm could be
+valuable in some combination of AlphaBeta and MCTS algorithms. It is possible
+that in the future, we will see UCT oriented algorithms which after node
+expansion makes short tactical (AlphaBeta) lookahead.
 
 
 \section{Further work}
-% TODO it should be further work from our point of view (to attack another similar topics to ours)
+% TODO further work should be work from our point of view (to tackle/attack another similar topics of ours)
 
 A proceeding work could cover the following problems:
 
 \begin{enumerate}
-\item Find way how to implement some kind of Quiescence search with Goal check and Trap control to MCTS and compare with similar approach in AlphaBeta.
+\item Find way how to implement some kind of Quiescence search with goal check and trap control to MCTS and compare with similar approach in AlphaBeta.
 \item Optimise playouts using a more sophisticated way how to generate steps. Interesting ideas are described in Zhong's work~\cite{ZHONG}.
-\item Try patterns heuristics in playout generation (idea taken from ~\cite{PatternsGo,PatternsArimaa}).
+\item Try pattern heuristics in playout generation (idea taken from ~\cite{PatternsGo,PatternsArimaa}).
 \end{enumerate}
 
-\noindent The quality of bots can be improved by:
+\noindent There is still long way to go until our bots became competitive with
+today's best engines. Their quality can be improved in many ways, for example
+by:
 \begin{enumerate}
 \item Creating better evaluation function.
-\item Trying progressive pruning methods from ~\cite{progressive-strategies,
+\item Trying progressive pruning methods from~\cite{progressive-strategies,
 MonteCarloGo}.
 \item Using more optimised data structures and random number generator.
-\item Improving step-evaluation function (as We learned from \ref{pic:generalTuning}).
+\item Improving step-evaluation function.
 \end{enumerate}

@@ -1,23 +1,28 @@
 \chapter{Methodology}
 
-At the begging we decided to follow the consequent schedule:
+At the begging of the work we decided to follow the consequent schedule:
 
 \begin{enumerate}% {0}
-\item Study possible and most used method used in Arimaa, Chess and Go.
-\item Develop two arimaa playing programs using two earlier described
-	  algorithms and all listed optimisatoin methods for them.
-\item Compare those engines playing offline matches.
-\item Analise engines time cost centres. Where are bottlenecks.
+\item Study possible and most used method used in Arimaa, Chess and Go bot development.
+\item Develop basic versions of bots with plain versions of AlphaBeta search
+and Monte Carlo Tree Search. However a work on bots is never ending so we will
+try to develop two comparable bots and try to measure how changes in settings
+affect their win:loss rate.
+\item Improve both programs with enhances learned in first part of the process and tune variables of those enhances in order to improve the quality of both programs as much as possible.
+\item Compare those engines playing offline matches and analyse the meaning of
+obtained results.
+% \item Analise engines time cost centres. Where are bottlenecks.
 \end{enumerate}
 
-\noindent By comparing engines we mean:
+\noindent In order to obtain as much informations as possible we decided to run
+tests consisting of these parameters:
 
 \begin{enumerate}
-\item playing 3s/10s/30s per move time limit,
-\item playing with transposition tables of size 100MB, 200MB, or 400MB,
-\item using one, two, four, eight cores,
+\item Test bots and enhances they uses by playing games with 3, 10, or 30 seconds
+time limits per turn to test how different time limits affects their efficiency.
+\item Playing games with Transposition Tables' size limited to 100MB, 200MB, or
+400MB.
+\item Playing engines using one, two, four, or eight cores.
 % \item run AB to same level of search and give MCTS the same amount of time to play
 \end{enumerate}
 
-Work on bot is never ending so we will try to develop two comparable bots and
-try to measure how changes in settings affect their win:loss rate.

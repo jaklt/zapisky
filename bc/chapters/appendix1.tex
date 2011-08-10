@@ -1,6 +1,10 @@
 \chapter{Appendix 1}\label{statistics}
 
-\section{Statistics of the AlphaBeta searches}
+In our development we used GHC as a Haskell compiler. The following statistics
+were taken by compiling bots with \texttt{-prof -auto} options and ran with
+\texttt{+RTS -p} parameters.
+
+\subsubsection{Statistics of the AlphaBeta search}
 \begin{quote}
 \begin{verbatim}
 COST CENTRE            MODULE              %time %alloc
@@ -20,7 +24,7 @@ isEnd                  BitRepresentation     1.5    0.2
 \end{verbatim}
 \end{quote}
 
-\section{Statistics of the MCTS}
+\subsubsection{Statistics of the Monte Carlo Tree Search}
 \begin{quote}
 \begin{verbatim}
 COST CENTRE            MODULE              %time %alloc
@@ -37,4 +41,9 @@ eval                   Eval                  1.0    0.2
 \end{verbatim}
 \end{quote}
 
+In both tables are functions shown with their names and names of modules in
+which they are placed. It is important to mention that if a function is called,
+statistics of that function are not added to our cost centre from which the
+function was called. This is important for a frequent calling
+generatePiecesSteps, makeStep and generateMoveable from getValueByMC.
 

@@ -142,7 +142,11 @@ Prague 2011
 
 \newpage
 
-Poděkování
+I would like to thank to my family for their support, and to Jakub Slavík and
+Jan Vaněček for letting me stay in their flat at the end of the work. I would
+also like to thank to my supervisor for very useful and relevant comments he
+gave me.
+
 %%% TODO Na tomto místě mohou být napsána případná poděkování (vedoucímu práce,
 %%% konzultantovi, tomu, kdo zapůjčil software, literaturu apod.)
 
@@ -200,14 +204,13 @@ Mgr. Vladan Majerech, Dr., Department of Theoretical Computer Science and Mathem
 Abstract:
 In the world of chess programming the most successful algorithm for game tree
 search is considered AlphaBeta search, however in game of Go it is Monte
-Carlo Tree Search. Arimaa has similarities with both Go and Chess, but there
-has been no successful program using Monte Carlo Tree Search so far. The main
-goal of this thesis is to compare capabilites given by Monte Carlo Tree Search
-algorithm and AlphaBeta search, both having the same evaluation function, in
-the game of Arimaa.
-% TODO write results
+Carlo Tree Search. The game of Arimaa has similarities with both Go and Chess,
+but there has been no successful program using Monte Carlo Tree Search so far.
+The main goal of this thesis is to compare capabilities given by Monte Carlo
+Tree Search algorithm and AlphaBeta search, both having the same evaluation
+function, in the game of Arimaa.
 
-Keywords: Arimaa, Monte Carlo Tree Search, Alpha Beta search
+Keywords: Arimaa, Monte Carlo Tree Search, alpha-beta, abstract strategy game
 
 \vss}\nobreak\vbox to 0.49\vsize{
 \setlength\parindent{0mm}
@@ -226,9 +229,15 @@ Vedoucí bakalářské práce:
 Mgr. Vladan Majerech, Dr., Katedra teoretické informatiky a matematické logiky
 
 Abstrakt:
+Ve světě šachových programů je považováno AlphaBeta prohledávání za nejvíce
+úspěšné, na druhou stranu ve světě Go je to Monte Carlo Tree Search. Hra Arimaa
+je podobná jak Go tak šachům, ale zatím se nestalo, že by se objevil úspěšný
+hrající program používající Monte Carlo Tree Search. Hlavním úkolem této práce
+je porovnat schopnosti Monte Carlo Tree Search a AlphaBeta prohledávání, když
+oba algoritmy budou používat stejnou ohodnocovací funkci.
 % TODO abstrakt v rozsahu 80-200 slov; nejedná se však o opis zadání bakalářské práce
 
-Klíčová slova: Arimaa, Monte Carlo Tree Search, Alpha Beta search, UCT
+Klíčová slova: Arimaa, Monte Carlo Tree Search, alpha-beta, abstraktní strategická hra
 
 \vss}
 
@@ -258,12 +267,14 @@ Klíčová slova: Arimaa, Monte Carlo Tree Search, Alpha Beta search, UCT
 	\acro{UCT}{Upper Confidence bound to Trees, or UCB applied to minimax trees}
 	\acro{Eye}{in Go is a single empty space inside a group of stones of the
 	same color.}
-	\acro{Goalline}{TODO}
-	\acro{Quiescence}{search TODO}
-	\acro{Goal check}{is important extension of evaluation function or
+	\acro{Goalline}{is the furthest row from the starting rows}
+	\acro{Quiescence}{is an important extension to AlphaBeta search, before
+	evaluating leafs the tactical search is performed looking for easy trapping
+	or scoring goal.}
+	\acro{Goal check}{is an important extension of evaluation function or
 	Quiescence search. Its only purpose is to check whether any player can
-	score goal in actual/next move.}
-	\acro{Playout}{Simulation part of the MCTS.}
+	score goal in actual/next turn.}
+	\acro{Playout}{is the Simulation part of the MCTS.}
 \end{acronym}
 
 \include{chapters/appendix1}
