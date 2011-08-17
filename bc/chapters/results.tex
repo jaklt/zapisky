@@ -1,0 +1,120 @@
+\chapter{Results}
+We ran our tests on machines 12 machines with
+Intel\textregistered~Core\texttrademark~i7 CPU 920  @ 2.67GHz and 14 machines
+with Intel\textregistered~Core\texttrademark2 Quad CPU Q9550 @ 2.83GHz. In all
+general test cases, bots had 200MB of memory and time limit 3, 10 or 30 seconds
+per turn. The logs from tests are saved on attached CD.
+
+In each experiment we performed around 400 tests. Where the around means that
+more than 420 tests started, but only result from tests ending in time were
+counted. In all figures the solid curve named \texttt{full} represents the
+number of games in percentages in which the MCTS using all extensions defeated
+the AlphaBeta search bot also with all extensions enabled.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.9\textwidth]{graphs/mctsTuning.eps}
+	\caption{MCTS optimisations' performance}
+	\label{pic:mctsTuning}
+\end{figure}
+
+In Figure~\ref{pic:mctsTuning} is shown how disabling some MCTS's
+optimisation affects the winning ratio between algorithms. The noHH stands for
+switching off History heuristic in MCTS, and noHeavyPlayout stands for
+switching off Best-of-N optimisation. It seems from the graph that we achieved
+constant improvement just by switching History heuristics on. On the other
+hand, the importance of using Heavy Playouts increases with bigger turn limit.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.9\textwidth]{graphs/generalTuning.eps}
+	\caption{Comparing MCTS's and AlphaBeta's general capabilities}
+	\label{pic:generalTuning}
+\end{figure}
+
+In Figure~\ref{pic:generalTuning} we can see how switching off Transposition
+Tables (as \texttt{noTT} in graph) or changing evaluation function to function
+used in bot\_Fairy (\texttt{EVAL=fairy} in graph) changed the winning ratio
+between our two bots.
+
+In this comparison, it is important to mention how using Fairy's evaluation
+function affects bots strength. We performed another tests with 10 seconds per
+turn time limit, in each either AlphaBeta or MCTS version of our bot uses
+Fairy's evaluation function. Again the information about winning ratio is shown
+from MCTS's point of view:
+
+\begin{center}
+\begin{tabular}{rl}
+AlphaBeta with Fairy's evaluation function vs full MCTS: & 41.51\% \\
+full AlphaBeta vs MCTS with Fairy's evaluation function: & 20.12\% \\
+\end{tabular}
+\end{center}
+
+\noindent This means that using Fairy's evaluation is making our bots weaker.
+Therefore we can conclude from the graph in Figure~\ref{pic:generalTuning} that
+MCTS behaves better with worse evaluation functions compared to AlphaBeta.
+
+From Figure~\ref{pic:generalTuning} we see that MCTS without Transposition
+Tables defeats AlphaBeta more likely with bigger time limits. A possible
+explanation is that either Transposition Tables are far more important in
+AlphaBeta or using History Heuristic in MCTS compensates the loss of
+Transposition Tables.
+
+At the end of testing process we extended our evaluation function with
+Kozelek's goal check from his bot Akimot. From Figure~\ref{pic:generalTuning}
+we see that using goal check helped AlphaBeta a lot. Very likely, this
+corresponds to the fact, that our AlphaBeta search in 30 seconds per turn
+explore minimax tree to depth of eight steps more often.
+
+For the next tests we changed the parameters. Both algorithms used all extensions
+(without goal check), and time limit per turn was set to 15 seconds. 
+
+\begin{figure}[h]
+	\begin{center}$
+	\begin{array}{cc}
+	\includegraphics[width=2.7in]{graphs/cores.eps} &
+	\includegraphics[width=2.7in]{graphs/memory.eps}
+	\end{array}$
+	\end{center}
+\caption{Comparison using parallelization or different memory size}
+\label{pic:cpuAndMemory}
+\end{figure}
+
+Figure~\ref{pic:cpuAndMemory} displays how the winning ratio
+MCTS AlphaBeta search changed with increasing number of CPU's or amount of
+memory. The CPU's graph represents how the ratio changed with one,
+two, four or eight CPU's and the size of Transposition Tables fixed to 200~MB.
+In the Memory size graph it is shown how the ratio
+changed with a size limit of Transposition Tables set to 100~MB, 200~MB or
+400~MB and the number of CPU's set to one.
+
+For better explanation of the CPU's graph from Figure~\ref{pic:cpuAndMemory} we
+looked how the number of iterations of MCTS algorithm and the depth of
+AlphaBeta search in steps changed with added CPU's:
+
+\begin{center}
+\begin{tabular}{ccc}
+Cores: & MCTS iterations: & Average depth of the AlphaBeta search in steps: \\
+1      &  4566            & 6.9  \\
+2      &  8370            & 8.3  \\
+4      & 16161            & 8.8  \\
+8      & 22083            & 8.8
+\end{tabular}
+\end{center}
+
+Possible explanations of graph in~\ref{pic:cpuAndMemory} could be following:
+\begin{itemize}
+\item The results from CPU's graph could be  disadvantageous for the AlphaBeta search due to some artifact of the implementation.
+\item AlphaBeta uses mutexes to lock global Transposition Tables during
+insertions. MCTS uses mutexes for nodes, History heuristic table and
+Transposition Tables locking. However MCTS spends most of the time in playouts
+by generating and evaluating steps so it is not affected by the lockings so
+much (See Appendix~\ref{statistics} for detailed statistics).
+\item With limited memory resources (the 200~MB memory limit for Transposition
+Tables in our case) having more CPU's becomes superior.
+\item Light static evaluate function helps a lot with increasing number of CPU's.
+\item For the AlphaBeta version of our bot, having more than 200~MB for
+Transposition Tables with 15 seconds per turn time limit does not improve the
+quality of the bot so much.
+\item The previous conclusion about AlphaBeta's memory needs corresponds with these results.
+\end{itemize}
