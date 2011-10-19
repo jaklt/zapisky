@@ -27,6 +27,83 @@
 % 	  \vrule height0.75em width0.5em depth0.25em\fi}
 
 \begin{document}
+%% Zapisky zakladnich veci:
+\section{Základy}
+\definice Nechť $(X,\sigma)$, $(X,\tau)$ jsou dvě topologie na X. Řekneme, že topologie $\sigma$ je {\bf jemnější (silnější)} než topologie $\tau$ (popř. $\tau$ je {\bf hrubší (slabší)}) než topologie $\sigma$, pokud $\sigma \supseteq \tau$.
+
+Pozn: Diskrétní topologie je nejjemnější, indiskrétní je nejhrubší.
+
+\definice Buď $(X,\sigma)$ topologický prostor, $\{(X_\alpha,\sigma_\alpha) : \alpha \in A\}$ topologické prostory a $f_\alpha : X \to X_\alpha$ je zobrazení pro každé $\alpha \in A$. Řekneme, že topologie $\sigma$ je {\bf projektivně vytvořena} (resp. topologický prostor $(X,\sigma)$ je projektivně vytvořen) souborem $\{A_\alpha : \alpha \in A\}$, pokud platí:
+\begin{enumerate}
+\item $(\forall \alpha \in A)~f_\alpha : (X,\sigma) \to (X_\alpha,
+	\sigma_\alpha)$ je spojité,
+\item $\sigma$ je nejhrubší topologie na množině $X$ splňující (1), tj. pokud
+	je $\sigma'$ topologie na $X$, $\sigma' \not\supseteq \sigma$, pak existuje
+	$\alpha \in A$ takové, že $f_\alpha : (X,\sigma') \to (X_\alpha,
+	\sigma_\alpha)$ není spojité.
+\end{enumerate}
+
+\tvrzeni Topologický prostor $(X,\sigma)$ je projektivně generován souborem
+	zobrazení $\{f_\alpha : X \to (X_\alpha,\sigma)~;~\alpha \in A\} \iff \{
+	f^{-1}[O] : \alpha \in A, O \in \sigma_\alpha\}$ tvoří subbási topologie
+	$\sigma$.
+\dukaz Buď $\p R$ topologie na $X$ o subbási $\{f^{-1}[O] : \alpha \in A, O \in \sigma_\alpha\}$. Z charakteristiky spojitosti je pro každé $\alpha \in A$ zobrazení $f_\alpha : (X,\sigma) \to (X_\alpha,\sigma_\alpha)$ spojité. Protože $\p R$ splňuje (1) a je nejhrubší topologie splňující (1), má platit $\p R \supset \sigma$. Nechť $\tau$ je libovolná topologie na $X$, při které všechna zobrazení $f_\alpha : (X,\tau) \to (X_\alpha,\sigma)$ jsou spojitá. Potom $\{f^{-1}[O] : \alpha \in A, O \in \sigma_\alpha\} \subseteq \tau$, tedy $\p R \subseteq \tau$. Volbou $\tau = \sigma$ dostaneme, že $\p R \subseteq \sigma$.
+\qed
+
+\veta Topologický prostor $(X, \sigma)$ je projektivně vytvořen souborem zobrazení $\{f_\alpha : (X,\sigma) \to (X_\alpha, \sigma_\alpha)~;~\alpha \in A\} \iff$ platí následující podmínka:
+
+\begin{description}
+\item[($\star$)] Zobrazení $g : (Y,\p R) \to (X, \sigma)$ kde $(Y, \p R)$ je libovolný topologický prostor, je spojité $\iff$ pro každé $\alpha \in A$ je zobrazení $f_\alpha \circ g: (Y,\p R) \to (X_\alpha, \sigma_\alpha)$ spojité.
+\end{description}
+
+\dukaz Předpokládejme, že topolgoie $\sigma$ je projektivně generována souborem
+zobrazení $\{f_\alpha : (X,\sigma) \to (X_\alpha, \sigma_\alpha)~;~\alpha \in
+A\}$:
+
+($\Rightarrow$) Nechť $g : (Y, \p R) \to (X,\sigma)$ je spojité. Potom
+$f_\alpha \circ g$ je složením dvou spojitých zobrazení a tedy je spojité.
+
+($\Leftarrow$) Víme, že všechna zobrazení $f_\alpha \circ g$ jsou spojitá.
+Protože soubor $\{f^{-1}[O] : \alpha \in A, O \in \sigma_\alpha\}$ je otevřená
+subbáse topologie $\sigma$, neboť $(X, \sigma)$ je tímto souborem projektivně
+generována. Stačí ověřit, že $g^{-1}[f^{-1}[O]]$ je otevřená pro každé $\alpha
+\in A$ a $O \in \sigma_\alpha$, už postačí ke spojitosti $g$ (charakterizace
+spojitosti). Platí, že $O\in\sigma_\alpha$ je otevřená v
+$(X_\alpha,\sigma_\alpha)$ a zobrazení $f_\alpha \circ g$ je spojité, tedy
+$g^{-1}[f^{-1}[O]]$ je otevřená v $(Y, \p R)$. Tedy $g$ je spojité.
+
+Nechť platí ($\star$). Označme $\tau$ topologii $X$, při které je splněna
+($\star$). Chceme ukázat, že $\tau = \sigma$. Zobrazení $id : (X, \tau) \to
+(X,\tau)$ je spojité, čili podle ($\star$) $f_\alpha \circ id : (X,\tau) \to
+(X_\alpha, \sigma_\alpha)$ je spojité zobrazení pro všechna $\alpha \in A$.
+Tedy $f_\alpha : (X,\tau) \to (X_\alpha, \sigma_\alpha)$ je spojité pro všechna
+$\alpha \in A$ a přitom $(X,\sigma)$ je projektivně generovaná soustavou
+$\{f_\alpha : \alpha \in A\}$. Dostáváme $\tau \supseteq \sigma$. Uvažujeme $id
+: (X, \sigma) \to (X,\sigma)$. Víme, že $f_\alpha \circ id : (X,\sigma) \to
+(X_\alpha, \sigma_\alpha)$ je spojité zobrazení pro všechna $\alpha \in A$,
+neboť $\sigma$ je projektivně generovaná. Podle ($\star$) je $id : (X,\sigma)
+\to (X,\tau)$ je spojitá a proto $\tau \subseteq \sigma$. Dohromady $\sigma =
+\tau$.
+\qed
+
+\definice Buď $(X,\sigma)$ topologický prostor, $\{(X_\alpha,\sigma_\alpha) : \alpha \in A\}$ soubor topologických prosotrů a $f_\alpha : (X_\alpha,\sigma_\alpha) \to X$, $\alpha \in A$, zobrazení. Řekneme, že topologie $\sigma$ na $X$ je {\bf induktivně generována} souborem zobrazení ${f_\alpha : \alpha \in A}$, jestliže:
+\begin{enumerate}
+\item $(\forall \in A)~f_\alpha : (X_\alpha,\sigma_\alpha) \to (X,\sigma)$ je spojité,
+\item $\sigma$ je nejjemnější topologie na $X$ splňující (1), tj. je-li $\sigma'$ topologie na $X$ splňující (1), pak $\sigma \supseteq \sigma'$.
+\end{enumerate}
+
+\tvrzeni Buďte $f_\alpha : (X_\alpha,\sigma_\alpha) \to (X,\sigma)$, $\alpha
+\in A$, zobrazení. Topologie $\sigma$ je induktivně generována souborem
+zobrazení $\{f_\alpha : \alpha \in A\}  \iff (\forall \p U \subseteq X)~\p U
+\in \sigma \leftrightarrow (\forall \alpha \in A)~f_\alpha^{-1}[\p
+U]\in\sigma_\alpha$.
+
+\veta Topologický prostor $(X,\sigma)$ je induktivně generován zobrazeními $f_\alpha : (X_\alpha,\sigma_\alpha) \to (X,\sigma)$, $\alpha \in A$ $\iff$ platí následující ekvivalence:
+
+\begin{description}
+\item{($\star$)} zobrazení $g : (X,\sigma) \to (Y, \p R)$ je spojité $\iff$ pro všechna $\alpha \in A$ je $g \circ f_\alpha : (X_\alpha, \sigma_\alpha) \to (Y,\p R)$ spojité.
+\end{description}
+
 %% 1. hodina
 \section{Čechovsky úplné prostory}
 \lemma
@@ -88,7 +165,7 @@
 	vlastností:
 
 	Kdykoliv $\p F$ soubor uzavřených množin, který má konečnou průnikovou
-	vlastnost a takový, že $(\forall n \in \omega) (\exists F \in \p F), F
+	vlastnost a takový, že $(\forall n \in \omega)~(\exists F \in \p F), F
 	\subseteq G$, potom $\bigcap \p F \neq \emptyset$.
 \dukaz
 \noindent$\Leftarrow$: $X$ je \Tich,~$X \subseteq \beta X,~\{\p G_i : i \in
