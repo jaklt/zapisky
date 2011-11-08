@@ -29,7 +29,10 @@
 \begin{document}
 %% Zapisky zakladnich veci:
 \section{Základy}
-\definice Nechť $(X,\sigma)$, $(X,\tau)$ jsou dvě topologie na X. Řekneme, že topologie $\sigma$ je {\bf jemnější (silnější)} než topologie $\tau$ (popř. $\tau$ je {\bf hrubší (slabší)}) než topologie $\sigma$, pokud $\sigma \supseteq \tau$.
+\definice Nechť $(X,\sigma)$, $(X,\tau)$ jsou dvě topologie na X. Řekneme, že
+topologie $\sigma$ je {\bf jemnější (silnější)} než topologie $\tau$ (popř.
+$\tau$ je {\bf hrubší (slabší)} než topologie $\sigma$), pokud $\sigma
+\supseteq \tau$.
 
 Pozn: Diskrétní topologie je nejjemnější, indiskrétní je nejhrubší.
 
@@ -45,8 +48,8 @@ Pozn: Diskrétní topologie je nejjemnější, indiskrétní je nejhrubší.
 
 \tvrzeni Topologický prostor $(X,\sigma)$ je projektivně generován souborem
 	zobrazení $\{f_\alpha : X \to (X_\alpha,\sigma)~;~\alpha \in A\} \iff \{
-	f^{-1}[O] : \alpha \in A, O \in \sigma_\alpha\}$ tvoří subbási topologie
-	$\sigma$.
+	f_\alpha^{-1}[O] : \alpha \in A, O \in \sigma_\alpha\}$ tvoří subbási
+	topologie $\sigma$.
 \dukaz Buď $\p R$ topologie na $X$ o subbási $\{f^{-1}[O] : \alpha \in A, O \in \sigma_\alpha\}$. Z charakteristiky spojitosti je pro každé $\alpha \in A$ zobrazení $f_\alpha : (X,\sigma) \to (X_\alpha,\sigma_\alpha)$ spojité. Protože $\p R$ splňuje (1) a je nejhrubší topologie splňující (1), má platit $\p R \supset \sigma$. Nechť $\tau$ je libovolná topologie na $X$, při které všechna zobrazení $f_\alpha : (X,\tau) \to (X_\alpha,\sigma)$ jsou spojitá. Potom $\{f^{-1}[O] : \alpha \in A, O \in \sigma_\alpha\} \subseteq \tau$, tedy $\p R \subseteq \tau$. Volbou $\tau = \sigma$ dostaneme, že $\p R \subseteq \sigma$.
 \qed
 
