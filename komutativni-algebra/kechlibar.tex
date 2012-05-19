@@ -1,0 +1,191 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{amsfonts,amsthm,amsfonts,amssymb,amsmath}
+\usepackage{a4wide}
+\usepackage{enumerate}
+\usepackage[T1]{fontenc}
+
+\newcommand\m[1]{\mathbb { #1 }} % tucne pismeno/text
+\newcommand\p[1]{\mathcal{ #1 }} % psaci pismeno/text
+\newcommand\IFF{\ensuremath{\iff}}
+
+\newcounter{numb}
+
+\theoremstyle{definition}
+\newtheorem*{definice}{Definice}
+\newtheorem*{pozorovani}{Pozorování}
+\newtheorem{poznamka}[numb]{Poznámka}
+
+\theoremstyle{plain}
+\newtheorem{veta}[numb]{Věta}
+\newtheorem{lemma}[numb]{Lemma}
+\newtheorem{tvrzeni}[numb]{Tvrzení}
+\newtheorem{dusledek}[numb]{Důsledek}
+
+\title{Konstrukce noetherovského okruhu jehož celistvý uzávěr není
+	noetherovský.}
+\author{Adam Bartoš, Tomáš Jakl, Jan Kosina, Martin Raška, Jiří Vančura}
+
+\begin{document}
+\maketitle
+\section{Úvod}
+
+\section{Základní vztahy}
+V našem textu budeme pracovat pouze s komutativními okruhy.
+
+\definice Nechť $R$ je okruh, $X$ nějaká neurčitá a $I$ nějaký ideál $R$.
+\begin{itemize}
+	\item Potom okruh $R[[X]]$ je okruh formálních mocninných řad jedné
+	neurčité $X$.
+	\item Krullova dimenze okruhu je $$alt(R) = sup \{ |\p P| : \p P~\text{je
+	ostře rostoucí posloupost prvoideálů} \} - 1.$$
+	\item Označme $gen(I)$ minimální kardinalita počtu generátorů ideálu $I$.
+	\item Pokud je okruh $R$ lokální, má maximální ideál. Označme tento
+	maximální ideál $M_R$.
+\end{itemize}
+
+\veta Nechť $T$ je těleso a $R = T[[x]]$ je obor formálních mocninných řad. Pak
+$f \in R$ je invertibilní \IFF má nenulový absolutní člen.
+
+\textbf{TODO} kontrola: píše se zde obor, v definicích formálních mocninných
+řad se předpokládá okruh, tak jak? Důkaz pouze opsán z Kechlibara.
+
+\begin{proof}
+	Zřejmě každá jednotka oboru $R$ musí mít nenulový absolutní člen. Naopak,
+	nechť $f\in R$ má nenulový absolutní člen. Bez újmy na~obecnosti
+	lze~před\-po\-klá\-dat, že~tento absolutní člen je~roven jedné. Položme $g=
+	1-f$ a~nechť $h =  \sum_{i= 0}^\infty g^i$, čili formálně, je-li $g=
+	\sum_{i= 1}^\infty g_ix^i$, pak $$h= 1+\sum_{i= 1}^\infty
+	\sum_{(k_1,\dots,k_l\in \Bbb N_0, k_1+\dots+k_l= i)} g_{k(1)}\cdots
+	g_{k(l)}x^i$$ Vezměme nyní $n\in \Bbb N$. Pak $f\sum_{j= 0}^n g^j =
+	(1-g)\sum_{j= 0}^n g^j =  1 - g^{n+1}$. Ovšem $g^{n+1}$ má~koeficienty
+	u~$x,x^2,\dots,x^n$ nulové, takže $h$ je~inverzní prvek k~$f$ v~$R$, a~$f$
+	je tedy jednotka.
+\end{proof}
+
+\tvrzeni[Zobecněná Hilbertova věta] Buď $R$ okruh, následující je ekvivalentní.
+\begin{enumerate}
+	\item $R$ je noetherovský.
+	\item $R[X]$ je noetherovský.
+	\item $R[[X]]$ je noetherovský.
+\end{enumerate}
+
+\tvrzeni[Věta o Krullově dimenzi] Buď $R$ lokální noetherovský okruh. Platí
+	$$gen(M_R) \geq alt(R).$$
+
+\definice Buď $R$ lokální noetherovský obor. Řekneme, že $R$ je regulární, když
+	$$gen(M_R) = alt(R) < \omega.$$
+	
+\section{Vlastnosti okruhů $A$ a $B$}
+Následující definované struktury budeme volně používat po zbytek textu se
+stejným značením/pojmenováním.
+
+\definice ~\\[-1.5em]
+\begin{itemize}
+	\item $K_0$ buď perfektní těleso charakteristiky $p$
+	\item $K$ buď $K_0(X_i : i < \omega)$ (podílové těleso okruhu $K[X_i : i < \omega]$), kde $X_i$ jsou nové proměnné
+	\item $A$ buď $K[[Z_1,Z_2,Z_3]]$
+	\item $B$ buď $K^p[[Z_1,Z_2,Z_3]][K]$
+\end{itemize}
+\textbf{TODO} Stejně značíme definici vlastností a definici konkrétních
+objektů. Nějak očesat?
+
+
+\veta $A$ je lokální, noetherovský, $alt(A) = 3$ a regulární.
+\begin{proof}
+	$A$ je lokální, protože jeho maximální ideál $Z_1A + Z_2A + Z_3A$ obsahuje
+	právě všechny neinvertibilní prvky okruhu. Ze zobecněné Hilbertovy věty
+	plyne, že je noetherovský.
+
+	Protože $3 \leq alt(A) \leq gen(M_A) \leq 3$, kde první nerovnost plyne z
+	toho, že $0 \subsetneq Z_1A \subsetneq Z_1A + Z_2A \subsetneq Z_1A + Z_2A +
+	Z_3A$ je řetězec ideálů, druhá nerovnost z Věty o Krullovy dimenzi.
+
+	Tedy $alt(A) = gen(M_A) = 3$ a protože $A$ je noetherovský, je regulární.
+\end{proof}
+
+\lemma Buď $S$ noetherovský okruh a Buď $R \subseteq S$ jeho podokruh. Pokud
+pro každý ideál $I \subseteq R$ platí, že $IR \cap S = I$ pak $R$ je
+noetherovský.
+\begin{proof}
+	Budeme postupovat sporem. Ať $R$ není noetherovský okruh, pak tedy existuje
+	$I \subseteq R$, který není konečně generován. Existuje tedy nekonečná
+	posloupnost ideálů $I_i$ tak, že:
+
+	$$I_1 \subsetneq I_2 \subsetneq \dots \subseteq I$$
+
+	\noindent Potom, ale pro posloupnost ideálů $I_1A, I_2A, \dots$ v $A$
+	existuje $n \in \m N$ tak, že:
+
+	$$I_1A \subseteq I_2A \subseteq \dots \subseteq I_nA = I_{n+1}A = .. = IA$$
+
+	\noindent Podle předpokladu je $I_n = I_nA \cap B = I_{n+1}A \cap B =
+	I_{n+1}$, ale $I_n \not= I_{n+1}$, což je spor.
+\end{proof}
+
+
+\veta $B$ je noetherovský.
+\begin{proof}
+	K použití předchozího lemmatu stačí ukázat, že pro každý konečně generovaný
+	ideál $I \subseteq B$ platí, že $IA \cap B \subseteq I$.
+
+	Buď $I = (a_1, a_2, \dots, a_n)_B$ a $b \in IA \cap B$. Uvažujme těleso $T$
+	nadtěleso $K^P$ vzniklé přidáním koeficientů z mocninných řad $a_i$ a $b$
+	pro všechny $i = 1, \dots n$. Těleso $T$ je konečné rozšíření $K^P$.
+	Označme $\{\alpha_\lambda\}$ lineární bází $T$ nad $K$.
+
+	Protože $b$ i $a_i$ pro všechna $i=1,\dots,n$ náleží $B$, platí že
+	$T[[Z_1,Z_2,Z_3]] \subseteq B$. A protože $b \in IA$ lze $b$ vyjádřit jako
+	$b = \sum_{i = 1}^m f_i a_i$, pro nějaká $f_i \in A$. Každý z prvků $f_i$
+	lze rozepsat jako $f_i = g_i + h_i$, kde $g_i$ je řada s koeficienty z $T$
+	a $h_i$ je řada s koeficienty vzniklé jako lineární kombinace
+	$\{\alpha_\lambda\} \setminus \{1\}$.
+
+	Tedy $b = \sum a_ig_i + \sum a_ih_i$, ale $b$ má koeficienty pouze z $T$, a
+	proto $h_i = 0$ pro všechna $i = 1,\dots,n$. Proto $b \in \sum a_iB = I$.
+\end{proof}
+\textbf{TODO} Zapsat zdůvodnění lineárního rozšíření konečného stupně.
+
+\veta $B$ je lokální, noetherovský, $alt(B) = 3$ a regulární.
+
+\tvrzeni[Fakt] Každý regulární obor je Gaussův.
+
+\tvrzeni[Fakt] Každý Pseudobezoutův obor (a tím spíše Gaussův obor) je celistvě uzavřen.
+
+\dusledek Okruhy $A$ a $B$ jsou celistvě uzavřeny.
+\textbf{TODO} Je potřeba v dalším textu? + Přidat důkaz? (upřesnění)
+
+\section{Okruhy $B[b_0]$ a $B[b_i : i < \omega]$}
+\definice Označme formální mocninné řady $b_j$, $c_j$ a $d_j \in A$ pro všechna
+$j \in \m N$, dané předpisem:
+\begin{itemize}
+	\item $c_j = \sum_{i < \omega} X_{2(i + j)} Z^i_3$
+	\item $d_j = \sum_{i < \omega} X_{2(i + j) + 1} Z^i_3$
+	\item $b_j = Z_1c_j + Z_2d_j$
+\end{itemize}
+
+\veta $B[b_0]$ je noetherovský.
+\begin{proof}
+	Protože $B[b_0] \simeq B[Y] / \{ f \in B[Y] : f(b_0) = 0 \}$, je díky
+	zobecněné Hilbertově větě $B[b_0]$ noetherovský.
+\end{proof}
+
+\veta $B[b_i : i < \omega]$ je celistvým uzávěrem $B[b_0]$ v $A$.
+\veta $B[b_i : i < \omega]$ není noetherovský.
+\begin{proof}
+Označme $\overline{B} = B[b_i : i < \omega]$. Dokážeme, že posloupnost ideálů
+$I_n = \sum_{i < n} b_i \overline{B}$ je ostře rostoucí. K tomu stačí ukázat,
+že $b_n \notin I_n$, $\forall n < \omega$.
+
+Budeme postupovat sporem. Ať $n \in \m N$ je nejmenší, že $b_n \in I_n$. Existuje
+tedy poslouponost $\{e_i\}_{i < n} \subset \overline B$ tak, že $b_n = \sum_{i
+< n} e_i b_i$. Každý z $e_i \in \overline B$, a proto jde vyjádřit jako $e_i =
+\sum_{m \in \p M} f^i_m m$.
+
+$\dots$
+\end{proof}
+
+\textbf{TODO} Střídá se značení $i < \omega$ a $n \in \m N$, udělat jednotně?
+
+\end{document}
