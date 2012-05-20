@@ -4,7 +4,7 @@
 \usepackage{amsfonts,amsthm,amsfonts,amssymb,amsmath}
 \usepackage{a4wide}
 \usepackage{enumerate}
-\usepackage[T1]{fontenc}
+\usepackage[IL2]{fontenc}
 
 \newcommand\m[1]{\mathbb { #1 }} % tucne pismeno/text
 \newcommand\p[1]{\mathcal{ #1 }} % psaci pismeno/text
@@ -23,8 +23,8 @@
 \newtheorem{tvrzeni}[numb]{Tvrzení}
 \newtheorem{dusledek}[numb]{Důsledek}
 
-\title{Konstrukce noetherovského okruhu jehož celistvý uzávěr není
-	noetherovský.}
+\title{Konstrukce noetherovského okruhu, jehož celistvý uzávěr není
+	noetherovský}
 \author{Adam Bartoš, Tomáš Jakl, Jan Kosina, Martin Raška, Jiří Vančura}
 
 \begin{document}
@@ -41,15 +41,14 @@ V našem textu budeme pracovat pouze s komutativními okruhy.
 	\item Krullova dimenze okruhu je $$alt(R) = sup \{ |\p P| : \p P~\text{je
 	ostře rostoucí posloupost prvoideálů} \} - 1.$$
 	\item Označme $gen(I)$ minimální kardinalita počtu generátorů ideálu $I$.
-	\item Pokud je okruh $R$ lokální, má maximální ideál. Označme tento
+	\item Pokud je okruh $R$ lokální, má jediný maximální ideál. Označme tento
 	maximální ideál $M_R$.
 \end{itemize}
 
 \veta Nechť $T$ je těleso a $R = T[[x]]$ je obor formálních mocninných řad. Pak
 $f \in R$ je invertibilní \IFF má nenulový absolutní člen.
 
-\textbf{TODO} kontrola: píše se zde obor, v definicích formálních mocninných
-řad se předpokládá okruh, tak jak? Důkaz pouze opsán z Kechlibara.
+\textbf{TODO} kontrola: Důkaz pouze opsán z Kechlibara.
 
 \begin{proof}
 	Zřejmě každá jednotka oboru $R$ musí mít nenulový absolutní člen. Naopak,
@@ -106,21 +105,21 @@ objektů. Nějak očesat?
 \end{proof}
 
 \lemma Buď $S$ noetherovský okruh a Buď $R \subseteq S$ jeho podokruh. Pokud
-pro každý ideál $I \subseteq R$ platí, že $IR \cap S = I$ pak $R$ je
-noetherovský.
+pro každý konečně generovaný ideál $I \subseteq R$ platí, že $IS \cap R = I$
+pak $R$ je noetherovský.
 \begin{proof}
 	Budeme postupovat sporem. Ať $R$ není noetherovský okruh, pak tedy existuje
-	$I \subseteq R$, který není konečně generován. Existuje tedy nekonečná
+	$I \subseteq R$, který není konečně generován. Existuje nekonečná
 	posloupnost ideálů $I_i$ tak, že:
 
 	$$I_1 \subsetneq I_2 \subsetneq \dots \subseteq I$$
 
-	\noindent Potom, ale pro posloupnost ideálů $I_1A, I_2A, \dots$ v $A$
-	existuje $n \in \m N$ tak, že:
+	\noindent Potom, ale pro posloupnost ideálů $I_1S, I_2S, \dots$ v $S$ z
+	noetherovskosti existuje $n \in \m N$ tak, že:
 
-	$$I_1A \subseteq I_2A \subseteq \dots \subseteq I_nA = I_{n+1}A = .. = IA$$
+	$$I_1S \subseteq I_2S \subseteq \dots \subseteq I_nS = I_{n+1}S = .. = IS$$
 
-	\noindent Podle předpokladu je $I_n = I_nA \cap B = I_{n+1}A \cap B =
+	\noindent Podle předpokladu je $I_n = I_nS \cap R = I_{n+1}S \cap R =
 	I_{n+1}$, ale $I_n \not= I_{n+1}$, což je spor.
 \end{proof}
 
@@ -167,8 +166,9 @@ $j \in \m N$, dané předpisem:
 
 \veta $B[b_0]$ je noetherovský.
 \begin{proof}
-	Protože $B[b_0] \simeq B[Y] / \{ f \in B[Y] : f(b_0) = 0 \}$, je díky
-	zobecněné Hilbertově větě $B[b_0]$ noetherovský.
+	 Protože $B[b_0] \simeq B[Y] / \{ f \in B[Y] : f(b_0) = 0 \}$. Díky
+	 zobecněné Hilbertově větě je $B[Y]$ noetherovský a proto je také $B[b_0]$
+	 noetherovský.
 \end{proof}
 
 \veta $B[b_i : i < \omega]$ je celistvým uzávěrem $B[b_0]$ v $A$.
