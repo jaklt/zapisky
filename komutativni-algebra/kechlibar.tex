@@ -9,6 +9,7 @@
 \newcommand\m[1]{\mathbb { #1 }} % tucne pismeno/text
 \newcommand\p[1]{\mathcal{ #1 }} % psaci pismeno/text
 \newcommand\IFF{\ensuremath{\iff}}
+\newcommand\N{\m N}
 
 \newcounter{numb}
 
@@ -83,7 +84,8 @@ stejným značením/pojmenováním.
 \definice ~\\[-1.5em]
 \begin{itemize}
 	\item $K_0$ buď perfektní těleso charakteristiky $p$
-	\item $K$ buď $K_0(X_i : i < \omega)$ (podílové těleso okruhu $K[X_i : i < \omega]$), kde $X_i$ jsou nové proměnné
+	\item $K$ buď $K_0(X_i : i < \omega)$ (podílové těleso okruhu $K[X_i : i <
+	      \omega]$), kde $X_i$ jsou nové proměnné
 	\item $A$ buď $K[[Z_1,Z_2,Z_3]]$
 	\item $B$ buď $K^p[[Z_1,Z_2,Z_3]][K]$
 \end{itemize}
@@ -115,7 +117,7 @@ pak $R$ je noetherovský.
 	$$I_1 \subsetneq I_2 \subsetneq \dots \subseteq I$$
 
 	\noindent Potom, ale pro posloupnost ideálů $I_1S, I_2S, \dots$ v $S$ z
-	noetherovskosti existuje $n \in \m N$ tak, že:
+	noetherovskosti existuje $n \in \N$ tak, že:
 
 	$$I_1S \subseteq I_2S \subseteq \dots \subseteq I_nS = I_{n+1}S = .. = IS$$
 
@@ -157,11 +159,12 @@ pak $R$ je noetherovský.
 
 \section{Okruhy $B[b_0]$ a $B[b_i : i < \omega]$}
 \definice Označme formální mocninné řady $b_j$, $c_j$ a $d_j \in A$ pro všechna
-$j \in \m N$, dané předpisem:
+$j \in \N$, dané předpisem:
 \begin{itemize}
 	\item $c_j = \sum_{i < \omega} X_{2(i + j)} Z^i_3$
 	\item $d_j = \sum_{i < \omega} X_{2(i + j) + 1} Z^i_3$
 	\item $b_j = Z_1c_j + Z_2d_j$
+	\item $\p M = \{ m : m \text{ je monický polynom v } B[b_j : j < \omega] \}$
 \end{itemize}
 
 \veta $B[b_0]$ je noetherovský.
@@ -171,21 +174,76 @@ $j \in \m N$, dané předpisem:
 	 noetherovský.
 \end{proof}
 
-\veta $B[b_i : i < \omega]$ je celistvým uzávěrem $B[b_0]$ v $A$.
-\veta $B[b_i : i < \omega]$ není noetherovský.
+\lemma $\forall i < \omega\colon b_i \in B(b_0)$
 \begin{proof}
-Označme $\overline{B} = B[b_i : i < \omega]$. Dokážeme, že posloupnost ideálů
-$I_n = \sum_{i < n} b_i \overline{B}$ je ostře rostoucí. K tomu stačí ukázat,
-že $b_n \notin I_n$, $\forall n < \omega$.
-
-Budeme postupovat sporem. Ať $n \in \m N$ je nejmenší, že $b_n \in I_n$. Existuje
-tedy poslouponost $\{e_i\}_{i < n} \subset \overline B$ tak, že $b_n = \sum_{i
-< n} e_i b_i$. Každý z $e_i \in \overline B$, a proto jde vyjádřit jako $e_i =
-\sum_{m \in \p M} f^i_m m$.
-
-$\dots$
+	Protože $c_k = X_{2k} + Z_3\,c_{k+1}$, $d_k = X_{2k+1} + Z_3\,d_{k+1}$ a $b_k
+	= Z_1 c_k + Z_2 d_k = Z_1 X_{2k} + Z_3 X_{2k + 1} + Z_3 b_{k + 1}$. Můžeme
+	$b_{k+1}$ vyjádřit jako $\frac{b_k - Z_1 X_{2k} - Z_2 X_{2k+1}}{Z_3}$ (jsme
+	v podílovém tělese). Dále indukcí.
 \end{proof}
 
-\textbf{TODO} Střídá se značení $i < \omega$ a $n \in \m N$, udělat jednotně?
+\lemma\label{celistvostA} $A$ je celistvé nad $B$.
+\begin{proof}
+	Dokážeme si pozorování: $\forall f \in A~\exists g$, že $f^p = f^p_0 + X^p
+	g^p$, kde $f_0$ je absolutní člen $f$. Protože $f = f_0 + (f - f_0)$, pak
+	$f^p = \sum_{i = 0}^p {p\choose i} f^i_0\,(f-f_0)^{p-i} = f^i_0 + (f-f_0)^p$
+	(rozšíření oboru zachovává jeho charakteristiku, takže obor je
+	charakteristiky $p$).
+
+	Pro libovolné $f \in A$ potom $f = \sum_{m \in \p M} f_n\,m$ pro $f_n \in
+	K$ platí, že $f^p = \sum_{m\in\p M} f^p_m\,m^p \in B$.
+\end{proof}
+
+\veta $B[b_i : i < \omega]$ je celistvým uzávěrem $B[b_0]$ v $A$.
+\begin{proof}
+	Že $B[b_i : i < \omega]$ je obsaženo v celistvém uzávěru $B[b_0]$ plyne z
+	Lemmatu \ref{celistvostA}, protože každý prvek z $A$ je celistvý v $B$
+	(tedy i všechny $b_i$) a o to spíše v $B[b_0]$.
+
+	\dots (\textbf{TODO})
+\end{proof}
+
+
+\veta $B[b_i : i < \omega]$ není noetherovský.
+\begin{proof}
+	Označme $\overline{B} = B[b_i : i < \omega]$. Dokážeme, že posloupnost
+	ideálů $I_n = \sum_{i < n} b_i \overline{B}$ je ostře rostoucí. K tomu
+	stačí ukázat, že $b_n \notin I_n$, $\forall n < \omega$.
+
+	Budeme postupovat sporem. Ať $n \in \N$ je nejmenší, že $b_n \in I_n$.
+	Existuje tedy poslouponost $\{e_i\}_{i < n} \subset \overline B$ tak, že
+	$b_n = \sum_{i < n} e_i b_i$. Každý z $e_i \in \overline B$, a proto jde
+	vyjádřit jako $e_i = \sum_{m \in \p M} f^i_m m$, pro $f^i_m \in B$, kde
+	pouze konečně mnoho $f^i_m$ je nenulových.
+
+	Potom
+	\[
+	b_n = \sum_{i < n} \sum_{m \in \p M} f^i_m m b_i = \sum_{i < n} \sum_{m \in
+	\p M \setminus \{1\}} f^i_m m b_i + \sum_{i < n} f^i_m m b_i \;.
+	\]
+	A protože $f^i_1 = g_i + Z_1 g_{i,1} + Z_2 g_{i,2}$ pro nějaká $g_i \in
+	K^p[[Z_3]][K]$ a $g_{i,1}, g_{i,2} \in B$. Dostáváme
+	\[
+	b_n = \sum_{i < n} \sum_{m \in \p M \setminus \{1\}} f^i_m m b_i +
+	\sum_{i<n} \left(Z_1 g_{i,1} + Z_2 g_{i,2}\right)b_i + \sum_{i<n} g_i b_i
+	\;.
+	\]
+
+	První dvě sumy obsahují ve svých členech vždy některé z $Z_1^2, Z_2^2$ nebo
+	$Z_1 Z_2$, ale $b_n$ neobsahuje žádní z nich. Proto $b_n = \sum_{i<n} g_i
+	b_i$.
+
+	Porovnáním koeficientů u mocnin $Z_1, Z_2, Z_3$ v rovnosti pro $b_n$
+	dostáváme, že
+	\[
+	c_n = \sum_{i<n} g_i c_i \quad \& \quad d_n = \sum_{i<n} g_i d_i
+	\]
+	protože $g_i \in K^p[[Z_3]][K]$.
+	\\
+
+	Dále \dots (nemám zbytek)
+\end{proof}
+
+\textbf{TODO} Střídá se značení $i < \omega$ a $n \in \N$, udělat jednotně?
 
 \end{document}
