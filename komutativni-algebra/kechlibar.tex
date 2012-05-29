@@ -24,7 +24,7 @@
 \newtheorem{tvrzeni}[numb]{Tvrzení}
 \newtheorem{dusledek}[numb]{Důsledek}
 
-\title{Konstrukce noetherovského okruhu, jehož celistvý uzávěr není
+\title{Konstrukce noetherovského okruhu, jehož celistvý uzávěr\\ není
 	noetherovský}
 \author{Adam Bartoš, Tomáš Jakl, Jan Kosina, Martin Raška, Jiří Vančura}
 
@@ -167,6 +167,8 @@ $j \in \N$, dané předpisem:
 	\item $\p M = \{ m : m \text{ je monický polynom v } B[b_j : j < \omega] \}$
 \end{itemize}
 
+\pozorovani $c_k = X_{2k} + Z_3 c_{k+1}$, $d_k = X_{2k+1} + Z_3 d_{k+1}$
+
 \veta $B[b_0]$ je noetherovský.
 \begin{proof}
 	 Protože $B[b_0] \simeq B[Y] / \{ f \in B[Y] : f(b_0) = 0 \}$. Díky
@@ -194,11 +196,35 @@ $j \in \N$, dané předpisem:
 	K$ platí, že $f^p = \sum_{m\in\p M} f^p_m\,m^p \in B$.
 \end{proof}
 
+\lemma[VII.7, jen strana nepožadující ($p=2$)] $B[b_i : i < \omega] \supseteq
+\bigcup_{k < \omega} B[b_i : i < k]$
+\begin{proof}
+	Víme, že $\bigcup_{k < \omega} B[b_i : i < k] = \bigcup_{k < \omega}
+	B[b_k]$.
+
+	Nechť $a = \frac{\beta_1 + \beta_2 b_0}{Z_3r^l} \in A$, pro nějaká
+	$\beta_1, \beta_2 \in B$. Označme $\beth_l$ prvních $l$ členů mocninného
+	rozvoje $Z_3$ v $b_0$
+	
+	\[ b_0 = \underbrace{\sum_{i < l} (X_{2i} Z_1 + X_{2i+1} Z_2)
+	Z_3^i}_{\beth_l} + Z_3^l b_l. \]
+
+	Potom z $b_0 = \beth_l + Z_3^l\,b_l$ a $\beta_1 + \beta_2\,b_0 = Z_3^l a$
+	platí, že $Z_3^l a - Z_3^l\,\beta_2\,b_l = \beta_1 + \beta_2\,\beth_l$.
+	Protože $\beta_1 + \beta_2\,\beth_l \in B$, je i $Z_3^l (a - \beta_2\,b_l)
+	\in B$. Libovolná řada náleží $B$ pouze v závislosti na jejích
+	koeficientech u $Z_1, Z_2, Z_3$. Proto pokud $Z_3 v \in B$, pak už i $v \in
+	B$. A tedy i $(a - \beta_2\,b_l) \in B$.
+
+	Z toho dostáváme požadované $a = (a - \beta_2\,b_l) + \beta_2\,b_l \in B[b_i
+	: i < \omega]$.
+\end{proof}
+
 \veta $B[b_i : i < \omega]$ je celistvým uzávěrem $B[b_0]$ v $A$.
 \begin{proof}
 	Že $B[b_i : i < \omega]$ je obsaženo v celistvém uzávěru $B[b_0]$ plyne z
 	Lemmatu \ref{celistvostA}, protože každý prvek z $A$ je celistvý v $B$
-	(tedy i všechny $b_i$) a o to spíše v $B[b_0]$.
+	(tedy i všechny $b_i$) a o to spíše je celistvý v $B[b_0]$.
 
 	\dots (\textbf{TODO})
 \end{proof}
@@ -206,13 +232,13 @@ $j \in \N$, dané předpisem:
 
 \veta $B[b_i : i < \omega]$ není noetherovský.
 \begin{proof}
-	Označme $\overline{B} = B[b_i : i < \omega]$. Dokážeme, že posloupnost
-	ideálů $I_n = \sum_{i < n} b_i \overline{B}$ je ostře rostoucí. K tomu
+	Označme $\tilde{B} = B[b_i : i < \omega]$. Dokážeme, že posloupnost
+	ideálů $I_n = \sum_{i < n} b_i \tilde{B}$ je ostře rostoucí. K tomu
 	stačí ukázat, že $b_n \notin I_n$, $\forall n < \omega$.
 
 	Budeme postupovat sporem. Ať $n \in \N$ je nejmenší, že $b_n \in I_n$.
-	Existuje tedy poslouponost $\{e_i\}_{i < n} \subset \overline B$ tak, že
-	$b_n = \sum_{i < n} e_i b_i$. Každý z $e_i \in \overline B$, a proto jde
+	Existuje tedy poslouponost $\{e_i\}_{i < n} \subset \tilde B$ tak, že
+	$b_n = \sum_{i < n} e_i b_i$. Každý z $e_i \in \tilde B$, a proto jde
 	vyjádřit jako $e_i = \sum_{m \in \p M} f^i_m m$, pro $f^i_m \in B$, kde
 	pouze konečně mnoho $f^i_m$ je nenulových.
 
@@ -245,5 +271,7 @@ $j \in \N$, dané předpisem:
 \end{proof}
 
 \textbf{TODO} Střídá se značení $i < \omega$ a $n \in \N$, udělat jednotně?
+Jednotně taky psaní řad, tzn. jestli je člen $X$ či $Z_i$ před nebo za
+koeficientem.
 
 \end{document}
