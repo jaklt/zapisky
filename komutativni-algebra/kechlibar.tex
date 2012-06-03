@@ -41,7 +41,7 @@ V našem textu budeme pracovat pouze s komutativními okruhy.
 	neurčité $X$.
 	\item Krullova dimenze okruhu je $$alt(R) = sup \{ |\p P| : \p P~\text{je
 	ostře rostoucí posloupost prvoideálů} \} - 1.$$
-	\item Označme $gen(I)$ minimální kardinalita počtu generátorů ideálu $I$.
+	\item Označme $gen(I)$ minimální kardinalitu počtu generátorů ideálu $I$.
 	\item Pokud je okruh $R$ lokální, má jediný maximální ideál. Označme tento
 	maximální ideál $M_R$.
 \end{itemize}
@@ -85,7 +85,7 @@ stejným značením/pojmenováním.
 \begin{itemize}
 	\item $K_0$ buď perfektní těleso charakteristiky $p$
 	\item $K$ buď $K_0(X_i : i < \omega)$ (podílové těleso okruhu $K[X_i : i <
-	      \omega]$), kde $X_i$ jsou nové proměnné
+	      \omega]$), kde $X_i$ jsou nové různé proměnné
 	\item $A$ buď $K[[Z_1,Z_2,Z_3]]$
 	\item $B$ buď $K^p[[Z_1,Z_2,Z_3]][K]$
 \end{itemize}
@@ -93,7 +93,7 @@ stejným značením/pojmenováním.
 objektů. Nějak očesat?
 
 
-\veta $A$ je lokální, noetherovský, $alt(A) = 3$ a regulární.
+\veta $A$ je lokální, noetherovský, $alt(A) = 3$ a je regulární.
 \begin{proof}
 	$A$ je lokální, protože jeho maximální ideál $Z_1A + Z_2A + Z_3A$ obsahuje
 	právě všechny neinvertibilní prvky okruhu. Ze zobecněné Hilbertovy věty
@@ -103,7 +103,8 @@ objektů. Nějak očesat?
 	toho, že $0 \subsetneq Z_1A \subsetneq Z_1A + Z_2A \subsetneq Z_1A + Z_2A +
 	Z_3A$ je řetězec ideálů, druhá nerovnost z Věty o Krullovy dimenzi.
 
-	Tedy $alt(A) = gen(M_A) = 3$ a protože $A$ je noetherovský, je regulární.
+	Tedy $alt(A) = gen(M_A) = 3$ a protože $A$ je lokální noetherovský, je i
+	regulární.
 \end{proof}
 
 \lemma Buď $S$ noetherovský okruh a Buď $R \subseteq S$ jeho podokruh. Pokud
@@ -114,50 +115,65 @@ pak $R$ je noetherovský.
 	$I \subseteq R$, který není konečně generován. Existuje nekonečná
 	posloupnost ideálů $I_i$ tak, že:
 
-	$$I_1 \subsetneq I_2 \subsetneq \dots \subseteq I$$
+	$$I_1 \subsetneq I_2 \subsetneq \quad \ldots \quad \subseteq I$$
 
 	\noindent Potom, ale pro posloupnost ideálů $I_1S, I_2S, \dots$ v $S$ z
 	noetherovskosti existuje $n \in \N$ tak, že:
 
-	$$I_1S \subseteq I_2S \subseteq \dots \subseteq I_nS = I_{n+1}S = .. = IS$$
+	$$I_1S \subseteq I_2S \subseteq \quad \ldots \quad \subseteq I_nS =
+	I_{n+1}S = \quad \ldots \quad = IS$$
 
 	\noindent Podle předpokladu je $I_n = I_nS \cap R = I_{n+1}S \cap R =
 	I_{n+1}$, ale $I_n \not= I_{n+1}$, což je spor.
 \end{proof}
 
 
-\veta $B$ je noetherovský.
+\lemma Buď $T \subseteq U$ tělesa, $\{X_i: i < n\}$ neurčité, pak $T[[X_i: i <
+n]][K]$ je noetherovský obor.
 \begin{proof}
-	K použití předchozího lemmatu stačí ukázat, že pro každý konečně generovaný
-	ideál $I \subseteq B$ platí, že $IA \cap B \subseteq I$.
+	Označme $R = T[[X_i: i < n]][U]$, $S = U[[X_i: i < n]]$. Platí, že $R
+	\subseteq S$ a $S$ je podle zobecněné Hilbertovy věty noetherovský obor. K
+	použití předchozího lemmatu stačí ukázat, že pro každý konečně generovaný
+	ideál $I \subseteq R$ platí, že $IS \cap R \subseteq I$. Buď $I = \sum_{i =
+	1}^m r_i R$, konečně generovaný ideál v $R$ pro nějaká $r_i \in R$. Buď $r
+	\in IS \cap R$, ukážeme, že $r \in I$.
 
-	Buď $I = (a_1, a_2, \dots, a_n)_B$ a $b \in IA \cap B$. Uvažujme těleso $T$
-	nadtěleso $K^P$ vzniklé přidáním koeficientů z mocninných řad $a_i$ a $b$
-	pro všechny $i = 1, \dots n$. Těleso $T$ je konečné rozšíření $K^P$.
-	Označme $\{\alpha_\lambda\}$ lineární bází $T$ nad $K$.
+	Z $r \in IS = \sum_{i = 1}^m r_i RS = \sum_{i = 1}^m r_i S$, víme, že $r =
+	\sum_{i = 1}^m r_i f_i$, pro nějaká $f_i \in S$. Platí, že $s \in S$ je v
+	$R$, právě tehdy když existuje $U_s = \{u_i: i = 1, \dots, l\} \subseteq U$, $\{s_i:
+	i = 1, \dots, l\} \subseteq R$, že $s = \sum_{i = 1}^l u_i s_i$.
 
-	Protože $b$ i $a_i$ pro všechna $i=1,\dots,n$ náleží $B$, platí že
-	$T[[Z_1,Z_2,Z_3]] \subseteq B$. A protože $b \in IA$ lze $b$ vyjádřit jako
-	$b = \sum_{i = 1}^m f_i a_i$, pro nějaká $f_i \in A$. Každý z prvků $f_i$
-	lze rozepsat jako $f_i = g_i + h_i$, kde $g_i$ je řada s koeficienty z $T$
-	a $h_i$ je řada s koeficienty vzniklé jako lineární kombinace
-	$\{\alpha_\lambda\} \setminus \{1\}$.
+	Uvažme těleso $W = T(U_r \cup \bigcup_{i = 1}^m U_{r_i}) \subseteq U$. $W$ je
+	z definice konečného lineárního stupně nad $T$. Máme tedy $r$, $r_i \in
+	W[[X_i: i < n]] \subseteq R$. Uvažme rozklad $U = W \oplus U'$. Ten
+	indukuje rozklad $S = W[[X_i: i < n]] \oplus U'[[X_i: i < n]]$. Proto
+	můžeme rozepsat každý z prvků $f_i$ jako $f_i = g_i + h_i$, kde $g_i \in
+	W[[X_i: i < n]]$, $h_i \in U'[[X_i: i < n]]$.
 
-	Tedy $b = \sum a_ig_i + \sum a_ih_i$, ale $b$ má koeficienty pouze z $T$, a
-	proto $h_i = 0$ pro všechna $i = 1,\dots,n$. Proto $b \in \sum a_iB = I$.
+	Potom $r = \sum_{i = 1}^m r_i f_i = \sum_{i = 1}^m r_i g_i + \sum_{i = 1}^m
+	r_i h_i$, přičemž $r$ i $\sum_{i = 1}^m r_i g_i \in W[[X_i: i < n]]$ a
+	$\sum_{i = 1}^m r_i h_i \in U'[[X_i: i < n]]$, a tedy $\sum_{i = 1}^m r_i h_i
+	= 0$. Celkem $r = \sum_{i = 1}^m r_i g_i \in \sum_{i = 1}^m r_i W[[X_i: i <
+	n]] \subseteq \sum_{i = 1}^m r_i R = I$. Tedy $r \in I$.
 \end{proof}
-\textbf{TODO} Zapsat zdůvodnění lineárního rozšíření konečného stupně.
 
-\veta $B$ je lokální, noetherovský, $alt(B) = 3$ a regulární.
+\veta $B$ je lokální, noetherovský, $alt(B) = 3$ a je regulární.
+\begin{proof}
+Protože $K^p \subseteq K$ je těleso. Je užitím předchozí věty $B$ noetherovský.
+
+\dots (TODO lokalita)
+\end{proof}
 
 \tvrzeni[Fakt] Každý regulární obor je Gaussův.
 
-\tvrzeni[Fakt] Každý Pseudobezoutův obor (a tím spíše Gaussův obor) je celistvě uzavřen.
-
+\tvrzeni[Fakt] Každý Pseudobezoutův obor (a tím spíše Gaussův obor) je celistvě
+uzavřen.
 \dusledek Okruhy $A$ a $B$ jsou celistvě uzavřeny.
-\textbf{TODO} Je potřeba v dalším textu? + Přidat důkaz? (upřesnění)
+
+\textbf{TODO} Je potřeba v dalším textu? + Přidat důkaz?
 
 \section{Okruhy $B[b_0]$ a $B[b_i : i < \omega]$}
+
 \definice Označme formální mocninné řady $b_j$, $c_j$ a $d_j \in A$ pro všechna
 $j \in \N$, dané předpisem:
 \begin{itemize}
