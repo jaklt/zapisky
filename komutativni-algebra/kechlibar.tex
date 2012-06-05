@@ -129,7 +129,7 @@ pak $R$ je noetherovský.
 
 
 \lemma Buď $T \subseteq U$ tělesa, $\{X_i: i < n\}$ neurčité, pak $T[[X_i: i <
-n]][K]$ je noetherovský obor.
+n]][U]$ je noetherovský obor.
 \begin{proof}
 	Označme $R = T[[X_i: i < n]][U]$, $S = U[[X_i: i < n]]$. Platí, že $R
 	\subseteq S$ a $S$ je podle zobecněné Hilbertovy věty noetherovský obor. K
@@ -140,8 +140,8 @@ n]][K]$ je noetherovský obor.
 
 	Z $r \in IS = \sum_{i = 1}^m r_i RS = \sum_{i = 1}^m r_i S$, víme, že $r =
 	\sum_{i = 1}^m r_i f_i$, pro nějaká $f_i \in S$. Platí, že $s \in S$ je v
-	$R$, právě tehdy když existuje $U_s = \{u_i: i = 1, \dots, l\} \subseteq U$, $\{s_i:
-	i = 1, \dots, l\} \subseteq R$, že $s = \sum_{i = 1}^l u_i s_i$.
+	$R$, právě tehdy když existuje $U_s = \{u_i: i = 1, \dots, l\} \subseteq U$
+	a $\{s_i: i = 1, \dots, l\} \subseteq R$, že $s = \sum_{i = 1}^l u_i s_i$.
 
 	Uvažme těleso $W = T(U_r \cup \bigcup_{i = 1}^m U_{r_i}) \subseteq U$. $W$ je
 	z definice konečného lineárního stupně nad $T$. Máme tedy $r$, $r_i \in
@@ -180,7 +180,8 @@ $j \in \N$, dané předpisem:
 	\item $c_j = \sum_{i < \omega} X_{2(i + j)} Z^i_3$
 	\item $d_j = \sum_{i < \omega} X_{2(i + j) + 1} Z^i_3$
 	\item $b_j = Z_1c_j + Z_2d_j$
-	\item $\p M = \{ m : m \text{ je monický polynom v } B[b_j : j < \omega] \}$
+	\item $\p M = \{ m : m \text{ je monický polynom o proměnných } Z_1, Z_2,
+	Z_3 \text{ v } B[b_j : j < \omega] \}$
 \end{itemize}
 
 \pozorovani $c_k = X_{2k} + Z_3 c_{k+1}$, $d_k = X_{2k+1} + Z_3 d_{k+1}$
@@ -208,8 +209,8 @@ $j \in \N$, dané předpisem:
 	(rozšíření oboru zachovává jeho charakteristiku, takže obor je
 	charakteristiky $p$).
 
-	Pro libovolné $f \in A$ potom $f = \sum_{m \in \p M} f_n\,m$ pro $f_n \in
-	K$ platí, že $f^p = \sum_{m\in\p M} f^p_m\,m^p \in B$.
+	Pro libovolné $f \in A$, je $f = \sum_{m \in \p M} f_m\,m$ pro $f_m \in K$
+	a platí, že $f^p = \sum_{m\in\p M} f^p_m\,m^p \in B$.
 \end{proof}
 
 \lemma[VII.7, jen strana nepožadující ($p=2$)] $B[b_i : i < \omega] \supseteq
@@ -220,10 +221,12 @@ $j \in \N$, dané předpisem:
 
 	Nechť $a = \frac{\beta_1 + \beta_2 b_0}{Z_3r^l} \in A$, pro nějaká
 	$\beta_1, \beta_2 \in B$. Označme $\beth_l$ prvních $l$ členů mocninného
-	rozvoje $Z_3$ v $b_0$
+	rozvoje $Z_3$ v $b_0$:
 	
-	\[ b_0 = \underbrace{\sum_{i < l} (X_{2i} Z_1 + X_{2i+1} Z_2)
-	Z_3^i}_{\beth_l} + Z_3^l b_l. \]
+	\[
+	b_0 = \underbrace{\sum_{i < l} (X_{2i} Z_1 + X_{2i+1} Z_2)
+	Z_3^i}_{\beth_l} + Z_3^l b_l.
+	\]
 
 	Potom z $b_0 = \beth_l + Z_3^l\,b_l$ a $\beta_1 + \beta_2\,b_0 = Z_3^l a$
 	platí, že $Z_3^l a - Z_3^l\,\beta_2\,b_l = \beta_1 + \beta_2\,\beth_l$.
