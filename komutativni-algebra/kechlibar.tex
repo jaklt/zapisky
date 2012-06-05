@@ -85,6 +85,23 @@ V této kapitole budeme zkoumat vlastnosti oborů odvozených od oboru formáln�
 	}
 \end{pozorovani}
 
+\begin{definice}
+	Nechť $R$ je okruh, $X$ množina neurčitých. Definujeme stupeň monického polynomu, jako $\deg_{R[[X]]} m\colon X \to \N_0$ funkci přiřazující pro monický polynom $m \in R[[X]]$ a nějaké proměnné $x \in X$ číslo odpovídající mocnině, ve které se $x$ v $m$ vyskytuje.
+
+	Například $(\deg_{\m Z[[x,y,z]]} x^2y)(x) = 2$ a $(\deg_{\m Z[[x,y,z]]} x^2y)(z) = 0$.
+
+	Dále definujeme porovnání dvou stupňů monických polynomů. Píšeme, že $\deg_{R[[X]]} m_1 \leq \deg_{R[[X]]} m_2$ právě tehdy, když
+	\[
+	\forall x \in X\colon (\deg_{R[[X]]} m_1)(x) \leq (\deg_{R[[X]]} m_2)(x).
+	\]
+	Navíc definujeme ostrou nerovnost, $\deg_{R[[X]]} m_1 < \deg_{R[[X]]} m_2$ právě tehdy, když
+	\[
+	\deg_{R[[X]]} m_1 \leq \deg_{R[[X]]} m_2 \quad\&\quad \exists x \in X\colon (\deg_{R[[X]]} m_1)(x) < (\deg_{R[[X]]} m_2)(x).
+	\]
+
+	Poznámka, pokud je okruh formánlích mocninných řad zřejmý z kontextu, píšeme pouze $\deg m$.
+\end{definice}
+
 
 \subsection{Noetherovskost}
 
@@ -118,7 +135,7 @@ V této kapitole budeme zkoumat vlastnosti oborů odvozených od oboru formáln�
 \end{lemma}
 
 \begin{poznamka}
-	Inkluze $I \subseteq IS \cap R$ z předpokladu předchozího lemmatu je zřejmě splněna.
+	Inkluze $I \subseteq IS \cap R$ z předpokladu předchozího lemmatu je zřejmě splněna vždy.
 \end{poznamka}
 
 \begin{tvrzeni}
@@ -133,7 +150,7 @@ V této kapitole budeme zkoumat vlastnosti oborů odvozených od oboru formáln�
 		\ml{
 			r \in IS = \sum\I r_i RS = \sum\I r_i S.
 		}
-		Tedy $r = \sum\I r_i f_i$ pro nějaké řady $\{f_i\}\I \subseteq S$.
+		Tedy $r = \sum\I r_i f_i$ pro nějaké řady $f_i \in S$.
 
 		Uvažme $F = K_r \cup \bigcup\I K_{r_i}$ a $U = T(F)$. $F$ je konečná množina prvků $K$, které je algebraické nad $T$, a $U$ je tedy rozšíření $T$ konečného lineárního stupně. Dle pozorování \ref{thm:TXK} máme $r, r_i \in U[[X]] \subseteq R$, $i = 1, \hdots, n$.
 
@@ -173,7 +190,7 @@ V této kapitole budeme zkoumat vlastnosti oborů odvozených od oboru formáln�
 	Nechť $K$ je těleso, $X$ libovolně mnoho neurčitých. Pak v $K[[X]]$ jsou invertibilní právě řady s nenulovým absolutním členem.
 
 	\begin{proof}
-		Zvolme $f \in K[[X]]$ s nenulovým absolutním členem. Označme $\p M$ množinu všech monických monočlenů v neurčitých $X$. Pak můžeme psát $f = \sum_{m \in \p M} f_m m$. Bez újmy na obecnosti absolutní člen $f_1 = 1$. Hledáme $g = \sum_{m \in \p M} g_m m \in K[[x]]$, že $f g = 1$. Chceme, aby $f_1 g_1 = 1$, tedy $g_1 = 1$. Dále pro $m \in \p M \setminus \{1\}$ chceme následující:
+		Zvolme $f \in K[[X]]$ s nenulovým absolutním členem. Označme $\p M$ množinu všech monických monočlenů v neurčitých $X$. Pak můžeme psát $f = \sum_{m \in \p M} f_m m$. Bez újmy na obecnosti, absolutní člen $f_1 = 1$. Hledáme $g = \sum_{m \in \p M} g_m m \in K[[X]]$, že $f g = 1$. Chceme, aby $f_1 g_1 = 1$, tedy $g_1 = 1$. Dále pro $m \in \p M \setminus \{1\}$ chceme následující:
 		\ml{
 			0 = (f g)_m = \sum_{\substack{n, n' \in \p M\\ n n' = m}} f_{n'} g_n = f_1 g_m + \sum_{\substack{n, n' \in \p M\\ n n' = m\\ n \not= m}} f_{n'} g_n = g_m + \sum_{\substack{n, n' \in \p M\\ n n' = m\\ \deg n < \deg m}} f_{n'} g_n.
 		}
@@ -212,7 +229,7 @@ Nyní od obecné situace algebraického rozšíření těles $T \subseteq K$ př
 	Nechť $R$ je okruh prvočíselné charakteristiky $p$, $X$ jedna neurčitá, pak pro $f = \sum_{i = 0}^\infty f_i X^i \in R[[X]]$ platí $f^p = \sum_{i = 0}^\infty f_i^p X^{ip}$. Tedy mocnění na $p$-tou probíhá člen po členu.
 
 	\begin{proof}
-		Máme $f = f_0 + (f - f_0) = f_0 + X g$, $g \in R[[X]]$. Pak
+		Máme $f = f_0 + (f - f_0) = f_0 + X g$, pro nějaké $g \in R[[X]]$. Pak
 		\ml{
 			f^p = \sum_{i = 0}^p \binom{p}{i} f_0^i (X g)^{p - i} = f_0^p + X^p g^p,
 		}
@@ -232,7 +249,7 @@ Nyní od obecné situace algebraického rozšíření těles $T \subseteq K$ př
 	Nechť $K$ je těleso charakteristiky $p > 0$, $X$ konečně mnoho neurčitých, $R$ meziobor: $K^p[[X]] \subseteq R \subseteq K[[X]]$. Pak $f \in R$ je invertibilní, právě když má nenulový absolutní člen, a $R$ je lokální obor s $M_R = R \cap M_{K[[X]]} \supseteq \sum_{x \in X} x R$.
 
 	\begin{proof}
-		Nechť $f \in R$ má nenulový absolutní člen. Pak dle předchozího důsledku $f^p \in K^p[[X]]$ a má rovněž nenulový absolutní člen. Dle lemmatu \ref{thm:KX_inv} existuje $g \in K^p[[X]]$, že $f^p g = 1$. Potom ale $f f^{p - 1} g = 1$ a $f^{p - 1} g \in R$, tedy $f$ je invertibilní v $R$.
+		Nechť $f \in R$ má nenulový absolutní člen. Pak dle předchozího důsledku $f^p \in K^p[[X]]$ a má rovněž nenulový absolutní člen. Dle lemmatu \ref{thm:KX_inv} existuje $g \in K^p[[X]]$, že $f^p g = 1$. Potom ale $f f^{p - 1} g = 1$ a protože $f^{p - 1} g \in R$, je tedy $f$ invertibilní v $R$.
 
 		Naopak řady s nulovým absolutním členem tvoří vlastní ideál, tedy nemohou být invertibilní. Tento vlastní ideál je díky předchozímu odstavci jediný maximální, a tedy $R$ je lokální. Zbytek tvrzení je zřejmý.
 	\end{proof}
@@ -246,13 +263,13 @@ Nyní od obecné situace algebraického rozšíření těles $T \subseteq K$ př
 	\ml{
 		\alt R = \sup\{|\p P|: \p P \text{ je ostře rostoucí posloupnost prvoideálů}\} - 1,
 	}
-	tedy jako největší počet skoků v rostoucím řetězci prvoideálů.
+	tedy jako nejdelší ostře rostoucí posloupnost prvoideálů v $R$. (\todo{Stejně to nefunguje pro nekonečný věci, protože $\omega_0 - 1$ není definováno.})
 
 	Dále pro $I \subseteq R$ ideál definujme
 	\ml{
-		\gen I = \min\{|G|: G \subseteq R, G \text{ generuje } I\},
+		\gen_R I = \min\{|G|: G \subseteq R, G \text{ generuje } I\},
 	}
-	tedy nejmenší počet generátorů $I$.
+	tedy nejmenší počet generátorů $I$ v $R$. Pokud je okruh $R$ zřejmý z kontextu, píšeme pouze $\gen I$.
 \end{definice}
 
 \begin{definice}
@@ -278,14 +295,14 @@ Nyní od obecné situace algebraického rozšíření těles $T \subseteq K$ př
 		\begin{items}
 			\item $M_R = \sum_{i = 1}^n X_i R$, tedy $\gen M_r \leq n$.
 			\item Dle věty o Krullově dimenzi $\alt R \leq \gen M_R$.
-			\item $\{\sum_{i = 0}^k X_i R: k = 0, \hdots, n\}$ je ostře rostoucí řetězec prvoideálů, protože obsahuje-li každý člen součinu řad alespoň jednu z neurčitých $X_1, \hdots, X_k$, musí alespoň jednu z nich obsahovat i každý člen obou řad (jinak součin členů nejmenších stupňů, které neobsahují žádnou takovou neurčitou, také žádnou z nich neobsahuje). Tedy $n \leq \alt M_R$.
+			\item $\{R\}\cup\{\sum_{i = 1}^k X_i R\}_{k = 1}^n$ je ostře rostoucí řetězec prvoideálů, protože obsahuje-li každý člen součinu řad alespoň jednu z neurčitých $X_1, \hdots, X_k$, musí alespoň jednu z nich obsahovat i každý člen obou řad (jinak součin členů nejmenších stupňů, které neobsahují žádnou takovou neurčitou, také žádnou z nich neobsahuje). Tedy $n \leq \alt M_R$.
 		\end{items}
 		Celkem $n \leq \alt M_R \leq \gen M_R \leq n$.
 	\end{proof}
 \end{tvrzeni}
 
 \begin{dusledek} \label{thm:reg}
-	Buď $T \subseteq K$ algebraické rozšíření těles, $X$ konečně mnoho ($n$) neurčitých. Pak $T[[X]] \subseteq T[[X]][K] \subseteq K[[X]]$ jsou regulární lokální obory dimenze $n$.
+	Buď $T \subseteq K$ algebraické rozšíření těles, $X$ konečně mnoho $(n)$ neurčitých. Pak $T[[X]] \subseteq T[[X]][K] \subseteq K[[X]]$ jsou regulární lokální obory (dimenze $n$).
 \end{dusledek}
 
 
@@ -326,24 +343,24 @@ Následující definované struktury budeme volně používat po zbytek textu se
 
 	\begin{items}
 		\item $K_0$ buď perfektní těleso charakteristiky $p > 0$, tj.\ $K_0^p = K_0$.
-		\item $K = Q(K_0[X])$, kde $X = \{X_i: i \in \N_0\}$ jsou neurčité.
-		\item $A = K[[Z_1, Z_2, Z_3]]$, kde $Z_1, Z_2, Z_3$ jsou neurčité.
+		\item $K = Q(K_0[X])$, kde $X = \{X_i: i \in \N_0\}$ jsou různé neurčité.
+		\item $A = K[[Z_1, Z_2, Z_3]]$, kde $Z_1, Z_2, Z_3$ jsou různé neurčité (a různé od neurčitých v $X$).
 		\item $B = K^p[[Z_1, Z_2, Z_3]][K]$
 		\item $c_j = \sum\I X_{2(i + j)} Z_3^i$,\quad $d_j = \sum\I X_{2(i + j) + 1} Z_3^i$,\quad $b_j = Z_1 c_j + Z_2 d_j$,\quad $b = b_0$.
 		\item $P_k(c_j) = \sum\PI X_{2(i + j)} Z_3^i$, $P_k(d_j) = \sum\PI X_{2(i + j) + 1} Z_3^i$, $P_k(b_j) = Z_1 P_k(c_j) + Z_2 P_k(d_j)$, což jsou počáteční úseky řad $b_j$, $c_j$, $d_j$ vzhledem k proměnné $Z_3$.
 		\item $C = \icl{B[b]}$.
-		\item $\tilde{B} = B[b_i: i \in \N_0]$.
 	\end{items}
 \end{definice}
+\newcommand{\Ball}{\ensuremath{B[b_i: i \in \N_0]}} % Zkratka, pro nazornost.
 
-Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr $C$ je roven $\tilde{B} = B[b_i: i \in \N_0]$, což není noetherovský obor.
+Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr $C$ je roven $B[b_i: i \in \N_0]$, což není noetherovský obor.
 
 \begin{pozorovani}
 	Použitím obecných tvrzení z minulé kapitoly obdržíme následující vlastnosti definovaných struktur:
 	\begin{items}
-		\item $A$, $B$ jsou regulární lokální obory Krullovy dimenze $3$, a jsou tedy celistvě uzavřeny (\ref{thm:reg}, \ref{thm:icl}).
-		\item Obor $A$ je celistvý nad $B$ (\ref{thm:KX_integral}).
-		\item $B[b]$ je lokální noetherovský obor (\ref{thm:noe}, \ref{thm:R_loc}).
+		\item $A$, $B$ jsou regulární lokální obory Krullovy dimenze $3$, a jsou tedy celistvě uzavřeny (důsledky \ref{thm:reg} a \ref{thm:icl}).
+		\item Obor $A$ je celistvý nad $B$ (tvrzení \ref{thm:KX_integral}).
+		\item $B[b]$ je lokální noetherovský obor (důsledek \ref{thm:noe} a tvrzení \ref{thm:R_loc}).
 	\end{items}
 \end{pozorovani}
 
@@ -356,7 +373,7 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 \end{pozorovani}
 
 \begin{tvrzeni}
-	Platí inkluze $\tilde{B} \subseteq C$.
+	Platí inkluze $\Ball \subseteq C$.
 
 	\begin{proof}
 		Z předchozího pozorování vidíme, že $b_{k + 1} = \frac{b_k - Z_1 X_{2k} - Z_2 X_{2k + 1}}{Z_3} \in Q(B[b_k])$. Indukcí tedy dostáváme $b_k \in Q(B[b])$ pro každé $k \in \N_0$.
@@ -366,11 +383,11 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 \end{tvrzeni}
 
 \begin{dusledek}
-	Neplatí $M_{B[b]} = Z_1 B[b] + Z_2 B[b] + Z_3 B[b]$, jinak by totiž $B[b]$ byl dle \ref{thm:R_reg} regulární lokální obor, a tedy celistvě uzavřený, to je ale ve sporu s předchozím tvrzením.
+	Neplatí $M_{B[b]} = Z_1 B[b] + Z_2 B[b] + Z_3 B[b]$, jinak by totiž $B[b]$ byl dle tvrzení \ref{thm:R_reg} regulární lokální obor, a tedy celistvě uzavřený, to je ale ve sporu s předchozím tvrzením.
 \end{dusledek}
 
 \begin{lemma}[VII.7, jen strana nepožadující ($p = 2$)]
-	Platí $A \cap \bigcup_{k = 0}^\infty \frac{B b + b}{Z_3^k} \subseteq \tilde{B}$.
+	Platí $A \cap \bigcup_{k = 0}^\infty \frac{B b + b}{Z_3^k} \subseteq \Ball$.
 
 	\begin{proof}
 		Nechť $a = \frac{\beta_1 + \beta_2 b}{Z_3r^l} \in A$, pro nějaká $\beta_1, \beta_2 \in B$. Označme $\beth_l$ prvních $l$ členů mocninného rozvoje $Z_3$ v $b$:
@@ -381,12 +398,12 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 		Potom z $b = \beth_l + Z_3^l\,b_l$ a $\beta_1 + \beta_2\,b = Z_3^l a$ platí, že $Z_3^l a - Z_3^l\,\beta_2\,b_l = \beta_1 + \beta_2\,\beth_l$. Protože $\beta_1 + \beta_2\,\beth_l \in B$, je i $Z_3^l (a - \beta_2\,b_l)
 		\in B$. Libovolná řada náleží $B$ pouze v závislosti na jejích koeficientech u $Z_1, Z_2, Z_3$. Proto pokud $Z_3 v \in B$, pak už i $v \in B$. A tedy i $(a - \beta_2\,b_l) \in B$.
 
-		Z toho dostáváme požadované $a = (a - \beta_2\,b_l) + \beta_2\,b_l \in B + B b_l \subseteq B[b_l] \subseteq \tilde{B}$.
+		Z toho dostáváme požadované $a = (a - \beta_2\,b_l) + \beta_2\,b_l \in B + B b_l \subseteq B[b_l] \subseteq \Ball$.
 	\end{proof}
 \end{lemma}
 
 \begin{tvrzeni}
-	Platí následující inkluze: $C \subseteq \tilde{B}$, resp.\ $\tilde{B}$ je celistvě uzavřený obor.
+	Platí následující inkluze: $C \subseteq \Ball$, resp.\ $\Ball$ je celistvě uzavřený obor a $\Ball = \icl{B[b]}$.
 
 	\begin{proof}
 		\todo
@@ -394,14 +411,14 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 \end{tvrzeni}
 
 \begin{tvrzeni}
-	Obor $\tilde{B}$ není noetherovský.
+	Obor $\Ball$ není noetherovský.
 	
 	\begin{proof}
 		\newcommand*{\I}{_{i = 0}^{n - 1}}
 
-		Dokážeme, že posloupnost ideálů $I_n = \sum\I b_i \tilde{B}$ je ostře rostoucí. K tomu stačí ukázat, že $b_n \notin I_{n - 1}$, $\forall n \in \N$.
+		Dokážeme, že posloupnost ideálů $I_n = \sum\I b_i \Ball$ je ostře rostoucí. K tomu stačí ukázat, že $b_n \notin I_{n - 1}$, $\forall n \in \N$.
 
-		Budeme postupovat sporem. Ať $n \in \N$ je nejmenší, že $b_n \in I_{n - 1}$. Existuje tedy posloupnost $\{f_i\}\I \subseteq \tilde{B}$ tak, že $b_n = \sum\I f_i b_i$. Označme $\p M$ množinu všech \uv{monických monočlenů v neurčitých $\{b_i: i \in \N_0\}$}, jako bychom se na $\tilde{B}$ dívali jako na polynomy v těchto neurčitých s koeficienty v $B$. Každý $f_i \in \tilde{B}$, a proto je lze vyjádřit jako $f_i = \sum_{m \in \p M} f_{i, m} m$, pro $f_{i, m} \in B$, kde pouze konečně mnoho $f_{i, m}$ je nenulových.
+		Budeme postupovat sporem. Ať $n \in \N$ je nejmenší, že $b_n \in I_{n - 1}$. Existuje tedy posloupnost $\{f_i\}\I \subseteq \Ball$ tak, že $b_n = \sum\I f_i b_i$. Označme $\p M$ množinu všech \uv{monických monočlenů v neurčitých $\{b_i: i \in \N_0\}$}, jako bychom se na $\Ball$ dívali jako na polynomy v těchto neurčitých s koeficienty v $B$. Každý $f_i \in \Ball$, a proto je lze vyjádřit jako $f_i = \sum_{m \in \p M} f_{i, m} m$, pro $f_{i, m} \in B$, kde pouze konečně mnoho $f_{i, m}$ je nenulových.
 
 		Potom
 		\mld{
@@ -412,7 +429,7 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 			b_n = \underbrace{\sum\I \sum_{m \in \p M \setminus \{1\}} f_{i, m} m b_i + \sum\I \left(Z_1 g_{i, 1} + Z_2 g_{i, 2}\right)b_i}_{\in Z_1^2 A + Z_2^2 A + Z_1 Z_2 A} + \sum\I g_i b_i.
 		}
 		První dvě sumy obsahují ve svých členech vždy některé z $Z_1^2, Z_2^2$ nebo
-		$Z_1 Z_2$, ale $b_{n + 1}$ neobsahuje žádné z nich. Proto $b_{n + 1} = \sum\I g_i b_i$. Dále máme
+		$Z_1 Z_2$, ale $b_n$ neobsahuje žádné z nich. Proto $b_n = \sum\I g_i b_i$. Dále máme
 		\mld{
 			Z_1 c_n + Z_2 d_n = b_n = \sum\I g_i b_i = Z_1 \sum\I g_i c_i + Z_2 \sum\I g_i d_i
 		}
@@ -431,7 +448,7 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 		\ml{
 			(\forall k \in \N_0) (\exists i_k < n) (\exists j_k \leq k): o(g_{i_k, j_k}, X_{2(n + k)}).
 		}
-		Potom ale existuje $i$, že $g_i$ obsahuje ve svých koeficientech nekonečně mnoho neurčitých $X$. Každý koeficient je přitom z podílového tělesa polynomů v neurčitých $X$, tedy obsahuje jich konečně mnoho. Celkem existuje nekonečně mnoho koeficientů řady $g_i$, že každý z nich obsahuje jinou neurčitou $X$ v mocnině nesoudělné s $p$. Potom ale tyto koeficienty nemohou tvořit rozšíření tělesa $K^p$ konečného stupně, a tedy $g_i \notin K^p[[Z_3]][K]$ (viz \ref{thm:TXK}), což je spor.
+		Potom ale existuje $i$, že $g_i$ obsahuje ve svých koeficientech nekonečně mnoho neurčitých $X$. Každý koeficient je přitom z podílového tělesa polynomů v~neurčitých $X$. Celkem existuje nekonečně mnoho koeficientů řady $g_i$, že každý z nich obsahuje jinou neurčitou $X$ v mocnině nesoudělné s $p$. Potom ale tyto koeficienty nemohou tvořit rozšíření tělesa $K^p$ konečného stupně, a tedy $g_i \notin K^p[[Z_3]][K]$ (viz pozorování \ref{thm:TXK}), což je spor.
 	\end{proof}
 \end{tvrzeni}
 
