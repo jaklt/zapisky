@@ -213,7 +213,7 @@ Nyní od obecné situace algebraického rozšíření těles $T \subseteq K$ př
 
 	\begin{proof}
 		Máme $f = f_0 + (f - f_0) = f_0 + X g$, pro nějaké $g \in R[[X]]$. Pak
-		\ml{
+		\mld{
 			f^p = \sum_{i = 0}^p \binom{p}{i} f_0^i (X g)^{p - i} = f_0^p + X^p g^p,
 		}
 		protože ostatní binomické koeficienty jsou dělitelné $p$, a tedy nulové. Dál můžeme pokračovat indukcí.
@@ -267,12 +267,12 @@ V minulé podkapitole jsme ukázali, že řady s nulovým absolutním členem tv
 \end{dusledek}
 
 \begin{definice}
-	Nechť $X$ je libovolná podmnožina nějakého okruhu, definujme
+	Nechť $U$ je libovolná podmnožina nějakého okruhu, definujme
 	\begin{items}
-		\item $\p M(X) = \{\prod_{x \in X} x^{k_x}: k_x \in \N_0, \{x: k_x > 0\} \text{ je konečná}\}$,
-		\item $\p M_p(X) = \{\prod_{x \in X} x^{k_x}: k_x < p, \{x: k_x > 0\} \text{ je konečná}\}$.
+		\item $\p M(U) = \{\prod_{u \in U} u^{k_u}: k_u \in \N_0, \{u: k_u > 0\} \text{ je konečná}\}$,
+		\item $\p M_p(U) = \{\prod_{u \in U} u^{k_u}: k_u < p, \{u: k_u > 0\} \text{ je konečná}\}$.
 	\end{items}
-	Jedná se o množiny monických monočlenů v $X$. Ve druhém případě omezené stupněm $p$, což se hodí v charakteristice $p$. Poznamenejme, že $X$ nemusí být neurčité, jde o libovolné prvky okruhu.
+	Jedná se o množiny monických monočlenů v $U$. Ve druhém případě omezené stupněm $p$, což se hodí v charakteristice $p$. Poznamenejme, že $U$ nemusí být neurčité, jde o libovolné prvky okruhu.
 	
 	Je-li $K$ těleso, $X$ neurčité, $R \subseteq K[[X]]$, pak $R_1$ označme všechny absolutní členy $R$. Je-li $R$ podobor, pak $R_1$ zřejmě tvoří obor integrity.
 \end{definice}
@@ -283,8 +283,8 @@ V minulé podkapitole jsme ukázali, že řady s nulovým absolutním členem tv
 	\begin{proof}
 		\newcommand*{\I}{_{i = 1}^n}
 		
-		Nechť $f \in R[F]$ má nulový absolutní člen. Pišme $f = \sum\I g_i h_i$, kde $g_i \in R$, $h_i$ jsou prvky $\p M(F)$. Dle předpokladu můžeme psát $g_i = g_{i, 1} + \sum_{x \in X} x g_{i, x}$, kde $g_{i, x} \in R$. Potom máme
-		\ml{
+		Nechť $f \in R[F]$ má nulový absolutní člen. Pišme $f = \sum\I g_i h_i$, kde $g_i \in R$ a $h_i \in \p M(F)$. Dle předpokladu můžeme psát $g_i = g_{i, 1} + \sum_{x \in X} x g_{i, x}$, kde $g_{i, x} \in R$. Potom máme
+		\mld{
 			f = \sum\I g_i h_i = \sum\I g_{i, 1} h_i + \sum_{x \in X} x (\sum\I g_{i, x} h_i).
 		}
 		Přitom absolutní člen $f_1 = \sum\I g_{i, 1} h_{i, 1} = 0$, $g_{i, 1} \in R_1$, $h_{i, 1} \in \p M(F_1)$. Z předpokladu lineární nezávislosti jsou všechna $g_{i, 1} = 0$, a tedy $f \in \sum_{x \in X} x R[F]$. 
@@ -295,7 +295,7 @@ V minulé podkapitole jsme ukázali, že řady s nulovým absolutním členem tv
 	Nechť $K$ je těleso charakteristiky $p > 0$, $X$ neurčité, $R$ meziobor: $K^p[[X]] \subseteq R \subseteq K[[X]]$, jehož řady bez absolutního členu jsou generovány neurčitými, $F \subseteq K[[X]]$ libovolná podmnožina taková, že $\p M_p(F_1)$ je lineárně nezávislá nad $R_1$. Potom řady bez absolutního členu v $R[F]$ jsou generovány neurčitými.
 	
 	\begin{proof}
-		Nechť $f \in R[F]$ je řada bez absolutního členu. Protože $f^p \in K^p[[X]] \subseteq R$ (důsledek \ref{thm:p_power}), lze psát $f = \sum_{i = 1}^n g_i h_i$, kde $g_i \in R$, $h_i \in \p M_p(F)$. Dále postupujeme jako v důkazu předchozího tvrzení.
+		Nechť $f \in R[F]$ je řada bez absolutního členu. Lze psát $f = \sum_{i = 1}^n g_i h_i$, kde $g_i \in R$, $h_i \in \p M(F)$. Protože $f^p \in K^p[[X]] \subseteq R$ (důsledek \ref{thm:p_power}), platí dokonce, že $h_i \in \p M_p(F)$. Dále postupujeme jako v důkazu předchozího tvrzení.
 	\end{proof}
 \end{tvrzeni}
 	
@@ -409,7 +409,7 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 	\end{items}
 \end{pozorovani}
 
-\begin{pozorovani} Přímo z definice plynou následující vztahy mezi řadami $b_k$, $c_k$, $d_k$.
+\begin{pozorovani} \label{thm:bcd_vztahy} Přímo z definice plynou následující vztahy mezi řadami $b_k$, $c_k$, $d_k$.
 	\begin{items}
 		\item $c_k = X_{2k} + Z_3 c_{k + 1}$,\quad $d_k = X_{2k + 1} + Z_3 d_{k + 1}$,\quad $b_k = Z_1 X_{2k} + Z_2 X_{2k + 1} + Z_3 b_{k + 1}$.
 		\item $c_k = P_j(c_{k + j}) + Z_3^j c_{k + j}$,\quad $d_k = P_j(d_{k + j}) + Z_3^j d_{k + j}$,\quad $b_k = P_j(b_{k + j}) + Z_3^j b_{k +j}$.
@@ -431,6 +431,23 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 	Neplatí, že \absOK{B[b]}, jinak by totiž $B[b]$ byl dle tvrzení \ref{thm:R_reg} regulární lokální obor, a tedy celistvě uzavřený, to je ale ve sporu s předchozím tvrzením.
 \end{dusledek}
 
+\begin{lemma} \label{thm:QRf}
+	Nechť $R$ je meziobor mezi $K^p[[Z]]$ a $K[[Z]]$, $F$ libovolná konečná podmnožina $K[[Z]]$. Pak platí $Q(R[F]) = Q(R)[F]$.
+	
+	\begin{proof}
+		\newcommand*{\I}{_{i = 0}^{p - 1}}
+		
+		Tvrzení stačí dokázat pro jednoprvkovou $F = \{f\}$, indukce přenese výsledek na libovolnou konečnou množinu. Inkluze $Q(R)[f] \subseteq Q(R[f])$ je zřejmá. Libovolný prvek $Q(R[f])$ je tvaru $\frac{\sum\I \alpha_i f^i}{\sum\I \beta_i f^i}$, $\alpha_i, \beta_i \in R$. Chceme tento zlomek vhodně rozšířit (usměrnit), aby bylo jasné, že je prvkem $Q(R)[f]$. Stačí tedy najít prvky $\gamma_i \in Q(R)$ tak, aby $(\sum\I \beta_i f^i)(\sum\I \gamma_i f^i) \in R$. Přitom víme, že $f^p \in K^p[[Z]] \subseteq R$. Roznásobme sumy a porovnejme koeficienty. Chceme, aby koeficienty u $f^i$ pro $i = 1, \hdots, p - 1$ byly nulové, tedy získáváme soustavu $p - 1$ lineárních rovnic nad $Q(R)$ o $p$ neznámých. Taková soustava má vždy netriviální řešení, a zlomek lze tedy vhodně rozšířit.
+	\end{proof}
+\end{lemma}
+
+\begin{lemma} \label{thm:B_vlastnost}
+Pro každé $b \in B$, existuje $n$, že $b \in K^p[[Z]][X_0, \hdots, X_n]$.
+	\begin{proof}
+		 Koeficienty řady $b$ tvoří dle poznámky \ref{thm:TXK} rozšíření $K^p$ konečného stupně a každý takový koeficient leží v nějakém $Q(K^p[X_0, \hdots, X_n]) = K^p[X_0, \hdots, X_n]$, kde poslední rovnost plyne z předchozího lemmatu.
+	\end{proof}
+\end{lemma}
+
 \begin{lemma} \label{thm:lin_indep} \hfill
 	\begin{items}
 		\item Nechť $Y \subseteq X$, pak $\p M_p(Y)$ je lineárně nezávislá nad $K^p(X \setminus Y) \subseteq K$.
@@ -441,35 +458,25 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 	\begin{proof} \hfill
 		\begin{items}
 			\newcommand*{\I}{_{i = 1}^m}
-			
+
 			\item Protože $K^p(X \setminus Y) = Q(K^p[X \setminus Y])$ a $K = Q(K_0[X])$, tedy $K^p = Q(K_0[X]^p)$, platí $K^p(X \setminus Y) = Q(K_0[X]^p[X \setminus Y])$. Lineární nezávislost tedy stačí dokázat nad $K_0[X]^p[X \setminus Y]$, protože testovanou lineární kombinaci stačí vynásobit společným jmenovatelem.
 
-			K tomu stačí dokázat lineární nezávislost $\p M_p(X_n)$ nad $K_0[X]^p[X_0, \hdots, X_{n - 1}]$. Máme-li totiž lineární kombinaci $\sum\I \alpha_i m_i$, $\alpha_i \in K_0[X]^p[X \setminus Y]$, $m_i \in \p M_p(Y)$, jsou všechny $\alpha_i \in K_0[X]^p[F_1]$, kde $F_1$ je nějaká konečná podmnožina $X \setminus Y$. Podobně $m_i$ jsou monočleny v konečně mnoha neurčitých z $Y$, označme tedy jednu nich $y$ a ostatní sdružme do množiny $F_2$. Potom máme $\sum\I \alpha_i m_i = \sum\I \alpha_i m'_i y^{k_i}$, $m'_i \in \p M_p(F_2)$, $k_i \in \N_0$. Jedná se tedy o $K_0[X]^p[F_1, F_2]$-lineární kombinaci prvků $\p M_p(Y)$. Nyní stačí přečíslovat neurčité.
-			
+			K tomu stačí dokázat lineární nezávislost $\p M_p(X_n)$ nad $K_0[X]^p[X_0, \hdots, X_{n - 1}]$. Máme-li totiž lineární kombinaci $\sum\I \alpha_i m_i$, $\alpha_i \in K_0[X]^p[X \setminus Y]$, $m_i \in \p M_p(Y)$, jsou všechny $\alpha_i \in K_0[X]^p[F_1]$, kde $F_1$ je nějaká konečná podmnožina $X \setminus Y$. Podobně $m_i$ jsou monočleny v konečně mnoha neurčitých z $Y$, označme tedy jednu z nich $y$ a ostatní sdružme do množiny $F_2$. Potom máme $\sum\I \alpha_i m_i = \sum\I \alpha_i m'_i y^{k_i}$, $m'_i \in \p M_p(F_2)$, $k_i \in \N_0$. Jedná se tedy o $K_0[X]^p[F_1, F_2]$-lineární kombinaci prvků $\p M_p(Y)$. Nyní stačí přečíslovat neurčité.
+
 			Množina $\p M_p(X_n)$ je lineárně nezávislá nad $K_0[X]^p[X_0, \hdots, X_{n - 1}]$. Je-li $\sum_{i = 0}^{p - 1} \alpha_i X_n^i = 0$, pak polynom $\alpha_i X_n^i \in K_0[X]$ obsahuje ve všech členech $X_n$ v mocnině, jejíž zbytek po dělení $p$ je roven $i$, tedy všechny $\alpha_i X_n^i = 0$, takže $\alpha_i = 0$.
-			
-			\item Nechť $\sum\I \alpha_i m_i = 0$, kde $\alpha_i \in K^p[[Z]][X_0, \hdots, X_{2k - 1}]$, $m_i \in \p M_p(c_k, d_k)$. Podívejme se na tuto rovnost jako na rovnost řad v $K[[Z]]$ a uvažme $m \in \p M(Z)$ nejmenšího stupně takový, že některý z koeficientů $\alpha_{i, m}$ je nenulový. Pak ale dostáváme $\sum\I \alpha_{i, m} m_{i, 1} = 0$, kde $\alpha_{i, m} \in K^p[X_0, \hdots, X_{2k - 1}]$, $m_{i, 1}$ je absolutní člen řady $m_i \in K[[Z]]$, tedy $m_{i, 1} \in \p M_p(X_{2k}, X_{2k + 1})$. Dle předchozího bodu $\alpha_{i, m} = 0$, což je spor, a tedy všechny koeficienty řad $\alpha_i$ jsou nulové.
-			
+
+			\item Nechť $\sum_{i = 1}^n \alpha_i m_i = 0$, kde $\alpha_i \in K^p[[Z]][X_0, \hdots, X_{2k - 1}]$, $m_i \in \p M_p(c_k, d_k)$. Podívejme se na tuto rovnost jako na rovnost řad v $K[[Z]]$ a uvažme $m \in \p M(Z)$ nejmenšího stupně takový, že některý z koeficientů $\alpha_{i, m}$ je nenulový. Pak ale dostáváme $\sum_{i = 1}^n \alpha_{i, m} m_{i, 1} = 0$, kde $\alpha_{i, m} \in K^p[X_0, \hdots, X_{2k - 1}]$ a $m_{i, 1}$ je absolutní člen řady $m_i$. Protože $m_i \in K[[Z]]$, je tedy $m_{i, 1} \in \p M_p(X_{2k}, X_{2k + 1})$. Dle předchozího bodu $\alpha_{i, m} = 0$, což je spor, a tedy všechny koeficienty řad $\alpha_i$ jsou nulové.
+
 			\newcommand*{\J}{_{i, j = 0}^{p - 1}}
-			\item Podobně jako v prvním bodě stačí ukázat nezávislost nad $B$. Nechť tedy $\sum\J \alpha_{i, j} c_k^i d_k^j = 0$, $\alpha_{i, j} \in B$. Existuje $n > k$, že $\alpha_{i, j} \in K^p[[Z]][X_0, \hdots, X_{2n - 1}]$. Označíme-li $\gimel = P_{n - k}(c_n)$, $\daleth = P_{n - k}(d_n)$, máme $c_k = \gimel + Z_3^{n - k} c_n$; $d_k = \daleth + Z_3^{n - k} d_n$; $\gimel, \daleth \in K^p[[Z]][X_0, \hdots, X_{2n - 1}]$. Dostáváme
-			\ml{
-				\sum\J \alpha_{i, j} c_k^i d_k^j = \sum\J \alpha_{i, j} (\gimel + Z_3^{n - k} c_n)^i (\daleth + Z_3^{n - k} d_n)^j = \sum\J \beta_{i, j} c_n^i d_n^j,
+			\item Podobně jako v prvním bodě stačí ukázat nezávislost nad $B$. Nechť tedy $\sum\J \alpha_{i, j} c_k^i d_k^j = 0$, $\alpha_{i, j} \in B$. Dle lemmatu \ref{thm:B_vlastnost} existuje $n > k$, že $\alpha_{i, j} \in K^p[[Z]][X_0, \hdots, X_{2n - 1}]$. Označíme-li $\gimel = P_{n - k}(c_n)$, $\daleth = P_{n - k}(d_n)$, máme $c_k = \gimel + Z_3^{n - k} c_n$; $d_k = \daleth + Z_3^{n - k} d_n$; $\gimel, \daleth \in K^p[[Z]][X_0, \hdots, X_{2n - 1}]$. Dostáváme
+			\mld{
+				0 = \sum\J \alpha_{i, j} c_k^i d_k^j = \sum\J \alpha_{i, j} (\gimel + Z_3^{n - k} c_n)^i (\daleth + Z_3^{n - k} d_n)^j = \sum\J \beta_{i, j} c_n^i d_n^j,
 			}
-			$\beta_{i, j} \in K^p[[Z]][X_0, \hdots, X_{2n - 1}]$.
-			
+			pro nějaká $\beta_{i, j} \in K^p[[Z]][X_0, \hdots, X_{2n - 1}]$.
+
 			Z předchozího bodu $\beta_{i, j} = 0$. Platí $\alpha_{p - 1, p - 1} = (Z_3^{n - k})^{2(p - 1)} \beta_{p - 1, p - 1} = 0$. Potom indukcí $\alpha_{i, j} = (Z_3^{n - k})^{i + j} \beta_{i, j} = 0$.
 			\qedhere
 		\end{items}
-	\end{proof}
-\end{lemma}
-
-\begin{lemma} \label{thm:QRf}
-	Nechť $R$ je meziobor mezi $K^p[[Z]]$ a $K[[Z]]$, $F$ libovolná konečná podmnožina $K[[Z]]$. Pak platí $Q(R[F]) = Q(R)[F]$.
-	
-	\begin{proof}
-		\newcommand*{\I}{_{i = 0}^{p - 1}}
-		
-		Tvrzení stačí dokázat pro jednoprvkovou $F = \{f\}$, indukce přenese výsledek na libovolnou konečnou množinu. Inkluze $Q(R)[f] \subseteq Q(R[f])$ je zřejmá. Libovolný prvek $Q(R[f])$ je tvaru $\frac{\sum\I \alpha_i f^i}{\sum\I \beta_i f^i}$, $\alpha_i, \beta_i \in R$. Chceme tento zlomek vhodně usměrnit, aby bylo vidět, že je prvkem $Q(R)[f]$. Stačí tedy najít prvky $\gamma_i \in Q(R)$ tak, aby $(\sum\I \beta_i f^i)(\sum\I \gamma_i f^i) \in R$. Přitom víme, že $f^p \in K^p[[Z]] \subseteq R$. Roznásobme sumy a porovnejme koeficienty. Chceme, aby koeficienty u $f^i$ pro $i = 1, \hdots, p - 1$ byly nulové, tedy získáváme soustavu $p - 1$ lineárních rovnic nad $Q(R)$ o $p$ neznámých. Taková soustava má vždy netriviální řešení, a zlomek lze tedy vhodně usměrnit.
 	\end{proof}
 \end{lemma}
 
@@ -479,13 +486,11 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 	\begin{proof}
 		\newcommand*{\I}{_{i = 0}^{n - 1}}
 		
-		Označme $W = \Bcdall$. Nechť $g \in Q(W)$ je celistvý nad $W$. Ukážeme, že $g \in W$. Z definice celistvosti $g^n = \sum\I \alpha_i g^i$ pro nějaké $n \in \N$ a nějaká $\alpha_i \in W$. Dále pišme $g = \frac{w_1}{w_2}$, kde $w_1, w_2 \in W$.
+		Označme $W = \Bcdall$. Nechť $g \in Q(W)$ je celistvý nad $W$. Ukážeme, že $g \in W$. Z definice celistvosti $g^n = \sum\I \alpha_i g^i$ pro nějaké $n \in \N$ a nějaká $\alpha_i \in W$. Dále pišme $g = \frac{w_1}{w_2}$, kde $w_1, w_2 \in W$. Ukážeme, že každé $w \in W$ je prvkem nějakého $H_k = K^p[[Z]][X_0, \hdots, X_{2k - 1}, c_k, d_k]$.
 		
-		Ukážeme, že každé $w \in W$ je prvkem nějakého $H_k = K^p[[Z]][X_0, \hdots, X_{2k - 1}, c_k, d_k]$. Nejprve: každé $b \in B$ je prvkem nějakého $K^p[[Z]][X_0, \hdots, X_n]$. Koeficienty řady $b$ tvoří dle poznámky \ref{thm:TXK} rozšíření $K^p$ konečného stupně a každý takový koeficient leží v nějakém $Q(K^p[X_0, \hdots, X_n]) = K^p[X_0, \hdots, X_n]$, kde poslední rovnost plyne z předchozího lemmatu. Stačí tedy vzít největší $k$.
+		Užitím pozorování \ref{thm:bcd_vztahy} a lemmatu \ref{thm:B_vlastnost} dostaneme, že existuje $k_0$, aby $w \in B[c_{k_0}, d_{k_0}]$. Tedy $w = \sum_{i, j = 0}^{p - 1} \beta_{i, j} c_{k_0}^i d_{k_0}^j$, $\beta_{i, j} \in B$. Vezměme $k$: $2k - 1 \geq k_0$, že všechna $\beta_{i, j} \in K^p[X_0, \hdots X_{2k - 1}]$. Potom $w \in K^p[X_0, \hdots, X_{2k - 1}, c_{k_0}, d_{k_0}] \subseteq H_k$.
 		
-		Existuje $k_0$, že $w \in B[c_{k_0}, d_{k_0}]$. Tedy $w = \sum_{i, j = 0}^{p - 1} \beta_{i, j} c_{k_0}^i d_{k_0}^j$, $\beta_{i, j} \in B$. Vezměme $k$: $2k - 1 \geq k_0$, že všechna $\beta_{i, j} \in K^p[X_0, \hdots X_{2k - 1}]$. Potom $w \in K^p[X_0, \hdots, X_{2k - 1}, c_{k_0}, d_{k_0}] \subseteq H_k$.
-		
-		Volme tedy společné $k$ pro všechna $\alpha_i$, $w_1$, $w_2$. Potom $g \in Q(H_k)$ a je celistvý nad $H_k$. Obory $H_k$ jsou regulární lokální. Dle tvrzení \ref{thm:RF_noe} jsou $H_k$ noetherovské. Dle tvrzení \ref{thm:R_loc} jsou invertibilní právě řady s nenulovým absolutním členem. Dle tvrzení \ref{thm:RF_absOK}, lemmatu \ref{thm:lin_indep} a tvrzení \ref{thm:RpF_absOK} jsou postupně v oborech $K^p[[Z]][X_0, \hdots, X_{2k - 1}]$ a $H_k$ řady bez absolutního členu generovány neurčitými. Tvrzení \ref{thm:R_reg} dává regularitu. Protože obory $H_k$ jsou regulární, a tedy celistvě uzavřené, je $g \in H_k \subseteq W$.
+		Volme tedy společné $k$ pro všechna $\alpha_i$, $w_1$, $w_2$. Potom $g \in Q(H_k)$ a je celistvý nad $H_k$. Obory $H_k$ jsou regulární lokální. Vskutku, dle tvrzení \ref{thm:RF_noe} jsou $H_k$ noetherovské. Dle tvrzení \ref{thm:R_loc} jsou invertibilní právě řady s nenulovým absolutním členem. Dle tvrzení \ref{thm:RF_absOK}, lemmatu \ref{thm:lin_indep} a tvrzení \ref{thm:RpF_absOK} jsou postupně v oborech $K^p[[Z]][X_0, \hdots, X_{2k - 1}]$ a $H_k$ řady bez absolutního členu generovány neurčitými. Tvrzení \ref{thm:R_reg} dává regularitu. Protože obory $H_k$ jsou regulární, a tedy celistvě uzavřené, je $g \in H_k \subseteq W$.
 	\end{proof}
 \end{lemma}
 
@@ -496,11 +501,11 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 		\newcommand*{\I}{_{i = 0}^{p - 1}}
 		
 		Protože $b^p \in B$ (důsledek \ref{thm:p_power}), je $B[b] = \sum\I b^i B$. Nechť tedy $a = \sum\I \beta_i b^i / Z_3^n \in A$, $\beta_i \in B$, je obecný prvek $\frac{B[b]}{Z_3^n} \cap A$. Označme $\beth_n = P_n(b) \in B$ počáteční úsek $b$ délky $n$. Pak $b = \beth_n + Z_3^n b_n$, tedy
-		\ml{
+		\mld{
 			a Z_3^n = \sum\I \beta_i b^i = \sum\I \beta_i (\beth_n + Z_3^n b_n)^i = \sum\I \beta_i \beth_n + Z_3^n \sum\I \beta_i \gamma_i
 		}
 		pro $\gamma_i \in B[b_n]$. Dále
-		\ml{
+		\mld{
 			Z_3^n (\underbrace{a - \sum\I \beta_i \gamma_i}_{\in A}) = \sum\I \beta_i \beth_n \in B.
 		}
 		Protože libovolná řada z $A$ je prvkem $B$ pouze v závislosti na množině koeficientů vzhledem k neurčitým $Z_1$, $Z_2$, $Z_3$ (viz poznámka \ref{thm:TXK}), je $a - \sum\I \beta_i \gamma_i \in B$, tudíž $a \in B + B[b_n] \subseteq \Ball$.
@@ -508,7 +513,7 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 \end{lemma}
 
 \begin{tvrzeni}
-	Platí inkluze $C \subseteq \Ball$.
+	Platí inkluze $C \subseteq A \cap \bigcup_{n = 0}^\infty \frac{B[b]}{Z_3^n}$, a proto také $C \subseteq \Ball$.
 
 	\begin{proof}
 		\newcommand*{\I}{_{i = 0}^{p - 1}}
@@ -523,7 +528,7 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 		\ml{
 			w_1 Z_1^i Z_3^n = w_2 \beta_{c_0^i}, \quad w_1 Z_2^i Z_3^n = w_2 \beta_{d_0^i}.
 		}
-		Kdyby $Z_1$ dělilo $w_2$, pak by (z druhé rovnice) dělilo i $w_1$, což je spor s nesoudělností. Pak, ale $Z_1$ i $w_1$ dělí $\beta_{c_0^i}$ (z první rovnice) a $w_2 = Z_3^l$, pro nějaké $l \leq n$. Celkem každé $\alpha_i \in \frac{B}{Z_3^n}$ a tvrzení platí.
+		Kdyby $Z_1$ dělilo $w_2$, pak by (z druhé rovnice) dělilo i $w_1$, což je spor s nesoudělností. Pak, ale $Z_1$ i $w_1$ dělí $\beta_{c_0^i}$ (z první rovnice) a $w_2 = Z_3^l$, pro nějaké $l \leq n$. Celkem pro každé $\alpha_i$ existuje $n$, že $\alpha_i \in \frac{B}{Z_3^n}$ a tvrzení platí. Závěr platí z předchozího lemmatu.
 	\end{proof}
 \end{tvrzeni}
 
@@ -569,7 +574,7 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 			X_{2(n + k)} = c_{n, k} = \sum\I \sum_{j = 0}^k g_{i, j} c_{i, k - j} = \sum\I \sum_{j = 0}^k g_{i, j} X_{2(i + k - j)}.
 		}
 		
-		Existuje $m \in \N$, že všechna $g_i \in K^p[[Z_3]][X_i: i < m]$. Pak ale $g_{i, j} \in K^p[X_i: i < m]$. Existuje $k \in \N$, že $2(n + k) \geq m$, potom dle rovnosti výše $X_{2(n + k)} \in K^p[X_i: i < 2(n + k)]$. To je ale spor s prvním bodem lemmatu \ref{thm:lin_indep}.
+		Podle lemmatu \ref{thm:B_vlastnost} existuje $m \in \N$, že všechna $g_i \in K^p[[Z_3]][X_0,\dots, X_m]$. Pak ale $g_{i, j} \in K^p[X_0,\dots, X_m]$. Existuje $k \in \N$, že $2(n + k) \geq m$, potom dle rovnosti výše $X_{2(n + k)} \in K^p[X_0,\dots, X_{2(n + k)}]$. To je ale spor s prvním bodem lemmatu \ref{thm:lin_indep}, a tedy $b_n \not\in I_{n-1}$, což je spor s minimalitou $n$.
 	\end{proof}
 \end{tvrzeni}
 
