@@ -56,7 +56,7 @@
 
 \section{Formální mocninné řady nad tělesem a odvozené obory}
 
-V této kapitole budeme zkoumat vlastnosti oborů odvozených od oboru formálních mocninných řad na tělesem v konečně mnoha neurčitých. Zajímat nás bude noetherovskost, lokalita, regularita a celistvá uzavřenost. Na základě zde prezentovaných obecných poznatků bude vybudován hledaný příklad noetherovského okruhu, jehož celistvý uzávěr není noetherovský.
+V této kapitole budeme zkoumat vlastnosti oborů odvozených od oboru formálních mocninných řad nad tělesem v konečně mnoha neurčitých. Zajímat nás bude noetherovskost, lokalita, regularita a celistvá uzavřenost. Na základě zde prezentovaných obecných poznatků bude vybudován hledaný příklad noetherovského okruhu, jehož celistvý uzávěr není noetherovský.
 
 V našem textu budeme pracovat pouze s komutativními okruhy.
 
@@ -249,11 +249,11 @@ V minulé podkapitole jsme ukázali, že řady s nulovým absolutním členem tv
 \end{definice}
 
 \begin{pozorovani}
-	Nechť $K$ je těleso, $X$ neurčité. Pak každé $f \in K[[X]]$ můžeme psát ve tvaru $f = f_1 + \sum_{x \in X} x f_x$, kde $f_1$ je absolutní člen $f$, $f_x \in K[[X]]$. Z toho ihned plyne, že \absOK{K[[X]]}.
+	Nechť $K$ je těleso, $X$ konečně mnoho neurčitých. Pak každé $f \in K[[X]]$ můžeme psát ve tvaru $f = f_1 + \sum_{x \in X} x f_x$, kde $f_1$ je absolutní člen $f$, $f_x \in K[[X]]$. Z toho ihned plyne, že \absOK{K[[X]]}.
 \end{pozorovani}
 
 \begin{tvrzeni} \label{thm:RF_absOK}
-	Nechť $K$ je těleso, $X$ neurčité, $R$ podobor $K[[X]]$ takový, že \absOK{R}, $F$ libovolná podmnožina $K$. Potom \absOK{R[F]}.
+	Nechť $K$ je těleso, $X$ konečně mnoho neurčitých, $R$ podobor $K[[X]]$ takový, že \absOK{R}, $F$ libovolná podmnožina $K$. Potom \absOK{R[F]}.
 	
 	\begin{proof}
 		\newcommand{\I}{_{i = 1}^n}
@@ -263,7 +263,7 @@ V minulé podkapitole jsme ukázali, že řady s nulovým absolutním členem tv
 \end{tvrzeni}
 
 \begin{dusledek} \label{thm:TXK_absOK}
-	Nechť $T \subseteq K$ je algebraické rozšíření těles, $X$ neurčité. Pak v oboru $T[[X]][K]$ jsou řady bez absolutního členu generovány neurčitými.
+	Nechť $T \subseteq K$ je algebraické rozšíření těles, $X$ konečně mnoho neurčitých. Pak v oboru $T[[X]][K]$ jsou řady bez absolutního členu generovány neurčitými.
 \end{dusledek}
 
 \begin{definice}
@@ -278,7 +278,7 @@ V minulé podkapitole jsme ukázali, že řady s nulovým absolutním členem tv
 \end{definice}
 
 \begin{tvrzeni}
-	Nechť $K$ je těleso, $X$ neurčité, $R \subseteq K[[X]]$ podobor, ve kterém jsou řady bez absolutního členu generovány neurčitými. Nechť $F \subseteq K[[X]]$ je množina řad taková, že $\p M(F_1)$ je lineárně nezávislá nad $R_1$ (což odpovídá algebraické nezávislosti $F_1$ nad $R_1$). Pak řady $R[F]$ bez absolutního členu jsou generovány neurčitými.
+	Nechť $K$ je těleso, $X$ konečně mnoho neurčitých, $R \subseteq K[[X]]$ podobor, ve kterém jsou řady bez absolutního členu generovány neurčitými. Nechť $F \subseteq K[[X]]$ je množina řad taková, že $\p M(F_1)$ je lineárně nezávislá nad $R_1$ (což odpovídá algebraické nezávislosti $F_1$ nad $R_1$). Pak řady $R[F]$ bez absolutního členu jsou generovány neurčitými.
 	
 	\begin{proof}
 		\newcommand*{\I}{_{i = 1}^n}
@@ -292,10 +292,10 @@ V minulé podkapitole jsme ukázali, že řady s nulovým absolutním členem tv
 \end{tvrzeni}
 
 \begin{tvrzeni} \label{thm:RpF_absOK}
-	Nechť $K$ je těleso charakteristiky $p > 0$, $X$ neurčité, $R$ meziobor: $K^p[[X]] \subseteq R \subseteq K[[X]]$, jehož řady bez absolutního členu jsou generovány neurčitými, $F \subseteq K[[X]]$ libovolná podmnožina taková, že $\p M_p(F_1)$ je lineárně nezávislá nad $R_1$. Potom řady bez absolutního členu v $R[F]$ jsou generovány neurčitými.
+	Nechť $K$ je těleso charakteristiky $p > 0$, $X$ konečně mnoho neurčitých, $R$ meziobor: $K^p[[X]] \subseteq R \subseteq K[[X]]$, jehož řady bez absolutního členu jsou generovány neurčitými, $F \subseteq K[[X]]$ libovolná podmnožina taková, že $\p M_p(F_1)$ je lineárně nezávislá nad $R_1$. Potom řady bez absolutního členu v $R[F]$ jsou generovány neurčitými.
 	
 	\begin{proof}
-		Nechť $f \in R[F]$ je řada bez absolutního členu. Lze psát $f = \sum_{i = 1}^n g_i h_i$, kde $g_i \in R$, $h_i \in \p M(F)$. Protože $f^p \in K^p[[X]] \subseteq R$ (důsledek \ref{thm:p_power}), platí dokonce, že $h_i \in \p M_p(F)$. Dále postupujeme jako v důkazu předchozího tvrzení.
+		Nechť $f \in R[F]$ je řada bez absolutního členu. Lze psát $f = \sum_{i = 1}^n g_i h_i$, kde $g_i \in R$, $h_i \in \p M(F)$. Protože pro každé $h \in F$ platí $h^p \in K^p[[X]] \subseteq R$ (důsledek \ref{thm:p_power}), můžeme dokonce uvažovat, že $h_i \in \p M_p(F)$. Dále postupujeme jako v důkazu předchozího tvrzení.
 	\end{proof}
 \end{tvrzeni}
 	
@@ -442,9 +442,9 @@ Ukážeme, že $B[b]$ je hledaný noetherovský obor, jehož celistvý uzávěr 
 \end{lemma}
 
 \begin{lemma} \label{thm:B_vlastnost}
-Pro každé $b \in B$, existuje $n$, že $b \in K^p[[Z]][X_0, \hdots, X_n]$.
+Pro každé $f \in B$ existuje $n$, že $f \in K^p[[Z]][X_0, \hdots, X_n]$.
 	\begin{proof}
-		 Koeficienty řady $b$ tvoří dle poznámky \ref{thm:TXK} rozšíření $K^p$ konečného stupně a každý takový koeficient leží v nějakém $Q(K^p[X_0, \hdots, X_n]) = K^p[X_0, \hdots, X_n]$, kde poslední rovnost plyne z předchozího lemmatu.
+		Každý prvek konečné množiny $K_f$ (viz poznámka \ref{thm:TXK}) leží v nějakém $Q(K^p[X_0, \hdots, X_n]) = K^p[X_0, \hdots, X_n]$, kde poslední rovnost plyne z předchozího lemmatu. Stačí tedy vzít největší $n$.
 	\end{proof}
 \end{lemma}
 
@@ -465,7 +465,7 @@ Pro každé $b \in B$, existuje $n$, že $b \in K^p[[Z]][X_0, \hdots, X_n]$.
 
 			Množina $\p M_p(X_n)$ je lineárně nezávislá nad $K_0[X]^p[X_0, \hdots, X_{n - 1}]$. Je-li $\sum_{i = 0}^{p - 1} \alpha_i X_n^i = 0$, pak polynom $\alpha_i X_n^i \in K_0[X]$ obsahuje ve všech členech $X_n$ v mocnině, jejíž zbytek po dělení $p$ je roven $i$, tedy všechny $\alpha_i X_n^i = 0$, takže $\alpha_i = 0$.
 
-			\item Nechť $\sum_{i = 1}^n \alpha_i m_i = 0$, kde $\alpha_i \in K^p[[Z]][X_0, \hdots, X_{2k - 1}]$, $m_i \in \p M_p(c_k, d_k)$. Podívejme se na tuto rovnost jako na rovnost řad v $K[[Z]]$ a uvažme $m \in \p M(Z)$ nejmenšího stupně takový, že některý z koeficientů $\alpha_{i, m}$ je nenulový. Pak ale dostáváme $\sum_{i = 1}^n \alpha_{i, m} m_{i, 1} = 0$, kde $\alpha_{i, m} \in K^p[X_0, \hdots, X_{2k - 1}]$ a $m_{i, 1}$ je absolutní člen řady $m_i$. Protože $m_i \in K[[Z]]$, je tedy $m_{i, 1} \in \p M_p(X_{2k}, X_{2k + 1})$. Dle předchozího bodu $\alpha_{i, m} = 0$, což je spor, a tedy všechny koeficienty řad $\alpha_i$ jsou nulové.
+			\item Nechť $\sum_{i = 1}^n \alpha_i m_i = 0$, kde $\alpha_i \in K^p[[Z]][X_0, \hdots, X_{2k - 1}]$, $m_i \in \p M_p(c_k, d_k)$. Podívejme se na tuto rovnost jako na rovnost řad v $K[[Z]]$ a uvažme $m \in \p M(Z)$ nejmenšího stupně takový, že některý z koeficientů $\alpha_{i, m}$ je nenulový. Pak ale dostáváme $\sum_{i = 1}^n \alpha_{i, m} m_{i, 1} = 0$, kde $\alpha_{i, m} \in K^p[X_0, \hdots, X_{2k - 1}]$ a $m_{i, 1}$ je absolutní člen řady $m_i$. Protože $m_i \in \p M_p(c_k, d_k)$, je $m_{i, 1} \in \p M_p(X_{2k}, X_{2k + 1})$. Dle předchozího bodu $\alpha_{i, m} = 0$, což je spor, a tedy všechny koeficienty řad $\alpha_i$ jsou nulové.
 
 			\newcommand*{\J}{_{i, j = 0}^{p - 1}}
 			\item Podobně jako v prvním bodě stačí ukázat nezávislost nad $B$. Nechť tedy $\sum\J \alpha_{i, j} c_k^i d_k^j = 0$, $\alpha_{i, j} \in B$. Dle lemmatu \ref{thm:B_vlastnost} existuje $n > k$, že $\alpha_{i, j} \in K^p[[Z]][X_0, \hdots, X_{2n - 1}]$. Označíme-li $\gimel = P_{n - k}(c_n)$, $\daleth = P_{n - k}(d_n)$, máme $c_k = \gimel + Z_3^{n - k} c_n$; $d_k = \daleth + Z_3^{n - k} d_n$; $\gimel, \daleth \in K^p[[Z]][X_0, \hdots, X_{2n - 1}]$. Dostáváme
@@ -486,9 +486,9 @@ Pro každé $b \in B$, existuje $n$, že $b \in K^p[[Z]][X_0, \hdots, X_n]$.
 	\begin{proof}
 		\newcommand*{\I}{_{i = 0}^{n - 1}}
 		
-		Označme $W = \Bcdall$. Nechť $g \in Q(W)$ je celistvý nad $W$. Ukážeme, že $g \in W$. Z definice celistvosti $g^n = \sum\I \alpha_i g^i$ pro nějaké $n \in \N$ a nějaká $\alpha_i \in W$. Dále pišme $g = \frac{w_1}{w_2}$, kde $w_1, w_2 \in W$. Ukážeme, že každé $w \in W$ je prvkem nějakého $H_k = K^p[[Z]][X_0, \hdots, X_{2k - 1}, c_k, d_k]$.
+		Označme $W = \Bcdall$. Nechť $g \in Q(W)$ je celistvý nad $W$. Ukážeme, že $g \in W$. Z definice celistvosti $g^n = \sum\I \alpha_i g^i$ pro nějaké $n \in \N$ a nějaká $\alpha_i \in W$. Dále pišme $g = \frac{w_1}{w_2}$, kde $w_1, w_2 \in W$.
 		
-		Užitím pozorování \ref{thm:bcd_vztahy} a lemmatu \ref{thm:B_vlastnost} dostaneme, že existuje $k_0$, aby $w \in B[c_{k_0}, d_{k_0}]$. Tedy $w = \sum_{i, j = 0}^{p - 1} \beta_{i, j} c_{k_0}^i d_{k_0}^j$, $\beta_{i, j} \in B$. Vezměme $k$: $2k - 1 \geq k_0$, že všechna $\beta_{i, j} \in K^p[X_0, \hdots X_{2k - 1}]$. Potom $w \in K^p[X_0, \hdots, X_{2k - 1}, c_{k_0}, d_{k_0}] \subseteq H_k$.
+		Ukážeme, že každé $w \in W$ je prvkem nějakého $H_k = K^p[[Z]][X_0, \hdots, X_{2k - 1}, c_k, d_k]$.	Užitím pozorování \ref{thm:bcd_vztahy} dostaneme $k_0$, že $w \in B[c_{k_0}, d_{k_0}]$. Tedy $w = \sum_{i, j = 0}^{p - 1} \beta_{i, j} c_{k_0}^i d_{k_0}^j$, $\beta_{i, j} \in B$. Dle lemmatu \ref{thm:B_vlastnost} můžeme vzít $k$: $2k - 1 \geq k_0$, že všechna $\beta_{i, j} \in K^p[X_0, \hdots X_{2k - 1}]$. Potom $w \in K^p[X_0, \hdots, X_{2k - 1}, c_{k_0}, d_{k_0}] \subseteq H_k$.
 		
 		Volme tedy společné $k$ pro všechna $\alpha_i$, $w_1$, $w_2$. Potom $g \in Q(H_k)$ a je celistvý nad $H_k$. Obory $H_k$ jsou regulární lokální. Vskutku, dle tvrzení \ref{thm:RF_noe} jsou $H_k$ noetherovské. Dle tvrzení \ref{thm:R_loc} jsou invertibilní právě řady s nenulovým absolutním členem. Dle tvrzení \ref{thm:RF_absOK}, lemmatu \ref{thm:lin_indep} a tvrzení \ref{thm:RpF_absOK} jsou postupně v oborech $K^p[[Z]][X_0, \hdots, X_{2k - 1}]$ a $H_k$ řady bez absolutního členu generovány neurčitými. Tvrzení \ref{thm:R_reg} dává regularitu. Protože obory $H_k$ jsou regulární, a tedy celistvě uzavřené, je $g \in H_k \subseteq W$.
 	\end{proof}
@@ -512,6 +512,7 @@ Pro každé $b \in B$, existuje $n$, že $b \in K^p[[Z]][X_0, \hdots, X_n]$.
 	\end{proof}
 \end{lemma}
 
+\newpage % pri zmene textu odstranit
 \begin{tvrzeni}
 	Platí inkluze $C \subseteq A \cap \bigcup_{n = 0}^\infty \frac{B[b]}{Z_3^n}$, a proto také $C \subseteq \Ball$.
 
@@ -574,7 +575,7 @@ Pro každé $b \in B$, existuje $n$, že $b \in K^p[[Z]][X_0, \hdots, X_n]$.
 			X_{2(n + k)} = c_{n, k} = \sum\I \sum_{j = 0}^k g_{i, j} c_{i, k - j} = \sum\I \sum_{j = 0}^k g_{i, j} X_{2(i + k - j)}.
 		}
 		
-		Podle lemmatu \ref{thm:B_vlastnost} existuje $m \in \N$, že všechna $g_i \in K^p[[Z_3]][X_0,\dots, X_m]$. Pak ale $g_{i, j} \in K^p[X_0,\dots, X_m]$. Existuje $k \in \N$, že $2(n + k) \geq m$, potom dle rovnosti výše $X_{2(n + k)} \in K^p[X_0,\dots, X_{2(n + k)}]$. To je ale spor s prvním bodem lemmatu \ref{thm:lin_indep}, a tedy $b_n \not\in I_{n-1}$, což je spor s minimalitou $n$.
+		Podle lemmatu \ref{thm:B_vlastnost} existuje $m \in \N$, že všechna $g_i \in K^p[[Z_3]][X_0,\dots, X_m]$. Pak ale $g_{i, j} \in K^p[X_0,\dots, X_m]$. Existuje $k \in \N$, že $2(n + k) \geq m$, potom dle rovnosti výše $X_{2(n + k)} \in K^p[X_0,\dots, X_{2(n + k)}]$. To je ale spor s prvním bodem lemmatu \ref{thm:lin_indep}, a tedy $b_n \not\in I_{n-1}$.
 	\end{proof}
 \end{tvrzeni}
 
