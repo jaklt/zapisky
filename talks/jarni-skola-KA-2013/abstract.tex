@@ -1,0 +1,128 @@
+\documentclass{js}
+
+\newcommand\m[1]{\mathbb { #1 }}
+\newcommand\p[1]{\mathcal{ #1 }}
+\newcommand\N{\ensuremath{\m N}}
+\let \forces \Vdash
+
+\DeclareMathOperator{\gen}{gen}
+
+\newenvironment{items}{
+	\itemize
+	\itemsep = 0pt%
+}{%
+	\enditemize
+}
+\newenvironment{itemsn}{
+	\enumerate%
+	\itemsep = 0pt%
+}{%
+	\endenumerate%
+}
+
+\begin{document}
+\title{The Set of Arithmetical Sets is not Arithmetical}
+\author{Tom\'a\v s Jakl (KAM MFF)}
+\maketitle
+
+Cohen introduced forcing in 1963 to prove independence of the Axiom of choice
+and the Continuum hypothesis from Zermelo--Fraenkel set theory. From a
+topological point of view the construction of generic filter in the method of
+forcing is nothing more than Baire category theorem.
+
+In this talk I will show how arithmetical forcing (one of the most transparent
+kinds of forcing) can be used for recursion theoretic proof of theorem that the
+set of all arithmetical sets is not arithmetical.
+
+\section{Preliminaries}
+
+\begin{definition}
+    Let $\mathfrak L$ be the first-order language with a constant $\bar n$ for each $n \in \N$, an unary relation `$\cdot \in X$' and function and relation  symbols $+$, $\times$,  $<$, $=$.
+
+    \vspace{0.2em}
+    Given a formula $\varphi$ of $\mathfrak L$, $\varphi$ \emph{is true for} $A \subseteq \N$ ($A \models \varphi$) is inductively defined as follows:
+
+    \begin{tabular}{l c l}
+        $A \models \varphi \text{ is atomic without `} \cdot \in X$' & $\iff$ & $\varphi$ is true in \N \\
+        $A \models \bar n \in X$ & $\iff$ & $n \in A$ \\
+        $A \models \neg \psi$ & $\iff$ & not $A \models \psi$ \\
+        $A \models \psi_0 \lor \psi_1$ & $\iff$ &  $A \models \psi_0$ or $A \models \psi_1$ \\
+        $A \models (\exists x)\psi(x)$ & $\iff$ &for some $n\in\N$ $A \models \psi(\bar{n})$. \\
+    \end{tabular}
+\end{definition}
+
+Cohen's idea was based on intuition that the truth can be approximated by a
+finite information. For example if some finite string $\sigma$ of 0s and 1s
+tells us that $\varphi$ is true, then $A \models \varphi$ for all $A \supseteq
+\sigma$ (we identify a set and its characteristic function).
+
+\begin{definition}
+    Given a formula $\varphi$ of $\mathfrak L$, $\sigma$ \emph{forces} $\varphi$ ($\sigma \forces \varphi$) is inductively defined as follows:
+
+    \begin{tabular}{l c l}
+        $\sigma \forces \varphi \text{ is atomic without `} \cdot \in X$' & $\iff$ & $\varphi$ is true in \N \\
+        $\sigma \forces \bar n \in X$ & $\iff$ & $\sigma(n) = 1$ \\
+        $\sigma \forces \neg \psi$ & $\iff$ & $(\forall \tau \supseteq \sigma)(\tau \not\forces \psi$) \\
+        $\sigma \forces \psi_0 \lor \psi_1$ & $\iff$ &  $\sigma \forces \psi_0$ or $\sigma \forces \psi_1$ \\
+        $\sigma \forces (\exists x)\psi(x)$ & $\iff$ &for some $n\in\N$ $\sigma \forces \psi(\bar{n})$. \\
+    \end{tabular}
+\end{definition}
+
+\begin{definition}
+    For given $A \subseteq \N$ we say $A$ \emph{forces} $\varphi$ ($A \forces \varphi$) if for some finite $\sigma \subseteq A$, $\sigma \forces \varphi$.
+\end{definition}
+
+% lemma: Basic properties of \forces
+
+\begin{definition}
+    $A$ is \emph{$n$-generic} if for all sentences $\varphi \in \Sigma_n$ either $A \forces \varphi$ or $A \forces \neg\varphi$. $A$ is \emph{$\omega$-generic} if the same happens for all sentences of $\mathfrak L$.
+\end{definition}
+
+\begin{lemma}[Forcing = Truth for generic sets]
+    $A$ is $n$-generic iff for any sentence $\varphi \in \Sigma_n \cup \Pi_n$, $A \models \varphi$ iff $A \forces \varphi$.
+\end{lemma}
+
+% lemma: Definability of forcing
+
+\begin{definition}
+    A set $A \subseteq \N$ \emph{is defined by} a formula $\varphi$ if $n \in A \iff \emptyset \models \varphi(\bar{n})$. A set $A$ is said to be \emph{arithmetical} if it is defined by some formula of $\mathfrak L$.
+    % ... definition for classes
+\end{definition}
+
+\section{Demonstration of the method}
+
+\begin{theorem}
+    There is a $n$-generic set defined by $\Sigma_{n+1}$ formula.
+\end{theorem}
+
+\begin{proof}[Proof idea]
+    \begin{enumerate}
+        \item We have $\Sigma_0$ enumeration of $\mathfrak L$ sentences: $\psi_0, \psi_1, \dots$.
+        \item For each $\psi_i$ we $\Sigma_{n+1}$-find a string $\sigma_i$ extending $\sigma_{i-1}$ such that $\sigma_i \forces \psi_i$ or $\sigma_i \forces \neg\psi_i$.
+        \item $\bigcup_i \sigma_i$ is a characteristic function of a $n$-generic.
+    \end{enumerate}
+\end{proof}
+
+The proof goes the same way as the proof of Baire category theorem (theorem says:
+in a complete metric/locally compact Hausdorff space a countable intersection
+of open dense sets is dense).
+
+The sets $[\sigma] = \{ A \subseteq \N: A \supseteq \sigma \}$ form a basis of
+product topology of $2^\omega$. Since $2^\omega$ is locally compact Hausdorff
+space and the fact that the set $\p O_\varphi = \{A : A \forces \varphi \text {
+or } A \forces \neg\varphi\}$ is open and dense in $2^\omega$ there is a
+$n$-generic set in $\bigcap_{\varphi \in \Sigma_n} \p O_\varphi$.
+
+% theorem: There are comeager many $\omega$-generic sets in $2^\omega$.
+
+\begin{theorem}
+    The set of arithmetical sets is not arithmetical.
+\end{theorem}
+
+\section{Conclusion}
+In Recursion theory, in order to force desired properties it often suffices to
+find some generic set, on the other hand in Set theory one has to construct a
+model ``along'' constructed generic filter which will then have desired
+properties. Model construction then makes the method much more difficult.
+
+\end{document}
