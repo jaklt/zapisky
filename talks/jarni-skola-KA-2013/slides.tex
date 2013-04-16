@@ -64,7 +64,6 @@
         \underbrace{(\forall  \vec x_1)(\exists \vec x_2)(\forall \vec x_3)\ldots}_{\leq n}\psi(\vec x_1, \vec x_2, \vec x_3, \ldots).
     \]
 
-    \pause
     As a shortcut set $\Delta_n = \Sigma_n \cap \Delta_n$.
     \end{definition}
 }
@@ -111,6 +110,8 @@
                     \mbox{Concat}(\sigma_1,\sigma_2,\sigma_3) \text{ is true} & \iff \sigma_1\mathbin{\raisebox{1ex}{\scalebox{.7}{$\frown$}}}\sigma_2 = \sigma_3 \\
                     \mbox{Pref}(\sigma_1,\sigma_2) \text{ is true} & \iff \sigma_1 \subseteq \sigma_2
                 \end{align*}
+
+                For $\sigma_1, \sigma_2, \sigma_3 \in \{0,1\}^*$.
             \pause
             \item Working with formulas is in $\Sigma_0$ (G\" odel numbering, decomposing, \dots).
         \end{itemize}
@@ -172,7 +173,15 @@
 }
 
 \frame{
+    \begin{examples}
+    \begin{itemize}
+        \item $\sigma \forces \bar n \not\in X$ if and only if $\sigma(n) = 0$.
+        \item For $\varphi \equiv (\forall x)(x \in X)$, $\N \models \varphi$ but $\sigma \forces \varphi$ for no $\sigma \in \{0,1\}^*$.
+    \end{itemize}
+    \end{examples}
+
     % TODO full proof?
+    \pause
     \begin{block}{Remark}
         Behaviour of universal quantification and conjuction differs for truth and for forcing.
     \end{block}
@@ -187,28 +196,24 @@
     with
     \begin{align*}
         \sigma \forces \psi_1 \land \psi_2 & \iff (\forall \tau \supseteq \sigma) (\exists \tau_1, \tau_2 \supseteq \tau) (\tau_1 \forces \psi_1 \text{ and } \tau_2 \forces \psi_2) \\
-        \sigma \forces (\forall x)\psi(x) & \iff (\forall n)(\forall \tau \supseteq \sigma)(\tau_1 \forces \psi(\bar{n}).
+        \sigma \forces (\forall x)\psi(x) & \iff (\forall n)(\forall \tau \supseteq \sigma)(\tau_1 \forces \psi(\bar{n})).
     \end{align*}
 }
 
 \subsection{Genericity}
 
 \frame{
-    \begin{examples}
-    \begin{itemize}
-        \item $\sigma \forces \bar n \not\in X$ if and only if $\sigma(n) = 0$.
-        \item For $\varphi \equiv (\forall x)(x \in X)$, $\N \models \varphi$ but $\sigma \forces \varphi$ for no $\sigma \in \{0,1\}^*$.
-    \end{itemize}
-    \end{examples}
-
-    \pause
     \begin{definition}
         For given $A \subseteq \N$ we say $A$ \emph{forces} $\varphi$ ($A \forces \varphi$) if for some finite $\sigma \subseteq A$, $\sigma \forces \varphi$.
     \end{definition}
 
     \pause
-    \begin{block}{Fact}
-        There exists a $A \subseteq \N$ and sentence $\varphi$ such that $A \forces \varphi$ but $A \models \neg\varphi$.
+    \begin{block}{Remarks}
+        \begin{itemize}
+            \item \emph{Consistency}: not ($A \forces \varphi$ and $A \forces \neg\varphi$).
+
+            \item There exists a $A \subseteq \N$ and sentence $\varphi$ such that $A \forces \varphi$ but $A \models \neg\varphi$.
+        \end{itemize}
     \end{block}
 
     \pause
@@ -233,7 +238,7 @@
              & A \models \neg \psi & \\
         \iff & A \not \models \psi & \\
         \iff & A \not\forces \psi  & \text{ (by induction)}\\
-        \iff & A \forces \neg\psi  & \text{ (genericity of $A$ and consistency of $\forces$).}
+        \iff & A \forces \neg\psi  & \text{ (genericity of $A$).}
         \end{align*}
 
         \pause
@@ -241,10 +246,12 @@
     \end{proof}
 }
 
+\subsection{Definability}
+
 \frame{
     \begin{lemma}[Definability of forcing]
         % TODO better wording
-        The relation ``$\sigma \forces \varphi$'' is defined by $\Sigma_{n+1}$ formula for all $\varphi \in \Sigma_n$ and $\sigma \in \{0,1\}^*$.
+        The relation ``$\sigma \forces \varphi$'' is defined by $\Sigma_{n+1}$ in variables: $\varphi \in \Sigma_n$, $\sigma \in \{0,1\}^*$.
     \end{lemma}
 
     \pause
@@ -265,7 +272,6 @@
 \frame{
     \begin{definition}
         A set $A \subseteq \N$ \emph{is defined by} a formula $\varphi$ if $n \in A \iff \emptyset \models \varphi(\bar{n})$. A set $A$ is said to be \emph{arithmetical} if it is defined by some formula of $\mathfrak L$.
-        % TODO ... definition for classes
     \end{definition}
 
     \pause
@@ -273,7 +279,7 @@
         There is a $n$-generic set defined by $\Sigma_{n+1}$ formula.
     \end{theorem}
     \only<1-2>{\vspace{13.1em}}
-    \only<3>{\begin{proof}[Proof idea]
+    \only<3>{\begin{proof}[Proof idea.]
         \begin{enumerate}
             \item We have $\Sigma_0$ enumeration of $\Sigma_n$ sentences: $\psi_0, \psi_1, \dots$.
             \item For each $\psi_i$ we $\Sigma_{n+1}$-find a string $\sigma_i$ extending $\sigma_{i-1}$ such that $\sigma_i \forces \psi_i$ or $\sigma_i \forces \neg\psi_i$.
@@ -284,10 +290,10 @@
     \only<4>{\begin{proof}
         Define a formula $\varphi(x)$ equivalent to
         \begin{align*}
-            (\exists \vec \sigma) & ((\forall i \in \{1, \ldots, n\})\\
+            (\exists \vec \sigma) & ((\forall i \in \{1, \ldots, n\}) \text{ minimal $\sigma_i$ s.t.}\\
             & (\sigma_i \forces \psi_i \text{ or } \sigma_i \forces \neg\psi_i) \text{ and }\\
-            & (\sigma_i \supseteq \sigma_{i-1}) \text{ and } (|\sigma_i| \geq i)) \text{ and } \\
-            & (\sigma_x(x) = 1)
+            & (\sigma_i \supseteq \sigma_{i-1}) \text{ and } (|\sigma_i| \geq i)) \\
+        \text{ and } & (\sigma_x(x) = 1)
         \end{align*}
 
         Then the set defined by $\varphi(x)$ is $n$-generic.
@@ -402,14 +408,24 @@
 
     \pause
     \begin{proof}
-        \begin{enumerate}[<+->]
+        \begin{enumerate}
             \item Suppose not. We have $X \text { arithmetical} \iff X \models \psi$, for some $n$ and some $\psi \in \Sigma_n$.
+            \pause
             \item There exists a $n$-generic set $A$, s.t. $A \models \psi$.
+            \pause
             \item Since also $A \forces \psi$, $\sigma \forces \psi$ for some finite $\sigma \subset A$.
-            \item Each $n$-generic set $G$ extending $\sigma$ forces $\psi$, so $G \models \psi$ and therefore $G$ is arithmetical.
+            \pause
+            \item Let $G$ be a $n$-generic set extending $\sigma$ then $G \forces \psi$, so $G \models \psi$ and therefore $G$ is arithmetical.
+            \pause
             \item There are comeager many $n$-generic sets extending $\sigma$ but only meager many arithmetical sets. Contradiction.
         \end{enumerate}
     \end{proof}
+}
+
+\frame{
+    \begin{center}
+    \Huge{May the Force be with you!}
+    \end{center}
 }
 
 \section{References}
