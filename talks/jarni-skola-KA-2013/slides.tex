@@ -26,23 +26,7 @@
 \begin{document}
 \frame{\titlepage}
 
-% \frame{
-%     \frametitle{Background}
-%
-%     Cohen introduced forcing in 1963 to prove independence of the Axiom of choice
-%     and the Continuum hypothesis from Zermelo--Fraenkel set theory.
-%
-%     Cohen's idea was based on intuition that the truth can be approximated by a
-%     finite information.
-%
-%     % TODO somewhere that characteristic functions = subset itself
-%     % For example if some finite string $\sigma$ of 0s and 1s
-%     % tells us that $\varphi$ is true, then $A \models \varphi$ for all $A
-%     % \supseteq \sigma$ (we identify a set and its characteristic function).
-% }
-
 \section{Basic definitions}
-
 \subsection{Language}
 \frame{
 
@@ -180,7 +164,6 @@
     \end{itemize}
     \end{examples}
 
-    % TODO full proof?
     \pause
     \begin{block}{Remark}
         Behaviour of universal quantification and conjuction differs for truth and for forcing.
@@ -189,7 +172,7 @@
     \vspace{1em}
     Compare
     \begin{align*}
-        A \models \psi_1 \land \psi_2 & \iff A \models \psi_1 \text{ and } A \models \psi_2) \\
+        A \models \psi_1 \land \psi_2 & \iff A \models \psi_1 \text{ and } A \models \psi_2 \\
         A \models (\forall x)\psi(x) & \iff \text{for all $n$, }  A \models \psi(\bar{n})
     \end{align*}
 
@@ -246,22 +229,20 @@
     \end{proof}
 }
 
-\subsection{Definability}
+\subsection{Definability of $\forces$}
 
 \frame{
     \begin{lemma}[Definability of forcing]
-        % TODO better wording
-        The relation ``$\sigma \forces \varphi$'' is defined by $\Sigma_{n+1}$ in variables: $\varphi \in \Sigma_n$, $\sigma \in \{0,1\}^*$.
+        The relation ``$\sigma \forces \varphi$'' is defined by a $\Sigma_{n+1}$ formula in variables: $\varphi \in \Sigma_n$, $\sigma \in \{0,1\}^*$.
     \end{lemma}
 
     \pause
     \begin{proof}
-    By induction on complexity of $\varphi$:
+    By induction on complexity of $\varphi$. In a decision process for $\sigma \forces \varphi$ are quantifiers introduced in the following cases only:
+
     \begin{itemize}
-    \item For $\varphi$ atomic it is $\Sigma_0$-defined.
-    \item For $\varphi \equiv \psi_1 \lor \psi_2$. It is $\Sigma_{n+1}$-defined.
-    \item For $\varphi \equiv (\exists x)\psi(x)$: $\sigma \forces \varphi$ iff $(\exists n)(\sigma \forces \psi(\bar{n}))$. It is $\Sigma_n$-defined.
-    \item For $\varphi \equiv \neg\psi$: $\sigma \forces \varphi$ iff $(\forall \tau \supseteq \sigma) (\tau \not\forces \psi)$. It is $\Pi_n$-defined.
+    \item $\varphi \equiv (\exists x)\psi(x)$: $\sigma \forces \varphi$ iff $(\exists n)(\sigma \forces \psi(\bar{n}))$.
+    \item $\varphi \equiv \neg\psi$: $\sigma \forces \varphi$ iff $(\forall \tau \supseteq \sigma) (\tau \not\forces \psi)$.
     \end{itemize}
     \end{proof}
 }
@@ -290,10 +271,10 @@
     \only<4>{\begin{proof}
         Define a formula $\varphi(x)$ equivalent to
         \begin{align*}
-            (\exists \vec \sigma) & ((\forall i \in \{1, \ldots, n\}) \text{ minimal $\sigma_i$ s.t.}\\
+            (\exists \vec \sigma) & ((\forall i \in \{1, \ldots, x\}) \text{ minimal $\sigma_i$ s.t.}\\
             & (\sigma_i \forces \psi_i \text{ or } \sigma_i \forces \neg\psi_i) \text{ and }\\
             & (\sigma_i \supseteq \sigma_{i-1}) \text{ and } (|\sigma_i| \geq i)) \\
-        \text{ and } & (\sigma_x(x) = 1)
+        \text{ and } & (\sigma_x(x) = 1).
         \end{align*}
 
         Then the set defined by $\varphi(x)$ is $n$-generic.
@@ -314,12 +295,11 @@
     \end{itemize}
     \end{block}
 
-    % TODO ???
     % \vspace{1.5em}
     % \only<2>{
-    % The proof went the same way as the proof of Baire category theorem (theorem
-    % which says: in a complete metric/locally compact Hausdorff space a
-    % countable intersection of dense sets is dense).
+    % The proof went exactly the same way as the proof of Baire category
+    % theorem (theorem which says: in a complete metric/locally compact
+    % Hausdorff space a countable intersection of dense sets is dense).
     % }
 
 
