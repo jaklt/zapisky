@@ -1,9 +1,8 @@
 \documentclass[12pt,a4paper,fleqn]{report}
 \usepackage[utf8]{inputenc}
 % \usepackage{graphicx}
-\usepackage{amsthm}
-\usepackage{amsfonts}
-\usepackage{amssymb}
+\usepackage{amsthm,amsfonts,amssymb}
+\usepackage{amsmath}
 \usepackage{a4wide}
 \usepackage{titlesec}
 
@@ -67,9 +66,9 @@
 \newcommand\Bo{\p{B}} % booleanization
 \newcommand\Bc{\ensuremath{\mathbb{B}}} % boolean/complemented elements
 \newcommand\closure[1]{\overline{#1}}
+\newcommand\downset{\mathord{\downarrow}\mkern1mu} % mathord/mathbin/mathrel treats symbol as oordinal math symbol/binary relation/...
 
 % TODO spacing before and after thms and others
-% TODO macro for \downarrow with better spacing
 
 \title{Some point--free aspects of connectedness}
 \author{Tom\'a\v s Jakl}
@@ -78,18 +77,30 @@
 \maketitle
 \tableofcontents
 
+
 \chapter{Introduction}
+\cite{picado2011frames}
 
 \chapter{Preliminaries}
+\section{Partially ordered set}
+\begin{itemize}
+    \item Joins, meets, order, lattice, distributive lattice
+    \item Galois correspondence
+    \item Boolean algebras
+    \item Heyting algebras
+    \item pseudocomplements and complements
+\end{itemize}
 \section{Category Theory}
 \section{Topology and point--free Topology}
 Basic of \Top{} and \Frm.
+Subspace and sublocale/subframe.
 Spaciality.
 Separation axioms (regularity, complete regularity, normality, ...?).
 TODO place somewhere StoneSp and StoneFrm and \J.
 
 \chapter{Connectedness and Compactification}
 \section{Connectedness and variants of disconnectedness}
+DeMorgan.
 \section{Compactness and compactification}
 \section{Properties of compactification with respect to disconnectedness}
 \begin{lemma}
@@ -109,25 +120,25 @@ TODO place somewhere StoneSp and StoneFrm and \J.
 \chapter{Stone duality}
 \section{Stone correspondence for \StoneFrm}
 \begin{lemma}
-    Let $B$ be a Boolean algebra and $I \in \J B$. Then $I$ is complemented iff $I =\;\downarrow a$ for some $a \in B$.
+    Let $B$ be a Boolean algebra and $I \in \J B$. Then $I$ is complemented iff $I =\;\downset a$ for some $a \in B$.
 \end{lemma}
 \begin{proof}
-    Let $I$ be a complemented ideal. Since $I \vee I^c = 1_{\J B}$ there exists $a \in I$ and $b \in I^c$ such that $a \vee c = 1$. From $I \wedge I^c = \{0\}$ we have $a \wedge b = 0$ and $I \wedge \downarrow b = \{0\}$.
-    From uniques of complements we get $I^c = \downarrow b$, indeed $I \vee \downarrow b = 1_{\J B}$ and $I \wedge \downarrow b = \{0\}$. Using the same arguments we get $I = \downarrow a$.
+    Let $I$ be a complemented ideal. Since $I \vee I^c = 1_{\J B}$ there exists $a \in I$ and $b \in I^c$ such that $a \vee c = 1$. From $I \wedge I^c = \{0\}$ we have $a \wedge b = 0$ and $I \wedge \downset b = \{0\}$.
+    From uniques of complements we get $I^c = \downset b$, indeed $I \vee \downset b = 1_{\J B}$ and $I \wedge \downset b = \{0\}$. Using the same arguments we get $I = \downset a$.
 
-    Converse implication is trivial since $\downarrow a \vee \downarrow a^c = 1_{\J B}$.
+    Converse implication is trivial since $\downset a \vee \downset a^c = 1_{\J B}$ and $\downset a \wedge \downset a^c = \{0\}$.
 \end{proof}
 
 \section{Stone duality for \StoneSp} % TODO maybe StoneSp
 \section{Parts of duality}
-\subsection{Complete Boolean algebras}
+TODO say something about geometrical/topological meaning of complete Boolean algebras (meaning that CBoolAlg are frames...).
 \num TODO definition of Booleanization
 
 \begin{lemma}
     \begin{enumerate}
-        \item For all $J \in \J L$: $J^* =\;\downarrow (\bigvee J)^*$.
-        \item For all $a \in L$: $(\downarrow a)^* = \downarrow a^*$.
-        \item Let $L$ be Boolean, then for all $J \in \J L$: $J^{**} =\;\downarrow \bigvee J$.
+        \item For all $J \in \J L$: $J^* =\;\downset (\bigvee J)^*$.
+        \item For all $a \in L$: $(\downset a)^* = \downset a^*$.
+        \item Let $L$ be Boolean, then for all $J \in \J L$: $J^{**} =\;\downset \bigvee J$.
     \end{enumerate}
 \end{lemma}
 
@@ -158,5 +169,8 @@ TODO place somewhere StoneSp and StoneFrm and \J.
 \end{lemma}
 
 \chapter{Conclusion}
+TODO or Further work?
 
+\bibliographystyle{plain}
+\bibliography{refs.bib}
 \end{document}
