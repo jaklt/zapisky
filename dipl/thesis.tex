@@ -9,6 +9,8 @@
 \usepackage{tikz-cd}
 % \usepackage{tikz}
 
+% TODO proper referencing
+
 
 % \usetikzlibrary{arrows}
 \tikzset{commutative diagrams/.cd}
@@ -134,12 +136,12 @@ Basic of \Top{} and \Frm.
 frame homomorphisms, localic maps
 Subspace and sublocale/subframe.
 Spaciality.
-Separation axioms (regularity, complete regularity, normality, ...?), rather below
+Separation axioms (regularity, complete regularity, normality, ...?), rather below (and useful facts about them)
 TODO place somewhere StoneSp and StoneFrm and \J.
 
 \chapter{Connectedness and Compactification}
 \section{Connectedness and variants of disconnectedness}
-DeMorgan.
+DeMorgan, null-dimensional.
 \section{Compactness and compactification}
 \section{Properties of compactification with respect to disconnectedness}
 \begin{lemma}
@@ -164,17 +166,28 @@ DeMorgan.
 
 \begin{definition}
     Let $B$ be a Boolean algebra. Define $\DEFSYM{J}{\J} B$ to be the set of all ideals of $B$.
-    For $f\colon A \to B$ a Boolean homomorphism, define
+    For $f\colon A \to B$ a Boolean homomorphism, define $\J f\colon \J A \to \J B$ as
     $$(\J f)(I) = \downset f[I].$$
 \end{definition}
+
+\begin{lemma}\label{p:complIdeal}
+    Let $B$ be a Boolean algebra and $I \in \J B$. Then $I$ is complemented iff $I = \downset b$ for some $b \in B$.
+\end{lemma}
+\begin{proof}
+    Let $I$ be a complemented ideal. Since $I \vee I^c = 1_{\J B}$ there exists $a \in I$ and $b \in I^c$ such that $a \vee b = 1$. From $I \wedge I^c = \{0\}$ we have $a \wedge b = 0$ and $I \wedge \downset b = \{0\}$.
+    From uniques of complements we get $I^c = \downset b$, indeed $I \vee \downset b = 1_{\J B}$ and $I \wedge \downset b = \{0\}$. Using the same argument we get $I = \downset a$.
+
+    Converse implication is trivial since $\downset a \vee \downset a^c = 1_{\J B}$ and $\downset a \wedge \downset a^c = \{0\}$.
+\end{proof}
 
 \begin{proposition}
     $\J\colon \Bool \to \StoneFrm$ is a functor.
 \end{proposition}
 \begin{proof}
-    $\J B$ is trivially compact frame. Since $\downset a \rbelow \downset a$ and $\downset a$ is complemented for each $a$ of $B$, $\J B$ is regular and null--dimensional.
+    $\J B$ is trivially compact frame. Lemma \ref{p:complIdeal} implies that $\downset a$ is complemented and $\downset a \rbelow \downset a$ for all $a \in B$. Thus for any ideal $I \in \J B$ we obtain
+    $$ I = \bigvee \{ \downset a : a \in I \} \subseteq \bigvee \{ J : J \rbelow I \} \subseteq I,$$
 
-    The rest is easy.
+\noindent hence $\J B$ is regular and null--dimensional. The rest is easy.
 \end{proof}
 
 \begin{definition}
@@ -189,21 +202,11 @@ From the fact that a homomorphic image of a complemented element is a complement
     $\Bc\colon \StoneFrm \to \Bool$ is a functor.
 \end{observation}
 
-\begin{lemma}
-    Let $B$ be a Boolean algebra and $I \in \J B$. Then $I$ is complemented iff $I = \downset b$ for some $b \in B$.
-\end{lemma}
-\begin{proof}
-    Let $I$ be a complemented ideal. Since $I \vee I^c = 1_{\J B}$ there exists $a \in I$ and $b \in I^c$ such that $a \vee b = 1$. From $I \wedge I^c = \{0\}$ we have $a \wedge b = 0$ and $I \wedge \downset b = \{0\}$.
-    From uniques of complements we get $I^c = \downset b$, indeed $I \vee \downset b = 1_{\J B}$ and $I \wedge \downset b = \{0\}$. Using the same arguments we get $I = \downset a$.
-
-    Converse implication is trivial since $\downset a \vee \downset a^c = 1_{\J B}$ and $\downset a \wedge \downset a^c = \{0\}$.
-\end{proof}
-
 \num For $B \in \Bool$ define \index{istar@$i_*$}$i_B\colon B \to \Bc\J(B)$ as follows
     $$i_B\colon b \mapsto \downset b.$$
-    The definition is correct by previous lemma and $i_B$ is a Boolean homomorphism, indeed $\downset a \vee \downset b = \downset (a \vee b)$, $\downset a \wedge \downset b = \downset (a \wedge b)$ and $\downset 1 = B$ respectively $\downset 0 = \{0\}$ is top respectively bottom of $\Bc\J(B)$.
+    The definition is correct by lemma \ref{p:complIdeal} and $i_B$ is a Boolean homomorphism, indeed $\downset a \vee \downset b = \downset (a \vee b)$, $\downset a \wedge \downset b = \downset (a \wedge b)$ and $\downset 1 = B$ respectively $\downset 0 = \{0\}$ is top respectively bottom of $\Bc\J(B)$.
 
-From previous lemma we also see that $i_B$ is isomorphism of $B$ and $\Bc\J(B)$. And therefore the following diagram commutes
+From lemma \ref{p:complIdeal} we also see that $i_B$ is an isomorphism and therefore the following diagram commutes
 
 \begin{center}
 \begin{tikzcd}
@@ -212,23 +215,26 @@ From previous lemma we also see that $i_B$ is isomorphism of $B$ and $\Bc\J(B)$.
 \end{tikzcd}
 \end{center}
 
-\noindent for any $f\colon A \to B$ Boolean homomorphism. The collection $i_*$ of Boolean homomorphisms forms a natural equivalence between $\Bc\J$ and the identity functor on \Bool.
+\noindent for any $f\colon A \to B$ Boolean homomorphism. From previous we have
 
+\begin{blockProp*}{Proposition}
+    The collection $i_*$ of Boolean homomorphisms forms a natural equivalence between $\Bc\J$ and the identity functor on \Bool.
+\end{blockProp*}
 
 % TODO better wording
 \num Similarly for $L \in \StoneFrm$ we have a mapping \index{vstar@$v_*$}$v_L\colon \J\Bc(L) \to L$ defined as
     $$v_L\colon I \mapsto \bigvee I.$$
     And a mapping in the opposite direction $\iota\colon L \to \J\Bc(L)$:
-    $$\iota\colon e \mapsto \downset e \cap \Bc(L).$$
+    $$\iota\colon e \mapsto \downset e \cap \Bc L.$$
 
-We can see that both $v_L$ and $\iota$ are monotone maps, $v_L \iota = \id_L$ (by null--dimensionality and regularity of $L$) and $\id_{\J\Bc(L)} \subseteq \iota v_L$, and therefore $v_L$ is the left Galois adjoint to $\iota$ and preserves all suprema.
+We can see that both $v_L$ and $\iota$ are monotone maps, $v_L \iota = \id_L$ (by null--dimensionality and regularity of $L$) and $\id_{\J\Bc(L)} \subseteq \iota v_L$, and therefore $v_L$ is the left Galois adjoint to $\iota$, hence $v_L$ preserves all suprema.
 Since $\bigvee I_1 \wedge \bigvee I_2 = \bigvee \{a_1 \wedge a_2 : a_i \in I_i\} \leq \bigvee \{ a : a \in I_1 \cap I_2 \} = \bigvee (I_1 \cap I_2) \leq \bigvee I_1 \cap \bigvee I_2$, $v_L$ also preserves finite infima which makes it a frame homomorphism.
 
 Finally $\id_{\J\Bc(L)} = \iota v_L$: Take any $x \in \iota v_L(I)$. From the definitions we immediately see that $x \leq \bigvee I$ and $x$ is complemented in $L$. By the fact that
     $$1 = x \vee x^c \leq \bigvee I \vee x^c$$
     and by compactness of $L$ there is a finite $F \subseteq I$ such that $\bigvee F \vee x^c = 1$. Since $x = 1 \wedge x = (\bigvee F \vee x^c) \wedge x = (\bigvee F \wedge x) \vee (x^c \wedge x) = \bigvee F \wedge x$ we get that $x \leq \bigvee F$ and therefore $x \in I$.
 
-Previous observations give us the fact that $v_L$ is isomorphism of $L$ and $\J\Bc(L)$ and also that for any $f\colon L \to M$ homomorphism of Stone frames the following diagram commutes
+Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $\J\Bc(L)$ and also that for any $f\colon L \to M$ homomorphism of Stone frames the following diagram commutes
 
 \begin{center}
 \begin{tikzcd}
@@ -237,9 +243,13 @@ Previous observations give us the fact that $v_L$ is isomorphism of $L$ and $\J\
 \end{tikzcd}
 \end{center}
 
-\noindent Again the collection $v_*$ of frame homomorphisms is a natural equivalence between $\J\Bc$ and identity functor on \StoneFrm.
+\noindent Again as conclusion of previous paragraphs we obtain
 
-\num From previous facts we get the main theorem.
+\begin{blockProp*}{Proposition}
+    The collection $v_*$ of frame homomorphisms is a natural equivalence between $\J\Bc$ and identity functor on \StoneFrm.
+\end{blockProp*}
+
+\num From previous facts we get the main result of this section.
 
 \begin{blockProp*}{Theorem}
     Functor \Bc{} is left/right adjoint to the functor \J{} with units of adjunction $v_*$ and $i_*$. Moreover \Bc{} and \J{} constitute an isomorphism of categories \StoneFrm{} and \Bool.
