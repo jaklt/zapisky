@@ -28,8 +28,8 @@
 \renewcommand \thesection{\arabic{section}}
 \renewcommand{\thethmCounter}{\thesection.\arabic{thmCounter}}
 
-\def\blockHelperA{\par\medskip\noindent\refstepcounter{thmCounter}}
-\def\blockHelperB{\arabic{section}.\arabic{thmCounter}.}
+\def\blockHelperA{\par\medskip\noindent}
+\def\blockHelperB{\refstepcounter{thmCounter}\arabic{section}.\arabic{thmCounter}.}
 \def\blockHelperCA{\hspace{\afterDotSpace}\ignorespaces}
 \def\blockHelperCB{\it\hspace{\afterDotSpace}\ignorespaces}
 
@@ -163,6 +163,7 @@ DeMorgan, null-dimensional.
 \begin{definition}
     We say a frame is \DEF{Stone frame} if it is compact, null--dimensional and regular.
 \end{definition}
+% TODO define category \StoneFrm
 
 \begin{definition}
     Let $B$ be a Boolean algebra. Define $\DEFSYM{J}{\J} B$ to be the set of all ideals of $B$.
@@ -196,7 +197,7 @@ DeMorgan, null-dimensional.
 \end{definition}
 % TODO somehow mention that $f$ is between stone spaces
 
-From the fact that a homomorphic image of a complemented element is a complemented element one can see that $\Bc f$ is well--defined. % TODO some comment's for next statement
+From the fact that a homomorphic image of a complemented element is a complemented element and join or meet of two complemented elements is again complemented one can see that $\Bc f$ is well--defined. % TODO some comment's for next statement
 
 \begin{observation}
     $\Bc\colon \StoneFrm \to \Bool$ is a functor.
@@ -249,15 +250,15 @@ Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $
     The collection $v_*$ of frame homomorphisms is a natural equivalence between $\J\Bc$ and identity functor on \StoneFrm.
 \end{blockProp*}
 
-\num From previous facts we get the main result of this section.
+\num Using previous facts we get the main result of this section.
 
 \begin{blockProp*}{Theorem}
-    Functor \Bc{} is left/right adjoint to the functor \J{} with units of adjunction $v_*$ and $i_*$. Moreover \Bc{} and \J{} constitute an isomorphism of categories \StoneFrm{} and \Bool.
+    Functor \Bc{} is the right adjoint to the functor \J{} with $i_*$ as unit of adjunction and $v_*$ as counit. Moreover \Bc{} and \J{} constitute an isomorphism of categories \StoneFrm{} and \Bool.
 \end{blockProp*}
 
 As we will see in next chapter, \J{} corresponds precisely to compactification of Boolean algebras the same way as the space of ultrafilters is part of Stone duality and compactification for spaces. (TODO better wording)
 
-TODO note about AC
+TODOgi note about AC
 
 \section{Stone duality for \StoneSp} % TODO maybe StoneSp
 \section{Parts of duality}
@@ -282,16 +283,50 @@ TODO say something about geometrical/topological meaning of complete Boolean alg
 \end{lemma}
 
 \subsection{$\kappa$--complete Boolean algebras}
-TODO Better naming, $\StoneFrm^\kappa$ is not good enough, I would prefer stg. like $\kappa--\categoryStyle{ExtrStoneFrm}$.
-\num definition of $\StoneFrm^\kappa$.
+\newcommand\kBDStoneFrm{\ensuremath{\kappa\text{--}\categoryStyle{BDStoneFrm}}}
+\newcommand\kComplBool{\ensuremath{\kappa\text{--}\categoryStyle{ComplBool}}}
+
+\begin{definition}
+    Let $L$ be a frame, we say $L$ is \DEF{$\kappa$--basically disconnected} if for any subset $M \subseteq L$ of complemented elements such that $|M| \leq \kappa$ and for $m = \bigvee M$, $m^{**} \vee m^* = 1$ holds.
+
+    By \kBDStoneFrm{} denote the category of all $\kappa$--basically disconnected Stone spaces and frame homomorphisms.
+\end{definition}
+
+\begin{definition}
+    A lattice is \DEF{$\kappa$--complete}, for some cardinal $\kappa$, if any its subset of cardinality at most $\kappa$ has supremum.
+
+    Let \kComplBool{} denote the category of $\kappa$--complete Boolean algebras and Boolean homomorphisms.
+\end{definition}
 
 \begin{lemma}
-    Let $L$ be a $\StoneFrm^\kappa$ for some $\kappa$, then $\Bc L$ is a $\kappa$--complete Boolean algebra.
+    If $L$ is a $\kappa$--basically disconnected Stone frame, for some $\kappa$, then $\Bc L$ is a $\kappa$--complete Boolean algebra.
 \end{lemma}
+\begin{proof}
+    For $M \subseteq \Bc L$ and $|M| \leq \kappa$, set $m = \bigvee M$. From the assumption that $L$ is $\kappa$--basically disconnected we have $m^{**} \vee m^* = 1$ and therefore $m^{**} \in \Bc L$. So $m^{**}$ is an upper bound for $M$ in $\Bc L$.
+
+    Now let $n$ be an arbitrary upper bound for $M$ in $\Bc L$, thus $n$ is an upper bound in $L$ also, but $m \leq n$ since $m$ is the supremum of $M$ in $L$. Which gives us the desired relation $m^{**} \leq n^{**} = n$ and so $m^{**}$ is the supremum of $M$ in $\Bc L$.
+\end{proof}
 
 \begin{lemma}
-    Let $L$ be a $\kappa$--complete Boolean algebra, then $\J B \in \StoneFrm^\kappa$.
+    If $B$ is a $\kappa$--complete Boolean algebra, for some $\kappa$, then $\J B$ is $\kappa$--basically disconnected Stone frame.
 \end{lemma}
+\begin{proof}
+    By the lemma \ref{p:complIdeal} we know that complemented ideals are precisely principal ideals. To prove the lemma we will show that for any $M \subseteq B$, $|M| \leq \kappa$ and $I = \bigvee \{ \downset a : a \in M \}$, $I^{**} \vee I^* = 1_{\J B}$.
+
+    Define $m = \bigvee M$ and $J = \downset m$. Observe that $I^{**} = J$: Trivially $I^{**} \subseteq J^{**} = J$ and $J \subseteq I^{**}$ follows from
+    $$ I^* = \bigcup \{ \downset a : \downset a \cap I = \{0\} \} = \bigcup \{ \downset a : a \wedge m = 0 \} = (\downset m)^* = J^*.$$
+
+    Consequently, $I^{**} \vee I^* = J \vee J^* = \downset m \vee \downset m^c = 1_{\J B}$.
+\end{proof}
+
+\begin{theorem}
+    Categories \kBDStoneFrm{} and \kComplBool{} are dually isomorphic by functors \J{} and \Bc{}.
+\end{theorem}
+% TODO better wording
+
+TODO picture of correspondence
+
+Equivalently in topological spaces, space is $\kappa$--basically disconnectedness iff any union of less than $\kappa$ clopen sets has open closure. In classical setting there is duality between $\kappa$--complete Boolean algebras and $\kappa$--basically disconnected Stone spaces~\cite{monk1989handbook}.
 
 \chapter{Compactification and Metrizability}
 \section{Uniformity and metrizability}
