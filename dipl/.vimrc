@@ -2,7 +2,10 @@ nmap <F5> :!pdflatex thesis.tex<cr>
 set spelllang=en
 set spell
 
-" TODO add ts=4, ...
+set smartindent
+set shiftwidth=4
+set expandtab
+set tabstop=4
 
 " TODO
 " http://www.vim.org/scripts/script.php?script_id=3230
