@@ -11,7 +11,7 @@
     \item Axiom of Choice/Zorn's Lemma -- its importance/controversy
 \end{itemize}
 \section{Category Theory}
-category, functor, natural transformation, natural equivalence, adjunction, units of adjunction
+category, functor (important example: identity functor), natural transformation, natural equivalence, adjunction, units of adjunction
 TODO exmplain importance of adjunction by mentioning the limit preserving of adjuction
 
 \section{Topology and point--free Topology}
@@ -29,7 +29,7 @@ Subspace and sublocale/subframe, $\iota_S\colon L \to S$ as subframe inclusion
 \num\label{p:nuclProp} \textbf{Properties of nuclei.} For a locale $L$ and a nucleus $\nu\colon L \to L$, set $S = \nu(L)$. The set $S$ together with suprema and infima defined
     $$ \bigsqcup a_i = \nu(\bigvee a_i)\quad\text{ and }\quad a \sqcap b = a \wedge b$$
 
-\noindent is a sublocale of $L$ (TODO proof?). Furthermore the mapping $\nu^*\colon L \to \nu(L)$ defined as $\nu^* = \iota_S\,\nu$ is a frame homomorphism. To show that it is enough to show
+\noindent is a sublocale of $L$ (TODO proof? -- $\nu$ is onto frame homomorphism). Furthermore the mapping $\nu^*\colon L \to \nu(L)$ defined as $\nu^* = \iota_S\,\nu$ is a frame homomorphism. To show that, it is enough to show
     $$\nu(\bigvee a_i) = \nu(\bigvee \nu(a_i)) \quad( = \bigsqcup \nu(a_i)).$$
     \noindent We have $\bigvee a_i \leq \bigvee \nu(a_i)$ by (N1) and $\nu(\bigvee a_i) \leq \nu(\bigvee \nu(a_i))$ by (N2). On the other hand $\nu(a_i) \leq \nu(\bigvee a_i)$ by (N2). Hence $\bigvee \nu(a_i) \leq \nu(\bigvee a_i)$ and $\nu(\bigvee \nu(a_i)) \leq \nu\nu(\bigvee a_i) = \nu(\bigvee a_i)$ by (N2) and (N3).
 

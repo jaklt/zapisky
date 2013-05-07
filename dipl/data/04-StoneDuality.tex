@@ -125,11 +125,11 @@ TODO say something about geometrical/topological meaning of complete Boolean alg
     $$\Bo f\colon a \mapsto f(a)^{**}.$$
 \end{definition}
 
-\begin{block*}{Facts}
-    For any Heyting algebra $H$, its booleanization, the $\Bo H$, is a complete Boolean algebra with joins given by the following formula
+\begin{block*}{Facts}\label{p:propertiesBooleanization}
+    For any Heyting algebra $H$, its booleanization, the $\Bo H$, is a Boolean algebra with joins given by the following formula
     $$ a \sqcup b = (a^* \wedge b^*)^*.$$
 
-    Moreover for a locale $L$, $\Bo L$ is the smallest dense sublocale of $L$ and $ a \sqcup b = (a \vee b)^{**}$ as we will see.
+    Moreover for a locale $L$, $\Bo L$ is a complete Booolean algebra and also the smallest dense sublocale of $L$; and $ a \sqcup b = (a \vee b)^{**}$, as we will see.
 \end{block*}
 
 \begin{lemma}
@@ -168,9 +168,11 @@ TODO say something about geometrical/topological meaning of complete Boolean alg
     $\Bo\colon \ExtrStoneFrm \to \ComplBool$ is a functor.
 \end{theorem}
 \begin{proof}
-    TODO $\Bo L$ is a complete Boolean algebra.
+    From~\ref{p:propertiesBooleanization} we know $\Bo L$ is a complete Boolean algebra.
 
-    As a direct implication of the previous Lemma we get that for any frame homomorphism $f\colon L \to M$ between two extremally disconnected Stone frames the following diagram commutes.
+    TODO $\Bo f$ is a complete Boolean homomorphism.
+
+    As a direct implication of the previous Lemmas we get that for any frame homomorphism between two extremally disconnected Stone frames $f\colon L \to M$ the following diagram commutes.
 
     \begin{diagram}
         L \ar{r}{\beta_L} \ar{d}{f} & \Bo L \ar{d}{\Bo f}\\
@@ -190,10 +192,10 @@ TODO say something about geometrical/topological meaning of complete Boolean alg
         N \ar{r}{\beta_N}           & \Bo N
     \end{diagram}
 
-    Consequently $\Bo$ is a functor.
+    Finally for any identity frame homomorphism $i_L$, the $\Bo i_L$ is the identity on $\Bo L$. Consequently $\Bo$ is a functor.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma} Let $L$ be a frame. Then:
     \begin{enumerate}
         \item For all $J \in \J L$: $J^* =\;\downset (\bigvee J)^*$.
         \item For all $a \in L$: $(\downset a)^* = \downset a^*$ in $\J L$.
