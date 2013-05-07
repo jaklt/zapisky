@@ -1,0 +1,38 @@
+\chapter{Preliminaries}
+\section{Partially ordered set}
+\begin{itemize}
+    \item Joins, meets, order, lattice, distributive lattice (unique solution to $a\vee x = b$ and $c\wedge x = d$)
+    \item bottom (0) resp. top (1) and $0_S$ resp. $1_S$
+    \item Galois correspondence (equivalent definitions)
+    \item filters, ideals
+    \item pseudocomplements and complements (complemented elements), $(a \wedge b)^{**} = a^{**} \wedge b^{**}$, $a \leq b \implies a^* \geq b^*$.
+    \item Boolean algebras and Boolean homomorphisms, \Bool
+    \item Heyting algebras, $\_^* = \_ \to 0$
+    \item Axiom of Choice/Zorn's Lemma -- its importance/controversy
+\end{itemize}
+\section{Category Theory}
+category, functor, natural transformation, natural equivalence, adjunction, units of adjunction
+TODO exmplain importance of adjunction by mentioning the limit preserving of adjuction
+
+\section{Topology and point--free Topology}
+Basic of \Top{} and \Frm.
+frame homomorphisms, localic maps
+Subspace and sublocale/subframe, $\iota_S\colon L \to S$ as subframe inclusion
+\num Let $L$ be a locale, \DEF{nucleus} $\nu$ on $L$ is a monotone map $\nu\colon L \to L$ having the following four properties:
+\begin{enumerate}[(N1)]
+    \item $a \leq \nu(a)$,
+    \item $a \leq b \implies \nu(a) \leq \nu(b)$,
+    \item $\nu\nu(a) = \nu(a)$, and
+    \item $\nu(a \wedge b) = \nu(a) \wedge \nu(b)$.
+\end{enumerate}
+
+\num\label{p:nuclProp} \textbf{Properties of nuclei.} For a locale $L$ and a nucleus $\nu\colon L \to L$, set $S = \nu(L)$. The set $S$ together with suprema and infima defined
+    $$ \bigsqcup a_i = \nu(\bigvee a_i)\quad\text{ and }\quad a \sqcap b = a \wedge b$$
+
+\noindent is a sublocale of $L$ (TODO proof?). Furthermore the mapping $\nu^*\colon L \to \nu(L)$ defined as $\nu^* = \iota_S\,\nu$ is a frame homomorphism. To show that it is enough to show
+    $$\nu(\bigvee a_i) = \nu(\bigvee \nu(a_i)) \quad( = \bigsqcup \nu(a_i)).$$
+    \noindent We have $\bigvee a_i \leq \bigvee \nu(a_i)$ by (N1) and $\nu(\bigvee a_i) \leq \nu(\bigvee \nu(a_i))$ by (N2). On the other hand $\nu(a_i) \leq \nu(\bigvee a_i)$ by (N2). Hence $\bigvee \nu(a_i) \leq \nu(\bigvee a_i)$ and $\nu(\bigvee \nu(a_i)) \leq \nu\nu(\bigvee a_i) = \nu(\bigvee a_i)$ by (N2) and (N3).
+
+Spaciality.
+Separation axioms (regularity, complete regularity, normality, ...?), rather below (and useful facts about them)
+TODO place somewhere StoneSp and StoneFrm and \J.

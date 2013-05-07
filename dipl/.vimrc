@@ -1,4 +1,4 @@
-nmap <F5> :!pdflatex thesis.tex<cr>
+au BufNewFile,BufRead thesis.tex,data/*.tex nmap <buffer> <F5> :!pdflatex thesis.tex<cr>
 set spelllang=en
 set spell
 
