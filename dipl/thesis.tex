@@ -56,20 +56,24 @@
     {\bfseries}% name of head font
     {.}% punctuation between head and body
     {\afterDotSpace}% space after theorem head; " " = normal interword space
-    {\thmnumber{#2.}\thmname{ #1}\thmnote{ \rm [#3]}}% Manually specify head
+    {\thmnumber{#2. }\thmname{#1}\thmnote{ \rm [#3]}}% Manually specify head
 
 \newtheoremstyle{newthmstyleNormal}{3pt}{3pt}{}{}{\bfseries}{.}{\afterDotSpace}
-    {\thmnumber{#2.}\thmname{ #1}\thmnote{ \rm [#3]}}
+    {\thmnumber{#2. }\thmname{#1}\thmnote{ \rm [#3]}}
 
 \theoremstyle{newthmstyle}
-\newtheorem{name}[thmCounter]{Note}
 \newtheorem{lemma}[thmCounter]{Lemma}
 \newtheorem{theorem}[thmCounter]{Theorem}
 \newtheorem{proposition}[thmCounter]{Proposition}
 \newtheorem{observation}[thmCounter]{Observation}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem*{observation*}{Observation}
 
 \theoremstyle{newthmstyleNormal}
 \newtheorem{definition}[thmCounter]{Definition}
+\newtheorem*{definition*}{Definition}
 
 % Categories
 \newcommand\categoryStyle[1]{\ensuremath{\mathbf{#1}}}
@@ -88,10 +92,13 @@
 \newcommand\p[1]{\ensuremath{\mathcal{ #1 }}}
 \newcommand\Bo{\ensuremath{\mathfrak{B}}} % booleanization
 \newcommand\Bc{\ensuremath{\mathbb{B}}} % boolean/complemented elements
+\newcommand\Sp{\ensuremath{\mathcal{S}}}
 \newcommand\closure[1]{\overline{#1}}
+\newcommand\upset  {\mathord{\uparrow}\mkern1mu}
 \newcommand\downset{\mathord{\downarrow}\mkern1mu} % mathord/mathbin/mathrel treats symbol as oordinal math symbol/binary relation/...
 \newcommand\rbelow{\prec}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Id}{Id}
 
 % Function restriction
 % http://tex.stackexchange.com/questions/22252/how-to-typeset-function-restrictions
