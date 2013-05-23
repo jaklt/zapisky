@@ -8,12 +8,13 @@
 \usepackage{titlesec}
 \usepackage{makeidx}
 \usepackage{tikz-cd}
-% \usepackage{tikz}
+\usepackage{tikz}
+\usepackage{braket}
 
 % TODO proper referencing
 
 
-% \usetikzlibrary{arrows}
+\usetikzlibrary{arrows}
 \tikzset{commutative diagrams/.cd}
 \tikzset{commutative diagrams/row    sep/normal=1.3cm}
 \tikzset{commutative diagrams/column sep/normal=1.3cm}
@@ -117,6 +118,7 @@
 \newcommand\DEFSYM[2]{\index{#1@#2}\emph{#2}}
 
 \newenvironment{diagram}{\begin{center}\begin{tikzcd}}{\end{tikzcd}\end{center}}
+\newcommand\ACP{\hfill\fontshape{n}{\textbf{($\star$)}}}
 
 \title{Some point--free aspects of connectedness}
 \author{Tom\'a\v s Jakl}

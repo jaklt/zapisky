@@ -1,9 +1,11 @@
 \chapter{Stone duality}
 \section{Stone correspondence for \StoneFrm}
+
 \begin{definition}
     We say a frame is \DEF{Stone frame} if it is compact, regular and null--dimensional.
 \end{definition}
 % TODO define category \StoneFrm
+% TODO shifted text ("Definition")
 
 \begin{definition}
     Let $B$ be a Boolean algebra. Define $\DEFSYM{J}{\J} B$ to be the set of all ideals of $B$.
@@ -15,10 +17,10 @@
     Let $B$ be a Boolean algebra and $I \in \J B$. Then $I$ is complemented iff $I = \downset b$ for some $b \in B$.
 \end{lemma}
 \begin{proof}
-    Let $I$ be a complemented ideal. Since $I \vee I^c = 1_{\J B}$ there exists $a \in I$ and $b \in I^c$ such that $a \vee b = 1$. From $I \wedge I^c = \{0\}$ we have $a \wedge b = 0$ and $I \wedge \downset b = \{0\}$.
-    From uniques of complements we get $I^c = \downset b$, indeed $I \vee \downset b = 1_{\J B}$ and $I \wedge \downset b = \{0\}$. Using the same argument we get $I = \downset a$.
+    Let $I$ be a complemented ideal. Since $I \vee I^c = 1_{\J B}$ there exists $a \in I$ and $b \in I^c$ such that $a \vee b = 1$. From $I \wedge I^c = 0_{\J B}$ we have $a \wedge b = 0$ and $I \wedge \downset b = 0_{\J B}$.
+    From uniques of complements we get $I^c = \downset b$, indeed $I \vee \downset b = 1_{\J B}$ and $I \wedge \downset b = 0_{\J B}$. Using the same argument we get $I = \downset a$.
 
-    Converse implication is trivial since $\downset a \vee \downset a^c = 1_{\J B}$ and $\downset a \wedge \downset a^c = \{0\}$.
+    Converse implication is trivial since $\downset a \vee \downset a^c = 1_{\J B}$ and $\downset a \wedge \downset a^c = 0_{\J B}$.
 \end{proof}
 
 \begin{proposition}\label{p:JisFunctor}
@@ -26,19 +28,27 @@
 \end{proposition}
 \begin{proof}
     $\J B$ is trivially a compact frame. Lemma \ref{p:complIdeal} implies that $\downset a$ is complemented and $\downset a \rbelow \downset a$ for all $a \in B$. Thus for any ideal $I \in \J B$ we obtain
-    $$ I = \bigvee \{ \downset a : a \in I \} \subseteq \bigvee \{ J : J \rbelow I \} \subseteq I,$$
+    $$ I = \bigvee \Set{ \downset a | a \in I } \subseteq \bigvee \Set{ J | J \rbelow I } \subseteq I,$$
 
 \noindent hence $\J B$ is regular and null--dimensional. The rest is easy.
 \end{proof}
 
 \begin{definition}
-    Let $L$ be a Stone frame. Define $\DEFSYM{Bc}{\Bc} L$ to be the set of all complemented elements of $L$ and for $f\colon L \to M$ a frame homomorphism define
+    Let $L$ be a Stone frame. Define $\DEFSYM{Bc}{\Bc} L$ to be the set of all complemented elements of $L$ and for a frame homomorphism $f\colon L \to M$ define
     $$\Bc f = \restr{f}{\Bc L}\colon \Bc L \to \Bc M.$$
 \end{definition}
 % TODO somehow mention that $f$ is between stone spaces
 
-From the fact that a homomorphic image of a complemented element is a complemented element and join or meet of two complemented elements is again complemented one can see that $\Bc f$ is well--defined.
-% TODO prove the `joins/meets are complemented' proposition
+From the fact that a homomorphic image of a complemented element is a complemented element and since join or meet of two complemented elements is again complemented (to see that, let $a$ and $b$ be two complemented elements, then
+    \begin{align*}
+        (a\wedge b) \vee (a^c \vee b^c)
+            &= (a\vee (a^c\vee b^c))\wedge (b\vee (a^c\vee b^c))
+            = 1 \wedge 1 = 1, \text{ and} \\
+        (a\wedge b) \wedge (a^c \vee b^c)
+            &= ((a\wedge b)\wedge a^c)\vee ((a\wedge b)\wedge b^c)
+            = 0 \vee 0 = 0;
+    \end{align*}
+and similarly $a^c\wedge b^c$ is complement of $a\vee b$.), one can see that $\Bc f$ is well--defined.
 
 % TODO some comment's before this statement
 \begin{observation}
@@ -47,7 +57,7 @@ From the fact that a homomorphic image of a complemented element is a complement
 
 \num For $B \in \Bool$ define \index{istar@$i_*$}$i_B\colon B \to \Bc\J(B)$ as follows
     $$i_B\colon b \mapsto \downset b.$$
-    The definition is correct by Lemma \ref{p:complIdeal} and $i_B$ is a Boolean homomorphism, indeed $\downset a \vee \downset b = \downset (a \vee b)$, $\downset a \wedge \downset b = \downset (a \wedge b)$ and $\downset 1 = B$ respectively $\downset 0 = \{0\}$ is top respectively bottom of $\Bc\J(B)$.
+    The definition is sound by Lemma \ref{p:complIdeal} and $i_B$ is a Boolean homomorphism, indeed $\downset a \vee \downset b = \downset (a \vee b)$, $\downset a \wedge \downset b = \downset (a \wedge b)$, and $\downset 1 = B$ respectively $\downset 0 = \{0\}$ is top respectively bottom of $\Bc\J(B)$.
 
 From Lemma \ref{p:complIdeal} we also see that $i_B$ is an isomorphism and therefore the following diagram commutes
 
@@ -56,7 +66,7 @@ From Lemma \ref{p:complIdeal} we also see that $i_B$ is an isomorphism and there
     B \ar{r}{i_B}                 & \Bc\J(B)
 \end{diagram}
 
-\noindent for any $f\colon A \to B$ Boolean homomorphism. From previous we have
+\noindent for any Boolean homomorphism $f\colon A \to B$. From previous we have
 
 \begin{proposition*}
     The collection $i_*$ of Boolean homomorphisms forms a natural equivalence between $\Bc\J$ and the identity functor on \Bool.
@@ -64,18 +74,18 @@ From Lemma \ref{p:complIdeal} we also see that $i_B$ is an isomorphism and there
 
 % TODO better wording
 \num Similarly for $L \in \StoneFrm$ we have a mapping \index{vstar@$v_*$}$v_L\colon \J\Bc(L) \to L$ defined as
-    $$v_L\colon I \mapsto \bigvee I.$$
-    And a mapping in the opposite direction $\iota\colon L \to \J\Bc(L)$:
+    $$v_L\colon I \mapsto \bigvee I,$$
+    and a mapping in the opposite direction $\iota\colon L \to \J\Bc(L)$:
     $$\iota\colon e \mapsto \downset e \cap \Bc L.$$
 
-We can see that both $v_L$ and $\iota$ are monotone maps, $v_L \iota = \id_L$ (by null--dimensionality and regularity of $L$) and $\id_{\J\Bc(L)} \subseteq \iota v_L$, and therefore $v_L$ is the left Galois adjoint to $\iota$, hence $v_L$ preserves all suprema.
-Since $\bigvee I_1 \wedge \bigvee I_2 = \bigvee \{a_1 \wedge a_2 : a_i \in I_i\} \leq \bigvee \{ a : a \in I_1 \cap I_2 \} = \bigvee (I_1 \cap I_2) \leq \bigvee I_1 \cap \bigvee I_2$, $v_L$ also preserves finite infima which makes it a frame homomorphism.
+We can see that both $v_L$ and $\iota$ are monotone maps, $v_L \iota = \id_L$ (by null--dimensionality and regularity of $L$) and $\id_{\J\Bc(L)} \subseteq \iota v_L$, therefore $v_L$ is the left Galois adjoint to $\iota$, hence $v_L$ preserves all suprema.
+Since $\bigvee I_1 \wedge \bigvee I_2 = \bigvee \Set{a_1 \wedge a_2 | a_i \in I_i} \leq \bigvee \Set{ a | a \in I_1 \cap I_2 } = \bigvee (I_1 \cap I_2) \leq \bigvee I_1 \cap \bigvee I_2$, $v_L$ also preserves finite infima which makes it a frame homomorphism.
 
-Finally $\id_{\J\Bc(L)} = \iota v_L$: Take any $x \in \iota v_L(I)$. From the definitions we immediately see that $x \leq \bigvee I$ and $x$ is complemented in $L$. By the fact that
+Finally, $\id_{\J\Bc(L)} = \iota v_L$: take any $x \in \iota v_L(I)$. From the definitions we immediately see that $x \leq \bigvee I$ and $x$ is complemented in $L$. By the fact that
     $$1 = x \vee x^c \leq \bigvee I \vee x^c$$
     and by compactness of $L$ there is a finite $F \subseteq I$ such that $\bigvee F \vee x^c = 1$. Since $x = 1 \wedge x = (\bigvee F \vee x^c) \wedge x = (\bigvee F \wedge x) \vee (x^c \wedge x) = \bigvee F \wedge x$ we get that $x \leq \bigvee F$ and therefore $x \in I$.
 
-Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $\J\Bc(L)$ and also that for any $f\colon L \to M$ homomorphism of Stone frames the following diagram commutes
+Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $\J\Bc(L)$ and also that for any homomorphism of Stone frames $f\colon L \to M$ the following diagram commutes
 
 \begin{diagram}
     \J\Bc(L) \ar{d}[swap]{\J\Bc(f)} \ar{r}{v_L} & L \ar{d}{f} \\
@@ -107,15 +117,15 @@ TODO (note about AC:) As one can check, the whole correspondence is given in con
 
 \num Let $B$ be a Boolean algebra, define
     $$
-    X_B  = \{F \subseteq B : F \text{ is an ultrafilter on } B\}
+    X_B  = \Set{F \subseteq B | F \text{ is an ultrafilter on } B}
     \quad\text{ and }\quad
-    \tau_B = \{ O_I : I \in \J B\},
+    \tau_B = \Set{ O_I | I \in \J B},
     $$
-\noindent where $O_I$ is the set $\{ F \text{ ultrafilter} : F \cap I \neq \emptyset \}$. Now $(X_B, \tau_B)$ is a topological space:
+\noindent where \DEFSYM{OI}{$O_I$} is the set $\Set{ F \text{ ultrafilter} | F \cap I \neq \emptyset }$. Now $(X_B, \tau_B)$ is a topological space:
 \begin{itemize}
     \item $O_I \cap O_J = O_{I\cap J}$: $F \in O_I\cap O_J$ iff $F\cap I \neq \emptyset$ and $F\cap J \neq \emptyset$ iff $F \cap I \cap J \neq \emptyset$ iff $F\in O_{I\cap J}$.
     \item $\bigcup_i O_{J_i} = O_{\bigvee_i J_i}$: $\supseteq$ holds trivially since $\bigcup J_i \subseteq \bigvee J_i$. On the other hand, for an ultrafilter $F$ such that $F\cap \bigvee_i J_i \neq \emptyset$, there is $e = \bigvee E$ where $E \subseteq \bigcup J_i$ finite and $e \in F$. Since $F$ is prime, there is $e' \in E$ such that $e' \in F$ and therefore $F\cap J_j \neq \emptyset$ for some $J_j \ni e'$.
-    \item $\tau_B$ contains $O_{\downset 0} = \emptyset$ and $O_{\downset 1} = X$.
+    \item $\tau_B$ contains $O_{\downset 0} = \emptyset$ and $O_{\downset 1} = X_B$.
 \end{itemize}
 
 \noindent We will denote \DEFSYM{S B}{$\Sp B$} to be $(X_B, \tau_B)$.
@@ -143,11 +153,11 @@ TODO (note about AC:) As one can check, the whole correspondence is given in con
 
 \noindent From previous lemma, we see the definition is sound. We will show $\Sp f$ is also continuous. Take any $O_I \in \tau_B$, we have
 \begin{align*}
-    (\Sp f)^{-1}[O_I] &= \{ (\Sp f)^{-1}(F) : F \cap I \neq \emptyset \} \\
-                      &= \{ E : \exists F \subseteq B \text{ ultrafilter, } (\Sp f)(E)=F, \text{ and } F \cap I \neq \emptyset \} \\
-                      &= \{ E : f^{-1}(E)\cap I \neq \emptyset \}
-                       = \{ E : E\cap f[I] \neq \emptyset \} \\
-                      &= \{ E : E\cap \downset f[I] \neq \emptyset \}
+    (\Sp f)^{-1}[O_I] &= \Set{ (\Sp f)^{-1}(F) | F \cap I \neq \emptyset } \\
+                      &= \Set{ E | \exists F \subseteq B \text{ ultrafilter, } (\Sp f)(E)=F, \text{ and } F \cap I \neq \emptyset } \\
+                      &= \Set{ E | f^{-1}(E)\cap I \neq \emptyset }
+                       = \Set{ E | E\cap f[I] \neq \emptyset } \\
+                      &= \Set{ E | E\cap \downset f[I] \neq \emptyset }
                        = O_{\J(h)(I)}.
 \end{align*}
 
@@ -158,13 +168,21 @@ TODO (note about AC:) As one can check, the whole correspondence is given in con
     TODO
 \end{proof}
 
+\num Our situation is as follows
+
+\begin{diagram}
+    \StoneFrm \ar[bend left=15]{rr}{\Bc} & & \Bool{} \ar[bend left=15]{ll}{\J} \ar{ldd}{\Sp} \\
+    \\
+    & \StoneSp \ar{uul}{\Omega}
+\end{diagram}
+
 \begin{proposition}
-    The collection of morphisms $\pi_B\colon \J B \to \Omega\Sp(B)$ defined $I \mapsto O_I$, for $B \in \Bool$, constitutes a natural equivalence $\J \cong \Omega\circ\Sp$.
+    The collection of morphisms $\pi_B\colon \J B \to \Omega\Sp(B)$ defined $I \mapsto O_I$, for $B \in \Bool$, constitutes a natural equivalence $\J \cong \Omega\circ\Sp$.\ACP
 \end{proposition}
-\begin{proof}[Proof \textbf{(AC')}]
+\begin{proof}
     From the definition of $\Sp B$ we can see that $\pi_A$ is onto frame homomorphism.
 
-    Take any $I \neq J$, $I,J \in \J B$. Without lost of generality take $e \in I \setminus J$. Now the filter $\upset e$ is disjoint with the ideal $J$ and by Boolean Ultrafilter Theorem there exists an ultrafilter $U \supseteq \upset e$ disjoint with $J$. Also $U \cap I$ is not empty, it contains $e$, and therefor $O_I \neq O_J$.
+    Take any $I \neq J$, $I,J \in \J B$. Without lost of generality take $e \in I \setminus J$. Now the filter $\upset e$ is disjoint with the ideal $J$ and by Boolean Ultrafilter Theorem there exists an ultrafilter $U \supseteq \upset e$ disjoint with $J$. Also $U \cap I$ is not empty, it contains $e$, and therefore $O_I \neq O_J$.
 
     For naturalness of $\pi_*$ the following diagram have to commute
 
@@ -179,29 +197,20 @@ TODO (note about AC:) As one can check, the whole correspondence is given in con
     \noindent where both equalities follows from~\ref{p:SpMorphisms}.
 \end{proof}
 
-\begin{block}{Conclusion}
-    $\Bc\circ\Omega\circ\Sp \cong \Id_\Bool$.
-\end{block}
+\begin{blockProp}{Conclusion}
+    $\Bc\circ\Omega\circ\Sp \cong \Id_\Bool$.\ACP
+\end{blockProp}
 \begin{proof}
-    By previous Theorem and the Stone correspondence for Stone frames and Boolean algebras we have $\Bc\circ\Omega\circ\Sp \cong \Bc\circ\J \cong \Id_\Bool$.
+    By previous Proposition and the Stone correspondence for Stone frames and Boolean algebras we have $\Bc\circ\Omega\circ\Sp \cong \Bc\circ\J \cong \Id_\Bool$.
 \end{proof}
 
-
-\num Our situation is as follows
-
-\begin{diagram}
-    \StoneFrm \ar[bend left=15]{rr}{\Bc} & & \Bool{} \ar[bend left=15]{ll}{\J} \ar{ldd}{\Sp} \\
-    \\
-    & \StoneSp \ar{uul}{\Omega}
-\end{diagram}
-
 \begin{proposition}
-    The collection of morphisms $\rho_X\colon X \to \Sp\Bc\Omega(X)$ defined $x \mapsto F_x = \{U\text{ clopen} : x\in U \}$, for $X \in \StoneSp$, constitutes a natural equivalence $\Id_\StoneSp \cong \Sp\circ\Bc\circ\Omega$.
+    The collection of morphisms $\rho_X\colon X \to \Sp\Bc\Omega(X)$ defined $x \mapsto F_x = \Set{U\text{ clopen} | x\in U }$, for $X \in \StoneSp$, constitutes a natural equivalence $\Id_\StoneSp \cong \Sp\circ\Bc\circ\Omega$.
 \end{proposition}
 \begin{proof}
     First observe $U$ is clopen in $\Sp\Bc\Omega(X)$ iff $U = \downset a$ for some $a \in \Bc\Omega(X)$ iff $a$ is clopen in $\Omega(X)$ iff $a$ is clopen in $\tau_X$.
 
-    Firstly we will show $\rho_X$ is homeomorphism.
+    We will show $\rho_X$ is homeomorphism.
     \begin{itemize}
         \item $\rho_X$ is one--one: For two points $x_1 \neq x_2$ of $X$, from Hausdorff property there are $U_1, U_2$ such that $U_1\cap U_2 = \emptyset$ and $x_i\in U_i$. From null--dimensionality of $X$ there are two clopen subsets $M_1 \subseteq U_1, M_2 \subseteq U_2$, and $x_i \in M_i$. Hence $F_{x_1} \neq F_{x_2}$.
 
@@ -210,10 +219,10 @@ TODO (note about AC:) As one can check, the whole correspondence is given in con
 
         \item $\rho_X$ and $\rho_X^{-1}$ are continuous:
         \begin{align*}
-            \rho_X^{-1}[O_I] &= \{ \rho_X^{-1}(F_x) = x : F_x \cap I \neq \emptyset\} 
-                = \{ x : x \in M \in I \} = \bigcup I \in \tau_X \\
-            \rho_X[O] &= \{ F_x : x \in M \subseteq O, M \text{ is clopen}\} \\
-                      &= \{ F : F \cap (\downset O \cap \Bc\Omega(X)) \neq \emptyset\} = O_{\downset O \cap \Bc\Omega(X)} \in \tau_{\Sp\Bc\Omega(X)}
+            \rho_X^{-1}[O_I] &= \Set{ \rho_X^{-1}(F_x) = x | F_x \cap I \neq \emptyset} 
+                = \Set{ x | x \in M \in I } = \bigcup I \in \tau_X \\
+            \rho_X[O] &= \Set{ F_x | x \in M \subseteq O, M \text{ is clopen}} \\
+                      &= \Set{ F | F \cap (\downset O \cap \Bc\Omega(X)) \neq \emptyset} = O_{\downset O \cap \Bc\Omega(X)} \in \tau_{\Sp\Bc\Omega(X)}.
         \end{align*}
     \end{itemize}
 
@@ -226,14 +235,14 @@ TODO (note about AC:) As one can check, the whole correspondence is given in con
     \begin{align*}
         \Sp\Bc\Omega(f)(F_x)
             &= \Bc\Omega(f)^{-1}[F_x] = \Omega(f)^{-1}[F_x] \\
-            &= \{ \Omega(f)^{-1}(M) : M \text{ clopen}, x \in M \} \\
-            &= \{ N : x \in M, M \text{ clopen}, f^{-1}[N] = M \} \\
-            &= \{ N : x \in f^{-1}[N] \} = \{ N : f(x) \in N \} = F_{f(x)} = \rho_Y(f(x))
+            &= \Set{ \Omega(f)^{-1}(M) | M \text{ clopen}, x \in M } \\
+            &= \Set{ N | x \in M, M \text{ clopen}, f^{-1}[N] = M } \\
+            &= \Set{ N | x \in f^{-1}[N] } = \Set{ N | f(x) \in N } = F_{f(x)} = \rho_Y(f(x))
     \end{align*}
 \end{proof}
 
 \begin{theorem}
-    Functors $\Omega\circ\Bc$ and \Sp{} are mutually inverse. Specially categories \Bool{} and $\StoneSp^{\text{op}}$ are isomorphic.
+    Functors $\Omega\circ\Bc$ and \Sp{} are mutually inverse. Specially categories \Bool{} and $\StoneSp^{\text{op}}$ are isomorphic.\ACP
 \end{theorem}
 
 \section{Parts of duality}
@@ -246,41 +255,49 @@ TODO say something about geometrical/topological meaning of complete Boolean alg
 \begin{proof}
     In any Boolean algebra the relations $\rbelow$ and $\leq$ coincide. Moreover each complete Boolean algebra is a (completely regular extremally disconnected) Boolean frame. Thus $\J{B}$ equals $\R{B}$.
 
-    From Lemma \ref{p:extrDiscPreserv} we know compactification preserves extremal disconnectedness and therefore \J{B} is also extremally disconnected. From Lemma \ref{p:JisFunctor} we know it is also a Stone frame.
+    From Lemma \ref{p:extrDiscPreserv} we know compactification preserves extremally disconnectedness and therefore \J{B} is also extremally disconnected. From Lemma \ref{p:JisFunctor} we know it is also a Stone frame.
 \end{proof}
 
-\num As \DEF{\ComplBool{}} denote the category of all complete Boolean algebras and Boolean homomorphisms preserving all meets and joins.
+\num As \DEF{\ComplBool{}} denote the category of all complete Boolean algebras and complete Boolean homomorphisms preserving all meets and joins.
 
 \num TODO Recall the definition of Booleanization (\Bo). % TODO add \DEF
 
 \begin{definition}
-    Let $H$ be a Heyting algebra, by $\Bo H$ denote the set $\{ a^{**} : a \in H \}$.
+    Let $H$ be a Heyting algebra, by $\Bo H$ denote the set $\Set{ a^{**} | a \in H }$.
 
     And for a Heyting homomorphism $f\colon H \to K$, set $\Bo f\colon \Bo H \to \Bo K$ to be the mapping
     $$\Bo f\colon a \mapsto f(a)^{**}.$$
 \end{definition}
 
-\begin{block*}{Facts}\label{p:propertiesBooleanization}
-    For any Heyting algebra $H$, its booleanization, the $\Bo H$, is a Boolean algebra with joins given by the following formula
-    $$ a \sqcup b = (a^* \wedge b^*)^*.$$
-
-    Moreover for a locale $L$, $\Bo L$ is a complete Booolean algebra and also the smallest dense sublocale of $L$; and $ a \sqcup b = (a \vee b)^{**}$, as we will see.
-\end{block*}
-
-\begin{lemma}
-    Let $L$ be a locale and let $\beta_L\colon L \to \Bo L$ be the mapping defined as $a \mapsto a^{**}$. Then $\beta_L$ is a frame homomorphism.
-\end{lemma}
+\begin{proposition}
+    Let $H$ be a Heyting semilattice, then $\Bo H$ is a Boolean algebra with joins and meets defined
+    $$ a \sqcup b = (a^* \wedge b^*)^* \quad\text{and}\quad a\sqcap b = a \wedge b.$$
+\end{proposition}
 \begin{proof}
-    It suffices to show that $\beta_L$ is a nucleus on $L$:
-    \begin{enumerate*}[label=(N\arabic*),itemjoin=~]
+    First, we will show that $\sqcap$ really is the meet and $\sqcup$ is the join. For $a,b,c \in \Bo H$:
+
+    \begin{itemize}
+        \item $a\sqcup b = a^{**}\wedge b^{**} = (a\wedge b)^{**} \in \Bo H$.
+        \item Whenever $a,b \leq c$, then $a^*, b^*\geq c^*$ and so $a^*\wedge b^*\geq c^*$, hence $a\sqcap b = (a^*\wedge b^*)^* \leq c^{**} = c$. Trivially $a\sqcap b \in \Bo H$.
+    \end{itemize}
+
+    For $a \in \Bo H$, $a\sqcup b = a^{**}\sqcup b = (a^{**}\wedge a^*)^* = 0^* = 1$ and also $a\sqcap a^* = a\wedge a^* = 0$, hence each element is complemented.
+\end{proof}
+
+\num\label{p:propertiesBooleanization}
+    Let $L$ be a frame, the mapping \DEFSYM{BetaL}{$\beta_L\colon$}$ L \to \Bo L$ defined $a \mapsto a^{**}$ is a nucleus:
+    \begin{enumerate}[label=(N\arabic*)]
         \item From the definition of pseudocomplement we have $a \wedge a^* = 0$ iff $a \leq a^{**}$ hence $a \leq a^{**}$;
         \item Pseudocomplement is antitone hence $(a \leq b \implies a^{**} \leq b^{**})$;
-        \item From $a^* = a^{***}$ implies $a^{**\;**} = a^{**}$; and
-        \item $(a \wedge b)^{**} = a^{**} \wedge b^{**}$ is a standard equality as stated in Lemma~\ref{??}.
-    \end{enumerate*}
+        \item $a^* = a^{***}$ implies $a^{**\;**} = a^{**}$; and
+        \item $(a \wedge b)^{**} = a^{**} \wedge b^{**}$ is standard equality (Lemma~\ref{??}).
+    \end{enumerate}
 
-    Then the claim follows directly from~\ref{p:nuclProp}. % TODO the number is without section number?
-\end{proof}
+    Therefore by~\label{p:nuclProp}, $\Bo L$ is a sublocale of $L$ and consequently a complete Boolean algebra. From~\label{p:nuclProp} we also have $\beta_L$ is a frame homomorphism.
+
+\begin{block}{Note}
+    $\Bo L$ is the smallest dense sublocale of $L$; and joins are given also by the following formula $(a \vee b)^{**}$, since $a \mapsto a^{**}$ is a nucleus.
+\end{block}
 
 \begin{lemma}
     For $L$ be extremally disconnected frame, $a \in L$, and $f\colon L \to M$ a frame homomorphism
@@ -290,14 +307,14 @@ TODO say something about geometrical/topological meaning of complete Boolean alg
     $$ f(a)^* = f(a^*).$$
 \end{lemma}
 \begin{proof}
-    Direct implication of the distributivity of $L$, the fact that $x \leq a^* $ iff $x \wedge a = 0$ and that
+    From extremally disconnectedness, the following holds
     \begin{align*}
-        f(a^{**} \vee a^*) & = f(a^{**}) \vee f(a^*) = 1 \\
-        f(a^{**} \wedge a^*) & = f(a^{**}) \wedge f(a^*) = 0. &\qedhere
+        f(a^{**} \vee a^*) & = f(a^{**}) \vee f(a^*) = 1, \text{ and} \\
+        f(a^{**} \wedge a^*) & = f(a^{**}) \wedge f(a^*) = 0.
     \end{align*}
+    Hence $f(a^{**})$ is complement to $f(a^*)$ and we have $f(a^*) = f(a^{**})^*$.
 \end{proof}
 % TODO more verbose?
-% TODO strange qed symbol, see http://tex.stackexchange.com/questions/27283/how-to-correctly-format-and-align-a-latex-proof
 
 \begin{theorem}
     $\Bo\colon \ExtrStoneFrm \to \ComplBool$ is a functor.
@@ -340,8 +357,8 @@ TODO say something about geometrical/topological meaning of complete Boolean alg
 \begin{proof}
     We will prove just the first case, the others follow directly from it. Let $J$ be any ideal on $L$. Observe that $a \wedge \bigvee J = 0 $ iff $\downset a \wedge J = 0_{\Bo L}$. Since
         \begin{align*}
-            J^* & = \bigvee \{ L : L \wedge J = 0_{\Bo L} \} = \bigcup \{ \downset a : \downset a \wedge J = 0_{\Bo L} \} \text{ and}\\
-            (\bigvee J)^* & = \bigvee \{ a : a \wedge \bigvee J = 0 \},
+            J^* & = \bigvee \Set{ L | L \wedge J = 0_{\Bo L} } = \bigcup \Set{ \downset a | \downset a \wedge J = 0_{\Bo L} } \text{ and}\\
+            (\bigvee J)^* & = \bigvee \Set{ a | a \wedge \bigvee J = 0 },
         \end{align*}
 
     \noindent we see that $\downset a \subseteq J^*$ iff $a \in J^*$ iff $a \leq (\bigvee J)^*$, hence $J^* = \downset (\bigvee J)^*$.
@@ -366,7 +383,7 @@ TODO say something about geometrical/topological meaning of complete Boolean alg
 
     Trivially we have $\tilde\iota \tilde v_L \supseteq \id_{\J\Bo(L)}$ and $\tilde v_L \tilde\iota \leq \id_L$. We again have the situation where $\tilde v_L$ is the left Galois adjoint to $\tilde\iota$ and $\bigvee I_1 \wedge \bigvee I_2 = \bigvee (I_1 \wedge I_2)$ for any two $I_1, I_2 \in \J\Bo(L)$ and so $\tilde v_L$ is a frame homomorphism.
 
-    Actually we also have the opposite inequalities: $\tilde v_L \tilde\iota \geq \id_L$ because $a \rbelow x$ implies $a^{**} \rbelow x$ and $L$ is regular. For $\tilde\iota \tilde v_L \subseteq \id_{\J\Bo(L)}$, take any $x \in \tilde\iota \tilde v_L(I)$. We have $x \leq \bigvee I$, $x = x^{**}$ and from extremal disconnectedness $x^{**} \vee x^* = 1$, so
+    Actually we also have the opposite inequalities: $\tilde v_L \tilde\iota \geq \id_L$ because $a \rbelow x$ implies $a^{**} \rbelow x$ and $L$ is regular. For $\tilde\iota \tilde v_L \subseteq \id_{\J\Bo(L)}$, take any $x \in \tilde\iota \tilde v_L(I)$. We have $x \leq \bigvee I$, $x = x^{**}$ and from extremally disconnectedness $x^{**} \vee x^* = 1$, so
     $$ 1 = x \vee x^* \leq \bigvee I \vee x^*$$
     \noindent holds and from the compactness of $L$ there is a finite $F \subseteq I$ such that $\bigvee F \vee x^* = 1$. Now $x \leq \bigvee F$ since $x = 1 \wedge x = (x^* \vee \bigvee F) \wedge x = \bigvee F \wedge x$ and therefore $x \in I$.
 \end{proof}
@@ -404,18 +421,21 @@ TODO say something about geometrical/topological meaning of complete Boolean alg
     If $B$ is a $\kappa$--complete Boolean algebra, for some cardinal $\kappa$, then $\J B$ is $\kappa$--basically disconnected Stone frame.
 \end{lemma}
 \begin{proof}
-    By the lemma \ref{p:complIdeal} we know that complemented ideals are precisely principal ideals. To prove the lemma we will show that for any $M \subseteq B$, $|M| \leq \kappa$ and $I = \bigvee \{ \downset a : a \in M \}$, $I^{**} \vee I^* = 1_{\J B}$.
+    By the lemma \ref{p:complIdeal} we know that complemented ideals are precisely principal ideals. To prove the lemma we will show that for any $M \subseteq B$, $|M| \leq \kappa$ and $I = \bigvee \Set{ \downset a | a \in M }$, $I^{**} \vee I^* = 1_{\J B}$.
 
     Define $m = \bigvee M$ and $J = \downset m$. Observe that $I^{**} = J$: Trivially $I^{**} \subseteq J^{**} = J$ and $J \subseteq I^{**}$ follows from
-    $$ I^* = \bigcup \{ \downset a : \downset a \cap I = \{0\} \} = \bigcup \{ \downset a : a \wedge m = 0 \} = (\downset m)^* = J^*.$$
+    $$ I^* = \bigcup \Set{ \downset a | \downset a \cap I = \{0\} } = \bigcup \Set{ \downset a | a \wedge m = 0 } = (\downset m)^* = J^*.$$
 
     Consequently, $I^{**} \vee I^* = J \vee J^* = \downset m \vee \downset m^c = 1_{\J B}$.
 \end{proof}
+
+TODO homomorphisms preserving $\kappa$--completeness!
 
 \begin{theorem}
     The category of $\kappa$--basically disconnected Stone frames and frames homomorphisms is isomorphic to the category of $\kappa$--complete Boolean algebras and Boolean homomorphisms.
 \end{theorem}
 % TODO better wording
+
 
 Equivalently in topological spaces, space is $\kappa$--basically disconnectedness iff any union of less than $\kappa$ clopen sets has open closure. In classical setting there is duality between $\kappa$--complete Boolean algebras and $\kappa$--basically disconnected Stone spaces~\cite{monk1989handbook}.
 
@@ -423,3 +443,47 @@ Equivalently in topological spaces, space is $\kappa$--basically disconnectednes
 TODO picture of correspondence
 TODO Mention $\sigma$-Frames.
 TODO Compare compactification in classical and in point-free setting. Mention that \J{} correspond to compactification, the topology of Ult is isomorphic to ideal lattice of Boolean algebra and that this was known~\cite{monk1989handbook}.
+
+\begin{center}
+\begin{tikzpicture}
+    \draw (1,3.2) node {$\StoneFrm$};
+    \draw (7,3.2) node {$\Bool$};
+
+    \draw[semithick] (1,0) ellipse (1.2 and 2.5);
+    \draw[semithick] (7,0) ellipse (1.2 and 2.5);
+
+    % Complete part
+    \draw[semithick] (1.85,-1.7) arc (30:150:1.0cm);
+    \draw[semithick] (7.85,-1.7) arc (30:150:1.0cm);
+
+    % sigma part
+    \draw[semithick] (2.12,0.8) arc (20:160:1.2cm);
+    \draw[semithick] (8.12,0.8) arc (20:160:1.2cm);
+
+    % kappa-complete part
+    \draw[semithick] (2.20,-0.3) arc (25:155:1.32cm);
+    \draw[semithick] (8.20,-0.3) arc (25:155:1.32cm);
+
+    % Functors
+    \draw[->,semithick] (2.5,2.0) -- (5.5,2.0) node[above,midway] {$\Bc$};
+    \draw[->,semithick] (2.5,-0.5) -- (5.5,-0.5) node[above,midway] {$\Bc$};
+    \draw[->,semithick] (2.5,-1.9) -- (5.5,-1.9) node[above,midway] {$\Bo$};
+    \draw[<-,semithick] (2.5,-2.1) -- (5.5,-2.1) node[below,midway] {$\J$};
+    \draw[<-,semithick] (2.5,0.8) -- (5.5,0.8) node[above,midway] {$\J$};
+
+    % Categories captions
+    \node at (-1, 1.2) {$\sigma$--\categoryStyle{BasDiscStoneFrm}};
+    \node at (1, 0.9) {$\vdots$};
+    \node at (-1,-0.2) {$\kappa$--\categoryStyle{BasDiscStoneFrm}};
+    \node at (1,-0.6) {$\vdots$};
+    \node at (-0.5,-2.0) {\ExtrStoneFrm};
+
+    \node at (8.2, 1.2) {$\sigma$--\ComplBool};
+    \node at (7, 0.9) {$\vdots$};
+    \node at (8.2,-0.2) {$\kappa$--\ComplBool};
+    \node at (7,-0.6) {$\vdots$};
+    \node at (8,-2.0) {\ComplBool};
+\end{tikzpicture}
+\end{center}
+
+\noindent Where $\kappa$--\ComplBool{} denotes the category of $\kappa$--complete Boolean algebras and $\kappa$--complete Boolean homomorphisms and $\kappa$--\categoryStyle{BaDiscStoneFrm} denotes the category of $\kappa$--basically disconnected Stone frames and corresponding frame homomorphisms.
