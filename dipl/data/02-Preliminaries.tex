@@ -1,12 +1,16 @@
 \chapter{Preliminaries}
+    We assume basic knowledge of Set Theory, mainly basic knowledge about cardinals and cardinalities, "axiom of choice".
+
 \section{Partially ordered set}
 \begin{itemize}
     \item Joins, meets, order, lattice, distributive lattice (unique solution to $a\vee x = b$ and $c\wedge x = d$)
+    \item $\kappa$--complete and complete lattices and lattice homomorphisms % TODO check, we have already defined it in "Parts of duality"
+    \item meet/join semilattice
     \item bottom (0) resp. top (1) and $0_S$ resp. $1_S$
     \item Galois correspondence (equivalent definitions)
     \item filters, ideals
     \item pseudocomplements and complements (complemented elements), $(a \wedge b)^{**} = a^{**} \wedge b^{**}$, $a \leq b \implies a^* \geq b^*$.
-    \item Boolean algebras and Boolean homomorphisms, \Bool
+    \item Boolean algebras and Boolean homomorphisms, \Bool, prime/maximal/ultrafilter on BA
     \item Heyting algebras, $\_^* = \_ \to 0$
     \item Axiom of Choice/Zorn's Lemma -- its importance/controversy
 \end{itemize}
@@ -36,3 +40,6 @@ Subspace and sublocale/subframe, $\iota_S\colon L \to S$ as subframe inclusion
 Spaciality.
 Separation axioms (regularity, complete regularity, normality, ...?), rather below (and useful facts about them)
 TODO place somewhere StoneSp and StoneFrm and \J.
+
+Notation.
+$\downset a^*$ means $\downset (a^*)$ (rightmost unary operator applies first)

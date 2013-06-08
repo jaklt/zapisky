@@ -50,7 +50,7 @@
 \newenvironment{blockProp*}{\blockPropEnvS}{\endBlockEnv}
 
 \newtheoremstyle{newthmstyle}% name of the style to be used
-    {3pt}% measure of space to leave above the theorem. E.g.: 3pt
+    {8pt}% measure of space to leave above the theorem. E.g.: 3pt
     {3pt}% measure of space to leave below the theorem. E.g.: 3pt
     {\itshape}% name of font to use in the body of the theorem
     {}% measure of space to indent
@@ -59,16 +59,18 @@
     {\afterDotSpace}% space after theorem head; " " = normal interword space
     {\thmnumber{#2. }\thmname{#1}\thmnote{ \rm [#3]}}% Manually specify head
 
-\newtheoremstyle{newthmstyleNormal}{3pt}{3pt}{}{}{\bfseries}{.}{\afterDotSpace}
+\newtheoremstyle{newthmstyleNormal}{8pt}{3pt}{}{}{\bfseries}{.}{\afterDotSpace}
     {\thmnumber{#2. }\thmname{#1}\thmnote{ \rm [#3]}}
 
 \theoremstyle{newthmstyle}
 \newtheorem{lemma}[thmCounter]{Lemma}
 \newtheorem{theorem}[thmCounter]{Theorem}
+\newtheorem{conclusion}[thmCounter]{Conclusion}
 \newtheorem{proposition}[thmCounter]{Proposition}
 \newtheorem{observation}[thmCounter]{Observation}
 \newtheorem*{lemma*}{Lemma}
 \newtheorem*{theorem*}{Theorem}
+\newtheorem*{conclusion*}{Conclusion}
 \newtheorem*{proposition*}{Proposition}
 \newtheorem*{observation*}{Observation}
 
