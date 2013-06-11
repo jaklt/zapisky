@@ -256,6 +256,25 @@ For the rest of this section, let $\kappa$ be some fixed infinite cardinal.
 
 Note, our definition is a little nonstandard, what we mean by $\kappa$--completeness is usually called $\kappa^+$--completeness.
 
+\num The following Lemma will be handy for computations.
+\begin{lemma*}\label{p:idealsFrame} Let $L$ be a frame. Then:
+    \begin{enumerate}
+        \item For all $J \in \J L$: $J^* =\;\downset (\bigvee J)^*$.
+        \item For all $a \in L$: $(\downset a)^* = \downset a^*$ in $\J L$.
+        \item If $L$ is Boolean, then for all $J \in \J L$: $J^{**} =\;\downset \bigvee J$.
+    \end{enumerate}
+\end{lemma*}
+\begin{proof}
+    We will prove just the first case, the others follow directly from it. Let $J$ be any ideal on $L$. Observe that $a \wedge \bigvee J = 0 $ iff $\downset a \wedge J = 0_{\Bo L}$. Since
+        \begin{align*}
+            J^* & = \bigvee \Set{ L | L \wedge J = 0_{\Bo L} } = \bigcup \Set{ \downset a | \downset a \wedge J = 0_{\Bo L} } \text{ and}\\
+            (\bigvee J)^* & = \bigvee \Set{ a | a \wedge \bigvee J = 0 },
+        \end{align*}
+
+    \noindent we see that $\downset a \subseteq J^*$ iff $a \in J^*$ iff $a \leq (\bigvee J)^*$, hence $J^* = \downset (\bigvee J)^*$.
+\end{proof}
+
+
 \begin{definition}
     Let $L$ be a Stone frame and let $s$ be a element of $L$. We say $s$ is a \DEF{$\kappa$--generated} if $s = \bigvee S$ for some $S \subseteq \Bc L$ of cardinality at most $\kappa$.
 
@@ -268,7 +287,7 @@ Note, our definition is a little nonstandard, what we mean by $\kappa$--complete
 \begin{proof}
     By the Lemma~\ref{p:complIdeal} we know that complemented ideals are precisely principal ideals. Given any $M \subseteq B$, such that $|M| \leq \kappa$ and $I = \bigvee \Set{ \downset a | a \in M }$, we will show that $I^{**} \vee I^* = 1_{\J B}$.
 
-    Define $m = \bigvee M$ and $J = \downset m$. Observe that $I^{**} = J$: Trivially $I^{**} \subseteq J^{**} = J$ and $J \subseteq I^{**}$ follows from
+    Define $m = \bigvee M$ and $J = \downset m$. Observe that $I^{**} = J$: Trivially from Lemma~\ref{p:idealsFrame} $I^{**} \subseteq J^{**} = J$ and $J \subseteq I^{**}$ follows from
     $$ I^* = \bigcup \Set{ \downset a | \downset a \wedge I = 0_{\J B}} = \bigcup \Set{ \downset a | a \wedge m = 0 } = (\downset m)^* = J^*.$$
 
     Consequently, $I^{**} \vee I^* = J \vee J^* = \downset m \vee \downset m^c = 1_{\J B}$.
@@ -294,7 +313,7 @@ Note, our definition is a little nonstandard, what we mean by $\kappa$--complete
     $$\bigsqcup M = (\bigvee M)^{**}.$$
 \end{lemma}
 \begin{proof}
-    For $M \subseteq \Bc L$ and $|M| \leq \kappa$, set $m = \bigvee M$. From the assumption that $L$ is $\kappa$--basically disconnected we have $m^{**} \vee m^* = 1$ and therefore $m^{**} \in \Bc L$. So $m^{**}$ is an upper bound for $M$ in $\Bc L$.
+    For $M \subseteq \Bc L$ and $|M| \leq \kappa$, set $m = \bigvee M$. Since $L$ is $\kappa$--basically disconnected we have $m^{**} \vee m^* = 1$ and therefore $m^{**} \in \Bc L$. So $m^{**}$ is an upper bound for $M$ in $\Bc L$.
 
     Now let $n$ be an arbitrary upper bound for $M$ in $\Bc L$, thus $n$ is an upper bound in $L$ also, but $m \leq n$ since $m$ is the supremum of $M$ in $L$. Which gives us the desired relation $m^{**} \leq n^{**} = n$, hence $m^{**}$ is the supremum of $M$ in $\Bc L$.
 \end{proof}
@@ -304,7 +323,7 @@ Note, our definition is a little nonstandard, what we mean by $\kappa$--complete
     $$(\J f)(I^*) = (\J f)(I)^*.$$
 \end{observation}
 \begin{proof}
-    The result is obtained by simple computation:
+    The result is obtained by simple computation
     \begin{align*}
         (\J f)(I^*) &= (\J f)(\downset (\bigvee I)^*) = \downset f((\bigvee I)^*) \\
                 &= \downset f(\bigvee I)^* & \text{($f$ is a Boolean homomorphism)} \\
@@ -316,13 +335,13 @@ Note, our definition is a little nonstandard, what we mean by $\kappa$--complete
 \end{proof}
 % TODO more elegant
 
-As we will see after a while, the above Observation characterises morphisms in the image of $\kappa$--complete part of Boolean algebras in Stone correspondence.
+% As we will see after a while, the above Observation characterises morphisms in the image of $\kappa$--complete part of Boolean algebras in Stone correspondence.
 
 \begin{definition}
     Let $f\colon L \to M$ be a homomorphism between Stone frames. We say $f$ is a \DEF{$\kappa$--basically complete} if $f(a^*) = f(a)^*$ holds for all $\kappa$--generated elements $a \in L$.
 \end{definition}
 
-In other words the last observation states that \J{} sends any $\kappa$--complete Boolean homomorphism to a $\kappa$--basically complete frame homomorphism.
+In other words the last observation states that \J{} sends any $\kappa$--complete Boolean homomorphism to a $\kappa$--basically complete frame homomorphism. As we will see in the following Lemma, morphisms in the image of $\kappa$--complete part of Boolean algebras in Stone correspondence are characterised precisely this way.
 
 \begin{lemma}
     Let $f\colon L \to M$ be a $\kappa$--basically complete frame homomorphism, then $\Bc f\colon \Bc L \to \Bc M$ is a $\kappa$--complete Boolean homomorphism.
@@ -339,7 +358,7 @@ In other words the last observation states that \J{} sends any $\kappa$--complet
     Therefore $\Bc f$ is $\kappa$--complete.
 \end{proof}
 
-\num From the Lemmas~\ref{p:kappaCompleteBA} and~\ref{p:kappaComplStoneFrm} we see that restriction of classical Stone correspondence to subcategories of $\kappa$--complete Boolean algebras on one side and $\kappa$--basically disconnected Stone frames on the other (without any restriction to morphisms) is still a duality of categories. However, we can strengthen the result and get the following
+\num From the Lemmas~\ref{p:kappaCompleteBA} and~\ref{p:kappaComplStoneFrm} we see that restriction of classical Stone correspondence to subcategories of $\kappa$--complete Boolean algebras on one side and $\kappa$--basically disconnected Stone frames on the other (without any restriction on morphisms) is still a duality of categories. However, we can strengthen the result and get the following
 
 \begin{theorem*}
     The category of $\kappa$--basically disconnected Stone frames and $\kappa$--basically complete frame homomorphisms is isomorphic to the category of $\kappa$--complete Boolean algebras and $\kappa$--complete Boolean homomorphisms.
@@ -349,11 +368,11 @@ In other words the last observation states that \J{} sends any $\kappa$--complet
 
     For the first part, we will show $i_B\colon B \to \Bc\J(B)$ is a $\kappa$--complete Boolean homomorphisms for any $\kappa$--complete Boolean algebra $B$. Let $(b_j)_{j < \kappa} \subseteq B$, then by simple computation we get
 
-    \begin{align*}
-        \bigsqcup i_B(b_j) &= \bigsqcup \downset b_j = (\bigvee \downset b_j)^{**} \overset{(\bullet)}{=} \downset (\bigvee b_j) = i_B(\bigvee b_j),
-    \end{align*}
+    $$
+        \bigsqcup i_B(b_j) = \bigsqcup \downset b_j = (\bigvee \downset b_j)^{**} = \downset (\bigvee b_j) = i_B(\bigvee b_j),
+    $$
 
-    \noindent where the $(\bullet)$ equality follows from~\ref{p:idealsFrame}.
+    \noindent where the third equality follows from~\ref{p:idealsFrame}.
 
     For the second part, we need to show $v_L\colon \J\Bc(L) \to L$ is $\kappa$--basically complete for any $\kappa$--basically disconnected Stone frame $L$. We will show $v_L$ is $\lambda$--basically complete for any cardinal $\lambda$. Take any $I \in \J\Bc(L)$, we have
 
@@ -366,7 +385,7 @@ In other words the last observation states that \J{} sends any $\kappa$--complet
     \noindent which finishes the proof.
 \end{proof}
 
-Equivalently in topological spaces, space is $\kappa$--basically disconnectedness iff any union of less than $\kappa$ clopen sets has open closure. In classical setting there is duality between $\kappa$--complete Boolean algebras and $\kappa$--basically disconnected Stone spaces~\cite{monk1989handbook}.
+Equivalently in topological spaces, space is $\kappa$--basically disconnectedness iff any union of less than $\kappa$ clopen sets has open closure. In classical setting there is a duality between $\kappa$--complete Boolean algebras and $\kappa$--basically disconnected Stone spaces~\cite{monk1989handbook}.
 
 % However ... (TODO discuss corresponding morphisms in Top)
 
@@ -507,23 +526,6 @@ The following lemma is taken from ... (TODO cite Booleanization).
     \end{diagram}
 
     Finally for any identity frame homomorphism $i_L$, $\Bo i_L$ is the identity on $\Bo L$. Consequently $\Bo$ is a functor.
-\end{proof}
-
-\begin{lemma}\label{p:idealsFrame} Let $L$ be a frame. Then:
-    \begin{enumerate}
-        \item For all $J \in \J L$: $J^* =\;\downset (\bigvee J)^*$.
-        \item For all $a \in L$: $(\downset a)^* = \downset a^*$ in $\J L$.
-        \item If $L$ is Boolean, then for all $J \in \J L$: $J^{**} =\;\downset \bigvee J$.
-    \end{enumerate}
-\end{lemma}
-\begin{proof}
-    We will prove just the first case, the others follow directly from it. Let $J$ be any ideal on $L$. Observe that $a \wedge \bigvee J = 0 $ iff $\downset a \wedge J = 0_{\Bo L}$. Since
-        \begin{align*}
-            J^* & = \bigvee \Set{ L | L \wedge J = 0_{\Bo L} } = \bigcup \Set{ \downset a | \downset a \wedge J = 0_{\Bo L} } \text{ and}\\
-            (\bigvee J)^* & = \bigvee \Set{ a | a \wedge \bigvee J = 0 },
-        \end{align*}
-
-    \noindent we see that $\downset a \subseteq J^*$ iff $a \in J^*$ iff $a \leq (\bigvee J)^*$, hence $J^* = \downset (\bigvee J)^*$.
 \end{proof}
 
 \begin{proposition}
