@@ -4,7 +4,7 @@
 For the rest of this section, let $\kappa$ be some fixed infinite cardinal.
 
 \begin{definition}
-    A lattice is \DEF{$\kappa$--complete}, for some cardinal $\kappa$, if any of its subset of cardinality at most $\kappa$ has a supremum and an infimum. We say a homomorphism is $\kappa$--complete if it preserves all supremas and infimas of subsets of cardinality at most $\kappa$.
+    A lattice is \DEF{$\kappa$--complete}, if any of its subset of cardinality at most $\kappa$ has a supremum and an infimum. We say a homomorphism is $\kappa$--complete if it preserves all supremas and infimas of subsets of cardinality at most $\kappa$.
 \end{definition}
 
 Note, our definition is a little nonstandard, what we mean by $\kappa$--completeness is usually called $\kappa^+$--completeness.
@@ -94,7 +94,8 @@ Note, our definition is a little nonstandard, what we mean by $\kappa$--complete
     Let $f\colon L \to M$ be a homomorphism between Stone frames. We say $f$ is a \DEF{$\kappa$--basically complete} if $f(a^*) = f(a)^*$ holds for all $\kappa$--generated elements $a \in L$.
 \end{definition}
 
-In other words the last observation states that \J{} sends any $\kappa$--complete Boolean homomorphism to a $\kappa$--basically complete frame homomorphism. As we will see in the following Lemma, morphisms in the image of $\kappa$--complete part of Boolean algebras in Stone correspondence are characterised precisely this way.
+In other words the last observation states that \J{} sends any $\kappa$--complete Boolean homomorphism to a $\kappa$--basically complete frame homomorphism. As we will see from the following Lemma, morphisms in the image of $\kappa$--complete part of Boolean algebras in Stone correspondence are characterised precisely this way.
+% TODO or: precisely characterises morphisms?
 
 \begin{lemma}
     Let $f\colon L \to M$ be a $\kappa$--basically complete frame homomorphism, then $\Bc f\colon \Bc L \to \Bc M$ is a $\kappa$--complete Boolean homomorphism.
@@ -147,7 +148,7 @@ Equivalently in topological spaces, space is $\kappa$--basically disconnectednes
 TODO say something about geometrical/topological meaning of complete Boolean algebras (meaning that ComplBool are frames...).
 
 \begin{proposition}
-    Let $B$ be a complete Boolean algebra. The frame $\J B$ is an extremally disconnected Stone frame.
+    Let $B$ be a complete Boolean algebra. Then the frame $\J B$ is an extremally disconnected Stone frame.
 \end{proposition}
 \begin{proof}
     In any Boolean algebra the relations $\rbelow$ and $\leq$ coincide. Moreover, each complete Boolean algebra is a (completely regular extremally disconnected) Boolean frame. Thus $\J{B}$ equals $\R{B}$.
@@ -157,13 +158,8 @@ TODO say something about geometrical/topological meaning of complete Boolean alg
 
 \num As \DEF{\ComplBool{}} denote the category of all complete Boolean algebras and complete Boolean homomorphisms preserving all meets and joins.
 
-\num TODO Recall the definition of Booleanization (\Bo). % TODO add \DEF
-
 \begin{definition}
-    Let $H$ be a Heyting algebra, by $\Bo H$ denote the set $\Set{ a^{**} | a \in H }$.
-
-    And for a Heyting homomorphism $f\colon H \to K$, set $\Bo f\colon \Bo H \to \Bo K$ to be the mapping
-    $$\Bo f\colon a \mapsto f(a)^{**}.$$
+    Let $H$ be a Heyting algebra, by \DEF{Booleanization} of $H$ we mean the set \DEFSYM{Booleanization}{$\Bo H$} $= \Set{ a^{**} | a \in H }$.
 \end{definition}
 
 \begin{proposition}
@@ -196,7 +192,7 @@ TODO say something about geometrical/topological meaning of complete Boolean alg
     $\Bo L$ is the smallest dense sublocale of $L$; and joins are given also by the following formula $(a \vee b)^{**}$, since $a \mapsto a^{**}$ is a nucleus.
 \end{block}
 
-\begin{lemma}
+\begin{lemma}\label{p:basicalMorphs}
     Let $f\colon L \to M$ be a frame homomorphism and $a \in L$ such that $a^{**}\vee a^* = 1$, then
     $$ f(a^{**})^* = f(a^*).$$
 
@@ -212,53 +208,52 @@ TODO say something about geometrical/topological meaning of complete Boolean alg
     Hence $f(a^{**})$ is complement to $f(a^*)$ and distributivity of $M$ gives us $f(a^*) = f(a^{**})^*$.
 \end{proof}
 
-\begin{observation}
-    $f(a^{**})^* = f(a^*)$ implies $f(a^{**}) = f(a^{**})^{**}$.
-\end{observation}
-\begin{proof}
-    $f((a^*)^*) = f((a^*)^{**})^* = f(a^*)^* = f(a^{**})^{**}$.
-\end{proof}
 
-The following lemma is taken from ... (TODO cite Booleanization).
+\begin{definition}
+    For a frame homomorphism $f\colon H \to K$, set $\Bo f\colon \Bo H \to \Bo K$ to be the mapping
+    $$\Bo f\colon a \mapsto f(a)^{**}.$$
+\end{definition}
 
-\begin{lemma}
+\num\label{p:boolenizationMorph} The following Proposition is taken from~\cite{banaschewski1996booleanization}.
+\begin{proposition*}
     Let $f\colon L \to M$ be a frame homomorphism, then $\Bo f$ is a frame homomorphism such that the following diagram commutes
     \begin{diagram}
         L \ar{r}{\beta_L} \ar{d}{f} & \Bo L \ar{d}{\Bo f}\\
         M \ar{r}{\beta_M}           & \Bo M
     \end{diagram}
-    if and only if $f(a^{**}) \leq f(a)^{**}$.
-\end{lemma}
+    if and only if $f(a^{**}) \leq f(a)^{**}$ for all $a \in L$.
+\end{proposition*}
 \begin{proof}
-    $$
-    (\Bo f)(\bigsqcup A) = (\bigvee f[A])^{**} = f(\bigvee A)^{**} \geq f((\bigvee A)^{**}) = f((\bigvee A)^{**})^{**} = (\Bo f)(\bigsqcup A).
-    $$
+    We will not prove the ``only if'' part, because it will not be needed in the rest of the text.
 
+    First observe that
+    $$ f(a^{**})^{**} = f(a)^{**} \iff f(a^{**}) \leq f(a)^{**}. $$
+    $\Leftarrow$ is straightforward and the $\Rightarrow$ implication follows simply from $f(a^{**})^{**} \leq f(a)^{**}$. Hence the diagram commutes.
 
-    But
-    $$
-    (\Bo f)(\bigsqcup A) \leq f(\bigvee A)^{**} \leq f(\bigvee A).
-    $$
+    Then by simple computation we get
+    $$ (\Bo f)(\bigsqcup A) = f((\bigvee A)^{**})^{**} = f(\bigvee A)^{**} = (\bigvee f[A])^{**}. $$
 
-    TODO: We should have proved $(\Bo f)(\bigsqcup A) = \bigsqcup(\Bo f)[A]$ instead.
+    Now, take any $a\in A$, from $f(a) \leq \bigvee f[A]$ we have $f(a)^{**} \leq (\bigvee f[A])^{**}$. Since $a$ was chosen arbitrary, we also have $\bigvee_{a\in A} f(a)^{**} \leq (\bigvee f[A])^{**}$ and therefore $(\bigvee_{a\in A} f(a)^{**})^{**} \leq (\bigvee f[A])^{**}$. Hence $\bigsqcup (\Bo f)[A] = (\bigvee f[A])^{**}$.
+
+    To sum up everything, we have
+    $$ \bigsqcup (\Bo f)[A] = (\bigvee f[A])^{**} = (\Bo f)(\bigsqcup A),$$
+    \noindent which is what we wanted.
 \end{proof}
 
-\begin{lemma}
-    If $f(a^{**})^* = f(a^*)$ and $f(a^{**}) \leq f(a)^{**}$, then $f(a^*) = f(a)^*$.
-\end{lemma}
-\begin{proof}
-    The $f(a^*) \leq f(a)^*$ is always true and $f(a^*) = f(a^{**})^* \geq f(a)^{***} = f(a)^*$.
-\end{proof}
+\num As we see from~\ref{p:basicalMorphs} and~\ref{p:boolenizationMorph} and from the fact that
+    \begin{align}
+        f(a^{**})^* = f(a^*)\text{ and }f(a^{**}) \leq f(a)^{**} \text{ iff } f(a^*) = f(a)^*\label{e:1001}
+    \end{align}
+    (Indeed, The $f(a^*) \leq f(a)^*$ is always true and $f(a^*) = f(a^{**})^* \geq f(a)^{***} = f(a)^*$)
+, in order for \Bo{} to behave functorially, we need to restrict category of extremally disconnected Stone frames only to morphisms satisfying~(\ref{e:1001}) -- basically complete frame homomorphisms. We will denote this category \ExtrStoneFrm{}.
 
-\begin{theorem}
+\begin{proposition}
     $\Bo\colon \ExtrStoneFrm \to \ComplBool$ is a functor.
-\end{theorem}
+\end{proposition}
 \begin{proof}
     From~\ref{p:propertiesBooleanization} we know $\Bo L$ is a complete Boolean algebra.
 
-    TODO $\Bo f$ is a complete Boolean homomorphism.
-
-    As a direct implication of the previous Lemmas we get that for any frame homomorphism between two extremally disconnected Stone frames $f\colon L \to M$ the following diagram commutes.
+    As a direct implication of Proposition~\ref{p:boolenizationMorph} we get that for any basically complete frame homomorphism between two extremally disconnected Stone frames $f\colon L \to M$ the following diagram commutes.
 
     \begin{diagram}
         L \ar{r}{\beta_L} \ar{d}{f} & \Bo L \ar{d}{\Bo f}\\
@@ -278,8 +273,10 @@ The following lemma is taken from ... (TODO cite Booleanization).
         N \ar{r}{\beta_N}           & \Bo N
     \end{diagram}
 
-    Finally for any identity frame homomorphism $i_L$, $\Bo i_L$ is the identity on $\Bo L$. Consequently $\Bo$ is a functor.
+    Finally for any identity frame homomorphism $i_L$, $\Bo i_L$ is the identity on $\Bo L$. Consequently, $\Bo$ is a functor.
 \end{proof}
+
+\num One can check the proof and see that we do not have to assume anything more about category of frames than to have morphisms satysfying $f(a^{**}) \leq f(a)^{**}$ for all $a$, in order to have \Bo{} functorial.
 
 \begin{proposition}
     Let $B$ be a Boolean frame, then $B \cong \Bo\J(B)$.
@@ -337,7 +334,7 @@ The following lemma is taken from ... (TODO cite Booleanization).
 
 \num TODO Since each Boolean frame is completely regular, \J{} corresponds precisely to compactification of this frame.
 
-\section*{Comments}
+\section*{Comments (on $\sigma$--Frames)}
 TODO Mention $\sigma$-Frames.
 TODO Compare compactification in classical and in point-free setting. Mention that \J{} correspond to compactification, the topology of Ult is isomorphic to ideal lattice of Boolean algebra and that this was known~\cite{monk1989handbook}.
 
