@@ -186,7 +186,7 @@ TODO say something about geometrical/topological meaning of complete Boolean alg
         \item $(a \wedge b)^{**} = a^{**} \wedge b^{**}$ is standard equality (Lemma~\ref{??}).
     \end{enumerate}
 
-    Therefore by~\label{p:nuclProp}, $\Bo L$ is a sublocale of $L$ and consequently a complete Boolean algebra. From~\label{p:nuclProp} we also have $\beta_L$ is a frame homomorphism.
+    Therefore by~\ref{p:nuclProp}, $\Bo L$ is a sublocale of $L$ and consequently a complete Boolean algebra. From~\ref{p:nuclProp} we also have $\beta_L$ is a frame homomorphism.
 
 \begin{block}{Note}
     $\Bo L$ is the smallest dense sublocale of $L$; and joins are given also by the following formula $(a \vee b)^{**}$, since $a \mapsto a^{**}$ is a nucleus.
@@ -241,11 +241,11 @@ TODO say something about geometrical/topological meaning of complete Boolean alg
 \end{proof}
 
 \num As we see from~\ref{p:basicalMorphs} and~\ref{p:boolenizationMorph} and from the fact that
-    \begin{align}
-        f(a^{**})^* = f(a^*)\text{ and }f(a^{**}) \leq f(a)^{**} \text{ iff } f(a^*) = f(a)^*\label{e:1001}
-    \end{align}
+    \begin{align*}
+        f(a^{**})^* = f(a^*)\text{ and }f(a^{**}) \leq f(a)^{**} \text{ iff } f(a^*) = f(a)^*\label{e:1001}\tag{n.o.}
+    \end{align*}
     (Indeed, The $f(a^*) \leq f(a)^*$ is always true and $f(a^*) = f(a^{**})^* \geq f(a)^{***} = f(a)^*$)
-, in order for \Bo{} to behave functorially, we need to restrict category of extremally disconnected Stone frames only to morphisms satisfying~(\ref{e:1001}) -- basically complete frame homomorphisms. We will denote this category \ExtrStoneFrm{}.
+, in order for \Bo{} to behave functorially, we need to restrict category of extremally disconnected Stone frames only to morphisms satisfying~(\oldref{e:1001}) -- basically complete frame homomorphisms. We will denote this category \ExtrStoneFrm{}.
 
 \begin{proposition}
     $\Bo\colon \ExtrStoneFrm \to \ComplBool$ is a functor.

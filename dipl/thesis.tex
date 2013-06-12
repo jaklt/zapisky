@@ -10,8 +10,7 @@
 \usepackage{tikz-cd}
 \usepackage{tikz}
 \usepackage{braket}
-
-% TODO proper referencing
+\usepackage{zref}
 
 
 \usetikzlibrary{arrows}
@@ -25,24 +24,50 @@
 
 \def\afterDotSpace{.5em}
 
+% Proper labeling and referencing
+% http://tex.stackexchange.com/questions/57799/refer-to-theorems-in-previous-chapter
+\makeatletter
+\let\oldlabel\label
+\renewcommand{\label}[1]{%
+  \zref@labelbylist{#1}{special}% Special label
+  \oldlabel{#1}% Old label
+}
+\newcounter{splabel}
+\zref@newlist{special}% Create a new property list called special
+\zref@newprop{chapter}{\Roman{chapter}}% Section property holds \arabic{chapter}
+\zref@addprop{special}{chapter}% Add a chapter property to special
+\let\oldref\ref
+\newcommand*{\thmref}[1]{%
+  \stepcounter{splabel}% Increment local "special label" counter
+  \zref@labelbylist{#1-\thesplabel}{special}% Create label
+  \edef\targetchap{\zref@extractdefault{#1}{chapter}{-1}}% Extract target chapter
+  \edef\sourcechap{\zref@extractdefault{#1-\thesplabel}{chapter}{-1}}% Extract source chapter
+  % (My modification) The way how to compare two strings:
+  \ifnum\pdfstrcmp{\targetchap}{\sourcechap}=0\else\targetchap.\fi%
+  \oldref{#1}%
+}
+\renewcommand\ref[1]{\thmref{#1}}
+\makeatother
+
+% Counting and formating of environments
 \newcounter{thmCounter}[section]
 \renewcommand \thechapter{\Roman{chapter}}
 \renewcommand \thesection{\arabic{section}}
 \renewcommand{\thethmCounter}{\thesection.\arabic{thmCounter}}
 
 \def\blockHelperA{\par\medskip\noindent}
-\def\blockHelperB{\refstepcounter{thmCounter}\arabic{section}.\arabic{thmCounter}.}
+\def\blockHelperB{\refstepcounter{thmCounter}\textbf{\arabic{section}.\arabic{thmCounter}.}}
 \def\blockHelperCA{\hspace{\afterDotSpace}\ignorespaces}
 \def\blockHelperCB{\it\hspace{\afterDotSpace}\ignorespaces}
 
-\def\blockEnv#1{\blockHelperA\hbox{\bf {\blockHelperB} #1.}\blockHelperCA}
+\def\blockEnv#1{\blockHelperA\blockHelperB\hbox{\bf  #1.}\blockHelperCA}
 \def\blockEnvS#1{\blockHelperA\hbox{\bf #1.}\blockHelperCA}
-\def\blockPropEnv#1{\blockHelperA\hbox{\bf {\blockHelperB} #1.}\blockHelperCB}
+\def\blockPropEnv#1{\blockHelperA\blockHelperB\hbox{\bf #1.}\blockHelperCB}
 \def\blockPropEnvS#1{\blockHelperA\hbox{\bf #1.}\blockHelperCB}
 \def\endBlockEnv{\par\medskip}
 
 % TODO add little space before numbered paragraph
-\def\num{\blockHelperA\hbox{\bf {\blockHelperB}}\hspace{\afterDotSpace}}
+\def\num{\blockHelperA\blockHelperB\hspace{\afterDotSpace}}
 
 \newenvironment{block}{\blockEnv}{\endBlockEnv}
 \newenvironment{block*}{\blockEnvS}{\endBlockEnv}
