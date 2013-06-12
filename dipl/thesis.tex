@@ -49,7 +49,7 @@
 \renewcommand\ref[1]{\thmref{#1}}
 \makeatother
 
-% Counting and formating of environments
+% Counting and environments
 \newcounter{thmCounter}[section]
 \renewcommand \thechapter{\Roman{chapter}}
 \renewcommand \thesection{\arabic{section}}
@@ -58,12 +58,12 @@
 \def\blockHelperA{\par\medskip\noindent}
 \def\blockHelperB{\refstepcounter{thmCounter}\textbf{\arabic{section}.\arabic{thmCounter}.}}
 \def\blockHelperCA{\hspace{\afterDotSpace}\ignorespaces}
-\def\blockHelperCB{\it\hspace{\afterDotSpace}\ignorespaces}
+\def\blockHelperCB{\it\blockHelperCA}
 
-\def\blockEnv#1{\blockHelperA\blockHelperB\hbox{\bf  #1.}\blockHelperCA}
-\def\blockEnvS#1{\blockHelperA\hbox{\bf #1.}\blockHelperCA}
-\def\blockPropEnv#1{\blockHelperA\blockHelperB\hbox{\bf #1.}\blockHelperCB}
-\def\blockPropEnvS#1{\blockHelperA\hbox{\bf #1.}\blockHelperCB}
+\def\blockEnv#1{\blockHelperA\blockHelperB{\bf~#1.}\blockHelperCA}
+\def\blockEnvS#1{\blockHelperA{\bf~#1.}\blockHelperCA}
+\def\blockPropEnv#1{\blockHelperA\blockHelperB{\bf~#1.}\blockHelperCB}
+\def\blockPropEnvS#1{\blockHelperA{\bf~#1.}\blockHelperCB}
 \def\endBlockEnv{\par\medskip}
 
 % TODO add little space before numbered paragraph
@@ -107,7 +107,7 @@
 \newcommand\categoryStyle[1]{\ensuremath{\mathbf{#1}}}
 \newcommand\Frm{\categoryStyle{Frm}}
 \newcommand\StoneFrm{\categoryStyle{StoneFrm}}
-\newcommand\ExtrStoneFrm{\categoryStyle{ExtrStoneFrm}}
+\newcommand\ExtrStoneFrm{\categoryStyle{ExtrDStoneFrm}}
 \newcommand\Top{\categoryStyle{Top}}
 \newcommand\StoneSp{\categoryStyle{StoneSp}}
 \newcommand\Bool{\categoryStyle{Bool}}
@@ -137,12 +137,10 @@
   \right|_{#2} % this is the delimiter
 }}
 
-% TODO spacing before and after thms and others
-
 % Other stuff
-\newcommand\DEF[2][]{\index{#2#1}\emph{#2}}
+\newcommand\DEF[2][]{\emph{#2}\index{#2#1}}
   % example \DEF[|see{null-dimensional}]{zero-dimensional}
-\newcommand\DEFSYM[2]{\index{#1@#2}\emph{#2}}
+\newcommand\DEFSYM[3][a ]{\emph{#3}\index{#1#2@#3}\ignorespaces}
 
 \newenvironment{diagram}{\begin{center}\begin{tikzcd}}{\end{tikzcd}\end{center}}
 \newcommand\ACP{\hfill\fontshape{n}{\textbf{($\star$)}}}
