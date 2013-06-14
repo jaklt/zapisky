@@ -143,7 +143,6 @@ Equivalently in topological spaces, space is $\kappa$--basically disconnectednes
 
 % However ... (TODO discuss corresponding morphisms in Top)
 
-
 \section{Complete Boolean algebras}
 % TODO say something about geometrical/topological meaning of complete Boolean algebras (meaning that ComplBool are frames...).
 
@@ -156,7 +155,7 @@ Equivalently in topological spaces, space is $\kappa$--basically disconnectednes
     From Lemma \ref{p:extrDiscPreserv} we know compactification preserves extremally disconnectedness and therefore \J{B} is also extremally disconnected. From Lemma \ref{p:JisFunctor} we know it is also a Stone frame.
 \end{proof}
 
-This Proposition is no surprise, by the Theorem~\ref{p:kappaCompleteThm} in the previous section we know there is an isomorphism between category of $\kappa$--completele Boolean algebras and category $\kappa$--basically disconnected Stone frames. When we send $\kappa$ to be arbitrary large we obtain exactly an isomorphism of category of completele Boolean algebras and category of extremally disconnected Stone frames.
+This Proposition is no surprise, by the Theorem~\ref{p:kappaCompleteThm} in the previous section we know there is an isomorphism between category of $\kappa$--completele Boolean algebras and category $\kappa$--basically disconnected Stone frames. When we let $\kappa$ to be arbitrary large we obtain exactly an isomorphism of category of completele Boolean algebras and category of extremally disconnected Stone frames.
 
 More important is what we got from its proof. As $\J B$ is the proper compactification of Boolean frame, it shows that this part of duality is of geometrical/topological nature.
 
@@ -283,7 +282,7 @@ More important is what we got from its proof. As $\J B$ is the proper compactifi
     Finally, for any identity frame homomorphism $i_L$, $\Bo i_L$ is the identity on $\Bo L$. Consequently, $\Bo$ is a functor.
 \end{proof}
 
-\num One can check the proof and see that we do not have to assume anything more about category of frames than to have morphisms satysfying $f(a^{**}) \leq f(a)^{**}$ for all $a$, in order to have \Bo{} functorial.
+One can check the proof and see we do not have to assume anything more about category of frames than to have morphisms satysfying $f(a^{**}) \leq f(a)^{**}$ for all $a$, in order to have \Bo{} functorial.
 
 \begin{observation}
     $\Bo L = \Bc L$ for any extremally disconnected Stone frame $L$.
@@ -301,7 +300,7 @@ Until the end of this section, we will use the Lemma~\ref{p:idealsFrame} frequen
 \begin{proof}
     We see that $\J \in \Bo\J(B)$ iff $J = J^{**} = \downset \bigvee J$. On the other hand, for $a \in B$: $(\downset a)^{**} = \downset a^{**} = \downset a$.
 
-    Denote \DEFSYM[istar2]{}{$\tilde i_B$}$\colon B \to \Bo\J(B)$ the mapping $a \mapsto \downset a$. From the previous Observation we know the definitions of $\tilde i_B$ and $i_B$ coincide, therefore by~\ref{p:BoolEquivalence}, $\tilde i_B$ is a Boolean homomorphism.
+    Denote \DEFSYM[istar2]{}{$\tilde i_B$}$\colon B \to \Bo\J(B)$ the mapping $a \mapsto \downset a$. From the previous Observation we know the definitions of $\tilde i_B$ and $i_B$ coincide, therefore by~\ref{p:BoolEquivalence} $\tilde i_B$ is a Boolean homomorphism.
 
     Now, take any $\Set{ a_i | i\in I}$ subset of $B$, then
     $$
@@ -334,12 +333,12 @@ Until the end of this section, we will use the Lemma~\ref{p:idealsFrame} frequen
     Similarly to the general case, define $\tilde v_L\colon \J\Bo(L) \to L$ as
     $$ \tilde v_L\colon I \mapsto \bigvee I.$$
 
-    From the last Observation we know the definitions of $\tilde v_L$ and $v_L$ are the same, and by~\ref{p:StoneFrmEquivalence} we have $\tilde v_L$ is a frame isomorphism.
+    From the last Observation we know the definitions of $\tilde v_L$ and $v_L$ are the same, and $\tilde v_L$ is a frame isomorphism by~\ref{p:StoneFrmEquivalence}.
 
-    From the proof of Theorem~\ref{p:kappaCompleteThm} we know that $v_L$ is $\lambda$--basically complete frame homomorphism for all infinite cardinals $\lambda$, therefore $\tilde v_L$ is also basically complete and is a~morphisms of $\ExtrStoneFrm$.
+    From the proof of Theorem~\ref{p:kappaCompleteThm} we know $v_L$ is $\lambda$--basically complete frame homomorphism for all infinite cardinals $\lambda$, therefore $\tilde v_L$ is also basically complete and is a~morphisms of $\ExtrStoneFrm$.
 \end{proof}
 
-\num To show naturalness of $\tilde v_*$ from the previous Lemma, let $L$ and $M$ be extremally disconnected Stone frames and let $f\colon L \to M$ be a basically complete frame homomorphism. Then the following diagram commutes
+\num To show naturalness of $\tilde v_*$ defined in the previous Lemma, let $L$ and $M$ be extremally disconnected Stone frames and let $f\colon L \to M$ be a basically complete frame homomorphism. Then the following diagram commutes
     \begin{diagram}
         \J\Bo(L) \ar{d}[swap]{\J\Bo(f)} \ar{r}{\tilde v_L} & L \ar{d}{f} \\
         \J\Bo(M) \ar{r}{\tilde v_M}    & M
@@ -355,19 +354,18 @@ Until the end of this section, we will use the Lemma~\ref{p:idealsFrame} frequen
     \tilde v_M((\J\Bo)(f)(I)) = \bigvee \downset f[I] = \bigvee f[I] = f(\bigvee I) = f(\tilde v_L(I)).
     $$
 
-    Now again, from the commutativity of the above diagram we can conclude
+    Now again, from the commutativity of the diagram above we can conclude
 
 \begin{proposition*}
     The collection $\tilde v_*$ of basically complete frame homomorphisms is a natural equivalence between $\J\Bo$ and the identity functor on \ExtrStoneFrm.
 \end{proposition*}
 
-\num 
+\num By the Theorem~\ref{p:kappaCompleteThm} we know we have an isomorphism between categories of $\kappa$--complete Boolean algebras and $\kappa$--basically disconnected Stone frames witnessed by functors \J{} and \Bc{}. When we restrict $\J$ to category \ComplBool{}, morphisms on side of Stone frames are precisely basically complete frame homomorphisms.
 
-\num TODO By the previous isomorphism lemmas we have the natural equivalence between identity functor and \Bo\J{} resp. \J\Bo{} and get an isomorphism of categories \ComplBool{} and \ExtrStoneFrm, two subcategories of \Frm.
+By 2.13, 2.14, 2.15 and 2.16 we have the natural equivalence between identity functors and \Bo\J{} resp. \J\Bo{}.
+% By the previous isomorphism lemmas we have the natural equivalence between identity functor and \Bo\J{} resp. \J\Bo{} and get an isomorphism of categories \ComplBool{} and \ExtrStoneFrm (two subcategories of \Frm).
+As conclusion the functors \Bo{} and \J{} form an adjunction, with units and counits being natural equivalence and we obtain the main result of this section
 
-\num As conclusion the functors \Bo{} and \J{} form an adjunction, with unit and counit being isomorphism and so we have the following
-
-We obtain the main result of this section
 \begin{theorem*}
     The categories \ExtrStoneFrm{} and \ComplBool{} are isomorphic.
 \end{theorem*}
@@ -422,4 +420,4 @@ We obtain the main result of this section
 
 \noindent Where $\kappa$--\ComplBool{} denotes the category of $\kappa$--complete Boolean algebras and $\kappa$--complete Boolean homomorphisms and $\kappa$--\categoryStyle{BDStoneFrm} denotes the category of $\kappa$--basically disconnected Stone frames and $\kappa$--basically complete frame homomorphisms.
 
-Where the $\omega_0$--\ComplBool{} is usually denoted as $\sigma$--\ComplBool{}. Generally $\sigma$--frames are lattices having joins for all subsets of cardinality at most $\omega_0$ such that finite meets distribute over such joins.
+The category $\omega_0$--\ComplBool{} is usually denoted as $\sigma$--\ComplBool{}. Generally $\sigma$--frames are lattices having joins for all subsets of cardinality at most $\omega_0$ such that finite meets distribute over such joins.
