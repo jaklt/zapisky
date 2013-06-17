@@ -11,17 +11,34 @@
     \item filters, ideals, principal filter/ideal
     \item pseudocomplements and complements (complemented elements), $(a \wedge b)^{**} = a^{**} \wedge b^{**}$, $a \leq b \implies a^* \geq b^*$.
     \item Boolean algebras and Boolean homomorphisms, \Bool, prime/maximal/ultrafilter on BA
+    \item Axiom of Choice/Zorn's Lemma, Boolean Ultrafilter Theorem
     \item Heyting algebras, $\_^* = \_ \to 0$
-    \item Axiom of Choice/Zorn's Lemma -- its importance/controversy
 \end{itemize}
 \section{Category Theory}
-category, functor (important example: identity functor), natural transformation, natural equivalence, adjunction, units of adjunction
-TODO exmplain importance of adjunction by mentioning the limit preserving of adjuction
+\begin{itemize}
+    \item category (in basic definition locally small), dual category??
+    \item functor (important example: identity functor and constant functor)
+    \item natural transformation, natural equivalence, functor category
+    \item limits/colimits via "universal functors", example products, sums
+    \item ajdunction only via units and counits of adjunction
+
+    explain importance of adjunction by mentioning the limit preserving
+\end{itemize}
 
 \section{Topology and point--free Topology}
-Basic of \Top{} and \Frm.
-frame homomorphisms, localic maps, continuous map, homeomorphism
-Subspace and sublocale/subframe, $\iota_S\colon L \to S$ as subframe inclusion
+\begin{itemize}
+    \item Basic of \Top{} and \Frm. frame homomorphisms, localic maps, continuous map, homeomorphism
+    \item Subspace and sublocale/subframe, $\iota_S\colon L \to S$ as subframe inclusion
+    \item Separation axioms (regularity, complete regularity, normality, ...?), rather below (and useful facts about them)
+    \item completeness and cocompleteness of \Top{} and \Frm{}
+    \item Spatiality, some spatiality theorems (II.5.3, Hofmann--Lawson's Duality)
+\end{itemize}
+
+TODO place somewhere StoneSp and StoneFrm and \J.
+
+Notation.
+$\downset a^*$ means $\downset (a^*)$ (rightmost unary operator applies first)
+
 \num Let $L$ be a locale, \DEF{nucleus} $\nu$ on $L$ is a monotone map $\nu\colon L \to L$ having the following four properties:
 \begin{enumerate}[(N1)]
     \item $a \leq \nu(a)$,
@@ -36,10 +53,3 @@ Subspace and sublocale/subframe, $\iota_S\colon L \to S$ as subframe inclusion
 \noindent is a sublocale of $L$ (TODO proof? -- $\nu$ is onto frame homomorphism). Furthermore the mapping $\nu^*\colon L \to \nu(L)$ defined as $\nu^* = \iota_S\,\nu$ is a frame homomorphism. To show that, it is enough to show
     $$\nu(\bigvee a_i) = \nu(\bigvee \nu(a_i)) \quad( = \bigsqcup \nu(a_i)).$$
     \noindent We have $\bigvee a_i \leq \bigvee \nu(a_i)$ by (N1) and $\nu(\bigvee a_i) \leq \nu(\bigvee \nu(a_i))$ by (N2). On the other hand $\nu(a_i) \leq \nu(\bigvee a_i)$ by (N2). Hence $\bigvee \nu(a_i) \leq \nu(\bigvee a_i)$ and $\nu(\bigvee \nu(a_i)) \leq \nu\nu(\bigvee a_i) = \nu(\bigvee a_i)$ by (N2) and (N3).
-
-Spatiality.
-Separation axioms (regularity, complete regularity, normality, ...?), rather below (and useful facts about them)
-TODO place somewhere StoneSp and StoneFrm and \J.
-
-Notation.
-$\downset a^*$ means $\downset (a^*)$ (rightmost unary operator applies first)
