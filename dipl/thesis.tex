@@ -61,9 +61,9 @@
 \def\blockHelperCB{\it\blockHelperCA}
 
 \def\blockEnv#1{\blockHelperA\blockHelperB{\bf~#1.}\blockHelperCA}
-\def\blockEnvS#1{\blockHelperA{\bf~#1.}\blockHelperCA}
+\def\blockEnvS#1{\blockHelperA{\bf #1.}\blockHelperCA}
 \def\blockPropEnv#1{\blockHelperA\blockHelperB{\bf~#1.}\blockHelperCB}
-\def\blockPropEnvS#1{\blockHelperA{\bf~#1.}\blockHelperCB}
+\def\blockPropEnvS#1{\blockHelperA{\bf #1.}\blockHelperCB}
 \def\endBlockEnv{\par\medskip}
 
 % TODO add little space before numbered paragraph
@@ -112,10 +112,12 @@
 \newcommand\StoneSp{\categoryStyle{StoneSp}}
 \newcommand\Bool{\categoryStyle{Bool}}
 \newcommand\ComplBool{\categoryStyle{ComplBool}}
+\newcommand\CRegFrm{\categoryStyle{CRegFrm}}
+\newcommand\RegKFrm{\categoryStyle{RegKFrm}}
 
 % Special symbols
-\newcommand\N{\ensuremath{\mathbb{N}}}
 \newcommand\R{\ensuremath{\mathfrak{R}}}
+\newcommand\C{\ensuremath{\mathcal{R}}}
 \newcommand\J{\ensuremath{\mathfrak{J}}}
 \newcommand\p[1]{\ensuremath{\mathcal{ #1 }}}
 \newcommand\Bo{\ensuremath{\mathfrak{B}}} % booleanization
@@ -125,8 +127,10 @@
 \newcommand\upset  {\mathord{\uparrow}\mkern1mu}
 \newcommand\downset{\mathord{\downarrow}\mkern1mu} % mathord/mathbin/mathrel treats symbol as oordinal math symbol/binary relation/...
 \newcommand\rbelow{\prec}
+\newcommand\crbelow{\rbelow\mkern-7mu\rbelow}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\Ult}{Ult}
 
 % Function restriction
 % http://tex.stackexchange.com/questions/22252/how-to-typeset-function-restrictions

@@ -2,7 +2,7 @@
 \section{Stone correspondence for \StoneFrm}
 
 \begin{definition}
-    We say a frame is \DEF{Stone frame} if it is compact, regular and null--dimensional.
+    We say a frame is \DEF{Stone frame} if it is compact, regular and zero--dimensional.
 \end{definition}
 % TODO define category \StoneFrm
 % TODO shifted text ("Definition")
@@ -30,7 +30,7 @@
     $\J B$ is trivially a compact frame. Lemma \ref{p:complIdeal} implies that $\downset a$ is complemented and $\downset a \rbelow \downset a$ for all $a \in B$. Thus for any ideal $I \in \J B$ we obtain
     $$ I = \bigvee \Set{ \downset a | a \in I } \subseteq \bigvee \Set{ J | J \rbelow I } \subseteq I,$$
 
-\noindent hence $\J B$ is regular and null--dimensional. The rest is easy.
+\noindent hence $\J B$ is regular and zero--dimensional. The rest is easy.
 \end{proof}
 
 \begin{definition}
@@ -55,7 +55,7 @@ and similarly $a^c\wedge b^c$ is complement of $a\vee b$.), one can see that $\B
     $\Bc\colon \StoneFrm \to \Bool$ is a functor.
 \end{observation}
 
-\num\label{p:BoolEquivalence} For $B \in \Bool$ define \DEFSYM[istar]{}{$i_B$}$\colon B \to \Bc\J(B)$ as follows
+\num\label{p:BoolEquivalence} For $B \in \Bool$ define \DEFSYM{istar}{$i_B$}$\colon B \to \Bc\J(B)$ as follows
     $$i_B\colon b \mapsto \downset b.$$
     The definition is sound by Lemma \ref{p:complIdeal} and $i_B$ is a Boolean homomorphism, indeed $\downset a \vee \downset b = \downset (a \vee b)$, $\downset a \wedge \downset b = \downset (a \wedge b)$, $\downset 1 = B$ respectively $\downset 0 = \{0\}$ is top respectively bottom of $\Bc\J(B)$, and complements are preserved thanks to distributivity of $\Bc\J(B)$.
 
@@ -72,12 +72,12 @@ From Lemma \ref{p:complIdeal} we also see that $i_B$ is an isomorphism and there
     The collection $i_*$ of Boolean homomorphisms forms a natural equivalence between $\Bc\J$ and the identity functor on \Bool.
 \end{proposition*}
 
-\num\label{p:StoneFrmEquivalence} Similarly for $L \in \StoneFrm$ we have a mapping \DEFSYM[vstar]{}{$v_L$}$\colon \J\Bc(L) \to L$ defined as
+\num\label{p:StoneFrmEquivalence} Similarly for $L \in \StoneFrm$ we have a mapping \DEFSYM{vstar}{$v_L$}$\colon \J\Bc(L) \to L$ defined as
     $$v_L\colon I \mapsto \bigvee I,$$
     and a mapping in the opposite direction $\iota\colon L \to \J\Bc(L)$:
     $$\iota\colon e \mapsto \downset e \cap \Bc L.$$
 
-We can see that both $v_L$ and $\iota$ are monotone maps, $v_L \iota = \id_L$ (by null--dimensionality and regularity of $L$) and $\id_{\J\Bc(L)} \subseteq \iota v_L$, therefore $v_L$ is the left Galois adjoint to $\iota$, hence $v_L$ preserves all suprema.
+We can see that both $v_L$ and $\iota$ are monotone maps, $v_L \iota = \id_L$ (by zero--dimensionality and regularity of $L$) and $\id_{\J\Bc(L)} \subseteq \iota v_L$, therefore $v_L$ is the left Galois adjoint to $\iota$, hence $v_L$ preserves all suprema.
 Since $\bigvee I_1 \wedge \bigvee I_2 = \bigvee \Set{a_1 \wedge a_2 | a_i \in I_i} \leq \bigvee \Set{ a | a \in I_1 \cap I_2 } = \bigvee (I_1 \cap I_2) \leq \bigvee I_1 \cap \bigvee I_2$, $v_L$ also preserves finite infima which makes it a frame homomorphism.
 
 Finally, $\id_{\J\Bc(L)} = \iota v_L$: take any $x \in \iota v_L(I)$. From the definitions we immediately see that $x \leq \bigvee I$ and $x$ is complemented in $L$. By the fact that
@@ -111,7 +111,7 @@ TODO (note about AC:) As one can check, the whole correspondence is given in con
 
 \num Similarly to Frame case:
 \begin{definition*}
-    We say a topological space is \DEF{Stone space} if it is compact, Hausdorff and null--dimensional.
+    We say a topological space is \DEF{Stone space} if it is compact, Hausdorff and zero--dimensional.
 \end{definition*}
 
 \num Let $B$ be a Boolean algebra, define
@@ -133,7 +133,7 @@ TODO (note about AC:) As one can check, the whole correspondence is given in con
     Let $B$ be a Boolean algebra, $\Sp B$ is a Stone space.
 \end{lemma}
 \begin{proof}
-    Compactness and null--dimensionality follows directly from compactness and null--dimensionality of $\J B$.
+    Compactness and zero--dimensionality follows directly from compactness and zero--dimensionality of $\J B$.
 
     To show $X_B$ is also Hausdorff, take any ultrafilters $E \neq F$. Without lost of generality there is some $e \in E \setminus F$. We have $e\vee e^c = 1$, since $F$ is an ultrafilter we have $e^c \in F$. We also have $e\wedge e^c = 0$ and so $O_{\downset e}$ and $O_{\downset e^c}$ separates $E$ and $F$.
 \end{proof}
@@ -211,7 +211,7 @@ TODO (note about AC:) As one can check, the whole correspondence is given in con
 
     We will show $\rho_X$ is homeomorphism.
     \begin{itemize}
-        \item $\rho_X$ is one--one: For two points $x_1 \neq x_2$ of $X$, from Hausdorff property there are $U_1, U_2$ such that $U_1\cap U_2 = \emptyset$ and $x_i\in U_i$. From null--dimensionality of $X$ there are two clopen subsets $M_1 \subseteq U_1, M_2 \subseteq U_2$, and $x_i \in M_i$. Hence $F_{x_1} \neq F_{x_2}$.
+        \item $\rho_X$ is one--one: For two points $x_1 \neq x_2$ of $X$, from Hausdorff property there are $U_1, U_2$ such that $U_1\cap U_2 = \emptyset$ and $x_i\in U_i$. From zero--dimensionality of $X$ there are two clopen subsets $M_1 \subseteq U_1, M_2 \subseteq U_2$, and $x_i \in M_i$. Hence $F_{x_1} \neq F_{x_2}$.
 
         % TODO avoid using knowledge about compact spacese?
         \item $\rho_X$ is onto: Take any $F$ ultafilter. From the observation we know, $F$ is also ultrafilter on $X$. Since $\Sp\Bc\Omega(X)$ is compact, there exists convergent point $x$ of $F$. And so $F \subseteq F_x$. But $F$ is an ultrafilter, maximal filter, and therefore $F = F_x$.
