@@ -55,7 +55,7 @@ and similarly $a^c\wedge b^c$ is complement of $a\vee b$.), one can see that $\B
     $\Bc\colon \StoneFrm \to \Bool$ is a functor.
 \end{observation}
 
-\num\label{p:BoolEquivalence} For $B \in \Bool$ define \DEFSYM[istar]{}{$i_B$}$\colon B \to \Bc\J(B)$ as follows
+\num\label{p:BoolEquivalence} For $B \in \Bool$ define \DEFSYM{istar}{$i_B$}$\colon B \to \Bc\J(B)$ as follows
     $$i_B\colon b \mapsto \downset b.$$
     The definition is sound by Lemma \ref{p:complIdeal} and $i_B$ is a Boolean homomorphism, indeed $\downset a \vee \downset b = \downset (a \vee b)$, $\downset a \wedge \downset b = \downset (a \wedge b)$, $\downset 1 = B$ respectively $\downset 0 = \{0\}$ is top respectively bottom of $\Bc\J(B)$, and complements are preserved thanks to distributivity of $\Bc\J(B)$.
 
@@ -72,7 +72,7 @@ From Lemma \ref{p:complIdeal} we also see that $i_B$ is an isomorphism and there
     The collection $i_*$ of Boolean homomorphisms forms a natural equivalence between $\Bc\J$ and the identity functor on \Bool.
 \end{proposition*}
 
-\num\label{p:StoneFrmEquivalence} Similarly for $L \in \StoneFrm$ we have a mapping \DEFSYM[vstar]{}{$v_L$}$\colon \J\Bc(L) \to L$ defined as
+\num\label{p:StoneFrmEquivalence} Similarly for $L \in \StoneFrm$ we have a mapping \DEFSYM{vstar}{$v_L$}$\colon \J\Bc(L) \to L$ defined as
     $$v_L\colon I \mapsto \bigvee I,$$
     and a mapping in the opposite direction $\iota\colon L \to \J\Bc(L)$:
     $$\iota\colon e \mapsto \downset e \cap \Bc L.$$

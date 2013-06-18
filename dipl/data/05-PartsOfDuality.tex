@@ -20,8 +20,8 @@ Note, our definition is a little nonstandard, what we mean by $\kappa$--complete
 \begin{proof}
     We will prove just the first case, the others follow directly from it. Let $J$ be any ideal on $L$. Observe that $a \wedge \bigvee J = 0 $ iff $\downset a \wedge J = 0_{\Bo L}$. Since
         \begin{align*}
-            J^* & = \bigvee \Set{ L | L \wedge J = 0_{\Bo L} } = \bigcup \Set{ \downset a | \downset a \wedge J = 0_{\Bo L} } \text{ and}\\
-            (\bigvee J)^* & = \bigvee \Set{ a | a \wedge \bigvee J = 0 },
+            J^* & = \bigvee \set{ L | L \wedge J = 0_{\Bo L} } = \bigcup \Set{ \downset a | \downset a \wedge J = 0_{\Bo L} } \text{ and}\\
+            (\bigvee J)^* & = \bigvee \set{ a | a \wedge \bigvee J = 0 },
         \end{align*}
 
     \noindent we see that $\downset a \subseteq J^*$ iff $a \in J^*$ iff $a \leq (\bigvee J)^*$, hence $J^* = \downset (\bigvee J)^*$.
@@ -300,7 +300,7 @@ Until the end of this section, we will use the Lemma~\ref{p:idealsFrame} frequen
 \begin{proof}
     We see that $\J \in \Bo\J(B)$ iff $J = J^{**} = \downset \bigvee J$. On the other hand, for $a \in B$: $(\downset a)^{**} = \downset a^{**} = \downset a$.
 
-    Denote \DEFSYM[istar2]{}{$\tilde i_B$}$\colon B \to \Bo\J(B)$ the mapping $a \mapsto \downset a$. From the previous Observation we know the definitions of $\tilde i_B$ and $i_B$ coincide, therefore by~\ref{p:BoolEquivalence} $\tilde i_B$ is a Boolean homomorphism.
+    Denote \DEFSYM{istar2}{$\tilde i_B$}$\colon B \to \Bo\J(B)$ the mapping $a \mapsto \downset a$. From the previous Observation we know the definitions of $\tilde i_B$ and $i_B$ coincide, therefore by~\ref{p:BoolEquivalence} $\tilde i_B$ is a Boolean homomorphism.
 
     Now, take any $\Set{ a_i | i\in I}$ subset of $B$, then
     $$
@@ -330,7 +330,7 @@ Until the end of this section, we will use the Lemma~\ref{p:idealsFrame} frequen
     Let $L$ be an extremally disconnected Stone frame, then $L \cong \J\Bo(L)$ in \ExtrStoneFrm.
 \end{lemma}
 \begin{proof}
-    Similarly to the general case, define $\tilde v_L\colon \J\Bo(L) \to L$ as
+    Similarly to the general case, define \DEFSYM{vstar2}{$\tilde v_L$}$\colon \J\Bo(L) \to L$ as
     $$ \tilde v_L\colon I \mapsto \bigvee I.$$
 
     From the last Observation we know the definitions of $\tilde v_L$ and $v_L$ are the same, and $\tilde v_L$ is a frame isomorphism by~\ref{p:StoneFrmEquivalence}.

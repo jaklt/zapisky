@@ -19,27 +19,37 @@ category, functor (important example: identity functor), natural transformation,
 TODO exmplain importance of adjunction by mentioning the limit preserving of adjuction
 
 \section{Topology and point--free Topology}
-Basic of \Top{} and \Frm.
-frame homomorphisms, localic maps, continuous map, homeomorphism
-Subspace and sublocale/subframe, $\iota_S\colon L \to S$ as subframe inclusion
-\num Let $L$ be a locale, \DEF{nucleus} $\nu$ on $L$ is a monotone map $\nu\colon L \to L$ having the following four properties:
-\begin{enumerate}[(N1)]
-    \item $a \leq \nu(a)$,
-    \item $a \leq b \implies \nu(a) \leq \nu(b)$,
-    \item $\nu\nu(a) = \nu(a)$, and
-    \item $\nu(a \wedge b) = \nu(a) \wedge \nu(b)$.
-\end{enumerate}
-
-\num\label{p:nuclProp} \textbf{Properties of nuclei.} For a locale $L$ and a nucleus $\nu\colon L \to L$, set $S = \nu(L)$. The set $S$ together with suprema and infima defined
-    $$ \bigsqcup a_i = \nu(\bigvee a_i)\quad\text{ and }\quad a \sqcap b = a \wedge b$$
-
-\noindent is a sublocale of $L$ (TODO proof? -- $\nu$ is onto frame homomorphism). Furthermore the mapping $\nu^*\colon L \to \nu(L)$ defined as $\nu^* = \iota_S\,\nu$ is a frame homomorphism. To show that, it is enough to show
-    $$\nu(\bigvee a_i) = \nu(\bigvee \nu(a_i)) \quad( = \bigsqcup \nu(a_i)).$$
-    \noindent We have $\bigvee a_i \leq \bigvee \nu(a_i)$ by (N1) and $\nu(\bigvee a_i) \leq \nu(\bigvee \nu(a_i))$ by (N2). On the other hand $\nu(a_i) \leq \nu(\bigvee a_i)$ by (N2). Hence $\bigvee \nu(a_i) \leq \nu(\bigvee a_i)$ and $\nu(\bigvee \nu(a_i)) \leq \nu\nu(\bigvee a_i) = \nu(\bigvee a_i)$ by (N2) and (N3).
-
-Spatiality.
-Separation axioms (regularity, complete regularity, normality, ...?), rather below (and useful facts about them)
-TODO place somewhere StoneSp and StoneFrm and \J.
+\begin{itemize}
+    \item Basic of \Top{} and \Frm.
+    \item frame homomorphisms, localic maps, continuous map, homeomorphism
+    \item Subspace and sublocale/subframe, $\iota_S\colon L \to S$ as subframe inclusion and as onto frame homomorphisms? (the next section needs it)
+    \item Spatiality.
+    \item Separation axioms (regularity, complete regularity, normality, ...?), rather below (and useful facts about them)
+    \item TODO place somewhere StoneSp and StoneFrm and \J.
+\end{itemize}
 
 Notation.
 $\downset a^*$ means $\downset (a^*)$ (rightmost unary operator applies first)
+
+For the definition of frames, we see that $\wedge$ is the left/right Galois adjoint, therefore every frame is a complete Heyting algebra, moreover also a pseudocomplemented lattice. The pseudocomplement operation for open set in spacial frames corresponds precisely to the complement of the closure of that set, or the interior of the complement.
+
+\begin{definition}
+    Let $L$ be a locale, \DEF{nucleus} $\nu$ on $L$ is a monotone map $\nu\colon L \to L$ having the following four properties:
+    \begin{enumerate}[(N1)]
+        \item $a \leq \nu(a)$,
+        \item $a \leq b \implies \nu(a) \leq \nu(b)$,
+        \item $\nu\nu(a) = \nu(a)$, and
+        \item $\nu(a \wedge b) = \nu(a) \wedge \nu(b)$.
+    \end{enumerate}
+\end{definition}
+
+\num\label{p:nuclProp} \textbf{Properties of nuclei.} For a locale $L$ and a nucleus $\nu\colon L \to L$, set $S = \nu(L)$. Then the set $S$ together with suprema and infima defined
+    $$ \bigsqcup a_i = \nu(\bigvee a_i)\quad\text{ and }\quad a \sqcap b = a \wedge b$$
+
+\noindent is a sublocale of $L$. Indeed, we have
+$$ (\bigsqcup a_i)\sqcap b = \nu(\bigvee a_i) \wedge \nu(b) = \nu(\bigvee(a_i \wedge b)) = \bigsqcup (a_i \sqcap b).$$
+
+\noindent From (N4) we know, $\sqcap$ is the infimum and from (N2) we know $\bigsqcup$ is the supremum. Hence $\nu(L)$ is a locale, to show that $\nu(L)$ is a sublocale of $L$ for $\nu^*\colon L \to \nu(L)$, defined $a \mapsto \nu(a)$, we will show it is an onto frame homomorphism. It is enough to show
+    $$\nu(\bigvee a_i) = \nu(\bigvee \nu(a_i)) \quad( = \bigsqcup \nu(a_i)).$$
+
+    \noindent We have $\bigvee a_i \leq \bigvee \nu(a_i)$ by (N1) and $\nu(\bigvee a_i) \leq \nu(\bigvee \nu(a_i))$ by (N2). On the other hand $\nu(a_i) \leq \nu(\bigvee a_i)$ by (N2). Hence $\bigvee \nu(a_i) \leq \nu(\bigvee a_i)$ and $\nu(\bigvee \nu(a_i)) \leq \nu\nu(\bigvee a_i) = \nu(\bigvee a_i)$ by (N2) and (N3).

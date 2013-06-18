@@ -2,6 +2,61 @@
 \section{Connectedness and variants of disconnectedness}
 DeMorgan/extremally disconnected, zero--dimensional.
 \section{Compactness and compactification}
+
+\begin{definition}
+    A frame $L$ is \DEF{compact} if for every subset $C \subseteq L$ such that $\bigvee C = 1$ there exists a finite $F \subseteq C$ such that $\bigvee F = 1$.
+\end{definition}
+
+\begin{definition}
+    A topological space is \emph{compact} if the frame of its open sets is compact.
+\end{definition}
+
+
+\begin{definition}
+    We say a frame homomorphism $f\colon L \to M$ is \DEF{dense} if $f(a) = 0$ implies $a = 0$.
+
+    We say a frame homomorphism $c\colon K \to L$ is a compactification of frame $L$ if $c$ is dense and $K$ is a compact frame.
+\end{definition}
+
+\begin{definition}
+    We say an ideal $I$ is regular if for any $a \in I$ there exists a $b \in I$ such that $a\crbelow b$.
+\end{definition}
+
+\num Let $L$ be a completely regular frame.
+
+Denote $\R(L)$ to be the set of all ideals on $L$ with meets defined as an intersection (for $a \in I_1\cap I_2$, $a\crbelow b_1 \wedge b_2$ for $a\crbelow b_i \in I_i$) and joins defined as follows
+    $$\bigvee_{i\in I} I_i = \set{ \bigvee F | F\text{ is a finite subset of } \bigcup_{i\in I} I_i}$$
+TODO show this definition is sound ($\bigvee I_i$ is again regular)
+
+We have the obvious equality
+    $$(\bigvee I_i) \cap J = \bigvee (I_i \cap J).$$
+TODO show inclusions
+
+Thus $\R(L)$ is a frame. Moreover it is a compact frame.
+TODO show compactness
+
+\num For an $a \in L$ define $\sigma(a) = \Set{ x | x \crbelow a}$. This set is trivially a regular ideal.
+
+\num $v_L$ is dense \dots
+
+\num $\C\colon \CRegFrm \to \RegKFrm$ with $\C(A) = \R(A)$ for an object $A \in \CRegFrm$ and $\C(f)(I) = \downset f[I]$ for $f\colon L \to M$ and $I \in \R(L)$ is a functor. Moreover it is an reflection of categories with units of adjunction $v_L$ and $\sigma$.
+
+\begin{theorem}
+    The category of completely regular frames is coreflective in the category of compact regular frames.
+\end{theorem}
+
+\begin{conclusion}
+    For a completely regular frame $L$, $v_L\colon \C L \to L$ is the compactification of $L$ such that for every compactification $c\colon K \to L$ there exists a unique frame homomorphism $\tilde c\colon K \to \C L$ such that the following diagram commutes
+    \begin{diagram}
+        \C L\ar{r}{v_L}& L \\
+        K \ar[dashed]{u}{\exists !~\tilde c} \ar{ur}{c} & \\
+    \end{diagram}
+\end{conclusion}
+
+\begin{block}{Note}
+    Compactification of a completely regular topological space $(X, \tau)$ is homeomophic to the space $\Ult(X) = (\Set{ U \subseteq \tau | U\text{ is an ultrafilter}}, \Set{\dots})$.
+\end{block}
+
 \section{Properties of compactification with respect to disconnectedness}
 \begin{lemma}
     The following are equivalent:
@@ -17,7 +72,12 @@ DeMorgan/extremally disconnected, zero--dimensional.
     Let $L$ be a extremally disconnected frame, then $\R L$ is also extremally disconnected.
 \end{proposition}
 
-\begin{remark}
+\begin{blockProp}{Remark}
     For zero--dimensional frames, it is not always the case that compactification preserves zero--dimensionality. Frames in which this is true are called strongly zero--dimensional.
-\end{remark}
+\end{blockProp}
+
+% TODO?
+% Walker: The Stone-Cech Compactification
+% p 223, Lemma 9.8. An open subset U of \beta(X) is connected if and only if X\cap U is connected.
+% p 10. Theorem (Cech) 1.14. \beta(X) is that compactification of a space X in which completely separated subsets of X have disjoint closures.
 
