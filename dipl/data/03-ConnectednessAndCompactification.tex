@@ -1,7 +1,70 @@
 \chapter{Connectedness and Compactification}
 
 \section{Connectedness and variants of disconnectedness}
-DeMorgan/extremally disconnected, zero--dimensional.
+\begin{definition}
+    An element $e$ of a frame is called \DEF{disconnected}, if there exists elements $a$ and $b$ of the frame such that $a\vee b = e$ and $a\wedge b = 0$.
+
+    An elements of a frame is called \DEF{connected} if it is not disconnected. We say a frame is \emph{connected} if the top element of that frame is connected, otherwise this frame is \DEF{disconnected}.
+\end{definition}
+
+\begin{observation}\label{p:disconnectednessEquivalently}
+    For a frame $L$, the following conditions are equivalent:
+
+    \begin{enumerate}
+        \item $L$ is disconnected.
+        \item There exists a non-trivial complemented element in $L$ (that is, different from the top and the bottom of $L$).
+        \item There exists a non-trivial clopen sublocale of $L$ (that is, different from $\emptyFrm$ and $L$).
+        \item There exists an one-one frame homomorphism $f\colon $\DEFSYM{B2}{$B_2$}$ \to L$, where $B_2$ is the Boolean algebra on four elements.
+    \end{enumerate}
+\end{observation}
+
+\begin{definition}
+    A frame $L$ is called \DEF{zero--dimensional} if it has basis consisting only of complemented elements.
+\end{definition}
+
+\begin{observation}
+    Any zero--dimensional frame is completely regular.
+\end{observation}
+
+\begin{lemma}
+    Let $L$ be a frame. The following are equivalent:
+
+    \begin{enumerate}
+        \item Closure of each open sublocale of $L$ is open.
+        \item For all $a \in L$: $\closure{\mathfrak{o}(a)} = \mathfrak{o}(a^{**})$.
+        \item For all $a \in L$: $a^{**} \vee a^* = 1$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    The implication from 2.\ to 1.\ is trivial. For the implication from 3.\ to 2., first observe that
+    \begin{align*}
+        \open(a^{**})\vee \open(a^*) &= \open(a^{**}\vee a^*) = \open(1) = L, \text{ and} \\
+        \open(a^{**})\wedge \open(a^*) &= \open(a^{**}\wedge a^*) = \open(0) = \emptyFrm.
+    \end{align*}
+
+    \noindent However, $\open(a^*)$ is complemented with $\clos(a^*)$. In other words
+    \begin{align*}
+        \clos(a^*)\vee \open(a^*) &= L, \text{ and} \\
+        \clos(a^*)\wedge \open(a^*) &= \emptyFrm.
+    \end{align*}
+
+    \noindent By distributivity, $\clos(a^*) = \open(a^{**})$. And $\closure{\open(a)} = \clos(a^*)$.
+
+    Finally, for the implication from 1.\ to 3.: $\closure{\open(a)} = \clos(a^*) = \open(b)$ for some $b \in L$, hence
+    \begin{align*}
+        \open(a^*\vee b) &= \open(a^*)\vee   \open(b) = L, \text{ and} \\
+        \open(a^*\wedge b) &= \open(a^*)\wedge \open(b) = \emptyFrm.
+    \end{align*}
+
+    \noindent Thus $a^*$ is complemented with $b$ and $b = a^{**}$ from the uniqueness of complements.
+\end{proof}
+
+\begin{definition}
+    A frame satisfying conditions 1., 2.\ and 3.\ from the previous Lemma is called \DEF{extremally disconnected} or \DEF{De Morgan}.
+\end{definition}
+
+\num Similarly for topological spaces, we say a topological space is \emph{connected}, \emph{disconnected}, \emph{zero--dimensional} or \emph{extremally disconnected} if the frame of its open sets is connected, disconnected, zero--dimensional or extremally disconnected.
+
 \section{Compactness and compactification}
 
 [Banaschewski and Mulvey, Stone-Cech compactification of locales, I, Houston J. Math. 6 (1980) 301-312]
@@ -14,69 +77,115 @@ DeMorgan/extremally disconnected, zero--dimensional.
     A topological space is \emph{compact} if the frame of its open sets is compact.
 \end{definition}
 
+\num As in classical set topology we have, if $L$ is a compact regular frame, then $L$ is also completely regular.
 
 \begin{definition}
-    We say a frame homomorphism $f\colon L \to M$ is \DEF{dense} if $f(a) = 0$ implies $a = 0$.
+    We say a frame homomorphism $f\colon L \to M$ is \DEF{dense}[ frame homomorphism] if $f(a) = 0$ implies $a = 0$.
 
-    We say a frame homomorphism $c\colon K \to L$ is a compactification of frame $L$ if $c$ is dense and $K$ is a compact frame.
+    We say a frame homomorphism $c\colon K \to L$ is a compactification of a frame $L$ if $c$ is dense and $K$ is a compact frame.
 \end{definition}
 
-\begin{definition}
-    We say an ideal $I$ is regular if for any $a \in I$ there exists a $b \in I$ such that $a\crbelow b$.
-\end{definition}
+\num {\bf Regular ideals and a frame of regular ideals.} Let $L$ be a completely regular frame. We say an ideal $I$ is \DEF{regular}[ ideal] if for any $a \in I$ there exists a $b \in I$ such that $a\crbelow b$. Denote \DEFSYM{RegIdeals}{$\R L$} to be the set of all regular ideals of $L$.
 
-\num Let $L$ be a completely regular frame.
+For two regular ideals $I_1, I_2\in \R L$, their intersection is again a regular ideal. Indeed, take any $a \in I_1\cap I_2$, then $a\crbelow b_i$ for some $b_i \in I_i$ and $a\crbelow b_1 \wedge b_2\in I_1\cap I_2$ from~\ref{p:crbellowProperties}.
 
-Denote $\R(L)$ to be the set of all ideals on $L$ with meets defined as an intersection (for $a \in I_1\cap I_2$, $a\crbelow b_1 \wedge b_2$ for $a\crbelow b_i \in I_i$) and joins defined as follows
-    $$\bigvee_{i\in I} I_i = \set{ \bigvee F | F\text{ is a finite subset of } \bigcup_{i\in I} I_i}$$
-TODO show this definition is sound ($\bigvee I_i$ is again regular)
+Let $I_i \in \R L$ for $i \in J$, and set
+    \begin{align*}
+        \bigvee_{i\in J} I_i = \set{ \bigvee F | F\text{ is a finite subset of } \bigcup_{i\in J} I_i}.\label{e:idealJoin}\tag{Idl-$\bigvee$}
+    \end{align*}
 
-We have the obvious equality
-    $$(\bigvee I_i) \cap J = \bigvee (I_i \cap J).$$
-TODO show inclusions
+\noindent Trivially $\bigvee_{i\in J} I_i$ is an ideal, moreover it is a regular ideal. For $a \in \bigvee_{i\in J} I_i$ there exists a finite $F \subseteq \bigcup_{i\in J} I_i$ such that $a = \bigvee F$. For every $f \in F$ there exists an $e_f \in I_j$ for some $j\in J$ such that $f \crbelow e_f$. But $\bigvee_{f\in F} e_f \in \bigvee_{i\in J} I_i$ and $\bigvee F \crbelow \bigvee_{f\in F} e_f$ from~\ref{p:crbellowProperties}.
 
-Thus $\R(L)$ is a frame. Moreover it is a compact frame.
-TODO show compactness
 
-\num For an $a \in L$ define $\sigma(a) = \Set{ x | x \crbelow a}$. This set is trivially a regular ideal.
+Also for any regular ideals $J$ and $I_i$ of $L$, the following equality holds
+    $$(\bigvee_i I_i) \cap J = \bigvee_i (I_i \cap J).$$
+\noindent The $\supseteq$ inclusion is trivial, for the other inclusion take $x\in J$ such that $x = \bigvee F$ for some finite $F \subseteq \bigcup_i I_i$, then $F \subseteq J$ (as $J$ is an ideal) and also $F \subseteq \bigcup_i (I_i \cap J)$. We get, $x \in \bigvee_i (I_i \cap J)$.
 
-\num $v_L$ is dense \dots
+Thus the set $\R L$ together with joins as defined at (\oldref{e:idealJoin}) and intersection as meets is a frame. Moreover, it is a compact frame: Let $I_i \in \R L$, for $i \in J$, such that $\bigvee_i I_i = L = 1_{\R L}$, then there exists a finite $F \subseteq \bigcup_i I_i$ such that $\bigvee F = 1$. Set $i(f) \in J$ such that $f \in I_{i(f)}$ for all $f \in F$. Then $\bigvee_{f \in F} I_{i(f)} = 1_{\R L}$ also. Therefore $\R L$ is a compact frame.
 
-\num $\C\colon \CRegFrm \to \RegKFrm$ with $\C(A) = \R(A)$ for an object $A \in \CRegFrm$ and $\C(f)(I) = \downset f[I]$ for $f\colon L \to M$ and $I \in \R(L)$ is a functor. Moreover it is an reflection of categories with units of adjunction $v_L$ and $\sigma$.
+\num For an $a \in L$ define
+    $$\sigma(a) = \Set{ x | x \crbelow a}.$$
 
-\begin{theorem}
-    The category of completely regular frames is coreflective in the category of compact regular frames.
-\end{theorem}
+\noindent This set is trivially a regular ideal. TODO ... We can see, $\sigma(a) \rbelow \sigma(b)$ for any $a\crbelow b$.
 
-\begin{conclusion}
-    For a completely regular frame $L$, $v_L\colon \C L \to L$ is the compactification of $L$ such that for every compactification $c\colon K \to L$ there exists a unique frame homomorphism $\tilde c\colon K \to \C L$ such that the following diagram commutes
+\num If $L$ is a completely regular frame, then $\R L$ is also completely regular.
+
+
+\num \DEFSYM{compactificationFunctor}{\C}$\colon \CRegFrm \to \RegKFrm$ with $\C(A) = \R(A)$ for an object $A \in \CRegFrm$ and $\C(f)(I) = \downset f[I]$ for $f\colon L \to M \in \CRegFrm$ and $I \in \R(L)$ is a functor.
+
+\num \DEFSYM{compactification}{$\comp_L$} is a dense frame homomorphism \dots
+
+\begin{align}
+    \comp_L\sigma(a) = a\quad\text{and}\quad \sigma\comp_L(I) \subseteq I\label{e:compactificationInequality}
+\end{align}
+
+Observe $\comp_L$ is also dense, $\bigvee I = 0$ implies $I = \{0\}$. Hence $\comp_L$ is a compactification.
+
+\num We can easily see, $\comp_*\colon \C{} \to \Id$ is a natural transformation, because the following diagrams commute
+
+\begin{diagram}
+    \C L\ar{r}{\comp_L}\ar{d}{\C f} & L\ar{d}{f} \\
+    \C M\ar{r}{\comp_M}             & M
+\end{diagram}
+(by $\comp_M(\C f)(I) = \bigvee (\downset f[I]) = \bigvee f[I] = f[\bigvee I] = f \comp_M(I)$)
+
+\begin{lemma}
+    If $L$ is a compact regular frame, then $\comp_L$ is an isomorphism and $L \cong \R L$.
+\end{lemma}
+\begin{proof}
+    First observe, ... $\sigma\comp_L(I) \subseteq I$, hence by (\oldref{e:compactificationInequality}) $\sigma$ is an inverse frame homomorphism to $\comp_L$ and $\comp_L$ is an isomorphism.
+\end{proof}
+
+ Moreover it is a reflection of categories with units of adjunction $\comp_L$ and $\sigma$.
+
+\begin{theorem}[Čech--Stone compactification]\label{p:universalCompactification}
+    For a completely regular frame $L$, the mapping $\comp_L\colon \C L \to L$ is the \DEF[Cech--Stone compactification@]{Čech--Stone compactification} of $L$, having property that for every compactification $c\colon K \to L$ there exists an unique frame homomorphism $\tilde c\colon K \to \C L$ such that the following diagram commutes
     \begin{diagram}
-        \C L\ar{r}{v_L}& L \\
-        K \ar[dashed]{u}{\exists !~\tilde c} \ar{ur}{c} & \\
+        \C L\ar{r}{\comp_L}& L \\
+        K \ar[dashed]{u}{\tilde c} \ar{ur}{c} & \\
     \end{diagram}
-\end{conclusion}
+
+    \vspace{-3.5em}
+    Or in other words, the category of completely regular frames is coreflective in the category of compact regular frames.
+\end{theorem}
 
 \begin{block}{Note}
     Compactification of a completely regular topological space $(X, \tau)$ is homeomophic to the space $\Ult(X) = (\Set{ U \subseteq \tau | U\text{ is an ultrafilter}}, \Set{\dots})$.
 \end{block}
 
 \section{Properties of compactification with respect to disconnectedness}
-\begin{lemma}
-    The following are equivalent:
 
-    \begin{enumerate}
-        \item Closure of each open sublocale is open.
-        \item $\closure{\mathfrak{o}(a)} = \mathfrak{o}(a^{**})$.
-        \item $a^{**} \vee a^* = 1$.
-    \end{enumerate}
+\begin{proposition}
+    A completely regular frame is disconnected iff its Čech--Stone compactification is disconnected.
+\end{proposition}
+\begin{proof}
+    For a completely regular frame $L$, if $L$ is disconnected, then by~\ref{p:disconnectednessEquivalently} there exists an one-one frame homomorphism $f\colon B_2\to L$. From~\ref{p:universalCompactification} we know there exists an extension -- a frame homomorphism $\tilde f\colon B_2\to \C L$, such that $\comp_L \tilde f = f$. Since $f$ is one-one, $\tilde f$ is also one-one.
+
+    For converse, suppose $\C L$ is disconnected. There exists a non-trivial clopen sublocale $S$ of $\C L$; and $S\cap L$ is a non-trivial clopen sublocale of $L$.
+\end{proof}
+
+\begin{lemma}
+    Let $S$ be a closed sublocale of $L$ and let $U\subseteq L$ be an open sublocale. Then $\closure{U\cap S}^L = \closure{U}^L$.
+\end{lemma}
+\begin{proof}
+    Let $\open(a) = U$, then $\bigwedge (\open(a)\cap S) = \bigwedge \Set{ a\to s | s \in S } = a\to 0 = a^*$, since $S$ is dense in $L$ and includes $0$. Hence $\closure{U\cap S} = \upset (\bigwedge (U\cap S)) = \clos(a^*) = \closure{U}$.
+\end{proof}
+
+\begin{lemma}
+    Let $L$ be a completely regular frame and let $M$ be a clopen sublocale of $L$, then the closure of $M$ in $\C L$, the $\closure{M}^{\C L}$, is also clopen.
 \end{lemma}
 
 \begin{proposition}\label{p:extrDiscPreserv}
-    Let $L$ be a extremally disconnected frame, then $\R L$ is also extremally disconnected.
+    Let $L$ be a extremally disconnected frame, then $\C L$ is also extremally disconnected.
 \end{proposition}
+\begin{proof}
+    Let $U$ be an open sublocale of $\C L$. Take $V = U\cap L$ open sublocale of $L$. We know $\closure V^L = \closure{U\cap L}^L = \closure{U\cap L}\cap L = \closure U\cap L$. Moreover $\closure V^L$ is clopen in $L$.
+
+    $$ \closure U = \closure{U\cap L} \subseteq \closure{\closure{V}^L} = \closure{\closure U\cap L} \subseteq \closure{\closure U} = \closure U.$$
+\end{proof}
 
 \begin{blockProp}{Remark}
-    For zero--dimensional frames, it is not always the case that compactification preserves zero--dimensionality. Frames in which this is true are called strongly zero--dimensional.
+    Analogously to set topology, for zero--dimensional frames, it is not always the case that their Čech--Stone compactification is also zero--dimensional. Frames in which this is true are called strongly zero--dimensional (TODO cite).
 \end{blockProp}
 
 % TODO?

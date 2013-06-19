@@ -11,6 +11,7 @@
 \usepackage{tikz}
 \usepackage{braket}
 \usepackage{zref}
+\usepackage{xparse} % for NewDocumentCommand
 
 
 \usetikzlibrary{matrix, calc, arrows, fit}
@@ -126,8 +127,12 @@
 \newcommand\closure[1]{\overline{#1}}
 \newcommand\upset  {\mathord{\uparrow}\mkern1mu}
 \newcommand\downset{\mathord{\downarrow}\mkern1mu} % mathord/mathbin/mathrel treats symbol as oordinal math symbol/binary relation/...
+\newcommand\emptyFrm{\ensuremath{\mathsf{O}}}
 \newcommand\rbelow{\prec}
 \newcommand\crbelow{\rbelow\mkern-7mu\rbelow}
+\newcommand\open{\ensuremath{\mathfrak{o}}}
+\newcommand\clos{\ensuremath{\mathfrak{c}}}
+\newcommand\comp{\ensuremath{\gamma}} % TODO change
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Id}{Id}
 \DeclareMathOperator{\Ult}{Ult}
@@ -144,9 +149,10 @@
 }}
 
 % Other stuff
-\newcommand\DEF[2][]{\emph{#2}\index{#2#1}}
-  % example \DEF[|see{null-dimensional}]{zero-dimensional}
-\newcommand\DEFSYM[3][a ]{\emph{#3}\index{#1#2@#3}\ignorespaces}
+% \newcommand\DEF[2][]{\emph{#2}\index{#1#2}}
+\NewDocumentCommand\DEF{O{} m O{}}{\emph{#2}\index{#1#2#3}}
+  % example \DEF[0-dimensional@]{zero-dimensional}[|see{null-dimensional}]
+\newcommand\DEFSYM[3][a ]{\emph{#3}\index{#1#2@#3}}
 
 \newenvironment{diagram}{\begin{center}\begin{tikzcd}}{\end{tikzcd}\end{center}}
 \newcommand\ACP{\hfill\fontshape{n}{\textbf{($\star$)}}}

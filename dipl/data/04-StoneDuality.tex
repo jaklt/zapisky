@@ -55,7 +55,7 @@ and similarly $a^c\wedge b^c$ is complement of $a\vee b$.), one can see that $\B
     $\Bc\colon \StoneFrm \to \Bool$ is a functor.
 \end{observation}
 
-\num\label{p:BoolEquivalence} For $B \in \Bool$ define \DEFSYM{istar}{$i_B$}$\colon B \to \Bc\J(B)$ as follows
+\num\label{p:BoolEquivalence} For a Boolean algebra $B$, define \DEFSYM{istar}{$i_B$}$\colon B \to \Bc\J(B)$ as follows
     $$i_B\colon b \mapsto \downset b.$$
     The definition is sound by Lemma \ref{p:complIdeal} and $i_B$ is a Boolean homomorphism, indeed $\downset a \vee \downset b = \downset (a \vee b)$, $\downset a \wedge \downset b = \downset (a \wedge b)$, $\downset 1 = B$ respectively $\downset 0 = \{0\}$ is top respectively bottom of $\Bc\J(B)$, and complements are preserved thanks to distributivity of $\Bc\J(B)$.
 
@@ -72,12 +72,12 @@ From Lemma \ref{p:complIdeal} we also see that $i_B$ is an isomorphism and there
     The collection $i_*$ of Boolean homomorphisms forms a natural equivalence between $\Bc\J$ and the identity functor on \Bool.
 \end{proposition*}
 
-\num\label{p:StoneFrmEquivalence} Similarly for $L \in \StoneFrm$ we have a mapping \DEFSYM{vstar}{$v_L$}$\colon \J\Bc(L) \to L$ defined as
+\num\label{p:StoneFrmEquivalence} Similarly for $L$, a Stone frame, we have a mapping \DEFSYM{vstar}{$v_L$}$\colon \J\Bc(L) \to L$ defined as
     $$v_L\colon I \mapsto \bigvee I,$$
     and a mapping in the opposite direction $\iota\colon L \to \J\Bc(L)$:
     $$\iota\colon e \mapsto \downset e \cap \Bc L.$$
 
-We can see that both $v_L$ and $\iota$ are monotone maps, $v_L \iota = \id_L$ (by zero--dimensionality and regularity of $L$) and $\id_{\J\Bc(L)} \subseteq \iota v_L$, therefore $v_L$ is the left Galois adjoint to $\iota$, hence $v_L$ preserves all suprema.
+We can see that both $v_L$ and $\iota$ are monotone maps, $v_L \iota = \id_L$ (by zero--dimensionality of $L$) and $\id_{\J\Bc(L)} \subseteq \iota v_L$, therefore $v_L$ is the left Galois adjoint to $\iota$, hence $v_L$ preserves all suprema.
 Since $\bigvee I_1 \wedge \bigvee I_2 = \bigvee \Set{a_1 \wedge a_2 | a_i \in I_i} \leq \bigvee \Set{ a | a \in I_1 \cap I_2 } = \bigvee (I_1 \cap I_2) \leq \bigvee I_1 \cap \bigvee I_2$, $v_L$ also preserves finite infima which makes it a frame homomorphism.
 
 Finally, $\id_{\J\Bc(L)} = \iota v_L$: take any $x \in \iota v_L(I)$. From the definitions we immediately see that $x \leq \bigvee I$ and $x$ is complemented in $L$. By the fact that
