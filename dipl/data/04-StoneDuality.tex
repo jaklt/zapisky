@@ -1,12 +1,13 @@
 \chapter{Stone duality}
 
-Stone duality is a pioneer work by/classical result of ... Stone, it is duality of two categories the category of Boolean algebras and Boolean homomorphisms and the category of compact, Hausdorff, zero--dimensional topological spaces and continuous maps. At that time, without the language of Category Theory.
+Stone duality is a pioneer work by/classical result of M. H. Stone, it is duality of two categories the category of Boolean algebras and Boolean homomorphisms and the category of compact, Hausdorff, zero--dimensional topological spaces and continuous maps. At that time, without the language of Category Theory.
+% TODO cite
 
 The duality means ... contravariant
 
-TODO a lot nicer: The duality at that time was a little surprise, because it showed similarities between algebraic structure with stg. witch was thought has no algebraic structure at all.
+The duality at that time was a big surprise, because it shows similarities between a objects with nice algebraic structure with another mathematical objects witch was thought to has no algebraic structure at all -- topological spaces.
 
-In this chapter, we will first reconstruct classical Stone duality for frames and as the Category of frames is contravariant position to category of topological spaces, the whole construction will be covariant. Hence the name Stone correspondence. And in the second part, we will reconstruct the classical Stone duality from this correspondence.
+In this chapter, we will first reconstruct classical Stone duality for frames. Since the category of frames is in contravariant position to category of topological spaces, the whole construction will be covariant, hence the name Stone correspondence. And in the second part, we will reconstruct the classical Stone duality from this correspondence.
 
 \section{Stone correspondence for \StoneFrm}
 
@@ -261,11 +262,11 @@ TODO (note about AC:) As one can check, the whole correspondence is given in con
 \num As in the previous section, we obtained an isomorphism of categories. The functors creating this adjunction are contravariant, thus we got instead of correspondence between categories, the duality of two categories. However we can make the correspondence from previous section to duality simply using the duality between the category of frames and the category of locales (by taking Galois adjoints of all frame homomorphisms).
 
 \section{Notes on constructivity}
-One can check, the whole correspondence between Stone frames and Boolean algebras is given constructively. Therefore the necessity of choice principle needed in classical Stone duality between Stone spaces and Boolean algebras is only to show that spaces in the duality have enough points.
+One can check, the whole correspondence between Stone frames and Boolean algebras is given constructively. Therefore, the necessity of choice principle needed in classical Stone duality between Stone spaces and Boolean algebras is only to show that spaces constructed from Boolean algebras have enough points. Similarly to compactification of completely regular frames, we obtained classical result from Set Topology which uses Axiom of Choice in Point--free topology strictly constructively (we also avoided the use excluded middle principle).
 
-However, in the proof of the fact that compact regular frames are completely regular (\ref{??}) we construct interpolative relation $\crbelow$ with unavoidable usage of Axiom of Countable Dependent Choice (CDC). We actually do not have to worry about that, by Banaschewski and Pultr [TODO], we can avoid using CDC at all by working with strongly regular frames instead of completely regular. The whole construction can then be made constructive, even in sense of Topos Theory.
+To be more precise, in the proof of the compactification we used the fact that compact regular frames are completely regular (\ref{??}) we constructed an interpolative relation $\crbelow$ using the Axiom of Countable Dependent Choice (CDC). We actually do not have to worry about that, by Banaschewski and Pultr [TODO], we can avoid using CDC at all by working with strongly regular frames instead of completely regular. The whole construction can then be made constructive, even in the sense of Topos Theory.
 
 Strongly regular frames are frames, in which for every element $x$ the following holds
 $$ x = \bigvee \Set{ y | y\;(\rbelow)_o\;x }. $$
 
-Where $(\rbelow)_o$ is the largest interpolative relation contained in $\rbelow$. Such relation can be constructed as the union of all interpolative relations contained in $\rbelow$.
+Where $(\rbelow)_o$ is the largest interpolative relation contained in $\rbelow$. Such relation can be constructed as the union of all interpolative relations contained in $\rbelow$. Moreover, under CDC, the complete regularity is precisely the same as strong regularity.
