@@ -1,0 +1,286 @@
+\chapter{Construction of \R}
+
+\section{Summarization}
+
+\begin{center}
+\begin{tikzpicture}[descr/.style={fill=white,inner sep=2.5pt}]
+    \tikzset{
+      mymx/.style={
+        matrix of nodes,
+        % nodes=block,
+        row sep=3.5em,
+        column sep=3.5em,
+      },
+      lbl/.style={
+        % above,
+        below,
+        auto,
+        % pos=0.15,
+        % sloped, % make the text follow the path
+        %execute at begin node={$}, % begin math mode, for the minus signs etc.
+        %execute at end node={$}, % end math mode
+      }
+    }
+    \tikzstyle{bigbox} = [draw=gray, thick, rounded corners, rectangle]
+
+    \pgfmathsetmacro{\H}{1.0}
+    \pgfmathsetmacro{\W}{0.6}
+
+    \matrix (m) [mymx]
+        { KRFrm & & RFrm \\
+          StoneFrm & Bool & \\
+          KDMFrm & CBool & DMFrm \\
+        };
+    \path[->,font=\scriptsize,every node/.style=lbl]
+        (m-2-1)     edge node {\InclUp} (m-1-1)
+        (m-3-1)     edge node {\InclUp} (m-2-1)
+        (m-3-3)     edge node {\InclUp} (m-1-3)
+        (m-3-2)     edge node {\InclUp} (m-2-2)
+        (m-3-2)     edge node {$ \subseteq^{\text{obj}}$} (m-3-3)
+
+        % Stone duality
+        (m-2-2) edge[transform canvas={yshift=1.5pt}]  node[swap] {Ideals}  (m-2-1)
+        (m-2-1) edge[transform canvas={yshift=-1.5pt}] node[swap] {Boolean} (m-2-2)
+
+        % Compact. Reflection
+        (m-1-1.355) edge node[swap] {Forget} (m-1-3.185)
+        (m-1-3.175) edge node[swap] {Comp} (m-1-1.5);
+
+    \path[<->, thick]
+        (m-3-1) edge node {} (m-3-2);
+
+
+    \node[bigbox, dotted] [fit = (m-2-1) (m-3-2)] {};
+    \draw[gray, rounded corners, dashed]
+           ($(m-1-1) + (-\H,   0)$)
+        -- ($(m-1-1) + (-\H, +\W)$)
+        -- ($(m-1-3) + (+\H, +\W)$)
+        -- ($(m-3-3) + (+\H, -\W)$)
+        -- ($(m-3-3) + (-\H, -\W)$)
+        -- ($(m-1-3) + (-\H, -\W)$)
+        -- ($(m-1-1) + (-\H, -\W)$)
+        -- ($(m-1-1) + (-\H,   0)$);
+\end{tikzpicture}
+\end{center}
+
+The dotted rectangle of the picture is pictured the Stone duality. In the dashed area
+
+% TODO Compare compactification in classical and in point-free setting. Mention that \J{} correspond to compactification, the topology of Ult is isomorphic to ideal lattice of Boolean algebra and that this was known~\cite{monk1989handbook}.
+% (note: Taken from the big picture of Stone duality)
+
+\section{Booleanization}
+% TODO say something about geometrical/topological meaning of complete Boolean algebras (meaning that ComplBool are frames...).
+
+\begin{definition}
+    Let $H$ be a Heyting algebra, by \DEF{Booleanization} of $H$ we mean the set
+    $$
+    \DEFSYM{Booleanization}{\Bo H} = \Set{ a^{**} | a \in H }.
+    $$
+\end{definition}
+
+\begin{proposition}
+    Let $H$ be a Heyting meet--semilattice, then $\Bo H$ is a Boolean algebra with joins and meets defined
+    $$ a \sqcup b = (a^* \wedge b^*)^* \quad\text{and}\quad a\sqcap b = a \wedge b.$$
+\end{proposition}
+\begin{proof}
+    First, we will show that $\sqcap$ really is the meet and $\sqcup$ is the join. For $a,b,c \in \Bo H$:
+
+    \begin{itemize}
+        \item $a\sqcap b = a^{**}\wedge b^{**} = (a\wedge b)^{**} \in \Bo H$.
+        \item Whenever $a,b \leq c$, then $a^*, b^*\geq c^*$ and so $a^*\wedge b^*\geq c^*$, hence $a\sqcup b = (a^*\wedge b^*)^* \leq c^{**} = c$. And trivially $a\sqcup b \in \Bo H$.
+    \end{itemize}
+
+    For $a \in \Bo H$, $a\sqcup b = a^{**}\sqcup b = (a^{**}\wedge a^*)^* = 0^* = 1$ and also $a\sqcap a^* = a\wedge a^* = 0$, hence each element is complemented.
+\end{proof}
+
+\num\label{p:propertiesBooleanization}
+    Let $L$ be a frame, the mapping \DEFSYM{BetaL}{$\beta_L$}$\colon L \to \Bo L$ defined $a \mapsto a^{**}$ is a nucleus:
+    \begin{enumerate}[label=(N\arabic*)]
+        \item From the definition of pseudocomplement we have $a \wedge a^* = 0$ iff $a \leq a^{**}$ hence $a \leq a^{**}$;
+        \item Pseudocomplement is antitone hence $(a \leq b \implies a^{**} \leq b^{**})$;
+        \item $a^* = a^{***}$ implies $a^{**\;**} = a^{**}$; and
+        \item $(a \wedge b)^{**} = a^{**} \wedge b^{**}$ is standard equality (Lemma~\ref{??}).
+    \end{enumerate}
+
+    Therefore by~\ref{p:nuclProp}, $\Bo L$ is a sublocale of $L$ and consequently a complete Boolean algebra. From~\ref{p:nuclProp} we also have $\beta_L$ is a frame homomorphism.
+
+\begin{block}{Note}
+    $\Bo L$ is the smallest dense sublocale of $L$; and joins are given also by the following formula $(a \vee b)^{**}$, since $a \mapsto a^{**}$ is a nucleus.
+\end{block}
+
+\begin{lemma}\label{p:basicalMorphs}
+    Let $f\colon L \to M$ be a frame homomorphism and $a \in L$ such that $a^{**}\vee a^* = 1$, then
+    $$ f(a^{**})^* = f(a^*).$$
+
+    In particular for $a = a^{**}$ we have
+    $$ f(a)^* = f(a^*).$$
+\end{lemma}
+\begin{proof}
+    From the assumptions we see the following holds
+    \begin{align*}
+        f(a^{**} \vee a^*) & = f(a^{**}) \vee f(a^*) = 1, \\
+        f(a^{**} \wedge a^*) & = f(a^{**}) \wedge f(a^*) = 0.
+    \end{align*}
+    Hence $f(a^{**})$ is complement to $f(a^*)$ and distributivity of $M$ gives us $f(a^*) = f(a^{**})^*$.
+\end{proof}
+
+
+\begin{definition}
+    For a frame homomorphism $f\colon H \to K$, set $\Bo f\colon \Bo H \to \Bo K$ to be the mapping
+    $$\Bo f\colon a \mapsto f(a)^{**}.$$
+\end{definition}
+
+\num\label{p:boolenizationMorph} The following Proposition is taken from~\cite{banaschewski1996booleanization}.
+\begin{proposition*}
+    Let $f\colon L \to M$ be a frame homomorphism, then $\Bo f$ is a frame homomorphism such that the following diagram commutes
+    \begin{diagram}
+        L \ar{r}{\beta_L} \ar{d}{f} & \Bo L \ar{d}{\Bo f}\\
+        M \ar{r}{\beta_M}           & \Bo M
+    \end{diagram}
+    if and only if $f(a^{**}) \leq f(a)^{**}$ for all $a \in L$.
+\end{proposition*}
+\begin{proof}
+    We will not prove the ``only if'' part, because it will not be needed in the rest of the text.
+
+    For the ``if'' part, first observe that
+    $$ f(a^{**})^{**} = f(a)^{**} \iff f(a^{**}) \leq f(a)^{**}. $$
+    $\Leftarrow$ is straightforward and the $\Rightarrow$ implication follows simply from $f(a^{**})^{**} \leq f(a)^{**}$. Hence the diagram commutes.
+
+    Then by simple computation we get
+    $$ (\Bo f)(\bigsqcup A) = f((\bigvee A)^{**})^{**} = f(\bigvee A)^{**} = (\bigvee f[A])^{**}. $$
+
+    Now, take any $a\in A$, from $f(a) \leq \bigvee f[A]$ we have $f(a)^{**} \leq (\bigvee f[A])^{**}$. Since $a$ was chosen arbitrary, we also have $\bigvee_{a\in A} f(a)^{**} \leq (\bigvee f[A])^{**}$ and therefore $(\bigvee_{a\in A} f(a)^{**})^{**} \leq (\bigvee f[A])^{**}$. Hence $\bigsqcup (\Bo f)[A] = (\bigvee f[A])^{**}$.
+
+    To sum up everything, we have
+    $$ \bigsqcup (\Bo f)[A] = (\bigvee f[A])^{**} = (\Bo f)(\bigsqcup A),$$
+    \noindent which is what we wanted.
+\end{proof}
+
+\num As we see from~\ref{p:basicalMorphs} and~\ref{p:boolenizationMorph} and from the fact that
+    \begin{align*}
+        f(a^{**})^* = f(a^*)\text{ and }f(a^{**}) \leq f(a)^{**} \text{ iff } f(a^*) = f(a)^*\label{e:1001}\tag{n.o.}
+    \end{align*}
+    (indeed, the $f(a^*) \leq f(a)^*$ is always true and $f(a^*) = f(a^{**})^* \geq f(a)^{***} = f(a)^*$)
+, in order for \Bo{} to behave functorially, we need to restrict category of extremally disconnected Stone frames only to morphisms satisfying~(\oldref{e:1001}) -- basically complete frame homomorphisms. We will denote this category \ExtrStoneFrm{}.
+
+\num As \DEF{$\ComplBool$} denote the category of all complete Boolean algebras and complete Boolean homomorphisms preserving all meets and joins.
+
+\begin{proposition}
+    $\Bo\colon \ExtrStoneFrm \to \ComplBool$ is a functor.
+\end{proposition}
+\begin{proof}
+    From~\ref{p:propertiesBooleanization} we know $\Bo L$ is a complete Boolean algebra.
+
+    As a direct implication of Proposition~\ref{p:boolenizationMorph} we get that for any basically complete frame homomorphism between two extremally disconnected Stone frames $f\colon L \to M$ the following diagram commutes.
+
+    \begin{diagram}
+        L \ar{r}{\beta_L} \ar{d}{f} & \Bo L \ar{d}{\Bo f}\\
+        M \ar{r}{\beta_M}           & \Bo M
+    \end{diagram}
+
+    \noindent And therefore for any frame homomorphisms $f, g$ the following diagram also commutes.
+
+    \begin{diagram}
+        L \ar{r}{\beta_L}
+          \ar{d}{f}
+          \ar[bend right]{dd}[swap]{gf} &
+        \Bo L \ar{d}[swap]{\Bo f}
+              \ar[bend left]{dd}{\Bo (gf)}\\
+
+        M \ar{r}{\beta_M} \ar{d}{g} & \Bo M \ar{d}[swap]{\Bo g}\\
+        N \ar{r}{\beta_N}           & \Bo N
+    \end{diagram}
+
+    Finally, for any identity frame homomorphism $i_L$, $\Bo i_L$ is the identity on $\Bo L$. Consequently, $\Bo$ is a functor.
+\end{proof}
+
+One can check the proof and see we do not have to assume anything more about category of frames than to have morphisms satisfying $f(a^{**}) \leq f(a)^{**}$ for all $a$, in order to have \Bo{} functorial.
+% TODO mention nearly open, vs ``other'' open and cite variants of openness
+
+\begin{observation}
+    $\Bo L = \Bc L$ for any extremally disconnected Stone frame $L$.
+\end{observation}
+\begin{proof}
+    $\Bo L \supseteq \Bc L$ holds always. Let $x \in \Bo L$, then $x = x^{**}$ and from extremal disconnectedness also $x^{**}\vee x^*=1$, hence $x \in \Bc L$.
+\end{proof}
+
+
+Until the end of this section, we will use the Lemma~\ref{p:idealsFrame} frequently without further referencing.
+
+\begin{lemma}
+    Let $B$ be a Boolean frame, then $B \cong \Bo\J(B)$ in \ComplBool.
+\end{lemma}
+\begin{proof}
+    We see that $\J \in \Bo\J(B)$ iff $J = J^{**} = \downset \bigvee J$. On the other hand, for $a \in B$: $(\downset a)^{**} = \downset a^{**} = \downset a$.
+
+    Denote \DEFSYM{istar2}{$\tilde i_B$}$\colon B \to \Bo\J(B)$ the mapping $a \mapsto \downset a$. From the previous Observation we know the definitions of $\tilde i_B$ and $i_B$ coincide, therefore by~\ref{p:BoolEquivalence} $\tilde i_B$ is a Boolean homomorphism.
+
+    Now, take any $\Set{ a_i | i\in I}$ subset of $B$, then
+    $$
+    \bigsqcup_{i\in I} \downset a_i = (\bigvee_{i\in I} \downset a_i)^{**} = \downset (\bigvee_{i\in I} a_i)^{**} = \downset (\bigvee_{i\in I} a_i).
+    $$
+
+    \noindent Consequently, $\tilde i_B$ is a complete Boolean homomorphism, morphisms of \ComplBool{} and an isomorphism of $B$ and $\Bo\J(B)$.
+\end{proof}
+
+\num Now, for any complete Boolean algebras $A$ and $B$, for any complete Boolean homomorphism $f\colon A \to B$ and for $\tilde i_B$ from the previous Lemma, the following diagram commutes
+    \begin{diagram}
+        A \ar{r}{\tilde i_A} \ar{d}[swap]{f} & \Bo\J(A) \ar{d}{\Bo\J(f)}\\
+        B \ar{r}{\tilde i_B}                 & \Bo\J(B)
+    \end{diagram}
+
+    Indeed, we have
+    $$
+    \Bo\J(f)(\downset a) = (\downset f[\downset a])^{**} = \downset f(a)^{**} = \downset f(a).
+    $$
+
+    We can conclude the following
+\begin{proposition*}
+    The collection $\tilde i_*$ of complete Boolean homomorphisms forms a natural equivalence between $\Bo\J$ and the identity functor on \ComplBool.
+\end{proposition*}
+
+\begin{lemma}
+    Let $L$ be an extremally disconnected Stone frame, then $L \cong \J\Bo(L)$ in \ExtrStoneFrm.
+\end{lemma}
+\begin{proof}
+    Similarly to the general case, define \DEFSYM{vstar2}{$\tilde v_L$}$\colon \J\Bo(L) \to L$ as
+    $$ \tilde v_L\colon I \mapsto \bigvee I.$$
+
+    From the last Observation we know the definitions of $\tilde v_L$ and $v_L$ are the same, and $\tilde v_L$ is a frame isomorphism by~\ref{p:StoneFrmEquivalence}.
+
+    From the proof of Theorem~\ref{p:kappaCompleteThm} we know $v_L$ is $\lambda$--basically complete frame homomorphism for all infinite cardinals $\lambda$, therefore $\tilde v_L$ is also basically complete and is a~morphisms of $\ExtrStoneFrm$.
+\end{proof}
+
+\num To show naturalness of $\tilde v_*$ defined in the previous Lemma, let $L$ and $M$ be extremally disconnected Stone frames and let $f\colon L \to M$ be a basically complete frame homomorphism. Then the following diagram commutes
+    \begin{diagram}
+        \J\Bo(L) \ar{d}[swap]{\J\Bo(f)} \ar{r}{\tilde v_L} & L \ar{d}{f} \\
+        \J\Bo(M) \ar{r}{\tilde v_M}    & M
+    \end{diagram}
+
+    To show that, we will first compute
+    $$
+    (\J\Bo)(f)(I) = \downset \Set{ f(x)^{**} | x \in I } = \downset \Set{ f(x) | x \in I} = \downset f[I].
+    $$
+
+    And from that we see
+    $$
+    \tilde v_M((\J\Bo)(f)(I)) = \bigvee \downset f[I] = \bigvee f[I] = f(\bigvee I) = f(\tilde v_L(I)).
+    $$
+
+    Now again, from the commutativity of the diagram above we can conclude
+
+\begin{proposition*}
+    The collection $\tilde v_*$ of basically complete frame homomorphisms is a natural equivalence between $\J\Bo$ and the identity functor on \ExtrStoneFrm.
+\end{proposition*}
+
+\num By the Theorem~\ref{p:kappaCompleteThm} we know we have an isomorphism between categories of $\kappa$--complete Boolean algebras and $\kappa$--basically disconnected Stone frames witnessed by functors \J{} and \Bc{}. When we restrict $\J$ to category \ComplBool{}, morphisms on side of Stone frames are precisely basically complete frame homomorphisms.
+
+By 2.13, 2.14, 2.15 and 2.16 we have the natural equivalence between identity functors and \Bo\J{} resp. \J\Bo{}.
+% By the previous isomorphism lemmas we have the natural equivalence between identity functor and \Bo\J{} resp. \J\Bo{} and get an isomorphism of categories \ComplBool{} and \ExtrStoneFrm (two subcategories of \Frm).
+As conclusion the functors \Bo{} and \J{} form an adjunction, with units and counits being natural equivalence and we obtain the main result of this section
+
+\begin{theorem*}
+    The categories \ExtrStoneFrm{} and \ComplBool{} are isomorphic.
+\end{theorem*}
+
+\num TODO note that \Bo{} is part of Stone duality only between \ExtrStoneFrm{} and \ComplBool{}, since for every frame $L$ the frame $\Bo L$ is a complete Boolean algebra.

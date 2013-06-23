@@ -13,10 +13,14 @@
     \begin{enumerate}
         \item $L$ is disconnected.
         \item There exists a non-trivial complemented element in $L$ (that is, different from the top and the bottom of $L$).
-        \item There exists a non-trivial clopen sublocale of $L$ (that is, different from $\emptyFrm$ and $L$).
+        \item There exists a non-trivial both open and closed sublocale of $L$ (that is, different from $\emptyFrm$ and $L$).
         \item There exists an one-one frame homomorphism $f\colon $\DEFSYM{B2}{$B_2$}$ \to L$, where $B_2$ is the Boolean algebra on four elements.
     \end{enumerate}
 \end{observation}
+
+\begin{block*}{Note.}
+    We will call sublocales which are both open and closed as clopen.
+\end{block*}
 
 \begin{definition}
     A frame $L$ is called \DEF{zero--dimensional} if it has basis consisting only of complemented elements.
@@ -48,7 +52,7 @@
         \clos(a^*)\wedge \open(a^*) &= \emptyFrm.
     \end{align*}
 
-    \noindent By distributivity, $\clos(a^*) = \open(a^{**})$. And $\closure{\open(a)} = \clos(a^*)$.
+    \noindent By distributivity of the frame of all all sublocales of $L$, $\open(a^{**}) = \clos(a^*) = \closure{\open(a)}$.
 
     Finally, for the implication from 1.\ to 3.: $\closure{\open(a)} = \clos(a^*) = \open(b)$ for some $b \in L$, hence
     \begin{align*}
