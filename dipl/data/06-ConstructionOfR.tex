@@ -222,15 +222,15 @@ As long as we have in a category all (regular) De Morgan frames as objects, we c
     Hence $f(a^{**})$ is complemented and $f(a^*)$ is its complement. From distributivity of $M$ we know, complements are unique, hence $f(a^*) = f(a^{**})^*$.
 \end{proof}
 
-\num For any basically complete frame homomorphism between two extremally disconnected Stone frames, as we see from~\ref{p:boolenizationCond} and~\ref{p:basicalMorphs} and from the fact that
+\num For any frame homomorphism between two extremally disconnected Stone frames, by Lemma~\ref{p:basicalMorphs}, $f(a^{**})^* = f(a^*)$ for all $a$. As we see from~\ref{p:boolenizationCond} and from the fact that
     \begin{align*}
         f(a^{**})^* = f(a^*)\text{ and }f(a^{**}) \leq f(a)^{**} \text{ iff } f(a^*) = f(a)^*\label{e:1001}\tag{N.O.}
     \end{align*}
-    (indeed, the $f(a^*) \leq f(a)^*$ is always true and $f(a^*) = f(a^{**})^* \geq f(a)^{***} = f(a)^*$)
-, in order for \Bo{} to behave functorially, we need to restrict category of extremally disconnected Stone frames only to morphisms satisfying~(\oldref{e:1001}) -- basically complete frame homomorphisms. We will denote this category \ExtrStoneFrm{}.
+
+    hold for all $a$ (indeed, the $f(a^*) \leq f(a)^*$ is always true and $f(a^*) = f(a^{**})^* \geq f(a)^{***} = f(a)^*$)
+, in order for \Bo{} to behave functorially, we need to restrict category of extremally disconnected Stone frames only to morphisms satisfying~(\oldref{e:1001}).
 
 However, this is exactly the case for the category \ExtrStoneFrm{}. Basically complete frame homomorphisms suffices the condition (\oldref{e:1001}), and \ExtrStoneFrm{} is the only subcategory of \StoneFrm{} we presented here which satisfies it.
-
 
 \begin{conclusion}
     $\Bo\colon \ExtrStoneFrm \to \ComplBool$ is a functor.
