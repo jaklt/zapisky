@@ -1,12 +1,12 @@
 \chapter{Stone duality}
 
-In 1936 M. H. Stone published paper called ``The Theory of Representations of Boolean Algebras'', describing a duality of two categories the category of Boolean algebras and Boolean homomorphisms and the category of compact, Hausdorff, zero--dimensional topological spaces and continuous maps. At that time, not in the language of Category Theory. [TODO cite].
+In 1936 M. H. Stone published paper called ``The Theory of Representations of Boolean Algebras''~\cite{??}, describing a duality of two categories the category of Boolean algebras and Boolean homomorphisms and the category of compact, Hausdorff, zero--dimensional topological spaces and continuous maps; at that time, not in the language of Category Theory.
 
 The word ``duality'' of means that one category is isomorphic to the dual of the other category, or in other words, the isomorphism of categories is captured by a contravariant functor.
 
-The duality at that time was a big surprise, because it shows similarities between a objects with nice algebraic structure with, another mathematical objects witch was thought to have no algebraic structure at all, topological spaces.
+The duality at that time was a big surprise, because it has shown similarities between a objects with nice algebraic structure with, another mathematical objects witch was thought to have no algebraic structure at all, topological spaces.
 
-In this chapter, we will first reconstruct classical Stone duality for frames. Since The adjunction between topological spaces and frames is contravariant, the whole construction will be covariant, hence the name Stone correspondence. And in the second part, we will reconstruct the classical Stone duality from this correspondence.
+In this chapter, we will first discuss the Stone duality in the point--free context. Since The adjunction between topological spaces and frames is contravariant, the whole construction will be covariant, hence the name Stone correspondence. And in the second part, we will prove the standard Stone duality for topological spaces.
 
 \section{Stone correspondence for \StoneFrm}
 
@@ -261,11 +261,15 @@ TODO (note about AC:) As one can check, the whole correspondence is given in con
 \num As in the previous section, we obtained an isomorphism of categories. The functors creating this adjunction are contravariant, thus we got instead of correspondence between categories, the duality of two categories. However we can make the correspondence from previous section to duality simply using the duality between the category of frames and the category of locales (by taking Galois adjoints of all frame homomorphisms).
 
 \section{Notes on constructivity}
-One can check, the whole correspondence between Stone frames and Boolean algebras is given constructively. Therefore, the necessity of choice principle needed in classical Stone duality between Stone spaces and Boolean algebras is only to show that spaces constructed from Boolean algebras have enough points. Similarly to compactification of completely regular frames, we obtained classical result from Set Topology which uses Axiom of Choice in Point--free topology strictly constructively (we also avoided the use excluded middle principle).
 
-To be more precise, in the proof of the compactification we used the fact that compact regular frames are completely regular (\ref{??}) we constructed an interpolative relation $\crbelow$ using the Axiom of Countable Dependent Choice (CDC). We actually do not have to worry about that, by Banaschewski and Pultr [TODO], we can avoid using CDC at all by working with strongly regular frames instead of completely regular. The whole construction can then be made constructive, even in the sense of Topos Theory.
+One can check, the whole correspondence between Stone frames and Boolean algebras is given constructively. Therefore, the necessity of a choice principle needed in classical Stone duality between Stone spaces and Boolean algebras is only to show that spaces constructed from Boolean algebras have enough points.
+
+Analogously, in the previous chapter we described the compactification of completely regular frames. The proof is constructive and its counterpart for topological spaces is equivalent to Boolean Ultrafilter Theorem~\cite{??}.
+
+To be more precise, in the proof of the compactification we used the fact that compact regular frames are completely regular (Proposition~\ref{p:compRegIsCR}).
+We construct an interpolative relation $\crbelow$ using the Axiom of Countable Dependent Choice (CDC). By Banaschewski and Pultr~\cite{banaschewski2002constructive}, we can avoid using CDC at all by working with strongly regular frames instead of completely regular. The whole construction can then be made constructive, even in the sense of Topos Theory.
 
 Strongly regular frames are frames, in which for every element $x$ the following holds
-$$ x = \bigvee \Set{ y | y\;(\rbelow)_o\;x }. $$
+$$ x = \bigvee \Set{ y | y\;(\rbelow)_o\;x }, $$
 
-Where $(\rbelow)_o$ is the largest interpolative relation contained in $\rbelow$. Such relation can be constructed as the union of all interpolative relations contained in $\rbelow$. Moreover, under CDC, the complete regularity is precisely the same as strong regularity.
+\noindent where $(\rbelow)_o$ is the largest interpolative relation contained in $\rbelow$. Such a relation can be constructed as the union of all interpolative relations contained in $\rbelow$. Moreover, under CDC, complete regularity is precisely the same as strong regularity~\cite{banaschewski2002constructive}.
