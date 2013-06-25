@@ -36,7 +36,7 @@ For the rest of this section, let $\kappa$ be some fixed regular cardinal.
     If $B$ is a $\kappa$--complete Boolean algebra, then $\J B$ is a $\kappa$--basically disconnected Stone frame.
 \end{lemma}
 \begin{proof}
-    By the Lemma~\ref{p:complIdeal}, we know complemented ideals are precisely the principal ideals of $B$. Given any $M$, subset of $B$ of cardinality less than $\kappa$, and $I = \bigvee \Set{ \downset a | a \in M }$. We will show $I^{**} \vee I^* = 1_{\J B}$.
+    By the Lemma~\ref{p:complIdeal}, we know complemented ideals are precisely the principal ideals of $B$. Given any $M$, subset of $B$ of cardinality less than $\kappa$, and $I = \bigvee \Set{ \downset a | a \in M }$. We will show that $I^{**} \vee I^* = 1_{\J B}$.
 
     Set $m = \bigvee M$ and $J = \downset m$. Observe that $I^{**} = J$: Trivially from Lemma~\ref{p:idealsFrame}.2, we have $I^{**} \subseteq J^{**} = J$. The other inclusion, the $J \subseteq I^{**}$, follows from
     $$ I^* = \bigcup \Set{ \downset a | \downset a \wedge I = 0_{\J B}} = \bigcup \Set{ \downset a | a \wedge m = 0 } = (\downset m)^* = J^*.$$
@@ -51,7 +51,7 @@ For the rest of this section, let $\kappa$ be some fixed regular cardinal.
     Consequently: Any Boolean homomorphism preserving all $\kappa$--meets (or $\kappa$--joins) is $\kappa$--complete.
 \end{lemma*}
 \begin{proof}
-    Let $S$ be an arbitrary subset of $B$ such that $|S| < \kappa$. Set $M = (\bigvee \Set{ b^c | b \in S})^c$, we will show $M$ is the infimum of $S$.
+    Let $S$ be an arbitrary subset of $B$ such that $|S| < \kappa$. Set $M = (\bigvee \Set{ b^c | b \in S})^c$, we will show that $M$ is the infimum of $S$.
 
     Take any $a \in S$. We have $a \wedge M = a^{cc}\wedge (\bigvee \Set{ b^c | b \in S})^c = (a^c\vee \bigvee \Set{ b^c | b \in S})^c = M$. Hence $a \geq M$.
 
@@ -130,7 +130,7 @@ Then, it is sound (by the previous two Lemmas) to define two functors
 \begin{proof}
     The only thing we need to show is that the morphisms of natural equivalences for identity functors and functors $\Bc\J$ and $\J\Bc$ are morphisms of our categories.
 
-    For the first part, we will show $i_B\colon B \to \Bc\J(B)$ is a $\kappa$--complete Boolean homomorphisms for any $\kappa$--complete Boolean algebra $B$. Let $B'$ be an arbitrary subset of $B$ of cardinality less than $\kappa$, then by simple computation we get
+    For the first part, we will show that $i_B\colon B \to \Bc\J(B)$ is a $\kappa$--complete Boolean homomorphisms for any $\kappa$--complete Boolean algebra $B$. Let $B'$ be an arbitrary subset of $B$ of cardinality less than $\kappa$, then by simple computation we get
 
     $$
         \bigsqcup_{b\in B'} i_B(b) = \bigsqcup_{b\in B'} \downset b = (\bigvee_{b\in B'} \downset b)^{**} = \downset (\bigvee_{b\in B'} b) = i_B(\bigvee_{b\in B'} b),
@@ -138,7 +138,7 @@ Then, it is sound (by the previous two Lemmas) to define two functors
 
     \noindent where the third equality follows from~\ref{p:idealsFrame}.
 
-    For the second part, we need to show $v_L\colon \J\Bc(L) \to L$ is $\kappa$--basically complete for any $\kappa$--basically disconnected Stone frame $L$. We will show $v_L$ is $\lambda$--basically complete for any regular cardinal $\lambda$. Take any $I \in \J\Bc(L)$, we have
+    For the second part, we need to show that $v_L\colon \J\Bc(L) \to L$ is $\kappa$--basically complete for any $\kappa$--basically disconnected Stone frame $L$. We will show that $v_L$ is $\lambda$--basically complete for any regular cardinal $\lambda$. Take any $I \in \J\Bc(L)$, we have
 
     \begin{align*}
         v_L(I^*) &= v_L(\bigvee \Set{ \downset s | \downset s \wedge I = 0 })

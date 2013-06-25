@@ -1,13 +1,12 @@
 \chapter{Stone duality}
 
-Stone duality is a pioneer work by/classical result of M. H. Stone, it is duality of two categories the category of Boolean algebras and Boolean homomorphisms and the category of compact, Hausdorff, zero--dimensional topological spaces and continuous maps. At that time, without the language of Category Theory.
-% TODO cite
+In 1936 M. H. Stone published paper called ``The Theory of Representations of Boolean Algebras'', describing a duality of two categories the category of Boolean algebras and Boolean homomorphisms and the category of compact, Hausdorff, zero--dimensional topological spaces and continuous maps. At that time, not in the language of Category Theory. [TODO cite].
 
-The duality means ... contravariant
+The word ``duality'' of means that one category is isomorphic to the dual of the other category, or in other words, the isomorphism of categories is captured by a contravariant functor.
 
-The duality at that time was a big surprise, because it shows similarities between a objects with nice algebraic structure with another mathematical objects witch was thought to has no algebraic structure at all -- topological spaces.
+The duality at that time was a big surprise, because it shows similarities between a objects with nice algebraic structure with, another mathematical objects witch was thought to have no algebraic structure at all, topological spaces.
 
-In this chapter, we will first reconstruct classical Stone duality for frames. Since the category of frames is in contravariant position to category of topological spaces, the whole construction will be covariant, hence the name Stone correspondence. And in the second part, we will reconstruct the classical Stone duality from this correspondence.
+In this chapter, we will first reconstruct classical Stone duality for frames. Since The adjunction between topological spaces and frames is contravariant, the whole construction will be covariant, hence the name Stone correspondence. And in the second part, we will reconstruct the classical Stone duality from this correspondence.
 
 \section{Stone correspondence for \StoneFrm}
 
@@ -83,7 +82,7 @@ From Lemma \ref{p:complIdeal}, we also see, $i_B$ is an isomorphism and therefor
     The collection $i_*$ of Boolean homomorphisms forms a natural equivalence between $\BcO\JO$ and the identity functor on \Bool.
 \end{proposition*}
 
-\num\label{p:StoneFrmEquivalence} Similarly for $L$, a Stone frame, we have a mapping \DEFSYM{vstar}{$v_L$}$\colon \JO\BcO(L) \to L$ defined as
+\num\label{p:StoneFrmEquivalence} Similarly for a Stone frame $L$, we have a mapping \DEFSYM{vstar}{$v_L$}$\colon \JO\BcO(L) \to L$ defined as
     $$v_L\colon I \mapsto \bigvee I,$$
     and a mapping in the opposite direction $\iota\colon L \to \JO\BcO(L)$:
     $$\iota\colon e \mapsto \downset e \cap \BcO L.$$
@@ -149,7 +148,7 @@ TODO (note about AC:) As one can check, the whole correspondence is given in con
 \begin{proof}
     Compactness follows directly from compactness of $\JO B$. Notice, complemented elements are of the form $O_{\downset a}$ for some $a\in B$: $O_{\downset a}\cup O_{\downset a^c} = O_{\downset (a\vee a^c)} = X_B$ and $O_{\downset a}\cap O_{\downset a^c} = O_{\downset (a\wedge a^c)} = \emptyset$. Since every open set is an union of sets of the form $O_{\downset a}$, the $X_B$ is zero--dimensional.
 
-    To show $X_B$ is also Hausdorff, take any ultrafilters $E \neq F$. Without lost of generality there is some $e \in E \setminus F$. We have $e\vee e^c = 1$, since $F$ is an ultrafilter we have $e^c \in F$. We also have $e\wedge e^c = 0$ and so $O_{\downset e}$ and $O_{\downset e^c}$ separates $E$ and $F$.
+    To show that $X_B$ is also Hausdorff, take any ultrafilters $E \neq F$. Without lost of generality there is some $e \in E \setminus F$. We have $e\vee e^c = 1$, since $F$ is an ultrafilter we have $e^c \in F$. We also have $e\wedge e^c = 0$ and so $O_{\downset e}$ and $O_{\downset e^c}$ separates $E$ and $F$.
 \end{proof}
 
 \begin{lemma}

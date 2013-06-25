@@ -11,7 +11,10 @@
     \item filters, ideals, principal filter/ideal
     \item pseudocomplements and complements (complemented elements)
     \item \num\label{p:pseudcomplProperties} $(a \wedge b)^{**} = a^{**} \wedge b^{**}$, $a \leq b \implies a^* \geq b^*$.
+    \item \num\label{p:rbellowProperties} $a_1\wedge a_2 \rbelow b_1 \wedge b_2$ and $a_1\vee a_2 \rbelow b_1 \vee b_2$ for $a_i\rbelow b_i$
     \item \num\label{p:crbellowProperties} $a_1\wedge a_2 \crbelow b_1 \wedge b_2$ and $a_1\vee a_2 \crbelow b_1 \vee b_2$ for $a_i\crbelow b_i$
+
+                                        $a \crbelow x\crbelow y\crbelow b$ implies $b^* \crbelow x\crbelow y\crbelow a^*$
     \item Boolean algebras and Boolean homomorphisms, \DEF{\Bool}, prime/maximal/ultrafilter on BA
     \item Axiom of Choice/Zorn's Lemma, Boolean Ultrafilter Theorem
     \item Heyting algebras, $\_^* = \_ \to 0$
@@ -33,7 +36,10 @@
     \item Subspace and sublocale/subframe, dense sublocale, empty frame (\emptyFrm), co-frame of sublocales (we will need its distributivity), $\iota_S\colon L \to S$ as subframe inclusion and as onto frame homomorphisms? (the next part needs it)
     \item Separation axioms (regularity, complete regularity, normality, ...?), rather below (and useful facts about them)
 
-    Again, as for topological spaces, we have: Any normal and regular frame is completely regular: For $x\rbelow y$, the $x^*\vee y = 1$ holds, from normality there exists a $q$, such that $x^*\vee q = 1$ and $q^*\vee y = 1$, thus $x\rbelow q\rbelow y$. So $\Set{x | x\rbelow b} = \Set{x | x\crbelow b}$
+    Again, as for topological spaces, we have:
+
+        \num\label{p:normalRegular} Any normal and regular frame is completely regular: For $x\rbelow y$, the $x^*\vee y = 1$ holds, from normality there exists a $q$, such that $x^*\vee q = 1$ and $q^*\vee y = 1$, thus $x\rbelow q\rbelow y$. So $\Set{x | x\rbelow b} = \Set{x | x\crbelow b}$
+
     \item completeness and cocompleteness of \Top{} and \Frm{}
     \item Spatiality, some spatiality theorems (II.5.3, Hofmann--Lawson's Duality)
 \end{itemize}
