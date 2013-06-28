@@ -3,11 +3,12 @@
 \section{Summarization}
 % TODO proper references
 
-Recall III.2.13, the compactification of a complete regular frames is the frame of all regular ideals. The construction of a Stone frame in the Stone correspondence (IV.1.9) is given in similar fashion. The functor $\JO$ maps a Boolean algebra to the frame of all ideals of the Boolean algebra. When we realize that the relations $\leq$, $\rbelow$ and $\crbelow$ coincide for Boolean algebras, we can equivalently say, the Stone frame is obtained by taking the frame of all regular ideals.
+Recall III.2.13, the compactification of a complete regular frames is obtained as the frame of all regular ideals. The construction of a Stone frame in the Stone correspondence (IV.1.9) is given in similar fashion. The functor $\JO$ maps a Boolean algebra to the frame of all ideals of the Boolean algebra. On the other hand, in any Boolean algebra the relations $\leq$, $\rbelow$ and $\crbelow$ coincide. Thus, we can equivalently say that any Stone frame is obtained from a Boolean algebra by taking the frame of all regular ideals.
 
-The above facts are well--known also for Set--theoretical topology. The compactification of a completely regular, $T_0$ topological space is homeomophic to the space of all ultrafilters of that space. And in the Stone duality for topological spaces, each Stone space is constructed as the space of all ultrafilters of some Boolean algebra.
+In Set--theoretical topology are the compactification and the Stone representation of Boolean algebras essentially the same.
+The compactification of a completely regular topological space is homeomophic to the space of all ultrafilters of that space. Similarly in the Stone duality for topological spaces, each Stone space is constructed as the space of all ultrafilters of some Boolean algebra.
 
-The whole situation is depicted in the diagram below. (TODO describe the picture: inclusions, inclusion of objects, ...)
+The whole (point-free) situation is depicted in the diagram below.
 
 % \begin{block}{Note}
 %     Compactification of a completely regular topological space $(X, \tau)$ is homeomophic to the space $\Ult(X) = (\Set{ U \subseteq \tau | U\text{ is an ultrafilter}}, \Set{\dots})$.
@@ -34,13 +35,13 @@ The whole situation is depicted in the diagram below. (TODO describe the picture
     }
     \tikzstyle{bigbox} = [draw=gray, thick, rounded corners, rectangle]
 
-    \pgfmathsetmacro{\H}{1.0}
+    \pgfmathsetmacro{\H}{1.2}
     \pgfmathsetmacro{\W}{0.6}
 
     \matrix (m) [mymx]
-        { RegKFrm & & CRegFrm \\
-          StoneFrm & Bool & \\
-          KDMRFrm & CBool & DMRFrm \\
+        { \RegKFrm & & \CRegFrm \\
+          \StoneFrm & \Bool & \\
+          \categoryStyle{KDMRFrm} & \categoryStyle{CBool} & \categoryStyle{DMRFrm} \\
         };
     \path[->,font=\scriptsize,every node/.style=lbl]
         (m-2-1)     edge node {\InclUp} (m-1-1)
@@ -50,12 +51,12 @@ The whole situation is depicted in the diagram below. (TODO describe the picture
         (m-3-2)     edge node {$ \subseteq^{\text{obj}}$} (m-3-3)
 
         % Stone duality
-        (m-2-2) edge[transform canvas={yshift=1.5pt}]  node[swap] {Ideals}  (m-2-1)
-        (m-2-1) edge[transform canvas={yshift=-1.5pt}] node[swap] {Boolean} (m-2-2)
+        (m-2-2) edge[transform canvas={yshift=1.5pt}]  node[swap] {\JO}  (m-2-1)
+        (m-2-1) edge[transform canvas={yshift=-1.5pt}] node[swap] {\BcO} (m-2-2)
 
         % Compact. Reflection
-        (m-1-1.355) edge node[swap] {Forget} (m-1-3.185)
-        (m-1-3.175) edge node[swap] {Comp} (m-1-1.5);
+        (m-1-1.355) edge node[swap] {$\subseteq$} (m-1-3.185)
+        (m-1-3.175) edge node[swap] {\C} (m-1-1.5);
 
     \path[<->, thick]
         (m-3-1) edge node {} (m-3-2);
@@ -74,26 +75,23 @@ The whole situation is depicted in the diagram below. (TODO describe the picture
 \end{tikzpicture}
 \end{center}
 
-(New categories in the picture: CBool denotes the category of complete Boolean algebras and \emph{all} Boolean homomorphisms. The category KDMRFrm is the category of all extremally disconnected Stone spaces, or in other words all compact De Morgan regular frames, and \emph{all} frame homomorphisms. KRFrm denotes the category of compact regular frames, CRFrm the category of completely regular frames.)
+Where the symbol $\subseteq^{\text{obj}}$ denotes inclusion of objects of one category to another. New categories in the diagram are: \categoryStyle{CBool} denotes the category of complete Boolean algebras and \emph{all} Boolean homomorphisms. The category \categoryStyle{KDMRFrm} is the category of all extremally disconnected Stone spaces, or in other words all compact De Morgan regular frames, and \emph{all} frame homomorphisms. \categoryStyle{RegKFrm} denotes the category of compact regular frames, \categoryStyle{CRegFrm} the category of completely regular frames.)
 
-The area surrounded by the dotted rectangle in the picture highlights where the Stone duality is. In the area surrounded by the dashed line is the compactification. As we know from the discussion above, the construction on objects is exactly the same for both marked parts of the diagram. However, the Stone correspondence is an isomorphism of categories, whereas the compactification is just a coreflection (of completely regular frames onto compact regular frames).
+In the area surrounded by the dotted rectangle in the picture is the Stone duality and in the area surrounded by the dashed curve is the compactification. As we know from the discussion above, the construction on objects is exactly the same for both marked parts of the diagram. However, the Stone correspondence is an isomorphism of categories, whereas the compactification is just a coreflection (of completely regular frames onto compact regular frames).
 
-% The natural question is, when we switched from an isomorphism of categories to coreflection which is not isomorphism.
-
-\R{} is a general construction of compact frames from bounded pseudocomplemented lattices and frame homomorphisms from homomorphisms between those lattices. And we can ask, if it is possible to extend the correspondence to wider class of frames. As we see in the next picture, it is not possible.
-
-% TODO Compare compactification in classical and in point-free setting. Mention that \J{} correspond to compactification, the topology of Ult is isomorphic to ideal lattice of Boolean algebra and that this was known~\cite{monk1989handbook}.
-% (note: Taken from the big picture of Stone duality)
+Taking the frame of all regular ideals of a bounded pseudocomplemented lattice is a general construction of compact frames. A natural question arises: Is it possible to extend the category \ComplBool{} to a wider subcategory of \categoryStyle{DMRFrm} and again obtain an isomorphism of categories witnessed by \R{}? From the following diagram we can see why it is not possible.
 
 \begin{diagram}
-    KDMRFrm \ar[<->, thick]{r}{} & CBool \ar{r}{\subseteq^{\text{obj}}} & DMRFrm \ar[bend right=20,swap]{ll}{\restr{Comp}{DMRFrm}} \\
-    ExtrDStoneFrm \ar[yshift=0.2em]{r}{\BcI}\ar{u}{\InclUp} & ComplBool \ar[yshift=-0.2em]{l}{\JI} \ar{u}{\InclUp} \ar{ru}{\subseteq}
+    \categoryStyle{KDMRFrm} \ar[<->, thick]{r}{} & \categoryStyle{CBool} \ar{r}{\subseteq^{\text{obj}}} & \categoryStyle{DMRFrm} \ar[bend right=20,swap]{ll}{\restr{\C}{\categoryStyle{DMRFrm}}} \\
+    \ExtrStoneFrm \ar[yshift=-0.2em,swap]{r}{\BcI}\ar{u}{\InclUp} & \ComplBool \ar[yshift=0.2em,swap]{l}{\JI} \ar{u}{\InclUp} \ar{ru}{\subseteq}
 \end{diagram}
 
-The category of De Morgan frames is coreflexive in category of compact De Morgan frames and ...
+Objects of \categoryStyle{CBool} are in correspondence with objects of \categoryStyle{KDMRFrm}. On the other hand, \R{} provides a coreflection of the category \categoryStyle{DMRFrm} onto \categoryStyle{KDMRFrm}. Since \ComplBool{} is subcategory of \categoryStyle{CBool}, we cannot hope to expand the correspondence by extending the category \ComplBool{} into a wider subcategory of \categoryStyle{DMRFrm}.
 
 % we have in the category all (regular) De Morgan frames as objects, we cannot expect from \R{} to form an isomorphism, because we know, the category of compact (regular) De Morgan frames is (non--isomorphically) coreflexive in the category of (regular) De Morgan frames~\ref{p:extrDiscPreserv} (certainly, there exists a non--compact (regular) De Morgan frame).
 
+% TODO Compare compactification in classical and in point-free setting. Mention that \JI{} correspond to compactification, the topology of Ult is isomorphic to ideal lattice of Boolean algebra and that this was known~\cite{monk1989handbook}.
+% (note: Taken from the big picture of Stone duality)
 
 \section{Booleanization}
 
@@ -105,8 +103,10 @@ The category of De Morgan frames is coreflexive in category of compact De Morgan
 \end{definition}
 
 \begin{proposition}
-    Let $H$ be a Heyting meet--semilattice, then $\Bo H$ is a Boolean algebra with joins and meets defined
-    $$ a \sqcup b = (a^* \wedge b^*)^* \quad\text{and}\quad a\sqcap b = a \wedge b.$$
+    Let $H$ be a Heyting meet--semilattice, then $\Bo H$, with joins and meets defined
+    $$ a \sqcup b = (a^* \wedge b^*)^* \quad\text{and}\quad a\sqcap b = a \wedge b,$$
+
+    \noindent is a Boolean algebra.
 \end{proposition}
 \begin{proof}
     First, we will show that $\sqcap$ really is the meet, $\sqcup$ is the join and both operations are well--defined. For $a,b,c \in \Bo H$:
@@ -160,10 +160,10 @@ The category of De Morgan frames is coreflexive in category of compact De Morgan
 
     $\Leftarrow$ is straightforward and the $\Rightarrow$ implication follows simply from $f(a^{**}) \leq f(a^{**})^{**} $. And the diagram commutes iff $f(a^{**})^{**} = f(a)^{**}$.
 
-    The last thing we need to show is that $f(a^{**}) \leq f(a)^{**}$ implies $\Bo f$ is a frame homomorphism. It is straightforward to see $\Bo f$ preserves $0$, $1$ and $\sqcap$. For $\sqcup$--preserving, take $a, b \in \Bo L$ and infer
+    The last thing we need to show is that $f(a^{**}) \leq f(a)^{**}$ implies that $\Bo f$ is a frame homomorphism. It is straightforward to see that $\Bo f$ preserves $0$, $1$ and $\sqcap$. For $\sqcup$--preserving, take $a, b \in \Bo L$ and infer
     $$(\Bo f)(a)\sqcup (\Bo f)(b) = (f(a)^{**}\vee f(b)^{**})^{**} \geq f(a^{**}\vee b^{**})^{**} = f(a\vee b)^{**} = (\Bo f)(a\sqcup b),$$
 
-    \noindent where the last equality holds thanks to~(\oldref{e:2202iff20leq02}). The opposite inequality is trivial, thus $\Bo f$ is a Boolean homomorphism.
+    \noindent where the middle and the last equality hold by~(\oldref{e:2202iff20leq02}). The opposite inequality follows from: $f(a)^{**}\vee f(b)^{**}\leq f(a\vee b)^{**}$, thus $\Bo f$ is a Boolean homomorphism.
 
     Let's show $\Bo f$ preserves big joins. Again using~(\oldref{e:2202iff20leq02}), we get
     $$ (\Bo f)(\bigsqcup A) = f((\bigvee A)^{**})^{**} = f(\bigvee A)^{**} = (\bigvee f[A])^{**}. $$
@@ -175,12 +175,12 @@ The category of De Morgan frames is coreflexive in category of compact De Morgan
     \noindent which is what we wanted.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{p:BooleanizationFunctor}
     Let $\p C$ be a subcategory of the category of frames and frame homomorphisms satisfying (\oldref{e:2202iff20leq02}). Then
 
     $$\Bo\colon \p C \to \ComplBool,$$
 
-    \noindent defined on objects as in~\ref{d:Booleanization} and on morphisms as in~\ref{d:BooleanizationMorph}, is a functor.
+    \noindent defined on objects as is in~\ref{d:Booleanization} and on morphisms as is in~\ref{d:BooleanizationMorph}, is a functor.
     % TODO do not reference inside a proof -- ref{e:2202iff20leq02}
 \end{proposition}
 \begin{proof}
@@ -224,58 +224,52 @@ The category of De Morgan frames is coreflexive in category of compact De Morgan
     Hence $f(a^{**})$ is complemented and $f(a^*)$ is its complement. From distributivity of $M$ we know, complements are unique, hence $f(a^*) = f(a^{**})^*$.
 \end{proof}
 
-\num For any frame homomorphism between two extremally disconnected Stone frames, by Lemma~\ref{p:basicalMorphs}, $f(a^{**})^* = f(a^*)$ for all $a$. As we see from~\ref{p:boolenizationCond} and from the fact that
+\num\label{p:BooleanizationFunctorOnExtrDSF} For any frame homomorphism between two extremally disconnected Stone frames $f\colon L\to M$, by Lemma~\ref{p:basicalMorphs}, $f(a^{**})^* = f(a^*)$ for all $a\in L$. Observe, we have
     \begin{align*}
-        f(a^{**})^* = f(a^*)\text{ and }f(a^{**}) \leq f(a)^{**} \text{ iff } f(a^*) = f(a)^*\label{e:1001}\tag{N.O.}
+        f(a^{**})^* = f(a^*)\text{ and }f(a^{**}) \leq f(a)^{**} \iff f(a^*) = f(a)^*,\quad\text{for all } a\in L.\label{e:1001}\tag{N.O.}
     \end{align*}
 
-    hold for all $a$ (indeed, the $f(a^*) \leq f(a)^*$ is always true and $f(a^*) = f(a^{**})^* \geq f(a)^{***} = f(a)^*$)
-, in order for \Bo{} to behave functorially, we need to restrict category of extremally disconnected Stone frames only to morphisms satisfying~(\oldref{e:1001}).
+    \noindent (Indeed, the $f(a^*) \leq f(a)^*$ is always true and $f(a^*) = f(a^{**})^* \geq f(a)^{***} = f(a)^*$, the opposite direction is straightforward).
 
-However, this is exactly the case for the category \ExtrStoneFrm{}. Basically complete frame homomorphisms suffices the condition (\oldref{e:1001}), and \ExtrStoneFrm{} is the only subcategory of \StoneFrm{} we presented here which satisfies it.
+    Hence, for a category of extremally disconnected frames, in order to satisfy conditions of Proposition~\ref{p:BooleanizationFunctor}, we need to restrict morphisms only to those frame homomorphisms satisfying~(\oldref{e:1001}).
 
-\begin{conclusion}
+    However, this is exactly the case with morphisms of the category \ExtrStoneFrm{}. For a frame homomorphism, to be basically complete is precisely the same as to satisfy~(\oldref{e:1001}).
+
+\begin{conclusion*}
     $\Bo\colon \ExtrStoneFrm \to \ComplBool$ is a functor.
-\end{conclusion}
+\end{conclusion*}
 
-In literature frame homomorphisms satisfying (\oldref{e:2202iff20leq02}) are called \DEF{weakly open} and frame homomorphisms satisfying (\oldref{e:1001}) are called \DEF{nearly open}~\cite{banaschewski1994variants}.
+In literature are frame homomorphisms satisfying (\oldref{e:2202iff20leq02}) called \DEF{weakly open} and frame homomorphisms satisfying (\oldref{e:1001}) are called \DEF{nearly open}~\cite{banaschewski1994variants}.
 % TODO topological interpretation
 
 \begin{observation}\label{p:boEQbc}
-    $\Bo L = \Bc L$ for any extremally disconnected Stone frame $L$.
+    $\Bo L = \BcI L$ for any extremally disconnected Stone frame $L$.
 \end{observation}
 \begin{proof}
-    $\Bo L \supseteq \Bc L$ holds always. Let $x \in \Bo L$, then $x = x^{**}$ and from extremal disconnectedness also $x^{**}\vee x^*=1$, hence $x \in \Bc L$.
+    $\Bo L \supseteq \BcI L$ holds always. Let $x \in \Bo L$, then $x = x^{**}$ and from extremal disconnectedness also $x^{**}\vee x^*=1$, hence $x \in \BcI L$.
 \end{proof}
 
 
-Until the end of this section, we will use the Lemma~\ref{p:idealsFrame} frequently without further referencing.
+Until the end of this section, we will use Lemma~\ref{p:idealsFrame} frequently without further referencing.
 
 \begin{lemma}
-    Let $B$ be a Boolean frame, then $B \cong \Bo\J(B)$ in \ComplBool.
+    Let $B$ be a Boolean frame, then $B \cong \Bo\JI(B)$ in \ComplBool.
 \end{lemma}
 \begin{proof}
-    We see $J \in \Bo\J(B)$ iff $J = J^{**} = \downset \bigvee J$. On the other hand, for $a \in B$: $(\downset a)^{**} = \downset a^{**} = \downset a$.
+    We see $J \in \Bo\JI(B)$ iff $J = J^{**} = \downset \bigvee J$. On the other hand, for $a \in B$: $(\downset a)^{**} = \downset a^{**} = \downset a$ in $\JI B$.
 
-    Denote \DEFSYM{istar2}{$\tilde i_B$}$\colon B \to \Bo\J(B)$ to be the mapping $a \mapsto \downset a$. From the previous Observation we know the definitions of $\tilde i_B$ and $i_B$ coincide, therefore by~\ref{p:BoolEquivalence} $\tilde i_B$ is a Boolean homomorphism.
-
-    Now, take any $\Set{ a_i | i\in I}$ subset of $B$, then
-    $$
-    \bigsqcup_{i\in I} \downset a_i = (\bigvee_{i\in I} \downset a_i)^{**} = \downset (\bigvee_{i\in I} a_i)^{**} = \downset (\bigvee_{i\in I} a_i).
-    $$
-
-    \noindent Consequently, $\tilde i_B$ is a complete Boolean homomorphism, morphisms of \ComplBool{} and an isomorphism of $B$ and $\Bo\J(B)$.
+    Denote \DEFSYM{istar2}{$\tilde i_B$}$\colon B \to \Bo\JI(B)$ to be the mapping $a \mapsto \downset a$. From the previous Observation we know the definitions of $\tilde i_B$ and $i_B$ coincide, therefore by~\ref{p:BoolEquivalence} $\tilde i_B$ is a Boolean isomorphism. From~\ref{p:completePartUnits}, $\tilde i_B$ is a morphisms of \ComplBool{}.
 \end{proof}
 
 \num Now, for any complete Boolean algebras $A$ and $B$, for any complete Boolean homomorphism $f\colon A \to B$ and for $\tilde i_B$ from the previous Lemma, the following diagram commutes
     \begin{diagram}
-        A \ar{r}{\tilde i_A} \ar{d}[swap]{f} & \Bo\J(A) \ar{d}{\Bo\J(f)}\\
-        B \ar{r}{\tilde i_B}                 & \Bo\J(B)
+        A \ar{r}{\tilde i_A} \ar{d}[swap]{f} & \Bo\JI(A) \ar{d}{\Bo\J(f)}\\
+        B \ar{r}{\tilde i_B}                 & \Bo\JI(B)
     \end{diagram}
 
     Indeed, we have
     $$
-    \Bo\J(f)(\downset a) = (\downset f[\downset a])^{**} = \downset f(a)^{**} = \downset f(a).
+    \Bo\JI(f)(\downset a) = (\downset f[\downset a])^{**} = \downset f(a)^{**} = \downset f(a).
     $$
 
     We can conclude the following
@@ -284,50 +278,47 @@ Until the end of this section, we will use the Lemma~\ref{p:idealsFrame} frequen
 \end{proposition*}
 
 \begin{lemma}
-    Let $L$ be an extremally disconnected Stone frame, then $L \cong \J\Bo(L)$ in \ExtrStoneFrm.
+    Let $L$ be an extremally disconnected Stone frame, then $L \cong \JI\Bo(L)$ in \ExtrStoneFrm.
 \end{lemma}
 \begin{proof}
-    Similarly to the general case, define \DEFSYM{vstar2}{$\tilde v_L$}$\colon \J\Bo(L) \to L$ as
+    Similarly to the general case, define \DEFSYM{vstar2}{$\tilde v_L$}$\colon \JI\Bo(L) \to L$ as
     $$ \tilde v_L\colon I \mapsto \bigvee I.$$
 
-    From the Observation~\ref{p:boEQbc}, we know the definitions of $\tilde v_L$ and $v_L$ are the same, and $\tilde v_L$ is a frame isomorphism by~\ref{p:StoneFrmEquivalence}.
-
-    From the proof of Theorem~\ref{p:kappaCompleteThm} we know $v_L$ is $\lambda$--basically complete frame homomorphism for all regular cardinals $\lambda$, therefore $\tilde v_L$ is also basically complete and is a~morphisms of $\ExtrStoneFrm$.
+    From the Observation~\ref{p:boEQbc}, we know the definitions of $\tilde v_L$ and $v_L$ are the same, and $\tilde v_L$ is a frame isomorphism by~\ref{p:StoneFrmEquivalence}. From~\ref{p:completePartUnits}, $\tilde v_L$ is a morphism of \ExtrStoneFrm.
 \end{proof}
 
-\num We can show that naturalness of $\tilde v_*$ defined in the previous Lemma. Let $L$ and $M$ be extremally disconnected Stone frames and let $f\colon L \to M$ be a basically complete frame homomorphism. The following diagram commutes
+\begin{proposition}\label{p:JOBoIdentity}
+    The collection $\tilde v_*$ of basically complete frame homomorphisms is a natural equivalence between $\JI\Bo$ and the identity functor on \ExtrStoneFrm.
+\end{proposition}
+\begin{proof}
+    Let $L$ and $M$ be extremally disconnected Stone frames and let $f\colon L \to M$ be a basically complete frame homomorphism. The following diagram commutes
     \begin{diagram}
-        \J\Bo(L) \ar{d}[swap]{\J\Bo(f)} \ar{r}{\tilde v_L} & L \ar{d}{f} \\
-        \J\Bo(M) \ar{r}{\tilde v_M}    & M
+        \JI\Bo(L) \ar{d}[swap]{\JI\Bo(f)} \ar{r}{\tilde v_L} & L \ar{d}{f} \\
+        \JI\Bo(M) \ar{r}{\tilde v_M}    & M
     \end{diagram}
 
-    To show that, let $I \in \J\Bo(L)$. First observe, for $x\in I$, $x = x^{**}$ and since $L$ is extremally disconnected, $x\vee x^* = 1$. Therefore, $f(x^*) = f(x)^*$ by Lemma~\ref{p:basicalMorphs}. Now, we can compute
+    To show that, let $I \in \JI\Bo(L)$. First observe, for $x\in I$, $x = x^{**}$ and since $L$ is extremally disconnected, $x\vee x^* = 1$. Therefore, $f(x^*) = f(x)^*$ by Lemma~\ref{p:basicalMorphs}. Now, we can compute
     $$
-    (\J\Bo)(f)(I) = \downset \Set{ f(x)^{**} | x \in I } = \downset \Set{ f(x) | x \in I} = \downset f[I].
-    $$
-
-    And from that, we see
-    $$
-    \tilde v_M((\J\Bo)(f)(I)) = \bigvee \downset f[I] = \bigvee f[I] = f(\bigvee I) = f(\tilde v_L(I)).
+    (\JI\Bo)(f)(I) = \downset \Set{ f(x)^{**} | x \in I } = \downset \Set{ f(x) | x \in I} = \downset f[I].
     $$
 
-    And finally, from the commutativity of the diagram above we can conclude
+    \noindent And from that, we see
+    $$
+    \tilde v_M((\JI\Bo)(f)(I)) = \bigvee \downset f[I] = \bigvee f[I] = f(\bigvee I) = f(\tilde v_L(I)).
+    $$
 
-\begin{proposition*}
-    The collection $\tilde v_*$ of basically complete frame homomorphisms is a natural equivalence between $\JI\Bo$ and the identity functor on \ExtrStoneFrm.
-\end{proposition*}
+    The conclusion follows from commutativity of the diagram above.
+\end{proof}
 
-\num By the Theorem~\ref{p:kappaCompleteThm} we know we have an isomorphism between categories of $\kappa$--complete Boolean algebras and $\kappa$--basically disconnected Stone frames witnessed by functors \J{} and \Bc{}. When we restrict $\J{}$ to the category \ComplBool{}, morphisms on side of Stone frames are precisely basically complete frame homomorphisms.
 
-% TODO refs
-By 2.13, 2.14, 2.15 and 2.16 we have the natural equivalence between identity functors and \Bo\J{} resp. \J\Bo{}.
-% By the previous isomorphism lemmas we have the natural equivalence between identity functor and \Bo\J{} resp. \J\Bo{} and get an isomorphism of categories \ComplBool{} and \ExtrStoneFrm (two subcategories of \Frm).
-As conclusion the functors \Bo{} and \J{} form an adjunction, with units and counits being natural equivalence and we obtain the main result of this section
+\num From \ref{p:BooleanizationFunctorOnExtrDSF}---\ref{p:JOBoIdentity}, we have a natural equivalence between the identity functor on \ComplBool{} resp. \ExtrStoneFrm{} and \Bo\JI{} resp. \JI\Bo{}.
+% By the previous isomorphism lemmas we have the natural equivalence between identity functor and \Bo\JI{} resp. \JI\Bo{} and get an isomorphism of categories \ComplBool{} and \ExtrStoneFrm (two subcategories of \Frm).
+As conclusion the functors \Bo{} and \JI{} are mutually inverse and we obtain the main result of this section
 
 \begin{theorem*}
     The categories \ExtrStoneFrm{} and \ComplBool{} are isomorphic.
 \end{theorem*}
 
-
-\num One may ask, if \Bo{} works also in other parts of the correspondence. As $\Bo L$ is always a complete Boolean algebra and so $\J\Bo(L)$ is extremally disconnected, there is no hope for non--extremally disconnected Stone frames.
+% TODO!
+\num One may ask, if \Bo{} .... As $\Bo L$ is always a complete Boolean algebra and so $\JI\Bo(L)$ is extremally disconnected, there is no hope for non--extremally disconnected Stone frames.
 % TODO and by \ref{e:1001} we cannot hope to ommit condition to have weakly open frame homomorphismsa?

@@ -1,6 +1,6 @@
 \chapter{Connectedness and Compactification}
 
-Compactness, connectedness and variants of disconnectedness are commonly studied in topological spaces. In this chapter, we will prove some results which are well known from Set theoretical topology and we will prove them in the context of a Point-free topology.
+Compactness, connectedness and variants of disconnectedness are commonly studied properties of topological spaces. In this chapter, we will prove some results which are well known from Set theoretical topology and we will prove them in the context of point--free topology.
 
 \section{Connectedness and variants of disconnectedness}
 \begin{definition}
@@ -71,7 +71,7 @@ Compactness, connectedness and variants of disconnectedness are commonly studied
 \end{observation}
 \begin{proof}
     \begin{enumerate}
-        \item For every $a$ complemented, we have $a \crbelow a$. Therefore, by zero--dimensionality
+        \item For every complemented $a$, we have $a \crbelow a$. Therefore, by zero--dimensionality
             $$e = \bigvee \Set{ c | c \leq e, c \text{ is complemented}} \leq \bigvee \Set{ x | x \crbelow e} \leq e$$
 
             \noindent for each $e$.
@@ -104,21 +104,23 @@ Compactness, connectedness and variants of disconnectedness are commonly studied
     \noindent By the same argument, $(f_b\wedge f_a^*)\vee a = 1$. And $(f_b\wedge f_a^*)\wedge (f_a\wedge f_b^*) = 0$, therefore $L$ is normal.
 \end{proof}
 
-\num {\bf A frame of ideals.} Let $L$ be a frame. Denote $\J L$ to be the set of all ideals of $L$. We will show that $\J L$ ordered by inclusion is a frame. Meet of two ideals is simply its intersection (an intersection of ideals is again an ideal -- TODO).
+\num\label{p:frameOfIdeals} {\bf The frame of ideals.} Let $L$ be a join--semilattice with 0. Denote $\J L$ to be the set of all ideals of $L$. We will show that $\J L$ ordered by inclusion is a frame. An intersection of two ideals is again an ideal, hence finite meets exist.
 
-    Let $I_i \in \J L$ for $i \in J$, and set
+    Let $I_i \in \J L$, for $i \in J$, and set
     \begin{align*}
         \bigvee_{i\in J} I_i = \set{ \bigvee F | F\text{ is a finite subset of } \bigcup_{i\in J} I_i}.\label{e:idealJoin}\tag{Idl-$\bigvee$}
     \end{align*}
 
-    The set defined this way is again an ideal and it is the supremum of $\Set{ I_i | i\in J}$. Also for any ideals $J$ and $I_i$ of $L$, for $i \in J$, the following equality holds
+    \noindent The set defined this way is again an ideal and it is the supremum of $\Set{ I_i | i\in J}$. Also for any ideals $J$ and $I_i$ of $L$, for $i \in J$, the following equality holds
     $$(\bigvee_i I_i) \cap J = \bigvee_i (I_i \cap J).$$
 
-    \noindent The $\supseteq$ inclusion is trivial, for the other inclusion take $x\in J$ such that $x = \bigvee F$ for some finite $F \subseteq \bigcup_i I_i$. Then $F \subseteq J$ (as $J$ is an ideal) and also $F \subseteq \bigcup_i (I_i \cap J)$. We get, $x \in \bigvee_i (I_i \cap J)$. Thus, \J{} is a frame.
+    \noindent The $\supseteq$ inclusion is trivial, for the other inclusion take $x\in J$ such that $x = \bigvee F$ for some finite $F \subseteq \bigcup_i I_i$. Then $F \subseteq J$ (as $J$ is an ideal) and also $F \subseteq \bigcup_i (I_i \cap J)$. We get, $x \in \bigvee_i (I_i \cap J)$. Thus, $\J{L}$ is a frame.
 
     Moreover, $\J L$ is a compact frame: Let $I_i \in \J L$, for $i \in J$, such that $\bigvee_i I_i = L = 1_{\J L}$, then there exists a finite $F \subseteq \bigcup_i I_i$ such that $\bigvee F = 1$. Set $i(f) \in J$ such that $f \in I_{i(f)}$ for all $f \in F$. Then also $\bigvee_{f \in F} I_{i(f)} = 1_{\J L}$. Therefore $\J L$ is a compact frame.
 
-TODO conclusion? $\R L$ together with joins as defined at (\oldref{e:idealJoin}) and intersection as meets is a frame. 
+\begin{blockProp*}{Conclusion}
+    The set $\J L$ with joins as defined in (\oldref{e:idealJoin}) and meets defined as intersection is a compact frame.
+\end{blockProp*}
 
 \begin{definition}
     We say a frame homomorphism $f\colon L \to M$ is \DEF{dense}[ frame homomorphism] if $f(a) = 0$ implies $a = 0$.
@@ -141,7 +143,7 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
 
     For two regular ideals $I_1, I_2\in \R L$, their intersection is again a regular ideal. Indeed, take any $a \in I_1\cap I_2$, then $a\crbelow b_i$ for some $b_i \in I_i$ and $a\crbelow b_1 \wedge b_2\in I_1\cap I_2$ from~\ref{p:crbellowProperties}.
 
-    For any regular ideals $J$ and $I_i$ of $L$, for $i \in J$, from previous we know that $\bigvee_{i\in J} I_i$ is an ideal. We will show that it is a regular ideal. For $a \in \bigvee_{i\in J} I_i$, by~(\ref{e:idealJoin}), there exists a finite $F \subseteq \bigcup_{i\in J} I_i$ such that $a = \bigvee F$. For every $f \in F$ there exists an $e_f \in I_j$ for some $j\in J$ such that $f \crbelow e_f$. But $\bigvee_{f\in F} e_f \in \bigvee_{i\in J} I_i$ and from~\ref{p:crbellowProperties}$, \bigvee F \crbelow \bigvee_{f\in F} e_f$.
+    For any regular ideals $J$ and $I_i$ of $L$, for $i \in J$, from previous we know that $\bigvee_{i\in J} I_i$ is an ideal. We will show that it is a regular ideal. For $a \in \bigvee_{i\in J} I_i$, by~(\oldref{e:idealJoin}), there exists a finite $F \subseteq \bigcup_{i\in J} I_i$ such that $a = \bigvee F$. For every $f \in F$ there exists an $e_f \in I_j$, for some $j\in J$, such that $f \crbelow e_f$. But $\bigvee_{f\in F} e_f \in \bigvee_{i\in J} I_i$ and from~\ref{p:crbellowProperties}$, \bigvee F \crbelow \bigvee_{f\in F} e_f$.
 
     Hence, the set $\R L$ is a subframe of $\J L$. Consequently, $\R L$ is compact.
 
@@ -151,9 +153,11 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
 \noindent This set is a regular ideal. We will omit the subscript if the frame $L$ can be determined from the context. % TODO better wording?
 
     The following property of $\sigma$ will be handy: $\sigma(a) \rbelow \sigma(b)$ for any $a\crbelow b$.
-\begin{proof}
-    First, interpolate $a \crbelow x\crbelow y\crbelow b$. By~\ref{p:crbellowProperties}, $x^*\crbelow a^*$ and $x^*\in \sigma(a^*)\subseteq \sigma(a)^*$. Since $y\in \sigma(b)$ and $x^*\vee y = 1$, we have $\sigma(a)^*\vee \sigma(b) = 1_{\R L}$.
-\end{proof}
+\begin{center}
+\parbox{0.85\linewidth}{
+    (\emph{Proof.} First, interpolate $a \crbelow x\crbelow y\crbelow b$. By~\ref{p:crbellowProperties}, $x^*\crbelow a^*$ and $x^*\in \sigma(a^*)\subseteq \sigma(a)^*$. Since $y\in \sigma(b)$ and $x^*\vee y = 1$, we have $\sigma(a)^*\vee \sigma(b) = 1_{\R L}$.\qed)
+}
+\end{center}
 
 \begin{proposition}
     If $L$ is a completely regular frame, then $\R L$ is also completely regular.
@@ -163,11 +167,11 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
     % I = \bigcup \Set{ \sigma(a) | a\in I} = \bigvee \Set{ \sigma(a) | a\in I} = \bigvee \Set{ \sigma(a) | a\crbelow b\in I}.
     % $$
 
-    TODO
+    to be done
 \end{proof}
 
 
-\num {\bf The functor \C{}.} Now, we are ready to define a functor from the category of completely regular frames to the category of compact regular frames. Denote
+\num\label{p:compactificationFunctor} {\bf The functor \C{}.} Now, we are ready to define a functor from the category of completely regular frames to the category of compact regular frames. Denote
     $$\DEFSYM{compactificationFunctor}{\C}\colon \CRegFrm \to \RegKFrm$$
 
     \noindent to be the following two mappings. On objects:
@@ -181,23 +185,21 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
 
     \begin{itemize}
         \item $\C f$ preserves joins:
-
         \begin{align*}
             (\C f)(\bigvee_i I_i) &= \downset f[\set{ \bigvee F | F\text{ a finite subset of } \bigcup_i I_i}] \\
                 &= \downset \set{ \bigvee F | F\text{ a finite subset of } \bigcup_i f[I_i]} \\
                 &= \set{ \bigvee F | F\text{ a finite subset of } \bigcup_i \downset f[I_i]} \\
-                &= \bigvee_i (\C f)(I_i),
+                &= \bigvee_i (\C f)(I_i); \text{ and that}
         \end{align*}
 
         \item $\C f$ preserves finite meets:
-
         $$ (\C f)(I_1\cap I_2) = \downset f[I_1\cap I_2] \subseteq \downset f[I_1]\cap \downset f[I_2] = (\C f)(I_1)\cap (\C f)(I_2). $$
 
         \noindent For $x \in \downset f[I_1]\cap \downset f[I_2]$, there exists $y_i\in I_i$, for $i = 1,2$, such that $f(y_1) = f(y_2) = x$. Since $f$ is a frame homomorphism, $f$ preserves finite meets, hence $f(y_1\wedge y_2) = f(y_1)\wedge f(y_2) = x$. We know that $y_1\wedge y_2 \in I_1\cap I_2$, therefore $x\in \downset f[I_1\cap I_2]$.
 
     \end{itemize}
 
-    And we can conclude that $\C f$ is a frame homomorphism. As a result, we have the following
+    We obtain that $\C f$ is a frame homomorphism. As a result, we have the following
 
     \begin{theorem*}
         $\C$ is a functor.
@@ -206,27 +208,25 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
 \num For a completely regular frame $L$, define \DEFSYM{compactification}{$\comp_L$}$\colon \C L\to L$ as follows:
     $$\comp_L\colon I \mapsto \bigvee I.$$
 
-    The mapping $\comp_L$ is in familiar connection with $\sigma$:
+    And we see that
 
     \begin{align}
-        \comp_L\sigma(a) = a\quad\text{and}\quad \sigma\comp_L(I) \subseteq I\label{e:compactificationInequality}
+        \comp_L\sigma(a) = a\quad\text{and}\quad \sigma\comp_L(I) \subseteq I.\label{e:compactificationInequality}
     \end{align}
 
     \noindent Since both $\comp_L$ and $\sigma$ are monotone maps, we know that they form a Galois ajdunction, with $\comp_L$ to the left and $\sigma$ to the right. Hence, $\comp_L$ preserves joins, it also preserves finite meets: $\bigvee I_1 \wedge \bigvee I_2 = \bigvee \Set{a_1 \wedge a_2 | a_i \in I_i} \leq \bigvee \Set{ a | a \in I_1 \cap I_2 } = \bigvee (I_1 \cap I_2) \leq \bigvee I_1 \wedge \bigvee I_2$.
 
-    Consequently, $\comp_L$ is a frame homomorphism and $\sigma$ is a localic map. Observe $\comp_L$ is also dense, $\bigvee I = 0$ implies $I = \{0\}$.
+    Consequently, $\comp_L$ is a frame homomorphism and $\sigma$ is a localic map. Observe that $\comp_L$ is also dense, $\bigvee I = 0$ implies $I = \{0\}$.
 
 
-\num We see that $\comp_*\colon \C{} \to \Id$ is a natural transformation, because the following diagrams commute
+\num We see that $\comp_*\colon \C{} \natto \Id$ is a natural transformation because the following diagram commutes
 
 \begin{diagram}
     \C L\ar{r}{\comp_L}\ar{d}{\C f} & L\ar{d}{f} \\
     \C M\ar{r}{\comp_M}             & M
 \end{diagram}
 
-\begin{center}
-    (since $\comp_M(\C f)(I) = \bigvee (\downset f[I]) = \bigvee f[I] = f[\bigvee I] = f \comp_M(I)$)
-\end{center}
+\noindent for any frame homomorphism $f\colon L\to M$ between completely regular frames (because $\comp_M(\C f)(I) = \bigvee (\downset f[I]) = \bigvee f[I] = f[\bigvee I] = f \comp_M(I)$).
 
 \begin{lemma}
     If $L$ is a compact regular frame, then $\comp_L$ is an isomorphism and $L \cong \R L$.
@@ -234,16 +234,16 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
 \begin{proof}
     Let $I$ be a regular ideal of $L$. We already know that $\sigma\comp_L(I) \supseteq I$. For $x \in \sigma\comp_L(I)$, we have $x \crbelow \bigvee I$, hence $x^*\vee \bigvee I= 1$. By compactness of $L$, there exists a finite $F \subseteq I$ such that $x^*\vee \bigvee F = 1$. But $\bigvee F\in I$ and $x\crbelow \bigvee F$, hence $x$ belongs to $I$ and $\sigma\comp_L(I) \subseteq I$.
 
-    Every ideal of $L$ corresponds to some $\sigma(a)$ and $\comp_L$ is an one-one homomorphism, thus $\comp_L$ is an isomorphism.
+    Regular ideals of $L$ are precisely the ideals of the form $\sigma(a)$. Thus, $\comp_L$ is an one-one frame homomorphism and consequently $\comp_L$ is an isomorphism.
 \end{proof}
 
-Moreover, \C{} is a reflection of categories with unit of adjunction $\comp_L$.
+\num From previous we obtain
 
-\begin{theorem}\label{p:universalCompactification}
-    The category of completely regular frames is coreflective in the category of compact regular frames.
+\begin{theorem*}\label{p:universalCompactification}
+    The functor \C{} and the natural transformation $\comp_*$ provides a coreflection of the category of completely regular frames onto the category of compact regular frames.
 
     Or in other words, for a completely regular frame $L$, the mapping $\comp_L\colon \C L \to L$ is the compactification of $L$.
-\end{theorem}
+\end{theorem*}
 
 \begin{definition}
     A topological space is \emph{compact} if the frame of its open sets is compact.
@@ -261,28 +261,31 @@ Moreover, \C{} is a reflection of categories with unit of adjunction $\comp_L$.
     For converse, suppose $\C L$ is disconnected. There exists a non-trivial clopen sublocale $S$ of $\C L$; and $S\cap L$ is a non-trivial clopen sublocale of $L$.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{p:closureIntersectedByDense}
     Let $S$ be a closed sublocale of $L$ and let $U\subseteq L$ be an open sublocale. Then $\closure{U\cap S}^L = \closure{U}^L$.
 \end{lemma}
 \begin{proof}
     Let $U = \open(a)$, for some $a$, then $\bigwedge (\open(a)\cap S) = \bigwedge \Set{ a\to s | s \in S } = a\to \bigwedge S$. And $\bigwedge S = 0$, since $S$ is dense in $L$ (and includes $0_L$). Hence $\closure{U\cap S} = \upset (\bigwedge (U\cap S)) = \upset(a\to 0) = \clos(a^*) = \closure{U}$.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{p:closureOfClopen}
     Let $L$ be a completely regular frame and let $M$ be a clopen sublocale of $L$, then the closure of $M$ in $\C L$, the $\closure{M}^{\C L}$, is also clopen.
 \end{lemma}
+\begin{proof}
+to be done
+\end{proof}
 
 \begin{proposition}\label{p:extrDiscPreserv}
     Let $L$ be a extremally disconnected frame, then $\C L$ is also extremally disconnected.
 \end{proposition}
 \begin{proof}
-    Let $U$ be an open sublocale of $\C L$. Take $V = U\cap L$ open sublocale of $L$. We know that $\closure V^L = \closure{U\cap L}^L = \closure{U\cap L}\cap L = \closure U\cap L$. Moreover $\closure V^L$ is clopen in $L$.
+    Let $U$ be an open sublocale of $\C L$. Take $V = U\cap L$ open sublocale of $L$. We know that $\closure V^L = \closure{U\cap L}^L = \closure{U\cap L}\cap L = \closure U\cap L$ (the last equality follows from Lemma~\ref{p:closureIntersectedByDense}). From extremal disconnected, $\closure V^L$ is clopen in $L$ and, from Lemma~\ref{p:closureOfClopen}, $\closure{\closure V^L}$ is clopen in $\C L$. Then
 
     $$ \closure U = \closure{U\cap L} \subseteq \closure{\closure{V}^L} = \closure{\closure U\cap L} \subseteq \closure{\closure U} = \closure U.$$
 \end{proof}
 
 \begin{block}{Remark}
-    Analogously to set topology, for zero--dimensional frames, it is not always the case that their Čech--Stone compactification is also zero--dimensional. Frames in which this is true are called strongly zero--dimensional (TODO cite).
+    Analogously to set topology, it is not always the case that Čech--Stone compactification of zero--dimensional frames is again zero--dimensional. Frames in which this is true are called strongly zero--dimensional~\cite{kou2002strongly}.
 \end{block}
 
 % TODO?
