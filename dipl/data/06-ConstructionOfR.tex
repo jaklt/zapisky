@@ -3,7 +3,7 @@
 \section{Summarization}
 % TODO proper references
 
-Recall III.2.13, the compactification of a complete regular frames is obtained as the frame of all regular ideals. The construction of a Stone frame in the Stone correspondence (IV.1.9) is given in similar fashion. The functor $\JO$ maps a Boolean algebra to the frame of all ideals of the Boolean algebra. On the other hand, in any Boolean algebra the relations $\leq$, $\rbelow$ and $\crbelow$ coincide. Thus, we can equivalently say that any Stone frame is obtained from a Boolean algebra by taking the frame of all regular ideals.
+Recall Theorem~\ref{p:universalCompactification}, the compactification of a complete regular frames is obtained as the frame of all regular ideals. The construction of a Stone frame in the Stone correspondence (IV.1.9) is given in similar fashion. The functor $\JO$ maps a Boolean algebra to the frame of all ideals of the Boolean algebra. On the other hand, in any Boolean algebra the relations $\leq$, $\rbelow$ and $\crbelow$ coincide. Thus, we can equivalently say that any Stone frame is obtained from a Boolean algebra by taking the frame of all regular ideals.
 
 In Set--theoretical topology are the compactification and the Stone representation of Boolean algebras essentially the same.
 The compactification of a completely regular topological space is homeomophic to the space of all ultrafilters of that space. Similarly in the Stone duality for topological spaces, each Stone space is constructed as the space of all ultrafilters of some Boolean algebra.
@@ -252,46 +252,38 @@ In literature are frame homomorphisms satisfying (\oldref{e:2202iff20leq02}) cal
 
 Until the end of this section, we will use Lemma~\ref{p:idealsFrame} frequently without further referencing.
 
-\begin{lemma}
-    Let $B$ be a Boolean frame, then $B \cong \Bo\JI(B)$ in \ComplBool.
-\end{lemma}
+\begin{proposition}
+    The functor $\Bo\circ\JI$ is naturally equivalent to the identity functor on \ComplBool{}.
+\end{proposition}
 \begin{proof}
-    We see $J \in \Bo\JI(B)$ iff $J = J^{**} = \downset \bigvee J$. On the other hand, for $a \in B$: $(\downset a)^{**} = \downset a^{**} = \downset a$ in $\JI B$.
+    Let $B$ be a Boolean frame. We see $J \in \Bo\JI(B)$ iff $J = J^{**} = \downset \bigvee J$.
 
     Denote \DEFSYM{istar2}{$\tilde i_B$}$\colon B \to \Bo\JI(B)$ to be the mapping $a \mapsto \downset a$. From the previous Observation we know the definitions of $\tilde i_B$ and $i_B$ coincide, therefore by~\ref{p:BoolEquivalence} $\tilde i_B$ is a Boolean isomorphism. From~\ref{p:completePartUnits}, $\tilde i_B$ is a morphisms of \ComplBool{}.
-\end{proof}
 
-\num Now, for any complete Boolean algebras $A$ and $B$, for any complete Boolean homomorphism $f\colon A \to B$ and for $\tilde i_B$ from the previous Lemma, the following diagram commutes
+    Now, for any complete Boolean algebras $A$ and $B$, for any complete Boolean homomorphism $f\colon A \to B$, the following diagram commutes
     \begin{diagram}
         A \ar{r}{\tilde i_A} \ar{d}[swap]{f} & \Bo\JI(A) \ar{d}{\Bo\J(f)}\\
         B \ar{r}{\tilde i_B}                 & \Bo\JI(B)
     \end{diagram}
 
-    Indeed, we have
+    \noindent Indeed, we have
     $$
     \Bo\JI(f)(\downset a) = (\downset f[\downset a])^{**} = \downset f(a)^{**} = \downset f(a).
     $$
 
-    We can conclude the following
-\begin{proposition*}
-    The collection $\tilde i_*$ of complete Boolean homomorphisms forms a natural equivalence between $\Bo\JI$ and the identity functor on \ComplBool.
-\end{proposition*}
-
-\begin{lemma}
-    Let $L$ be an extremally disconnected Stone frame, then $L \cong \JI\Bo(L)$ in \ExtrStoneFrm.
-\end{lemma}
-\begin{proof}
-    Similarly to the general case, define \DEFSYM{vstar2}{$\tilde v_L$}$\colon \JI\Bo(L) \to L$ as
-    $$ \tilde v_L\colon I \mapsto \bigvee I.$$
-
-    From the Observation~\ref{p:boEQbc}, we know the definitions of $\tilde v_L$ and $v_L$ are the same, and $\tilde v_L$ is a frame isomorphism by~\ref{p:StoneFrmEquivalence}. From~\ref{p:completePartUnits}, $\tilde v_L$ is a morphism of \ExtrStoneFrm.
+    Hence, the collection $\tilde i_*$ of complete Boolean homomorphisms forms a natural equivalence between $\Bo\JI$ and the identity functor on \ComplBool.
 \end{proof}
 
 \begin{proposition}\label{p:JOBoIdentity}
-    The collection $\tilde v_*$ of basically complete frame homomorphisms is a natural equivalence between $\JI\Bo$ and the identity functor on \ExtrStoneFrm.
+    The functor $\JI\circ\Bo$ is naturally equivalent to the identity functor on \ExtrStoneFrm{}.
 \end{proposition}
 \begin{proof}
-    Let $L$ and $M$ be extremally disconnected Stone frames and let $f\colon L \to M$ be a basically complete frame homomorphism. The following diagram commutes
+    Let $L$ be an extremally disconnected Stone frame. Similarly to the general case, define \DEFSYM{vstar2}{$\tilde v_L$}$\colon \JI\Bo(L) \to L$ as
+    $$ \tilde v_L\colon I \mapsto \bigvee I.$$
+
+    \noindent From Observation~\ref{p:boEQbc}, we know the definitions of $\tilde v_L$ and $v_L$ are the same, and $\tilde v_L$ is a frame isomorphism by~\ref{p:StoneFrmEquivalence}. From~\ref{p:completePartUnits}, $\tilde v_L$ is a morphism of \ExtrStoneFrm.
+
+    Further, let $L$ and $M$ be extremally disconnected Stone frames and let $f\colon L \to M$ be a basically complete frame homomorphism. The following diagram commutes
     \begin{diagram}
         \JI\Bo(L) \ar{d}[swap]{\JI\Bo(f)} \ar{r}{\tilde v_L} & L \ar{d}{f} \\
         \JI\Bo(M) \ar{r}{\tilde v_M}    & M
@@ -308,17 +300,17 @@ Until the end of this section, we will use Lemma~\ref{p:idealsFrame} frequently 
     $$
 
     The conclusion follows from commutativity of the diagram above.
+    The collection $\tilde v_*$ of basically complete frame homomorphisms is a natural equivalence between $\JI\Bo$ and the identity functor on \ExtrStoneFrm.
 \end{proof}
 
 
-\num From \ref{p:BooleanizationFunctorOnExtrDSF}---\ref{p:JOBoIdentity}, we have a natural equivalence between the identity functor on \ComplBool{} resp. \ExtrStoneFrm{} and \Bo\JI{} resp. \JI\Bo{}.
-% By the previous isomorphism lemmas we have the natural equivalence between identity functor and \Bo\JI{} resp. \JI\Bo{} and get an isomorphism of categories \ComplBool{} and \ExtrStoneFrm (two subcategories of \Frm).
-As conclusion the functors \Bo{} and \JI{} are mutually inverse and we obtain the main result of this section
+\num From \ref{p:BooleanizationFunctorOnExtrDSF}---\ref{p:JOBoIdentity}, we obtain the main result of this section.
 
 \begin{theorem*}
-    The categories \ExtrStoneFrm{} and \ComplBool{} are isomorphic.
+    The functors \Bo{} and \JI{} provide an isomorphism between the categories \\\ExtrStoneFrm{} and \ComplBool{}.
 \end{theorem*}
 
-% TODO!
-\num One may ask, if \Bo{} .... As $\Bo L$ is always a complete Boolean algebra and so $\JI\Bo(L)$ is extremally disconnected, there is no hope for non--extremally disconnected Stone frames.
+% TODO
+% \num Observe that $\Bo$ provides an isomorphism precisely for this part of Stone correspond. For a frame $L$, $\Bo L$ is always a complete Boolean algebra and the frame $\JI\Bo(L)$ is extremally disconnected.
+
 % TODO and by \ref{e:1001} we cannot hope to ommit condition to have weakly open frame homomorphismsa?
