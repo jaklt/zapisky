@@ -3,10 +3,10 @@
 \section{Summarization}
 % TODO proper references
 
-Recall Theorem~\ref{p:universalCompactification}, the compactification of a complete regular frames is obtained as the frame of all regular ideals. The construction of a Stone frame in the Stone correspondence (IV.1.9) is given in similar fashion. The functor $\JO$ maps a Boolean algebra to the frame of all ideals of the Boolean algebra. On the other hand, in any Boolean algebra the relations $\leq$, $\rbelow$ and $\crbelow$ coincide. Thus, we can equivalently say that any Stone frame is obtained from a Boolean algebra by taking the frame of all regular ideals.
+Recall Theorem~\ref{p:universalCompactification}, the compactification of a complete regular frames is obtained as the frame of all regular ideals. The construction of a Stone frame in the Stone correspondence (Theorem~\ref{p:stonefrmBoolIso}) is given in similar fashion. The functor $\JO$ maps a Boolean algebra to the frame of all ideals of the Boolean algebra. We can equivalently say that any Stone frame is obtained from a Boolean algebra by taking the frame of all regular ideals, since in any Boolean algebra the relations $\leq$, $\rbelow$ and $\crbelow$ coincide.
 
-In Set--theoretical topology are the compactification and the Stone representation of Boolean algebras essentially the same.
-The compactification of a completely regular topological space is homeomophic to the space of all ultrafilters of that space. Similarly in the Stone duality for topological spaces, each Stone space is constructed as the space of all ultrafilters of some Boolean algebra.
+In Set--theoretical topology, the compactification and the Stone representation of Boolean algebras are the same construction as well.
+The compactification of a completely regular topological space is homeomophic to the space of all ultrafilters of that space. Similarly for the Stone duality, each Stone space is constructed as the space of all ultrafilters of some Boolean algebra.
 
 The whole (point-free) situation is depicted in the diagram below.
 
@@ -63,7 +63,7 @@ The whole (point-free) situation is depicted in the diagram below.
 
 
     \node[bigbox, dotted] [fit = (m-2-1) (m-3-2)] {};
-    \draw[gray, rounded corners, dashed]
+    \draw[gray, rounded corners, loosely dashed]
            ($(m-1-1) + (-\H,   0)$)
         -- ($(m-1-1) + (-\H, +\W)$)
         -- ($(m-1-3) + (+\H, +\W)$)
@@ -75,9 +75,9 @@ The whole (point-free) situation is depicted in the diagram below.
 \end{tikzpicture}
 \end{center}
 
-Where the symbol $\subseteq^{\text{obj}}$ denotes inclusion of objects of one category to another. New categories in the diagram are: \categoryStyle{CBool} denotes the category of complete Boolean algebras and \emph{all} Boolean homomorphisms. The category \categoryStyle{KDMRFrm} is the category of all extremally disconnected Stone spaces, or in other words all compact De Morgan regular frames, and \emph{all} frame homomorphisms. \categoryStyle{RegKFrm} denotes the category of compact regular frames, \categoryStyle{CRegFrm} the category of completely regular frames.)
+Where the symbol $\subseteq^{\text{obj}}$ denotes inclusion of objects of one category to another. New categories in the diagram: \categoryStyle{CBool} denotes the category of complete Boolean algebras and \emph{all} Boolean homomorphisms. The category \categoryStyle{KDMRFrm} is the category of all extremally disconnected Stone spaces, or in other words all compact De Morgan regular frames, and \emph{all} frame homomorphisms. \categoryStyle{RegKFrm} denotes the category of compact regular frames, \categoryStyle{CRegFrm} the category of completely regular frames.
 
-In the area surrounded by the dotted rectangle in the picture is the Stone duality and in the area surrounded by the dashed curve is the compactification. As we know from the discussion above, the construction on objects is exactly the same for both marked parts of the diagram. However, the Stone correspondence is an isomorphism of categories, whereas the compactification is just a coreflection (of completely regular frames onto compact regular frames).
+In the diagram, Stone duality is drawn in the area surrounded by the dotted rectangle and the compactification is drawn in the area surrounded by the dashed curve. As we know from the discussion above, the construction on objects is exactly the same for both marked parts of the diagram. However, the Stone correspondence is an isomorphism of categories, whereas the compactification is just a coreflection (of completely regular frames onto compact regular frames).
 
 Taking the frame of all regular ideals of a bounded pseudocomplemented lattice is a general construction of compact frames. A natural question arises: Is it possible to extend the category \ComplBool{} to a wider subcategory of \categoryStyle{DMRFrm} and again obtain an isomorphism of categories witnessed by \R{}? From the following diagram we can see why it is not possible.
 
@@ -86,7 +86,7 @@ Taking the frame of all regular ideals of a bounded pseudocomplemented lattice i
     \ExtrStoneFrm \ar[yshift=-0.2em,swap]{r}{\BcI}\ar{u}{\InclUp} & \ComplBool \ar[yshift=0.2em,swap]{l}{\JI} \ar{u}{\InclUp} \ar{ru}{\subseteq}
 \end{diagram}
 
-Objects of \categoryStyle{CBool} are in correspondence with objects of \categoryStyle{KDMRFrm}. On the other hand, \R{} provides a coreflection of the category \categoryStyle{DMRFrm} onto \categoryStyle{KDMRFrm}. Since \ComplBool{} is subcategory of \categoryStyle{CBool}, we cannot hope to expand the correspondence by extending the category \ComplBool{} into a wider subcategory of \categoryStyle{DMRFrm}.
+Objects of \categoryStyle{CBool} are in correspondence with objects of \categoryStyle{KDMRFrm}. On the other hand, \R{} provides a coreflection of the category \categoryStyle{DMRFrm} onto \categoryStyle{KDMRFrm}. Since \ComplBool{} is a subcategory of \categoryStyle{CBool}, we cannot hope to expand the correspondence by extending the category \ComplBool{} into a wider subcategory of \categoryStyle{DMRFrm}.
 
 % we have in the category all (regular) De Morgan frames as objects, we cannot expect from \R{} to form an isomorphism, because we know, the category of compact (regular) De Morgan frames is (non--isomorphically) coreflexive in the category of (regular) De Morgan frames~\ref{p:extrDiscPreserv} (certainly, there exists a non--compact (regular) De Morgan frame).
 
@@ -109,7 +109,7 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
     \noindent is a Boolean algebra.
 \end{proposition}
 \begin{proof}
-    First, we will show that $\sqcap$ really is the meet, $\sqcup$ is the join and both operations are well--defined. For $a,b,c \in \Bo H$:
+    First, we will show that the operations $\sqcap$ and $\sqcup$ really are the meet and join for $\Bo H$. Let $a,b,c \in \Bo H$:
 
     \begin{itemize}
         \item From~\ref{p:pseudcomplProperties}, $a\sqcap b = a^{**}\wedge b^{**} = (a\wedge b)^{**} \in \Bo H$.
@@ -122,10 +122,10 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
 \num\label{p:propertiesBooleanization}
     Let $L$ be a frame, the mapping defined as $a \mapsto a^{**}$ is a nucleus:
     \begin{enumerate}[label=(N\arabic*)]
-        \item $a \leq a^{**}$: From the definition of pseudocomplement we have $a \wedge a^* = 0$ iff $a \leq a^{**}$ and the first is always true (again, from the definition);
+        \item $a \leq a^{**}$: it is a standard inequality (Lemma~\ref{p:pseudcomplProperties});
         \item $(a \leq b \implies a^{**} \leq b^{**})$: holds, since taking pseudocomplements is antitone;
         \item $a^{**\;**} = a^{**}$: simply from $a^* = a^{***}$; and
-        \item $(a \wedge b)^{**} = a^{**} \wedge b^{**}$: it is a standard equality (Lemma~\ref{p:pseudcomplProperties}).
+        \item $(a \wedge b)^{**} = a^{**} \wedge b^{**}$: it is again a standard equality.
     \end{enumerate}
 
     Therefore, by~\ref{p:nuclProp}, $\Bo L$ is a sublocale of $L$ and consequently a complete Boolean algebra. As a drirect consequence of~\ref{p:nuclProp}, the mapping
@@ -158,14 +158,14 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
         f(a^{**})^{**} = f(a)^{**} \iff f(a^{**}) \leq f(a)^{**},\quad\text{for all } a\in L.\label{e:2202iff20leq02}\tag{W.O.}
     \end{align}
 
-    $\Leftarrow$ is straightforward and the $\Rightarrow$ implication follows simply from $f(a^{**}) \leq f(a^{**})^{**} $. And the diagram commutes iff $f(a^{**})^{**} = f(a)^{**}$.
+    $\Leftarrow$ is straightforward and the $\Rightarrow$ implication follows simply from $f(a^{**}) \leq f(a^{**})^{**} $. Commutativity of the diagram above is precisely the equality $f(a^{**})^{**} = f(a)^{**}$.
 
     The last thing we need to show is that $f(a^{**}) \leq f(a)^{**}$ implies that $\Bo f$ is a frame homomorphism. It is straightforward to see that $\Bo f$ preserves $0$, $1$ and $\sqcap$. For $\sqcup$--preserving, take $a, b \in \Bo L$ and infer
     $$(\Bo f)(a)\sqcup (\Bo f)(b) = (f(a)^{**}\vee f(b)^{**})^{**} \geq f(a^{**}\vee b^{**})^{**} = f(a\vee b)^{**} = (\Bo f)(a\sqcup b),$$
 
     \noindent where the middle and the last equality hold by~(\oldref{e:2202iff20leq02}). The opposite inequality follows from: $f(a)^{**}\vee f(b)^{**}\leq f(a\vee b)^{**}$, thus $\Bo f$ is a Boolean homomorphism.
 
-    Let's show $\Bo f$ preserves big joins. Again using~(\oldref{e:2202iff20leq02}), we get
+    We will show that $\Bo f$ preserves arbitrary joins. Again using~(\oldref{e:2202iff20leq02}), we get
     $$ (\Bo f)(\bigsqcup A) = f((\bigvee A)^{**})^{**} = f(\bigvee A)^{**} = (\bigvee f[A])^{**}. $$
 
     Now, take any $a\in A$, from $f(a) \leq \bigvee f[A]$ we have $f(a)^{**} \leq (\bigvee f[A])^{**}$. Since $a$ was chosen arbitrary, we also have $\bigvee_{a\in A} f(a)^{**} \leq (\bigvee f[A])^{**}$ and therefore $(\bigvee_{a\in A} f(a)^{**})^{**} \leq (\bigvee f[A])^{**}$. The opposite inequality is trivial, hence $\bigsqcup (\Bo f)[A] = (\bigvee f[A])^{**}$.
@@ -258,7 +258,7 @@ Until the end of this section, we will use Lemma~\ref{p:idealsFrame} frequently 
 \begin{proof}
     Let $B$ be a Boolean frame. We see $J \in \Bo\JI(B)$ iff $J = J^{**} = \downset \bigvee J$.
 
-    Denote \DEFSYM{istar2}{$\tilde i_B$}$\colon B \to \Bo\JI(B)$ to be the mapping $a \mapsto \downset a$. From the previous Observation we know the definitions of $\tilde i_B$ and $i_B$ coincide, therefore by~\ref{p:BoolEquivalence} $\tilde i_B$ is a Boolean isomorphism. From~\ref{p:completePartUnits}, $\tilde i_B$ is a morphisms of \ComplBool{}.
+    Denote by \DEFSYM{istar2}{$\tilde i_B$}$\colon B \to \Bo\JI(B)$ the mapping $a \mapsto \downset a$. From the previous Observation we know the definitions of $\tilde i_B$ and $i_B$ coincide, therefore by~\ref{p:BoolEquivalence} $\tilde i_B$ is a Boolean isomorphism. From~\ref{p:completePartUnits}, $\tilde i_B$ is a morphisms of \ComplBool{}.
 
     Now, for any complete Boolean algebras $A$ and $B$, for any complete Boolean homomorphism $f\colon A \to B$, the following diagram commutes
     \begin{diagram}

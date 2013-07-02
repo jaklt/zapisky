@@ -4,7 +4,7 @@
 For the rest of this section, let $\kappa$ be some fixed regular cardinal.
 
 \begin{definition}
-    A lattice is \DEFSYM[complete]{}{$\kappa$--complete}, if any subset of cardinality less than $\kappa$ has a supremum and an infimum. We say a homomorphism is $\kappa$--complete if it preserves all supremas and infimas of subsets of cardinality less than $\kappa$.
+    A lattice is \DEFSYM[complete]{}{$\kappa$--complete}, if any subset of cardinality less than $\kappa$ has a supremum and an infimum. We say a homomorphism is $\kappa$--complete if it preserves all suprema and infima of subsets of cardinality less than $\kappa$.
 \end{definition}
 
 \num The following Lemma will be handy for computations.
@@ -27,7 +27,7 @@ For the rest of this section, let $\kappa$ be some fixed regular cardinal.
 
 
 \begin{definition}
-    Let $L$ be a Stone frame and let $s$ be an element of $L$. We say $s$ is a \DEFSYM[generated]{}{$\kappa$--generated} if $s = \bigvee S$ for some $S \subseteq \Bc L$ of cardinality less than $\kappa$.
+    Let $L$ be a Stone frame and let $s$ be an element of $L$. We say $s$ is a \DEFSYM[generated]{}{$\kappa$--generated} if $s = \bigvee S$ for some $S \subseteq \BcO L$ of cardinality less than $\kappa$.
 
     Let $L$ be a Stone frame, we say $L$ is \DEFSYM[basically disconnected]{}{$\kappa$--basically disconnected} if $m^{**} \vee m^* = 1$ for all $\kappa$--generated elements $m \in L$.
 \end{definition}
@@ -36,7 +36,7 @@ For the rest of this section, let $\kappa$ be some fixed regular cardinal.
     If $B$ is a $\kappa$--complete Boolean algebra, then $\J B$ is a $\kappa$--basically disconnected Stone frame.
 \end{lemma}
 \begin{proof}
-    By Lemma~\ref{p:complIdeal}, we know complemented ideals are precisely the principal ideals of $B$. Given any $M$ subset of $B$ of cardinality less than $\kappa$, set $I = \bigvee \Set{ \downset a | a \in M }$. We will show that $I^{**} \vee I^* = 1_{\J B}$.
+    By Lemma~\ref{p:complIdeal}, we know that complemented ideals are precisely the principal ideals of $B$. Given any $M$ subset of $B$ of cardinality less than $\kappa$, set $I = \bigvee \Set{ \downset a | a \in M }$. We will show that $I^{**} \vee I^* = 1_{\J B}$.
 
     Set $m = \bigvee M$ and $J = \downset m$. Observe that $I^{**} = J$: Trivially from Lemma~\ref{p:idealsFrame}.2, we have $I^{**} \subseteq J^{**} = J$. The other inclusion, the $J \subseteq I^{**}$, follows from
     $$ I^* = \bigcup \Set{ \downset a | \downset a \wedge I = 0_{\J B}} = \bigcup \Set{ \downset a | a \wedge m = 0 } = (\downset m)^* = J^*.$$
@@ -59,14 +59,14 @@ For the rest of this section, let $\kappa$ be some fixed regular cardinal.
 \end{proof}
 
 \begin{lemma}\label{p:kappaComplStoneFrm}
-    If $L$ is a $\kappa$--basically disconnected Stone frame, then $\Bc L$ is a $\kappa$--complete Boolean algebra. Moreover, the joins in $\Bc L$ are defined by the following formula
+    If $L$ is a $\kappa$--basically disconnected Stone frame, then $\BcO L$ is a $\kappa$--complete Boolean algebra. Moreover, the joins in $\BcO L$ are defined by the following formula
 
     $$\bigsqcup M = (\bigvee M)^{**}.$$
 \end{lemma}
 \begin{proof}
-    For $M$ a subset of $\Bc L$ of cardinality less than $\kappa$, set $m = \bigvee M$. Since $L$ is $\kappa$--basically disconnected, we have $m^{**} \vee m^* = 1$ and therefore $m^{**} \in \Bc L$. So $m^{**}$ is an upper bound for $M$ in $\Bc L$.
+    For $M$ a subset of $\BcO L$ of cardinality less than $\kappa$, set $m = \bigvee M$. Since $L$ is $\kappa$--basically disconnected, we have $m^{**} \vee m^* = 1$ and therefore $m^{**} \in \BcO L$. So $m^{**}$ is an upper bound for $M$ in $\BcO L$.
 
-    Now let $n$ be an arbitrary upper bound for $M$ in $\Bc L$, thus $n$ is an upper bound in $L$ also, but $m \leq n$ since $m$ is the supremum of $M$ in $L$. Which gives us the desired relation $m^{**} \leq n^{**} = n$, hence $m^{**}$ is the supremum of $M$ in $\Bc L$.
+    Now let $n$ be an arbitrary upper bound for $M$ in $\BcO L$, thus $n$ is an upper bound in $L$ also, but $m \leq n$ since $m$ is the supremum of $M$ in $L$. Which gives us the desired relation $m^{**} \leq n^{**} = n$, hence $m^{**}$ is the supremum of $M$ in $\BcO L$.
 \end{proof}
 
 \num From Lemma~\ref{p:kappaCompleteBAfromMeets} and Lemma~\ref{p:kappaComplStoneFrm}, we conclude that $\kappa$--complete Boolean algebras are in (Stone) correspondence with $\kappa$--basically disconnected Stone frames. The same holds for topological spaces, a topological space is $\kappa$--basically disconnectedness iff any union of cardinality less than $\kappa$ clopen sets has open closure. Hence, we have a duality between $\kappa$--complete Boolean algebras and $\kappa$--basically disconnected Stone spaces~\cite{monk1989handbook}.
@@ -188,7 +188,7 @@ Thus, the resulting category is the category of extremally disconnected Stone fr
 
     \noindent Consequently, $i_B$ is a complete Boolean homomorphism and morphisms of \ComplBool{}.
 
-    For any extremally disconnected Stone frame $L$, from the proof of Theorem~\ref{p:kappaCompleteThm} we know $v_L$ is $\lambda$--basically complete frame homomorphism for all regular cardinals $\lambda$, therefore $v_L$ is also basically complete and is a~morphisms of $\ExtrStoneFrm$.
+    For any extremally disconnected Stone frame $L$, from the proof of Theorem~\ref{p:kappaCompleteThm} we know that $v_L$ is $\lambda$--basically complete frame homomorphism for all regular cardinals $\lambda$, therefore $v_L$ is also basically complete and is a~morphisms of $\ExtrStoneFrm$.
 
      Therefore, \emph{$(v_L)_{L\in \ExtrStoneFrm}$ and $(i_B)_{B\in \ComplBool}$ are collection of morphisms of categories \ExtrStoneFrm{} and \ComplBool{}}.
 
@@ -250,7 +250,7 @@ The whole situation is depicted in the diagram of categories in Figure~\oldref{f
 
 \num Here we present an alternative point of view on what we already know from the discussion above.
 
-\begin{proposition*}
+\begin{proposition*}\label{p:complBool2}
     Let $B$ be a complete Boolean algebra. Then the frame $\J B$ is an extremally disconnected Stone frame.
 \end{proposition*}
 \begin{proof}

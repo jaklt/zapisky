@@ -12,15 +12,10 @@ Compactness, connectedness and variants of disconnectedness are commonly studied
 
     \begin{enumerate}
         \item $L$ is disconnected.
-        \item There exists a non-trivial complemented element in $L$.
         \item There exists a non-trivial both open and closed sublocale of $L$ (that is, different from $\emptyFrm$ and $L$).
         \item There exists an one-one frame homomorphism $f\colon $\DEFSYM{B2}{$B_2$}$ \to L$, where $B_2$ is the Boolean algebra on four elements.
     \end{enumerate}
 \end{observation}
-
-\begin{block*}{Note}
-    We will call sublocales which are both open and closed as clopen.
-\end{block*}
 
 \begin{lemma}
     Let $L$ be a frame. The following are equivalent:
@@ -104,7 +99,7 @@ Compactness, connectedness and variants of disconnectedness are commonly studied
     \noindent By the same argument, $(f_b\wedge f_a^*)\vee a = 1$. And $(f_b\wedge f_a^*)\wedge (f_a\wedge f_b^*) = 0$, therefore $L$ is normal.
 \end{proof}
 
-\num\label{p:frameOfIdeals} {\bf The frame of ideals.} Let $L$ be a join--semilattice with 0. Denote $\J L$ to be the set of all ideals of $L$. We will show that $\J L$ ordered by inclusion is a frame. An intersection of two ideals is again an ideal, hence finite meets exist.
+\num\label{p:frameOfIdeals} {\bf The frame of ideals.} Let $L$ be a join--semilattice with 0. Denote by $\J L$ the set of all ideals of $L$. We will show that $\J L$ ordered by inclusion is a frame. Set intersection of two ideals is again an ideal, hence finite meets exist.
 
     Let $I_i \in \J L$, for $i \in J$, and set
     \begin{align*}
@@ -119,7 +114,7 @@ Compactness, connectedness and variants of disconnectedness are commonly studied
     Moreover, $\J L$ is a compact frame: Let $I_i \in \J L$, for $i \in J$, such that $\bigvee_i I_i = L = 1_{\J L}$, then there exists a finite $F \subseteq \bigcup_i I_i$ such that $\bigvee F = 1$. Set $i(f) \in J$ such that $f \in I_{i(f)}$ for all $f \in F$. Then also $\bigvee_{f \in F} I_{i(f)} = 1_{\J L}$. Therefore $\J L$ is a compact frame.
 
 \begin{blockProp*}{Conclusion}
-    The set $\J L$ with joins as defined in (\oldref{e:idealJoin}) and meets defined as intersection is a compact frame.
+    The set $\J L$ with joins as defined in (\oldref{e:idealJoin}) and meets defined as set intersections is a compact frame.
 \end{blockProp*}
 
 \begin{definition}
@@ -139,9 +134,9 @@ Compactness, connectedness and variants of disconnectedness are commonly studied
 
 The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1984stone}.
 
-\num {\bf Regular ideals and a frame of regular ideals.} Let $L$ be a completely regular frame. We say an ideal $I$ is \DEF{regular}[ ideal] if for any $a \in I$ there exists a $b \in I$ such that $a\crbelow b$. Denote \DEFSYM{RegIdeals}{$\R L$} to be the set of all regular ideals of $L$.
+\num {\bf Regular ideals and a frame of regular ideals.} Let $L$ be a completely regular frame. We say an ideal $I$ is \DEF{regular}[ ideal] if for any $a \in I$ there exists a $b \in I$ such that $a\crbelow b$. Denote by \DEFSYM{RegIdeals}{$\R L$} the set of all regular ideals of $L$.
 
-    For two regular ideals $I_1, I_2\in \R L$, their intersection is again a regular ideal. Indeed, take any $a \in I_1\cap I_2$, then $a\crbelow b_i$ for some $b_i \in I_i$ and $a\crbelow b_1 \wedge b_2\in I_1\cap I_2$ from~\ref{p:crbellowProperties}.
+    For two regular ideals $I_1, I_2\in \R L$, their set intersection is again a regular ideal. Indeed, take any $a \in I_1\cap I_2$, then $a\crbelow b_i$ for some $b_i \in I_i$ and $a\crbelow b_1 \wedge b_2\in I_1\cap I_2$ from~\ref{p:crbellowProperties}.
 
     For any regular ideals $J$ and $I_i$ of $L$, for $i \in J$, from previous we know that $\bigvee_{i\in J} I_i$ is an ideal. We will show that it is a regular ideal. For $a \in \bigvee_{i\in J} I_i$, by~(\oldref{e:idealJoin}), there exists a finite $F \subseteq \bigcup_{i\in J} I_i$ such that $a = \bigvee F$. For every $f \in F$ there exists an $e_f \in I_j$, for some $j\in J$, such that $f \crbelow e_f$. But $\bigvee_{f\in F} e_f \in \bigvee_{i\in J} I_i$ and from~\ref{p:crbellowProperties}$, \bigvee F \crbelow \bigvee_{f\in F} e_f$.
 
@@ -171,10 +166,10 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
 \end{proof}
 
 
-\num\label{p:compactificationFunctor} {\bf The functor \C{}.} Now, we are ready to define a functor from the category of completely regular frames to the category of compact regular frames. Denote
+\num\label{p:compactificationFunctor} {\bf The functor \C{}.} Now, we are ready to define a functor from the category of completely regular frames to the category of compact regular frames. Denote by
     $$\DEFSYM{compactificationFunctor}{\C}\colon \CRegFrm \to \RegKFrm$$
 
-    \noindent to be the following two mappings. On objects:
+    \noindent the following two mappings. On objects:
     $$\C(A) = \R A,$$
 
     \noindent for every $A \in \CRegFrm$, and on morphisms:
@@ -226,7 +221,7 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
     \C M\ar{r}{\comp_M}             & M
 \end{diagram}
 
-\noindent for any frame homomorphism $f\colon L\to M$ between completely regular frames (because $\comp_M(\C f)(I) = \bigvee (\downset f[I]) = \bigvee f[I] = f[\bigvee I] = f \comp_M(I)$).
+\noindent for any frame homomorphism $f\colon L\to M$ between completely regular frames (since $\comp_M(\C f)(I) = \bigvee (\downset f[I]) = \bigvee f[I] = f[\bigvee I] = f \comp_M(I)$).
 
 \begin{lemma}
     If $L$ is a compact regular frame, then $\comp_L$ is an isomorphism and $L \cong \R L$.
@@ -265,7 +260,7 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
     Let $S$ be a closed sublocale of $L$ and let $U\subseteq L$ be an open sublocale. Then $\closure{U\cap S}^L = \closure{U}^L$.
 \end{lemma}
 \begin{proof}
-    Let $U = \open(a)$, for some $a$, then $\bigwedge (\open(a)\cap S) = \bigwedge \Set{ a\to s | s \in S } = a\to \bigwedge S$. And $\bigwedge S = 0$, since $S$ is dense in $L$ (and includes $0_L$). Hence $\closure{U\cap S} = \upset (\bigwedge (U\cap S)) = \upset(a\to 0) = \clos(a^*) = \closure{U}$.
+    Let $U = \open(a)$, for some $a$, then $\bigwedge (\open(a)\cap S) = \bigwedge \Set{ a\to s | s \in S } = a\to \bigwedge S$. And $\bigwedge S = 0$, since $S$ is dense in $L$ (and includes $0_L$). Hence $\closure{U\cap S}^L = \upset (\bigwedge (U\cap S)) = \upset(a\to 0) = \clos(a^*) = \closure{U}^L$.
 \end{proof}
 
 \begin{lemma}\label{p:closureOfClopen}
@@ -276,10 +271,10 @@ to be done
 \end{proof}
 
 \begin{proposition}\label{p:extrDiscPreserv}
-    Let $L$ be a extremally disconnected frame, then $\C L$ is also extremally disconnected.
+    Let $L$ be an extremally disconnected frame, then $\C L$ is also extremally disconnected.
 \end{proposition}
 \begin{proof}
-    Let $U$ be an open sublocale of $\C L$. Take $V = U\cap L$ open sublocale of $L$. We know that $\closure V^L = \closure{U\cap L}^L = \closure{U\cap L}\cap L = \closure U\cap L$ (the last equality follows from Lemma~\ref{p:closureIntersectedByDense}). From extremal disconnected, $\closure V^L$ is clopen in $L$ and, from Lemma~\ref{p:closureOfClopen}, $\closure{\closure V^L}$ is clopen in $\C L$. Then
+    To simplify the notation we will omit the superscript for the closure of a sublocale in $\C L$. Let $U$ be an open sublocale of $\C L$. Take $V = U\cap L$ open sublocale of $L$. We know that $\closure V^L = \closure{U\cap L}^L = \closure{U\cap L}\cap L = \closure U\cap L$ (the last equality follows from Lemma~\ref{p:closureIntersectedByDense}). From extremal disconnected, $\closure V^L$ is clopen in $L$ and, from Lemma~\ref{p:closureOfClopen}, $\closure{\closure V^L}$ is clopen in $\C L$. Then
 
     $$ \closure U = \closure{U\cap L} \subseteq \closure{\closure{V}^L} = \closure{\closure U\cap L} \subseteq \closure{\closure U} = \closure U.$$
 \end{proof}

@@ -27,10 +27,10 @@ In this chapter, we will first discuss the Stone duality in the point--free cont
     Let $B$ be a Boolean algebra and $I \in \JO B$. Then $I$ is complemented iff $I = \downset b$ for some $b \in B$.
 \end{lemma}
 \begin{proof}
-    Let $I$ be a complemented ideal. Since $I \vee I^c = 1_{\JO B}$ there exists $a \in I$ and $b \in I^c$ such that $a \vee b = 1$. From $I \wedge I^c = 0_{\JO B}$ we have $a \wedge b = 0$ and $I \wedge \downset b = 0_{\JO B}$.
+    Let $I$ be a complemented ideal. Since $I \vee I^c = 1_{\JO B}$, there exists $a \in I$ and $b \in I^c$ such that $a \vee b = 1$. From $I \wedge I^c = 0_{\JO B}$ we have $a \wedge b = 0$ and $I \wedge \downset b = 0_{\JO B}$.
     From uniques of complements we get $I^c = \downset b$, indeed $I \vee \downset b = 1_{\JO B}$ and $I \wedge \downset b = 0_{\JO B}$. Using the same argument we get $I = \downset a$.
 
-    Converse implication is trivial since $\downset a \vee \downset a^c = 1_{\JO B}$ and $\downset a \wedge \downset a^c = 0_{\JO B}$.
+    Converse implication is trivial, since $\downset a \vee \downset a^c = 1_{\JO B}$ and $\downset a \wedge \downset a^c = 0_{\JO B}$.
 \end{proof}
 
 \begin{proposition}\label{p:JisFunctor}
@@ -156,7 +156,7 @@ Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $
     $E$ is also an ultrafilter. For $a, b\in A$ such that $a\vee b \in E$, $f(a)\vee f(b) = f(a\vee b) \in F$ and so $f(a)$ or $f(b)$ is in $F$ and therefore $a$ or $b$ is in $E$.
 \end{proof}
 
-\num\label{p:SpMorphisms} Let $f\colon A \to B$ be a Boolean homomorphism, denote $\Sp f\colon \Sp B \to \Sp A$ to be the map defined as
+\num\label{p:SpMorphisms} Let $f\colon A \to B$ be a Boolean homomorphism, denote by $\Sp f\colon \Sp B \to \Sp A$ the map defined as
     $$\Sp f\colon F \mapsto f^{-1}[F].$$
 
 \noindent From the previous Lemma, we see the definition is sound. We will show $\Sp f$ is also continuous. Take any $O_I \in \tau_B$, we have
@@ -224,7 +224,7 @@ Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $
 
         And so $F \subseteq F_x$. But $F$ is an ultrafilter, maximal filter, and therefore $F = F_x$.
 
-        \item $\rho_X$ and $\rho_X^{-1}$ are continuous: From previous ($\bullet$), we know that each ultrafilter on $X$ is $F_x$ for some $x$. Hence,
+        \item $\rho_X$ and $\rho_X^{-1}$ are continuous: From previous ($\bullet$), we know that each ultrafilter of $X$ is of the form $F_x$, for some $x$. Hence,
         \begin{align*}
             \rho_X^{-1}[O_I] &= \Set{ \rho_X^{-1}(F_x) = x | F_x \cap I \neq \emptyset}
                 = \Set{ x | x \in M \in I } = \bigcup I \in \tau_X \\
