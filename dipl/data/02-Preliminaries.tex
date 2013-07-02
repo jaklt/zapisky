@@ -1,24 +1,103 @@
 \chapter{Preliminaries}
-    We assume basic knowledge of Set Theory, mainly basic knowledge about cardinals and cardinalities, "axiom of choice".
+We assume basic knowledge of Set Theory, mainly basic knowledge about cardinals and cardinalities, ``axiom of choice''.
+
+We refer to the monograph \emph{Frames and Locales} written by Pultr and Picado~\cite{picado2011frames} as a basic introduction to point--free topology.
 
 \section{Partially ordered set}
-\begin{itemize}
-    \item Joins, meets, order, lattice, complete lattice, distributive lattice (unique solution to $a\vee x = b$ and $c\wedge x = d$)
-    \item $\kappa$--complete and complete lattices and lattice homomorphisms % TODO check, we have already defined it in "Parts of duality"
-    \item meet/join semilattice
-    \item bottom (0) resp. top (1) and $0_S$ resp. $1_S$
-    \item Galois correspondence (equivalent definitions)
-    \item filters, ideals, principal filter/ideal
-    \item pseudocomplements and complements (complemented elements)
-    \item \num\label{p:pseudcomplProperties} $(a \wedge b)^{**} = a^{**} \wedge b^{**}$, $a \leq b \implies a^* \geq b^*$.
-    \item \num\label{p:rbellowProperties} $a_1\wedge a_2 \rbelow b_1 \wedge b_2$ and $a_1\vee a_2 \rbelow b_1 \vee b_2$ for $a_i\rbelow b_i$
-    \item \num\label{p:crbellowProperties} $a_1\wedge a_2 \crbelow b_1 \wedge b_2$ and $a_1\vee a_2 \crbelow b_1 \vee b_2$ for $a_i\crbelow b_i$
 
-                                        $a \crbelow x\crbelow y\crbelow b$ implies $b^* \crbelow x\crbelow y\crbelow a^*$
-    \item Boolean algebras and Boolean homomorphisms, \DEF{\Bool}, prime/maximal/ultrafilter on BA
-    \item Axiom of Choice/Zorn's Lemma, Boolean Ultrafilter Theorem
-    \item Heyting algebras, $\_^* = \_ \to 0$
-\end{itemize}
+\num Let $A$ be a set and let $\leq$ be a binary relation on $A$ ($(\leq) \subseteq A\times A$). We say $(A, \leq)$ is a \DEF{partially ordered set} if the relation $\leq$ is \emph{partial order}, i.e. satisfies:
+\begin{enumerate}[(P1)]
+    \item \emph{reflexivity:} $a \leq a$ for all $a \in A$,
+    \item \emph{antisymmetry:} $a \leq b$ and $b\leq a$ implies $a = b$ for all $a,b \in A$,
+    \item \emph{transitivity:} $a \leq b$ and $b\leq c$ implies $a \leq c$ for all $a,b,c \in A$.
+\end{enumerate}
+
+Denote by $(A,\leq)^{\op}$ the partially ordered set $(A,\leq')$ such that $(\leq') = \Set{ (b,a) \in A\times A | a\leq b}$.
+
+% TODO better wording
+Let $S$ be a subset of $A$.
+We say $u$ is an upper bound for $S$ if $u \geq x$ for all $x$ of $S$. We say $s$ is a supremum for $S$ if $s$ is the least upper bound for $S$. We write $s = \bigvee S$.
+We say $l$ is an lover bound for $S$ if $l \leq x$ for all $x$ of $S$. We say $i$ is a infimum for $S$ if $i$ is the supremum for $S$ in $A^{\op}$, i.e. if $i$ is the greatest lower bound for $S$. We write $i = \bigwedge S$.
+
+A partially ordered set $(A,\leq)$ is \emph{join semilattice} if each two element subset has a supremum. Similarly, \emph{meet semilattice} has an infimum for each two element subset.
+A \DEF{lattice} is partially ordered set which is both join-- and meet-- semilattice. We write $a\vee b$ (\emph{meet}) for the supreum of $\{a,b\}$ and $a\wedge b$ (\emph{join}) for the infimum.
+
+A mapping $f\colon A\to B$ between two partially ordered sets is called \emph{monotone} if $f(x)\leq f(y)$ wherever $x\leq y$. If, moreover, $A$ and $B$ are lattices and $f(x\vee y) = f(x)\vee f(y)$ and $f(x\wedge y) = f(x)\wedge f(y)$ for all $x,y\in A$, we say $f$ is a \emph{lattice homomorphism}.
+
+\num A lattice is called a \DEF{complete lattice} if every subset has an infimum and a supremum.
+
+\begin{theorem*}
+    For a lattice $L$ are the following conditions equivalent:
+    \begin{itemize}
+        \item $L$ is a complete lattice;
+        \item every subset of $L$ has a supremum;
+        \item every subset of $L$ has an infimum.
+    \end{itemize}
+\end{theorem*}
+
+For a complete lattice we therefore have two infinitary operations the meet $\bigvee$ and the join $\bigwedge$.
+Note that every complete lattice contains two distinguished elements: 0 and 1, where $0 = \bigvee \emptyset$ and $1 = \bigwedge \emptyset$.
+
+A lattice homomorphism $f\colon A\to B$ between two complete lattices is \DEF{complete lattice homomorphism} if $f(\bigvee X) = \bigvee f[X]$ and $f(\bigwedge X) = \bigwedge f[X]$ for each subset $X \subseteq A$.
+
+\num A lattice $D$ is \DEF{distributive} if the following equation holds for all $a,b,c\in D$:
+\begin{align}
+    a\vee (b\wedge c) = (a\vee b)\wedge (a\vee c).\tag{Dist}
+\end{align}
+
+\begin{theorem*}
+    For a lattice $D$, the following conditions are equivalent:
+    \begin{itemize}
+        \item $D$ is a distributive lattice,
+        \item $a\vee (b\wedge c) = (a\vee b)\wedge (a\vee c)$ for all $a,b,c \in D$,
+        \item For each $a,b,c\in D$ there exists at most one $x$ such that
+            \begin{align*}
+                a\vee x &= b\\
+                a\wedge x &= c.
+            \end{align*}
+    \end{itemize}
+\end{theorem*}
+
+\num Let $A$ and $B$ be two partially ordered sets. Two monotone mappings $f\colon A \to B$ and $g\colon B\to A$ are in \DEF{Galois connection} or are \DEF{Galois adjoing} if
+$$ f(x) \leq y\quad\text{iff}\quad x\leq g(y)\quad\text{for all } x\in A, y\in B.$$
+
+\noindent Or equivalently
+$$ fg(y) \leq y\quad\text{and}\quad x\leq gf(y)\quad\text{for all } x\in A, y\in B.$$
+
+Then we say $f$ is a left Galois adjoing and a $g$ is a right Galois adjoing.
+For a monotone map, its left or right Galois adjoint do not need to exists but if they do, they are uniquely determined.
+
+Consequently, for two monotone maps in Galois connection $f,g$ we have that
+$$ f g f = f\quad\text{and}\quad g f g = g. $$
+
+\begin{theorem*}
+    For a monotone map $f\colon A\to B$, if $f$ is a left (resp. right) Galois adjoint
+    then $f$ preserves all existing suprema (resp. infima).
+
+    Moreover, the converse implication also holds if $A$ and $B$ are complete lattices.
+\end{theorem*}
+
+\num Let $L$ be a lattice with 0. A pseudocomplement $a^*$ for an element $a\in L$ is the greatest element $x$ such that
+$$ x\wedge a = 0. $$
+
+\noindent Equivalently, $a^*$ is the pseudocomplement of $a$ if
+$$ x\wedge a = 0 \quad\text{iff}\quad x\leq a^*\quad\text{for all } x\in L. $$
+
+A lattice is called \DEF{pseudocomplemented}[ lattice] if every element has a pseudocomplement.
+
+\begin{proposition*}\label{p:pseudcomplProperties} Properties of pseudocomplement.
+\begin{enumerate}
+    \item $a \leq a^{**}$, $a^* = a^{***}$,
+    \item $a \leq b \implies a^* \geq b^*$,
+    \item $(a \wedge b)^{**} = a^{**} \wedge b^{**}$.
+\end{enumerate}
+\end{proposition*}
+
+\num Heyting algebras, $\_^* = \_ \to 0$
+\num Boolean algebras and Boolean homomorphisms, \DEF{\Bool}
+\num filters, ideals, principal filter/ideal, prime/maximal/ultrafilter on BA
+\num Axiom of Choice/Zorn's Lemma, Boolean Ultrafilter Theorem
+
 \section{Category Theory}
 \begin{itemize}
     \item category (in basic definition locally small), demonstrative  examples using categories from previous section (most importantly \Bool), dual category??
@@ -31,18 +110,28 @@
 \end{itemize}
 
 \section{Topology and point--free Topology}
-\begin{itemize}
-    \item Basic of \Top{} and \Frm. frame homomorphisms, localic maps, continuous map, homeomorphism
-    \item Subspace and sublocale/subframe, dense sublocale, empty frame (\emptyFrm), co-frame of sublocales (we will need its distributivity), $\iota_S\colon L \to S$ as subframe inclusion and as onto frame homomorphisms? (the next part needs it)
-    \item Separation axioms (regularity, complete regularity, normality, ...?), rather below (and useful facts about them)
+
+\num Basic definitions: topology, frame, their categories, functor $\Omega$, \Top{} and \Frm. frame homomorphisms, localic maps, continuous map, homeomorphism
+
+\num Separation axioms (regularity, complete regularity, normality, ...?), rather below (and useful facts about them)
+
+\num\label{p:rbellowProperties} $a_1\wedge a_2 \rbelow b_1 \wedge b_2$ and $a_1\vee a_2 \rbelow b_1 \vee b_2$ for $a_i\rbelow b_i$
+\num\label{p:crbellowProperties} $a_1\wedge a_2 \crbelow b_1 \wedge b_2$ and $a_1\vee a_2 \crbelow b_1 \vee b_2$ for $a_i\crbelow b_i$
+                                   $a \crbelow x\crbelow y\crbelow b$ implies $b^* \crbelow x\crbelow y\crbelow a^*$
 
     Again, as for topological spaces, we have:
 
-        \num\label{p:normalRegular} Any normal and regular frame is completely regular: For $x\rbelow y$, the $x^*\vee y = 1$ holds, from normality there exists a $q$, such that $x^*\vee q = 1$ and $q^*\vee y = 1$, thus $x\rbelow q\rbelow y$. So $\Set{x | x\rbelow b} = \Set{x | x\crbelow b}$
+    \num\label{p:normalRegular} Any normal and regular frame is completely regular: For $x\rbelow y$, the $x^*\vee y = 1$ holds, from normality there exists a $q$, such that $x^*\vee q = 1$ and $q^*\vee y = 1$, thus $x\rbelow q\rbelow y$. So $\Set{x | x\rbelow b} = \Set{x | x\crbelow b}$
 
-    \item completeness and cocompleteness of \Top{} and \Frm{}
-    \item Spatiality, some spatiality theorems (II.5.3, Hofmann--Lawson's Duality)
-\end{itemize}
+    $T_4 + T_1 \implies T_{3.5} + T_0 \implies T_3 + T_0 \implies T_2 \implies T_1 \implies T_0$
+
+\num completeness and cocompleteness of \Top{} and \Frm{}
+\num Spatiality, some spatiality theorems (II.5.3, Hofmann--Lawson's Duality)
+\num Subspace and sublocale/subframe, dense sublocale, empty frame (\emptyFrm), co-frame of sublocales (we will need its distributivity), $\iota_S\colon L \to S$ as subframe inclusion and as onto frame homomorphisms? (the next part needs it)
+
+\begin{block*}{Note}
+    We will call sublocales which are both open and closed as clopen. % TODO check grammar
+\end{block*}
 
 TODO place somewhere StoneSp and StoneFrm and \J.
 
