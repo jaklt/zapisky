@@ -1,5 +1,5 @@
 \chapter{Preliminaries}
-We assume basic knowledge of Set Theory, mainly basic knowledge about cardinals and cardinalities, ``axiom of choice''.
+We assume basic knowledge of Set Theory, mainly basic facts about cardinals, cardinalities, classes and Axiom of Choice.
 
 We refer to the monograph \emph{Frames and Locales} written by Pultr and Picado~\cite{picado2011frames} as a basic introduction to point--free topology.
 
@@ -12,12 +12,12 @@ We refer to the monograph \emph{Frames and Locales} written by Pultr and Picado~
     \item \emph{transitivity:} $a \leq b$ and $b\leq c$ implies $a \leq c$ for all $a,b,c \in A$.
 \end{enumerate}
 
-Denote by $(A,\leq)^{\op}$ the partially ordered set $(A,\leq')$ such that $(\leq') = \Set{ (b,a) \in A\times A | a\leq b}$.
+Denote by $(A,\leq)\op$ the partially ordered set $(A,\leq')$ such that $(\leq') = \Set{ (b,a) \in A\times A | a\leq b}$.
 
 % TODO better wording
 Let $S$ be a subset of $A$.
 We say $u$ is an upper bound for $S$ if $u \geq x$ for all $x$ of $S$. We say $s$ is a supremum for $S$ if $s$ is the least upper bound for $S$. We write $s = \bigvee S$.
-We say $l$ is an lover bound for $S$ if $l \leq x$ for all $x$ of $S$. We say $i$ is a infimum for $S$ if $i$ is the supremum for $S$ in $A^{\op}$, i.e. if $i$ is the greatest lower bound for $S$. We write $i = \bigwedge S$.
+We say $l$ is an lover bound for $S$ if $l \leq x$ for all $x$ of $S$. We say $i$ is a infimum for $S$ if $i$ is the supremum for $S$ in $A\op$, i.e. if $i$ is the greatest lower bound for $S$. We write $i = \bigwedge S$.
 
 A partially ordered set $(A,\leq)$ is \emph{join semilattice} if each two element subset has a supremum. Similarly, \emph{meet semilattice} has an infimum for each two element subset.
 A \DEF{lattice} is partially ordered set which is both join-- and meet-- semilattice. We write $a\vee b$ (\emph{meet}) for the supreum of $\{a,b\}$ and $a\wedge b$ (\emph{join}) for the infimum.
@@ -26,14 +26,14 @@ A mapping $f\colon A\to B$ between two partially ordered sets is called \emph{mo
 
 \num A lattice is called a \DEF{complete lattice} if every subset has an infimum and a supremum.
 
-\begin{theorem*}
+\begin{proposition*}
     For a lattice $L$ are the following conditions equivalent:
     \begin{itemize}
         \item $L$ is a complete lattice;
         \item every subset of $L$ has a supremum;
         \item every subset of $L$ has an infimum.
     \end{itemize}
-\end{theorem*}
+\end{proposition*}
 
 For a complete lattice we therefore have two infinitary operations the meet $\bigvee$ and the join $\bigwedge$.
 Note that every complete lattice contains two distinguished elements: 0 and 1, where $0 = \bigvee \emptyset$ and $1 = \bigwedge \emptyset$.
@@ -45,7 +45,7 @@ A lattice homomorphism $f\colon A\to B$ between two complete lattices is \DEF{co
     a\vee (b\wedge c) = (a\vee b)\wedge (a\vee c).\tag{Dist}
 \end{align}
 
-\begin{theorem*}
+\begin{proposition*}
     For a lattice $D$, the following conditions are equivalent:
     \begin{itemize}
         \item $D$ is a distributive lattice,
@@ -56,7 +56,7 @@ A lattice homomorphism $f\colon A\to B$ between two complete lattices is \DEF{co
                 a\wedge x &= c.
             \end{align*}
     \end{itemize}
-\end{theorem*}
+\end{proposition*}
 
 \num Let $A$ and $B$ be two partially ordered sets. Two monotone mappings $f\colon A \to B$ and $g\colon B\to A$ are in \DEF{Galois connection} or are \DEF{Galois adjoing} if
 $$ f(x) \leq y\quad\text{iff}\quad x\leq g(y)\quad\text{for all } x\in A, y\in B.$$
@@ -67,15 +67,15 @@ $$ fg(y) \leq y\quad\text{and}\quad x\leq gf(y)\quad\text{for all } x\in A, y\in
 Then we say $f$ is a left Galois adjoing and a $g$ is a right Galois adjoing.
 For a monotone map, its left or right Galois adjoint do not need to exists but if they do, they are uniquely determined.
 
-Consequently, for two monotone maps in Galois connection $f,g$ we have that
+For two monotone maps in Galois connection $f,g$ we have that
 $$ f g f = f\quad\text{and}\quad g f g = g. $$
 
-\begin{theorem*}
+\begin{proposition*}
     For a monotone map $f\colon A\to B$, if $f$ is a left (resp. right) Galois adjoint
     then $f$ preserves all existing suprema (resp. infima).
 
     Moreover, the converse implication also holds if $A$ and $B$ are complete lattices.
-\end{theorem*}
+\end{proposition*}
 
 \num Let $L$ be a lattice with 0. A pseudocomplement $a^*$ for an element $a\in L$ is the greatest element $x$ such that
 $$ x\wedge a = 0. $$
@@ -93,25 +93,197 @@ A lattice is called \DEF{pseudocomplemented}[ lattice] if every element has a ps
 \end{enumerate}
 \end{proposition*}
 
-\num Heyting algebras, $\_^* = \_ \to 0$
-\num Boolean algebras and Boolean homomorphisms, \DEF{\Bool}
-\num filters, ideals, principal filter/ideal, prime/maximal/ultrafilter on BA
-\num Axiom of Choice/Zorn's Lemma, Boolean Ultrafilter Theorem
+\num Let $L$ be a meet semilattice with 0 and with a binary operation $\to$, we say $L$ is a \DEF{Heyting algebra} if the following holds
+$$ a\wedge x\leq b\quad\text{iff}\quad a\leq x\to b\quad\text{for all } a,b,x\in L.$$
+
+Note that each Heyting algebra is pseudocomplemented semilattice with pseudocomplements defined
+$$ a^* = a\to 0.$$
+
+As we see from the definition, the operation $x\to \_$ is the right Galois adjoint to $\_\wedge x$. Therefore, for each meet semilattice, a Heyting operation, if it is defined, it is uniquely determined.
+
+\begin{proposition*}
+    Let $H$ be a Heyting algebra, then
+    $$ (\bigvee_i a_i)^* = \bigvee_i a_i^*$$
+    holds whenever $\bigvee_i a_i$ exists.
+\end{proposition*}
+
+\begin{proposition*}
+    A complete lattice admits a Heyting operation iff the following equation holds
+    $$ (\bigvee_i a_i)\wedge b = \bigvee_i (a_i\wedge b)\quad\text{for all } a_i, b. $$
+\end{proposition*}
+
+\num Let $B$ be a bounded distributive lattice, we say $B$ is a \DEF{Boolean algebra} if for every element $a\in B$ there exists a (\emph{complement}) $a^c\in B$ such that
+$$ a\vee a^c = 1\quad\text{and}\quad a\wedge a^c=0. $$
+
+Since $B$ is a distributive lattice, such $a^c$ is uniquely determined. Each Boolean algebra is a Heyting algebra with Heyting operation defined as follows
+$$ a\to b = a^c\vee b.$$
+Hence, it is also a pseudocomplemented lattice with pseudocomplements equal to complements (from unicity).
+
+Let $f$ be a lattice homomorphism between two Boolean algebras, $f$ is a \DEF{Boolean homomorphisms} if $f$ preserves 0s and 1s.
+
+\begin{proposition*}
+    For a Boolean algebra, we have
+    $$ (\bigvee_i a_i)^* = \bigwedge_i a_i^*\quad\text{resp.}\quad (\bigwedge_i a_i)^* = \bigvee_i a_i^*,$$
+    whenever $\bigvee_i a_i$ resp. $\bigwedge_i a_i$ exists.
+\end{proposition*}
+
+\num Let $L$ be a bounded distributive lattice, then a subset $F\subseteq L$ is a \DEF{filter} if
+\begin{enumerate}[(F1)]
+    \item $0\not\in F$ and $1\in F$,
+    \item $a\in F$ and $a\leq b\in L$ implies $b\in F$, and
+    \item $a,b\in F$ implies $a\wedge b\in F$.
+\end{enumerate}
+
+Similarly, an ideal is a subset $I\subset L$ such that
+\begin{enumerate}[(I1)]
+    \item $1\not\in I$ and $0\in I$,
+    \item $a\in I$ and $a\geq b\in L$ implies $b\in I$, and
+    \item $a,b\in I$ implies $a\vee b\in I$.
+\end{enumerate}
+
+Let $L$ be a bounded distributive lattice.
+A filter $F\subseteq L$ is called \DEF{prime filter} if $a\vee b\in F$ implies $a\in F$ or $b\in F$.
+$F$ is called \DEF{completely prime filter} if $\bigvee A\in F$ implies $a\in F$ for some $a\in A$.
+A \DEF{principal filter} is any filter of $L$ of the form $\Set{ x | x\geq a}$ for some $a$.
+
+Similarly, an ideal $I$ is called \DEF{prime ideal}, \DEF{completely prime ideal} or \DEF{principal ideal} if $I$ is an prime filter, completely prime filter or principal filter of $L\op$.
+
+\begin{proposition*}
+    Let $B$ be a Boolean algebra and a filter $F\subseteq B$. Then the following are equivalent
+    \begin{itemize}
+        \item $F$ is a maximal filter,
+        \item $F$ is a prime filter.
+        \item For every $b\in B$, either $b\in F$ or $b^c\in F$.
+    \end{itemize}
+\end{proposition*}
+
+From the Proposition we see that the definition of a maximal filter and a prime filter coincide for Boolean algebras, hence we call such filter simply an \DEF{ultrafilter}.
+
+% TODO say something
+\num When we refer to Axiom of Choice, we usually refer to its equivalent form -- Zorn's Lemma:
+\begin{center}\em
+    \emph{(AC)}\quad Let $X$ be a non-empty partially ordered set such that every non-empty chain has an upper bound, then $X$ has at least one maximal element.
+\end{center}
+
+\noindent By Boolean Ultrafilter Theorem we mean the following choice principle
+\begin{center}\em
+    \emph{(BUT)}\quad Let $B$ be a Boolean algebra and let $F$ be a filter of $B$, then there exists a prime filter $G$ extending $F$.
+\end{center}
+
+\noindent Which is equivalent to
+\begin{center}\em
+    \emph{(BUT')}\quad Let $B$ be a Boolean algebra and let $F$ and $I$ be a filter and ideal of $B$ such that $F\cap I = \emptyset$, then there exists a prime filter $G$ extending $F$ such that $G\cap I=\emptyset$.
+\end{center}
+
+\noindent Finally, the last choice principle we will need to know is Axiom of Countable Dependent Choice
+\begin{center}\em
+    \emph{(ACC)}\quad Let $R$ be a binary relation on a set $X$ such that for every $a\in X$ there exists $b\in X$ satisfying $aRb$, then there exist a countable sequence $(a_i)_{i=1}^\infty$ such that $a_iRa_{i+1}$ for all $i=1,2,\dots$.
+\end{center}
+
+Axiom of Choice is ``stronger'' than Boolean Ultrafilter Theorem or Axiom of Countable Dependent Choice, Axiom of Choice logically implies both of them.
 
 \section{Category Theory}
-\begin{itemize}
-    \item category (in basic definition locally small), demonstrative  examples using categories from previous section (most importantly \Bool), dual category??
-    \item functor (important example: identity functor and constant functor), covariant, contravariant
-    \item natural transformation, natural equivalence, functor category
-    \item limits/colimits via "universal functors", example products, sums
-    \item ajdunction only via units and counits of adjunction
+\num A category $\p C$ is a class of objects ($\obj \p C$), a class of morphisms ($\morph \p C$) and two mappings $\dom,\codom\colon \morph\p C\to \obj\p C$ (\emph{domain} and \emph{codomain}) satisfying conditions (C1)--(C3) bellow.
 
-    explain importance of adjunction by mentioning the limit preserving
-\end{itemize}
+Notation: For a morphism $f\in \morph \p C$ such that $A = \dom(f)$ and $B = \codom(f)$, we write $f\colon A\to B$ or $A \stackrel{f}{\to} B$.
+
+\begin{enumerate}[(C1)]
+    \item Let $f\colon A\to B, g\colon B\to C$ be two morphisms of $\p C$, then there exists their \emph{composition}, the morphism $g\cdot f\colon A\to C$.
+    \item Morphism composition satisfies the \emph{associativity law}: $(f\cdot g)\cdot h = f\cdot (g\cdot h)$ whenever are the composition defined.
+    \item For each object $A\in \obj \p C$ there exists an \emph{identity morphism} $1_A$ satisfying $1_A\cdot f = f$ and $g\cdot 1_A = g$ whenever are the compositions defined.
+\end{enumerate}
+
+We say a category is \emph{small} if $\morph \p C$ is a set.
+A \emph{dual category} $\p C\op$ of a category $\p C$ is the category with the same class of objects as $\p C$ has and with all morphisms of $\p C$ reversed, i.e. for each morphism $f\colon A\to B\in \morph \p C$, the morphism $\hat f\colon B\to A$ belongs to $\morph \p C\op$. The composition $\diamond$ is defined as
+$$ \hat f\diamond \hat g = \widehat{g\cdot f}. $$
+
+To simplify the notation even more, we will write $f g$ instead of $f\cdot g$, $A\in \p C$ instead of $A\in \obj \p C$ and similarly for $\morph$, when there is no danger in confusion.
+
+\begin{block*}{Examples}
+    The most natural example of a category is the category $\categoryStyle{Set}$ of all sets, all maps between them and composition defined as map composition.
+
+    Another examples: the category \Bool{} of all Boolean algeras and all Boolean homomorphisms; an arbitrary partially ordered set $(X,\leq)$ is a category with the set $X$ as objects and one morphism between $x,y\in X$ whenever $x\leq y$ (composition holds thanks to transitivity of $\leq$).
+
+    Observe that the dual category of $(X,\leq)$ is precisely the category of the partially ordered set with the opposite order to $(X,\leq)$.
+\end{block*}
+
+\num A morphism $f$ is a \emph{monomorphism} whenever $fg = fh$ implies $g = h$. Analogously, $f$ is an \emph{epimorphism} if $gf = hf$ implies $g = h$. Finally, $f$ is an \emph{isomorphism} if there exists a $f^{-1}$ such that
+$$ f\cdot f^{-1} = 1\quad\text{and}\quad f^{-1}\cdot f = 1.$$
+
+\num For categories $\p C, \p D$ the mappings $F\colon \obj \p C\to \obj \p D$ and $F\colon \morph \p C\to \morph\p D$ constitute a \emph{(covariant) functor} if
+$$ F(f)\colon F(A)\to F(B)\quad\text{for any }f\colon A\to B\in \morph\p C, $$
+$$ F(1_A) = 1_{F(A)}\quad\text{for any }A \in \obj \p C,\quad\text{and}\quad F(gh)=F(g)F(h).$$
+
+\begin{block*}{Examples}
+    Let $\p C$ be a category, the \DEF{identity functor} on $\p C$ is defined by the mappings
+    $$\Id_{\p C}(A) = A\colon \obj\p C\to \obj\p C,\quad\text{and}\quad \Id_{\p C}(f) = f\colon \morph\p C\to \morph\p C.$$
+
+    Let $\p D$ be a non-empty category and let $T$ be an object of $\p D$, then the \emph{constant functor} is defined as follows
+    $$K(A)=T\quad\text{and}\quad K(f)=1_T\quad\text{for all } A,f\in \p C.$$
+\end{block*}
+
+We say a functor is \DEF{contravariant}[ functor] if it is of the form $F\colon \p C\to \p D\op$. The composition of functors $F\colon \p C\to \p D$ and $G\colon \p D\to \p E$ is denoted by $G\circ F\colon \p C\to \p E$.
+
+\num Let $F,G\colon \p C\to \p D$ be two functors, a collection of morphisms $m_* = (m_A)_{A\in \obj\p C}$ is a \emph{natural transformation} between $F$ and $G$, $m_*\colon F\natto G$, if
+$$ m_A\colon F(A)\to G(A),\quad\text{for all } A\in \obj\p C, $$
+
+% TODO first use of the word ``diagram'', it should be explained
+\noindent and the following diagram commutes
+\begin{diagram}
+    F(A)\ar{r}{m_A}\ar{d}{F(f)} & G(A)\ar{d}{G(f)}\\
+    F(B)\ar{r}{m_B} & G(B)
+\end{diagram}
+for all $f\colon A\to B$, morphisms of $\p C$.
+
+If a natural transformation $m_*$ is a collection of isomorphism, we say $m_*$ is a \emph{natural equivalence}. For two functors $F$ and $G$, if there exists a natural equivalence $m_*\colon F\natto G$, we say $F$ and $G$ are \emph{naturally equivalent} and write $F\cong G$.
+
+\num A \emph{limit} of a \emph{diagram} (that is, of a functor $D\colon \p D\to \p C$ for a small category $\p D$) is a constant functor $L\colon \p D\to \p C$ and a natural transformation $l_*\colon L\natto D$ such that for any constant functor $K\colon \p D\to \p C$ and a natural transformation $k_*\colon K\natto D$ there exists an unique natural transformation $m_*\colon K\natto L$ such that the following diagram commutes
+\begin{diagram}
+    L\ar{r}{l_*} & D\\
+    K\ar[dashed]{u}{m_*}\ar{ur}{k_*} &
+\end{diagram}
+
+\noindent (in the category $[\p D,\p C]$ of all functors from $\p D$ to $\p C$ with natural transformations as morphisms).
+
+A \emph{colimit} is defined dually to limit, that is, all directions of natural transformations in the definition are reversed. We say a category is \emph{(co)complete} if there is a (co)limit for every diagram.
+
+\begin{block*}{Examples}
+    A well--known example of a limit in \categoryStyle{Set} is the (cartesian) product of sets $\prod_{i\in I} X_i$ together with projections $(\prod_{i\in I} X_i\to X_j)_{j\in I}$.
+
+    Similarly, a natural example of colimit in \categoryStyle{Set} is the coproduct, the disjoint union, of sets $\coprod_{i\in I} X_i$ together with injections $(X_j\to \coprod_{i\in I} X_i)_{j\in I}$.
+\end{block*}
+
+\num Functors $F\colon \p C\to \p D$ and $G\colon \p D\to \p C$ are \emph{adjoint} (with $F$ on the left and $G$ on the right) if there exist a natural transformations (\emph{units of adjuction})
+$$ \lambda_*\colon FG\natto \Id_{\p D}\quad\text{and}\quad \rho_*\colon \Id_{\p C}\natto GF,$$
+
+\noindent such that the following compositions of natural transformations
+$$ F\xrightarrow{~F(\rho_*)~} FGF\xrightarrow{~\lambda_{F(*)}~} F\quad\text{and}\quad G\xrightarrow{~\rho_{G(*)}~} GFG\xrightarrow{~G(\lambda_*)~} G$$
+
+\noindent are equal to identity natural transformations on $F$ and on $G$, or more precisely: $F(\rho_A)\cdot \lambda_{F(A)} = 1_{F(A)}$ and $\rho_{G(B)}\cdot G(\lambda_B) = 1_{F(B)}$ for all $A\in\p C$ and $B\in\p D$.
+
+\begin{proposition*}
+    Right adjoinits preserve limits and left adjoinits preserve colimits.
+\end{proposition*}
+
+Two categories $\p C,\p D$ are said to be \emph{isomorphic}, $\p C\cong \p D$, if there exists adjoint functors $F\colon \p C\to \p D$ and $G\colon \p D\to \p C$ with units of adjunction consisting of natural equivalences.
+
+\num A category $\p C$ is said to be \emph{subcategory} of a category $\p D$ if $\obj\p C\subseteq \obj\p D$, $\morph\p C\subseteq \morph\p D$ and the composition of morphisms in $\p C$ coincide with that in $\p D$. Moreover, if $\Set{f | f\colon A\to B\in \p C} = \Set{f | f\colon A\to B\in \p D}$ for every $A, B\in \obj\p C$, we say $\p C$ is a \emph{full subcategory} of $\p D$.
+
+A full subcategory $\p C$ of a category $\p D$ is \emph{reflexive} (or \emph{coreflexive}) if the embedding functor $J\colon \p C\xrightarrow{~\subseteq~} \p D$ is a right (or left) adjoint.
+
+\begin{block*}{Examples}
+    TODO
+\end{block*}
+
+\begin{proposition*}
+    Each reflexive category of a (co)complete category is (co)complete. Similarly for coreflexive categories.
+\end{proposition*}
 
 \section{Topology and point--free Topology}
 
 \num Basic definitions: topology, frame, their categories, functor $\Omega$, \Top{} and \Frm. frame homomorphisms, localic maps, continuous map, homeomorphism
+
+Morphisms in \Frm{} are monotone mappings between complete lattices and preserving all suprema. Hence, there exists their right adjoints. We can define the category $\Loc\cong\Frm\op$ as the category \Frm{} having frame homomorphisms replaced by their right adjoints -- \DEF{localic map}s.
 
 \num Separation axioms (regularity, complete regularity, normality, ...?), rather below (and useful facts about them)
 
@@ -128,6 +300,10 @@ A lattice is called \DEF{pseudocomplemented}[ lattice] if every element has a ps
 \num completeness and cocompleteness of \Top{} and \Frm{}
 \num Spatiality, some spatiality theorems (II.5.3, Hofmann--Lawson's Duality)
 \num Subspace and sublocale/subframe, dense sublocale, empty frame (\emptyFrm), co-frame of sublocales (we will need its distributivity), $\iota_S\colon L \to S$ as subframe inclusion and as onto frame homomorphisms? (the next part needs it)
+
+\begin{proposition*}
+    Preimage of closed sublocale under a localic map is again a closed.
+\end{proposition*}
 
 \begin{block*}{Note}
     We will call sublocales which are both open and closed as clopen. % TODO check grammar

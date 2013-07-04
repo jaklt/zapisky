@@ -108,6 +108,7 @@
 % Categories
 \newcommand\categoryStyle[1]{\ensuremath{\mathbf{#1}}}
 \newcommand\Frm{\categoryStyle{Frm}}
+\newcommand\Loc{\categoryStyle{Loc}}
 \newcommand\StoneFrm{\categoryStyle{StoneFrm}}
 \newcommand\kBDStoneFrm{\ensuremath{\kappa\text{--}\categoryStyle{BDStoneFrm}}}
 \newcommand\ExtrStoneFrm{\categoryStyle{ExtrDStoneFrm}}
@@ -148,7 +149,11 @@
 \newcommand\upset  {\mathord{\uparrow}\mkern1mu}
 \newcommand\downset{\mathord{\downarrow}\mkern1mu} % mathord/mathbin/mathrel treats symbol as oordinal math symbol/binary relation/...
 
-\DeclareMathOperator{\op}{op}
+\newcommand{\op}{^{\text{op}}}
+\DeclareMathOperator{\obj}{obj}
+\DeclareMathOperator{\morph}{morph}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\codom}{codom}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Id}{Id}
 \DeclareMathOperator{\Ult}{Ult}
