@@ -148,6 +148,7 @@
 \newcommand\closure[1]{\overline{#1}}
 \newcommand\upset  {\mathord{\uparrow}\mkern1mu}
 \newcommand\downset{\mathord{\downarrow}\mkern1mu} % mathord/mathbin/mathrel treats symbol as oordinal math symbol/binary relation/...
+\newcommand\Sl{\mathfrak{Sl}}
 
 \newcommand{\op}{^{\text{op}}}
 \DeclareMathOperator{\obj}{obj}
@@ -156,9 +157,8 @@
 \DeclareMathOperator{\codom}{codom}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\Lc}{Lc}
 \DeclareMathOperator{\Ult}{Ult}
-\def\InclUp{\rotatebox[origin=c]{90}{$\subseteq$}}
-\def\DotsUp{\rotatebox[origin=c]{90}{\dots}}
 
 % Function restriction
 % http://tex.stackexchange.com/questions/22252/how-to-typeset-function-restrictions
@@ -178,6 +178,9 @@
 \newenvironment{diagram}{\begin{center}\begin{tikzcd}}{\end{tikzcd}\end{center}}
 \newcommand\ACPStar{\textbf{($\star$)}}
 \newcommand\ACP{\hfill\fontshape{n}{\ACPStar}}
+\def\InclUp{\rotatebox[origin=c]{90}{$\subseteq$}}
+\def\DotsUp{\rotatebox[origin=c]{90}{\dots}}
+
 
 \title{Some point--free aspects of connectedness}
 \author{Tom\'a\v s Jakl}

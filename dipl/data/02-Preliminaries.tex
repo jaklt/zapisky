@@ -3,6 +3,10 @@ We assume basic knowledge of Set Theory, mainly basic facts about cardinals, car
 
 We refer to the monograph \emph{Frames and Locales} written by Pultr and Picado~\cite{picado2011frames} as a basic introduction to point--free topology.
 
+\begin{block*}{Basic notation}
+For sets $X,Y$ and a mapping $f\colon X\to Y$, denote $f[S] = \Set{ f(s) | s\in S}$ and $f^{-1}[M] = \Set{ x\in X | f(x)\in M}$ for $S\subseteq X$ and $M\subseteq Y$.
+\end{block*}
+
 \section{Partially ordered set}
 
 \num Let $A$ be a set and let $\leq$ be a binary relation on $A$ ($(\leq) \subseteq A\times A$). We say $(A, \leq)$ is a \DEF{partially ordered set} if the relation $\leq$ is \emph{partial order}, i.e. satisfies:
@@ -41,9 +45,9 @@ Note that every complete lattice contains two distinguished elements: 0 and 1, w
 A lattice homomorphism $f\colon A\to B$ between two complete lattices is \DEF{complete lattice homomorphism} if $f(\bigvee X) = \bigvee f[X]$ and $f(\bigwedge X) = \bigwedge f[X]$ for each subset $X \subseteq A$.
 
 \num A lattice $D$ is \DEF{distributive} if the following equation holds for all $a,b,c\in D$:
-\begin{align}
-    a\vee (b\wedge c) = (a\vee b)\wedge (a\vee c).\tag{Dist}
-\end{align}
+\begin{align*}
+    a\vee (b\wedge c) = (a\vee b)\wedge (a\vee c).
+\end{align*}
 
 \begin{proposition*}
     For a lattice $D$, the following conditions are equivalent:
@@ -65,7 +69,7 @@ $$ f(x) \leq y\quad\text{iff}\quad x\leq g(y)\quad\text{for all } x\in A, y\in B
 $$ fg(y) \leq y\quad\text{and}\quad x\leq gf(y)\quad\text{for all } x\in A, y\in B.$$
 
 Then we say $f$ is a left Galois adjoing and a $g$ is a right Galois adjoing.
-For a monotone map, its left or right Galois adjoint do not need to exists but if they do, they are uniquely determined.
+For a monotone map, its left or right Galois adjoint do not need to exists but if it does, it is uniquely determined.
 
 For two monotone maps in Galois connection $f,g$ we have that
 $$ f g f = f\quad\text{and}\quad g f g = g. $$
@@ -77,7 +81,7 @@ $$ f g f = f\quad\text{and}\quad g f g = g. $$
     Moreover, the converse implication also holds if $A$ and $B$ are complete lattices.
 \end{proposition*}
 
-\num Let $L$ be a lattice with 0. A pseudocomplement $a^*$ for an element $a\in L$ is the greatest element $x$ such that
+\num Let $L$ be a lattice with 0. A \emph{pseudocomplement} $a^*$ for an element $a\in L$ is the greatest element $x$ such that
 $$ x\wedge a = 0. $$
 
 \noindent Equivalently, $a^*$ is the pseudocomplement of $a$ if
@@ -99,7 +103,7 @@ $$ a\wedge x\leq b\quad\text{iff}\quad a\leq x\to b\quad\text{for all } a,b,x\in
 Note that each Heyting algebra is pseudocomplemented semilattice with pseudocomplements defined
 $$ a^* = a\to 0.$$
 
-As we see from the definition, the operation $x\to \_$ is the right Galois adjoint to $\_\wedge x$. Therefore, for each meet semilattice, a Heyting operation, if it is defined, it is uniquely determined.
+As we see from the definition, the operation $x\to (-)$ is the right Galois adjoint to $(-) \wedge x$. Therefore, for each meet semilattice, a Heyting operation, if it is defined, it is uniquely determined.
 
 \begin{proposition*}
     Let $H$ be a Heyting algebra, then
@@ -185,7 +189,7 @@ Axiom of Choice is ``stronger'' than Boolean Ultrafilter Theorem or Axiom of Cou
 \section{Category Theory}
 \num A category $\p C$ is a class of objects ($\obj \p C$), a class of morphisms ($\morph \p C$) and two mappings $\dom,\codom\colon \morph\p C\to \obj\p C$ (\emph{domain} and \emph{codomain}) satisfying conditions (C1)--(C3) bellow.
 
-Notation: For a morphism $f\in \morph \p C$ such that $A = \dom(f)$ and $B = \codom(f)$, we write $f\colon A\to B$ or $A \stackrel{f}{\to} B$.
+Notation: For a morphism $f\in \morph \p C$ to point out that $A = \dom(f)$ and $B = \codom(f)$, we write $f\colon A\to B$ or $A \stackrel{f}{\to} B$.
 
 \begin{enumerate}[(C1)]
     \item Let $f\colon A\to B, g\colon B\to C$ be two morphisms of $\p C$, then there exists their \emph{composition}, the morphism $g\cdot f\colon A\to C$.
@@ -237,15 +241,18 @@ for all $f\colon A\to B$, morphisms of $\p C$.
 
 If a natural transformation $m_*$ is a collection of isomorphism, we say $m_*$ is a \emph{natural equivalence}. For two functors $F$ and $G$, if there exists a natural equivalence $m_*\colon F\natto G$, we say $F$ and $G$ are \emph{naturally equivalent} and write $F\cong G$.
 
-\num A \emph{limit} of a \emph{diagram} (that is, of a functor $D\colon \p D\to \p C$ for a small category $\p D$) is a constant functor $L\colon \p D\to \p C$ and a natural transformation $l_*\colon L\natto D$ such that for any constant functor $K\colon \p D\to \p C$ and a natural transformation $k_*\colon K\natto D$ there exists an unique natural transformation $m_*\colon K\natto L$ such that the following diagram commutes
+\num A \emph{limit} of a \emph{diagram} (that is, of a functor $D\colon \p D\to \p C$ for a small category $\p D$) is a constant functor $L\colon \p D\to \p C$ and a natural transformation $l_*\colon L\natto D$ such that $l_*$ is universal among natural transformations from constant functors.
+
+Or in other words, for any constant functor $K\colon \p D\to \p C$ and a natural transformation $k_*\colon K\natto D$ there exists an unique natural transformation $m_*\colon K\natto L$ such that the following diagram commutes
 \begin{diagram}
     L\ar{r}{l_*} & D\\
     K\ar[dashed]{u}{m_*}\ar{ur}{k_*} &
 \end{diagram}
 
-\noindent (in the category $[\p D,\p C]$ of all functors from $\p D$ to $\p C$ with natural transformations as morphisms).
+\noindent (in the category $[\p D,\p C]$ of all functors from $\p D$ to $\p C$ and natural transformations as morphisms).
 
-A \emph{colimit} is defined dually to limit, that is, all directions of natural transformations in the definition are reversed. We say a category is \emph{(co)complete} if there is a (co)limit for every diagram.
+A \emph{colimit} is defined dually to limit, that is, with all natural transformations from the definition of limit reversed. % TODO? use [\p D,\p C]\op ?
+We say a category is \emph{(co)complete} if there is a (co)limit for every diagram.
 
 \begin{block*}{Examples}
     A well--known example of a limit in \categoryStyle{Set} is the (cartesian) product of sets $\prod_{i\in I} X_i$ together with projections $(\prod_{i\in I} X_i\to X_j)_{j\in I}$.
@@ -276,48 +283,139 @@ A full subcategory $\p C$ of a category $\p D$ is \emph{reflexive} (or \emph{cor
 \end{block*}
 
 \begin{proposition*}
-    Each reflexive category of a (co)complete category is (co)complete. Similarly for coreflexive categories.
+    Each reflexive subcategory of a (co)complete category is (co)complete. Similarly for coreflexive categories.
 \end{proposition*}
 
 \section{Topology and point--free Topology}
+homeomorphism, closure for spaces
 
-\num Basic definitions: topology, frame, their categories, functor $\Omega$, \Top{} and \Frm. frame homomorphisms, localic maps, continuous map, homeomorphism
+\num Let $X$ be a set and $\tau$ an arbitrary set of subsets of $X$, then the pair $(X,\tau)$ is a \emph{topological space} if
+\begin{enumerate}[(T1)]
+    \item $\emptyset, X \in \tau$,
+    \item $\p M \subseteq \tau$ implies $\bigcup \p M \in \tau$, and
+    \item for $U, V \in \tau$, also $U\cap V\in \tau$.
+\end{enumerate}
 
-Morphisms in \Frm{} are monotone mappings between complete lattices and preserving all suprema. Hence, there exists their right adjoints. We can define the category $\Loc\cong\Frm\op$ as the category \Frm{} having frame homomorphisms replaced by their right adjoints -- \DEF{localic map}s.
+Subsets of $X$ which are elements of $\tau$ are called open and their complements are called closed.
 
-\num Separation axioms (regularity, complete regularity, normality, ...?), rather below (and useful facts about them)
+Let $(X,\tau), (Y,\rho)$ be topological spaces and a mapping $f\colon X\to Y$ is said to be \emph{continuous with respect to $(X,\tau)$ and $(Y,\rho)$} if
+$$ f^{-1}[O] \in \tau,\quad\text{for all } O\in \rho.$$
 
-\num\label{p:rbellowProperties} $a_1\wedge a_2 \rbelow b_1 \wedge b_2$ and $a_1\vee a_2 \rbelow b_1 \vee b_2$ for $a_i\rbelow b_i$
-\num\label{p:crbellowProperties} $a_1\wedge a_2 \crbelow b_1 \wedge b_2$ and $a_1\vee a_2 \crbelow b_1 \vee b_2$ for $a_i\crbelow b_i$
-                                   $a \crbelow x\crbelow y\crbelow b$ implies $b^* \crbelow x\crbelow y\crbelow a^*$
+\noindent Denote by \Top{} the category of all topological spaces and continuous mappings.
 
-    Again, as for topological spaces, we have:
+As we see from the conditions (T1)--(T3), the set $\tau$ ordered by inclusion is a complete lattice. Moreover, we have $(\bigcup_i U_i)\cap V = \bigcup_i (U_i\cap V)$ for $U_i, V\in \tau$.
+Therefore, we can generalize the notion of topological space:
 
-    \num\label{p:normalRegular} Any normal and regular frame is completely regular: For $x\rbelow y$, the $x^*\vee y = 1$ holds, from normality there exists a $q$, such that $x^*\vee q = 1$ and $q^*\vee y = 1$, thus $x\rbelow q\rbelow y$. So $\Set{x | x\rbelow b} = \Set{x | x\crbelow b}$
+Let $L$ be a complete lattice, we say $L$ is a \DEF{frame} if
+$$ (\bigvee A)\wedge b = \bigvee_{a\in A} ( a\wedge b ) $$
+for any $A\subseteq L$ and $b\in L$. We see that frames are just complete Heyting algebras and, consequently, pseudocomplemented lattices.
+The pseudocomplements are given by the following formula
+$$ a^* = \bigvee \Set{ x | x\wedge a = 0}. $$
 
-    $T_4 + T_1 \implies T_{3.5} + T_0 \implies T_3 + T_0 \implies T_2 \implies T_1 \implies T_0$
+\noindent For an open set of some space, taking pseudocomplements in the corresponding frame of open sets is the same as taking the interior of the complement.
+
+Let $L$ and $M$ be frames and $f\colon L\to M$ a monotone map, $f$ is said to be a \DEF{frame homomorphism} if $f$ preserves all joins, finite meets, the top and the bottom (1 and 0).
+Denote by \Frm{} the resulting category of all frames and frame homomorphisms.
+
+We have the obvious (contravariant) functor $\Omega\colon \Top\to \Frm$
+$$ \Omega(X,\tau) = \tau\quad\text{and}\quad \Omega(f)\colon U\mapsto f^{-1}[U],$$
+for $(X,\tau), f \in \Top$.
+
+A frame homomorphism $f$ is monotone mapping between complete lattices and preserves all suprema. Hence, it has the right adjoint $f^*$, a \emph{localic map}.
+Denote the category of frames and localic maps as morphisms by $\Loc$. We will refer to objects of $\Loc$ as \emph{locales}. Trivially $\Loc\cong\Frm\op$.
+
+Again, we have a functor $\Lc\colon \Top\to \Loc$ (covariant this time)
+$$ \Lc(X,\tau) = \tau\quad\text{and}\quad \Lc(f) = \Omega(f)^*.$$
+
+\num adjunction $\Sigma$ and $\Omega$, Spatiality, some spatiality theorems (II.5.3, Hofmann--Lawson's Duality), points!
 
 \num completeness and cocompleteness of \Top{} and \Frm{}
-\num Spatiality, some spatiality theorems (II.5.3, Hofmann--Lawson's Duality)
-\num Subspace and sublocale/subframe, dense sublocale, empty frame (\emptyFrm), co-frame of sublocales (we will need its distributivity), $\iota_S\colon L \to S$ as subframe inclusion and as onto frame homomorphisms? (the next part needs it)
+
+\num {\bf Separation axioms.} For a topological space $(X,\tau)$, we say it is
+\begin{itemize}
+    \item[$T_0$:] if for every two distinct points $x,y\in X$ there exist an open $U\in \tau$ such that $x\in U\not\ni y$ or $x\not\in U\ni y$.
+    \item[$T_1$:] if for every two distinct points $x,y\in X$ there exist an open $U\in \tau$ such that $x\in U\not\ni y$.
+    \item[$T_2$:] if for every two distinct points $x,y\in X$ there exist disjoint open sets $U,V\in \tau$ separating $x$ and $y$, i.e. $x\in U\not\ni y$ and $x\not\in V\ni y$.
+    \item[$T_3$:] if for each point $x\in X$ and each closed $F\subseteq X$ such that $x\notin F$ there exist two disjoint open sets separating $x$ and $F$.
+    \item[$T_{3.5}$:] if for each point $x\in X$ and each closed $F\subseteq X$ such that $x\notin F$ there exist a continuous function $f\colon X\to [0,1]$ separating $x$ and $F$, i.e. $f(x) = 0$ and $f[F] = 1$.
+    \item[$T_{4}$:] if for every two disjoin closed subsets of $X$ there exist two disjoint open sets separating them, or equivalently, there exists a continuous function separating them.
+\end{itemize}
+
+And we see that
+$$ T_4~\&~T_1 \implies T_{3.5}~\&~T_0 \implies T_3~\&~T_0 \implies T_2 \implies T_1 \implies T_0. $$
+
+\noindent Topological spaces satisfying $T_2$. $T_3$ and $T_0$, $T_{3.5}$ and $T_0$, or (just) $T_4$ are called, in order, \emph{Hausdorff}, \emph{regular}, \emph{completely regular}, or \emph{normal}.
+The condition $T_3$ is equivalent to condition
+$$U = \bigcup \Set{ V\subseteq X | \closure V \subseteq U},\quad\text{for all open } U\in \tau.$$
+
+Observe, $\closure V\subseteq U$ if and only if $V^*\cup U = X$ in the frame $\Omega(X)$. Define,
+$$ a\rbelow b\quad\equiv\quad a^*\vee b = 1,$$
+
+\noindent A frame $L$ is said to be \emph{regular} if
+$$ a = \bigvee \Set{ x | x\rbelow a},$$
+\noindent for all $a\in L$. Then, a space $X$ is regular if and only if the frame $\Omega(X)$ is regular.
+Analogously for complete regularity, define
+\begin{align*}
+    a\crbelow b\quad\equiv\quad &\text{exists } a_i\in L,\text{ for all } i\in \mathbb Q\cap [0,1],\text{ such that}\\
+        & a_0 = a,~ a_1 = b\text{ and } a_i\rbelow a_j\text{ whenever } i<j.
+\end{align*}
+
+\noindent Then, a frame $L$ is \emph{completely regular} if
+$$ a = \bigvee \Set{ x | x\crbelow a},$$
+
+\noindent for all $a\in L$. Again, a space $X$ is completely regular if and only if the frame $\Omega(X)$ is.
+
+Finally, a frame is said to be \emph{normal} if
+$$ a\vee b = 1\quad\implies\quad \exists c\text{ such that } a\vee c = 1\text{ and }c^*\vee b = 1. $$
+
+\begin{observation*}\label{p:rbellowProperties}\label{p:crbellowProperties} Let $\lhd\in \{\rbelow, \crbelow\}$, then
+\begin{enumerate}
+    \item $a'\leq a\lhd b\leq b;$ implies $a'\lhd b'$,
+    \item $a_1\lhd b_1$ and $a_2\lhd b_2$ implies $a_1\wedge a_2 \lhd b_1 \wedge b_2$ and $a_1\vee a_2 \lhd b_1 \vee b_2$,
+    \item $a \lhd b$ implies $b^* \lhd a^*$.
+\end{enumerate}
+\end{observation*}
+
+Similarly to topological spaces, we have:
+\num\label{p:normalRegular} Any normal and regular frame is completely regular: For $x\rbelow y$, the $x^*\vee y = 1$ holds, from normality there exists a $q$, such that $x^*\vee q = 1$ and $q^*\vee y = 1$, thus $x\rbelow q\rbelow y$. Hence, under (CDC): $\Set{x | x\rbelow b} = \Set{x | x\crbelow b}$
+
+\num A \emph{subspace} of a topological space $(X,\tau)$ (that is, a space $(Y\subseteq X,\restr{\tau}{Y})$ where $\restr{\tau}{Y} = \Set{ Y\cap O | O\in \tau}$) determines the one-one inclusion (and continuous) mappings $j\colon Y\subseteq X$. We have the associated one-one localic map $\Lc(j)\colon \Lc(Y)\subseteq \Lc(X)$ and its adjoint is the onto frame homomorphisms $\Omega(j)\colon \Omega(X)\to \Omega(Y)$.
+
+% TODO better wording (starting with ``if the inclusion ...'')
+Thus, for a locales $L$ and $S\subseteq L$, $S$ is said to be a \DEF{sublocale} of $L$ if the inclusion (one-one) mapping $j\colon S\subseteq L$ is a localic map and, for $s,t\in S$, $s\leq t$ whenever $j(s)\leq j(t)$.
+Or equivalently, there exists an onto frame homomorphisms $j^*\colon L\to S$.
+
+One has an another useful characterisation of sublocales, let $L$ be a frame, a subset $S\subseteq L$ is sublocale if and only if
+\begin{enumerate}[(S1)]
+    \item $S$ is closed under all meets, and
+    \item $x\to s\in S$ for each $s\in S$ and $x\in L$.
+\end{enumerate}
+
+Denote by $\Sl(L)$ the set of all sublocales of $L$. Then, $\Sl(L)$ ordered by inclusion is a co-frame (in other words, $\Sl(L)\op$ is a frame). The empty sublocale $\emptyFrm = \{1\}$ is the least sublocale and $L$ is the greatest.
+
+A sublocale is said to be \DEF{open}[ sublocale] resp. \DEF{closed}[ sublocale] if it is of the form
+$$ \open(a) = \Set{ a\to x | x\in L}\quad\text{resp.}\quad \clos(c) = \upset a.$$
+
+\noindent The inspiration for this definition comes naturally from topological spaces. For a topological space $(X,\tau)$ and an open subset $O\in \tau$, we have the inclusion mapping
+$$ j\colon (O, \Set{U\in\tau | U\subseteq O})\to (X,\tau) $$
+and an onto frame homomorphisms $\Omega(j)\colon U\mapsto U\cap O$. Hence, we have the formula 
+$$ \Lc(j)\colon U\mapsto O\to U,$$
+for the associated localic embedding, the right adjoint to $\Omega(j)$. ``As one could expect'', $\clos(a)$ and $\open(a)$ are mutually complemented in $\Sl(L)$.
+
+For a sublocale $S\subseteq L$, its \DEF{closure}[ of a sublocale], the least closed sublocale containing $S$, is given by the following formula
+$$ \closure S = \upset (\bigwedge S). $$
+From that, we immediately see that a sublocale $S\subseteq L$ is \emph{dense} (that is, $\closure S = L$) iff $0_L\in S$.
 
 \begin{proposition*}
-    Preimage of closed sublocale under a localic map is again a closed.
+    Preimage of closed (resp. open) sublocale under a localic map is again a closed (resp. open).
 \end{proposition*}
 
 \begin{block*}{Note}
     We will call sublocales which are both open and closed as clopen. % TODO check grammar
 \end{block*}
 
-TODO place somewhere StoneSp and StoneFrm and \J.
-
-Notation.
-$\downset a^*$ means $\downset (a^*)$ (rightmost unary operator applies first)
-
-For the definition of frames, we see that $\wedge$ is the left/right Galois adjoint, therefore every frame is a complete Heyting algebra, moreover also a pseudocomplemented lattice. The pseudocomplement operation for open set in spacial frames corresponds precisely to the complement of the closure of that set, or the interior of the complement.
-
 \begin{definition}
-    Let $L$ be a locale, \DEF{nucleus} $\nu$ on $L$ is a monotone map $\nu\colon L \to L$ having the following four properties:
+    Let $L$ be a locale, \DEF{nucleus} $\nu$ on $L$ is a monotone map $\nu\colon L \to L$ with the following four properties:
     \begin{enumerate}[(N1)]
         \item $a \leq \nu(a)$,
         \item $a \leq b \implies \nu(a) \leq \nu(b)$,
@@ -332,7 +430,17 @@ For the definition of frames, we see that $\wedge$ is the left/right Galois adjo
 \noindent is a sublocale of $L$. Indeed, we have
 $$ (\bigsqcup a_i)\sqcap b = \nu(\bigvee a_i) \wedge \nu(b) = \nu(\bigvee(a_i \wedge b)) = \bigsqcup (a_i \sqcap b).$$
 
-\noindent From (N4) we know, $\sqcap$ is the infimum and from (N2) we know $\bigsqcup$ is the supremum. Hence $\nu(L)$ is a locale, to show that $\nu(L)$ is a sublocale of $L$ for $\nu^*\colon L \to \nu(L)$, defined $a \mapsto \nu(a)$, we will show it is an onto frame homomorphism. It is enough to show
+\noindent From (N4) we know that $\sqcap$ is the infimum and from (N2) we know that $\bigsqcup$ is the supremum. Hence $\nu(L)$ is a locale, to show that $\nu(L)$ is a sublocale of $L$ for $\nu^*\colon L \to \nu(L)$, defined $a \mapsto \nu(a)$, we will show that it is an onto frame homomorphism. It is enough to show that
     $$\nu(\bigvee a_i) = \nu(\bigvee \nu(a_i)) \quad( = \bigsqcup \nu(a_i)).$$
 
     \noindent We have $\bigvee a_i \leq \bigvee \nu(a_i)$ by (N1) and $\nu(\bigvee a_i) \leq \nu(\bigvee \nu(a_i))$ by (N2). On the other hand $\nu(a_i) \leq \nu(\bigvee a_i)$ by (N2). Hence $\bigvee \nu(a_i) \leq \nu(\bigvee a_i)$ and $\nu(\bigvee \nu(a_i)) \leq \nu\nu(\bigvee a_i) = \nu(\bigvee a_i)$ by (N2) and (N3).
+
+    Thus, a nuclei deteremine sublocales. One has more, there is an one-one correspondence between nuclei and sublocales.
+
+\noindent\dotfill
+
+TODO place somewhere StoneSp and StoneFrm and \J.
+
+Notation.
+$\downset a^*$ means $\downset (a^*)$ (rightmost unary operator applies first)
+
