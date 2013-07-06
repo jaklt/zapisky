@@ -122,7 +122,7 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
 \num\label{p:propertiesBooleanization}
     Let $L$ be a frame, the mapping defined as $a \mapsto a^{**}$ is a nucleus:
     \begin{enumerate}[label=(N\arabic*)]
-        \item $a \leq a^{**}$: it is a standard inequality (Lemma~\ref{p:pseudcomplProperties});
+        \item $a \leq a^{**}$: it is a standard inequality (from \ref{p:pseudcomplProperties});
         \item $(a \leq b \implies a^{**} \leq b^{**})$: holds, since taking pseudocomplements is antitone;
         \item $a^{**\;**} = a^{**}$: simply from $a^* = a^{***}$; and
         \item $(a \wedge b)^{**} = a^{**} \wedge b^{**}$: it is again a standard equality.
@@ -130,7 +130,6 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
 
     Therefore, by~\ref{p:nuclProp}, $\Bo L$ is a sublocale of $L$ and consequently a complete Boolean algebra. As a drirect consequence of~\ref{p:nuclProp}, the mapping
     $$\text{\DEFSYM{BetaL}{$\beta_L$}}\colon L \to \Bo L,\quad a \mapsto a^{**},$$
-
     is a frame homomorphism.
 
 \begin{block}{Note}
@@ -306,7 +305,7 @@ Until the end of this section, we will use Lemma~\ref{p:idealsFrame} frequently 
 
 \num From \ref{p:BooleanizationFunctorOnExtrDSF}---\ref{p:JOBoIdentity}, we obtain the main result of this section.
 
-\begin{theorem*}
+\begin{theorem*}\label{p:completePart2}
     The functors \Bo{} and \JI{} provide an isomorphism between the categories \\\ExtrStoneFrm{} and \ComplBool{}.
 \end{theorem*}
 

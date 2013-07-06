@@ -1,0 +1,86 @@
+\chapter{More about DeMorgan Frames}
+
+\section{Density and superdensity}
+Recall the definition of sublocale ...
+
+\begin{lemma}\label{p:denseProperties}
+    \begin{enumerate}
+        \item If $gf$ is dense, then $f$ is also dense.
+        \item If $g$ is dense and $f$ is dense, then $fg$ is dense.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    $f(a) = 0$ implies $gf(a) = g(0) = 0$, hence $a = 0$.
+\end{proof}
+
+\begin{lemma}\label{p:denseProperties2}
+    Let $S$ be a sublocale of $L$. $S$ is dense in $L$ iff $\Bo S = \Bo L$.
+\end{lemma}
+\begin{proof}
+    $\Rightarrow$: Suppose $S$ is dense sublocale, then pseudocomplements in $S$ are also pseudocomplements in $L$ (from the fact that $0_L\in S$ and $a^{*S} = a\to 0_L = a^{*L}$).
+    From the definition of sublocale, we know $\Bo L = \Set{ x\to 0_L | x\in L}$ is a subset of $S$. Hence, if $x = x^{**}\in \Bo L$ then $x \in S$ and also $x \in \Bo S$. The other inequality, the $\Bo S\subseteq \Bo L$, is trivial.
+
+    $\Leftarrow$: Follows simply from the fact that $a\leq a^{**}$, for any $a\in L$, and that $0_L = 0_L^{**} \in \Bo L = \Bo S$.
+\end{proof}
+
+\begin{proposition}\label{p:denseReflectDeMorgan}
+    If $S$ is dense in $L$ and $L$ is De Morgan, then $S$ is De Morgan.
+\end{proposition}
+\begin{proof}
+    Let $x\in S$. From the proof of the previous Lemma, we know that pseudocomplements in $S$ coincide with those in $L$. Since each sublocale is determined by some nucleus, from \ref{p:nuclProp}, we know that supremum in $S$ is greater or equal to supremum in $L$. Thus, $x^{**}\vee_S x^* \geq x^{**}\vee_L x^* = 1$.
+\end{proof}
+
+\begin{definition}
+    Let $f\colon L\to S$ be a dense onto frame homomorphism. We say $S$ is \DEF{superdense} in $L$ or $f$ is \emph{superdense} if, for any compact regular $K$ and any frame homomorphism $h\colon K\to S$, there exists a frame homomorphism $g\colon K\to L$ such that the following diagram commutes
+
+    \begin{diagram}
+        L\ar{r}{f} & S\\
+        K\ar[dashed]{u}{g}\ar{ur}{h}
+    \end{diagram}
+\end{definition}
+
+\begin{lemma}\label{p:compactificationFromInside}
+    Let $L$ be a completely regular frame and let $S$ be a sublocale of $\C L$ such that $L\subseteq S\subseteq \C L$. Then $\C S\cong \C L$.
+\end{lemma}
+\begin{proof}
+    We will translate the proposition to the language of frames and frame homomorphisms. For onto frame homomorphisms $i\colon S\to L$ and $j\colon \C \to S$ such that $ij$ equals to the compactification of $L$, to $\comp_L$, we will prove that $\C S\cong \C L$.
+
+    TODO
+\end{proof}
+
+\begin{observation}\label{p:superdenseProperties}
+    \begin{enumerate}
+        \item Let $f$ and $g$ be superdense, then $fg$ is also superdense.
+        \item If $fg$ is superdense, then $f$ is superdense.
+        \item Let $L$ be a completely regular and $S$ its sublocale. $S$ is superdense in $L$ iff $S$ is superdense in $\C L$.
+    \end{enumerate}
+\end{observation}
+
+\begin{theorem}
+    Let $L$ be a completely regular frame, then $L$ is De Morgan iff each dense sublocale $S\subseteq L$ is superdense.
+\end{theorem}
+\begin{proof}
+    $\Rightarrow$:
+    Given a dense sublocale $S$ of $L$ (witnessed by an onto frame homomorphism $i\colon L\to S$), a compact regular frame $M$ and a frame homomorphism $h\colon M\to S$. We know that $S$ is dense in $\C L$ from Lemma~\ref{p:denseProperties}, and $\Bo S = \Bo\C(L)$ from Lemma~\ref{p:denseProperties2}. From the Theorem~\ref{p:completePart2} for the complete part of Stone correspondence, we know that $\C L\cong \C\Bo\C(L)$.
+
+    Hence, $\Bo S = \Bo\C(L) \subseteq S \subseteq \C L\cong \C\Bo\C(L).$. By Lemma~\ref{p:compactificationFromInside} we have that $\C S\cong \C L$ and $S$ is superdense in $\C L$. Therefore, there exists a frame homomorphism $g\colon M\to \C L$ such that the following diagram commutes
+    \begin{diagram}
+        \C L\ar{r}{\comp_L} & L\ar{r}{i} & S\\
+        M\ar{u}{g}\ar{urr}{h}
+    \end{diagram}
+    Thus, $\comp_L g$ is the desired homomorphism to $L$. % TODO wording
+
+    $\Leftarrow$:
+     We know that $\Bo L$ is extremally disconnected. Hence, its compactification, the $\comp_{\Bo L}\colon \C\Bo(L)\to \Bo L$, is also extremally disconnected by Proposition~\ref{p:extrDiscPreserv}.
+     From the assumption, $\beta_L\colon L\to \Bo L$ is superdense, therefore there exists a frame homomorphism $f\colon \C\Bo(L)\to L$ such that $\beta_L f = \comp_{\Bo L}$.
+
+    From Lemma~\ref{p:denseProperties} we know $f$ is dense and from Proposition~\ref{p:denseReflectDeMorgan} we know that $L$ is De Morgan.
+\end{proof}
+
+\section{Uniformity and metrizability}
+\section{Non--metrizability of compactification}
+
+% \begin{lemma}
+%     For $L$ normal frame: $\sigma(x)\vee\sigma(x) = \sigma(x\vee y)$.
+% \end{lemma}
+

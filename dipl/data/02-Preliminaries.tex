@@ -107,7 +107,7 @@ As we see from the definition, the operation $x\to (-)$ is the right Galois adjo
 
 \begin{proposition*}
     Let $H$ be a Heyting algebra, then
-    $$ (\bigvee_i a_i)^* = \bigvee_i a_i^*$$
+    $$ (\bigvee_i a_i)^* = \bigwedge_i a_i^*$$
     holds whenever $\bigvee_i a_i$ exists.
 \end{proposition*}
 
@@ -393,14 +393,14 @@ One has an another useful characterisation of sublocales, let $L$ be a frame, a 
 
 Denote by $\Sl(L)$ the set of all sublocales of $L$. Then, $\Sl(L)$ ordered by inclusion is a co-frame (in other words, $\Sl(L)\op$ is a frame). The empty sublocale $\emptyFrm = \{1\}$ is the least sublocale and $L$ is the greatest.
 
-A sublocale is said to be \DEF{open}[ sublocale] resp. \DEF{closed}[ sublocale] if it is of the form
+\num A sublocale is said to be \DEF{open}[ sublocale] resp. \DEF{closed}[ sublocale] if it is of the form
 $$ \open(a) = \Set{ a\to x | x\in L}\quad\text{resp.}\quad \clos(c) = \upset a.$$
 
 \noindent The inspiration for this definition comes naturally from topological spaces. For a topological space $(X,\tau)$ and an open subset $O\in \tau$, we have the inclusion mapping
 $$ j\colon (O, \Set{U\in\tau | U\subseteq O})\to (X,\tau) $$
 and an onto frame homomorphisms $\Omega(j)\colon U\mapsto U\cap O$. Hence, we have the formula 
 $$ \Lc(j)\colon U\mapsto O\to U,$$
-for the associated localic embedding, the right adjoint to $\Omega(j)$. ``As one could expect'', $\clos(a)$ and $\open(a)$ are mutually complemented in $\Sl(L)$.
+for the associated localic embedding, the right adjoint to $\Omega(j)$. ``As one could expect'', $\clos(a)$ and $\open(a)$ are mutually complemented in $\Sl(L)$ ($\clos(a)\vee \open(a) = L$ and $\clos(a)\wedge \open(a) = \emptyFrm$).
 
 For a sublocale $S\subseteq L$, its \DEF{closure}[ of a sublocale], the least closed sublocale containing $S$, is given by the following formula
 $$ \closure S = \upset (\bigwedge S). $$

@@ -154,14 +154,14 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
 \end{center}
 
 \begin{proposition}
-    If $L$ is a completely regular frame, then $\R L$ is also completely regular.
+    $\R L$ is completely regular.
 \end{proposition}
 \begin{proof}
-    % $$
-    % I = \bigcup \Set{ \sigma(a) | a\in I} = \bigvee \Set{ \sigma(a) | a\in I} = \bigvee \Set{ \sigma(a) | a\crbelow b\in I}.
-    % $$
+    We will show that $\R L$ is regular, then it is also completely regular from Proposition~\ref{p:compRegIsCR} and from the fact that $\R L$ is compact. Given any $I\in \R L$,
+    $$I = \bigcup \Set{ \sigma(a) | a\in I} = \bigvee \Set{ \sigma(a) | a\in I} = \bigvee \Set{ \sigma(a) | a\crbelow b\in I}.$$
 
-    to be done
+    We know that $a\crbelow b$ implies $\sigma(a) \rbelow \sigma(b)$ and we also know that $b\in I$ implies $\sigma(b)\subseteq I$, hence
+    $$I \subseteq \bigvee \Set{ \sigma(a) | \sigma(a)\rbelow \sigma(b)\subseteq I} = \bigvee \Set{ \sigma(a) | \sigma(a)\rbelow I} \subseteq \bigvee \Set{ K | K\rbelow I}\subseteq I.\qedhere$$
 \end{proof}
 
 
