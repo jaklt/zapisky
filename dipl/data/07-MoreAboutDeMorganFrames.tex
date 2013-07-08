@@ -1,7 +1,10 @@
-\chapter{More about DeMorgan Frames}
+\chapter{More about De Morgan Frames}
+
+``This chapter is written for a reader which is a little more experienced in point--free topology than it was necessary in previous chapters. Especially the last theorems.''
 
 \section{Density and superdensity}
-Recall the definition of sublocale ...
+Recall the definition of sublocale, De Morgan = extremally disconnected, ...
+and the compactification coreflection from chapter III.
 
 \begin{lemma}\label{p:denseProperties}
     \begin{enumerate}
@@ -39,13 +42,22 @@ Recall the definition of sublocale ...
     \end{diagram}
 \end{definition}
 
-\begin{lemma}\label{p:compactificationFromInside}
-    Let $L$ be a completely regular frame and let $S$ be a sublocale of $\C L$ such that $L\subseteq S\subseteq \C L$. Then $\C S\cong \C L$.
+\begin{lemma}
+    Let $f$ be an onto frame homomorphism between completely regular frames, then $\C f$ is also onto.
 \end{lemma}
 \begin{proof}
-    We will translate the proposition to the language of frames and frame homomorphisms. For onto frame homomorphisms $i\colon S\to L$ and $j\colon \C \to S$ such that $ij$ equals to the compactification of $L$, to $\comp_L$, we will prove that $\C S\cong \C L$.
+    It immediately follows from the fact that $a\crbelow b$ implies $f(a)\crbelow f(b)$.
+\end{proof}
 
-    TODO
+\begin{proposition}\label{p:compactificationFromInside}
+    Let $L$ be a completely regular frame and let $S$ be a sublocale of $\C L$ such that $L\subseteq S\subseteq \C L$. Then $\C S\cong \C L$.
+\end{proposition}
+\begin{proof}
+    We will translate the proposition to the language of frames and frame homomorphisms. For onto frame homomorphisms $i\colon S\to L$ and $j\colon \C \to S$ such that $ij$ equals to $\comp_L$, the compactification of $L$, we will prove that $\C S\cong \C L$.
+
+    Because $\C$ is a functor, we have $\C i\cdot \C j = \C(\comp_L)$. From the fact that $\comp_L\colon \C L\to L$ is a coreflection, we get that $\C(\comp_L) = 1_{\C L}$ and $\C i$ is a monomorphism in $\Frm$. Hence, it is one-one.
+
+    From the previous Lemma, we know that $\C j$ is onto. A frame homomorphism which is both onto and one-one is an isomorphism.
 \end{proof}
 
 \begin{observation}\label{p:superdenseProperties}
@@ -55,6 +67,9 @@ Recall the definition of sublocale ...
         \item Let $L$ be a completely regular and $S$ its sublocale. $S$ is superdense in $L$ iff $S$ is superdense in $\C L$.
     \end{enumerate}
 \end{observation}
+\begin{proof}
+    1. and 2. are straightforward. For 3., the $\Rightarrow$ implication follows from 1. and the $\Leftarrow$ implication follows from 2.
+\end{proof}
 
 \begin{theorem}
     Let $L$ be a completely regular frame, then $L$ is De Morgan iff each dense sublocale $S\subseteq L$ is superdense.
@@ -63,12 +78,12 @@ Recall the definition of sublocale ...
     $\Rightarrow$:
     Given a dense sublocale $S$ of $L$ (witnessed by an onto frame homomorphism $i\colon L\to S$), a compact regular frame $M$ and a frame homomorphism $h\colon M\to S$. We know that $S$ is dense in $\C L$ from Lemma~\ref{p:denseProperties}, and $\Bo S = \Bo\C(L)$ from Lemma~\ref{p:denseProperties2}. From the Theorem~\ref{p:completePart2} for the complete part of Stone correspondence, we know that $\C L\cong \C\Bo\C(L)$.
 
-    Hence, $\Bo S = \Bo\C(L) \subseteq S \subseteq \C L\cong \C\Bo\C(L).$. By Lemma~\ref{p:compactificationFromInside} we have that $\C S\cong \C L$ and $S$ is superdense in $\C L$. Therefore, there exists a frame homomorphism $g\colon M\to \C L$ such that the following diagram commutes
+    Hence, $\Bo S = \Bo\C(L) \subseteq S \subseteq \C L\cong \C\Bo\C(L).$. By Proposition~\ref{p:compactificationFromInside} we have that $\C S\cong \C L$ and $S$ is superdense in $\C L$. Therefore, there exists a frame homomorphism $g\colon M\to \C L$ such that the following diagram commutes
     \begin{diagram}
         \C L\ar{r}{\comp_L} & L\ar{r}{i} & S\\
         M\ar{u}{g}\ar{urr}{h}
     \end{diagram}
-    Thus, $\comp_L g$ is the desired homomorphism to $L$. % TODO wording
+    Obviously, $\comp_L g$ is the desired homomorphism to $L$.
 
     $\Leftarrow$:
      We know that $\Bo L$ is extremally disconnected. Hence, its compactification, the $\comp_{\Bo L}\colon \C\Bo(L)\to \Bo L$, is also extremally disconnected by Proposition~\ref{p:extrDiscPreserv}.
@@ -77,10 +92,74 @@ Recall the definition of sublocale ...
     From Lemma~\ref{p:denseProperties} we know $f$ is dense and from Proposition~\ref{p:denseReflectDeMorgan} we know that $L$ is De Morgan.
 \end{proof}
 
-\section{Uniformity and metrizability}
 \section{Non--metrizability of compactification}
+
+\begin{lemma}
+    Let $L$ be a regular frame. Then, for each prime $p\in L$, $\clos(p) = \upset p = \{p,1\}$.
+\end{lemma}
+\begin{proof}
+    Given $q > p$. From regularity we know that there exists an $a\in L$ such that
+    $$ a\rbelow q\quad\text{and}\quad a\not\leq p. $$
+    From meet--irreducibility of $p$ and from $a\wedge a^* = 0$, we have $a^*\leq p$. Hence, $q = p\vee q \geq a^*\vee q = 1$.
+\end{proof}
+
+\begin{proposition}\label{p:spatialCompactifAndPrime}
+    Let $\C L$ be a spatial frame such that $\C L\not\cong L$. Then $\C L\cong \C(\open(a))$ for some prime $a\in \C L$.
+\end{proposition}
+\begin{proof}
+    If there is no prime $a\in\C L$ such that $L\subseteq \open(a)$, then $L\cap \clos(a)\neq \emptyFrm = \{1\}$. By the previous Lemma $\clos(a) = \{a,1\}$, hence $L$ contains all prime elements of $\C L$.
+
+    However, $\C L$ is spatial and each of its element is a meet of prime elements. Then we would obtain a contradiction $L\cong \C L$. Hence, $L\subseteq \open(a)\subseteq \C L$ for some prime $a$ and from Proposition~\ref{p:compactificationFromInside} we obtain that $\C L\cong \C(\open(a))$.
+\end{proof}
+
+\begin{definition}
+    A topological space $X$ is said to be \emph{metrizable} if there exists a \emph{distance function} $\rho\colon X\times X\to [0,\infty)$ such that, for all $x,y,z\in X$,
+    \begin{enumerate}[(M1)]
+        \item $\rho(x,y) = 0$ if and only if $x = y$,
+        \item $\rho(x,y) = \rho(y,x)$,
+        \item $\rho(x,z) \leq \rho(x,y) + \rho(y,z)$;
+    \end{enumerate}
+
+    \noindent and the set $\Set{ B_\rho(x,q) | x\in X, q\in \mathbb Q}$ generates the topology on $X$, where $B_\rho(x,q) = \Set{ y \in X | \rho(x,y) < q}$.
+\end{definition}
+
+\begin{theorem}
+    Let $K = \Omega(X)$ be a spatial compact regular frame with $X$ metrizable. Then $K\not\cong \C S$ for every sublocale $S\subsetneq K$.
+\end{theorem}
+\begin{proof}
+    Suppose $S\subsetneq K$ is a sublocale such that $\C S\cong K$. By Proposition~\ref{p:spatialCompactifAndPrime}, $\C(\clos(a))\cong K$ for some prime $a$ and $\clos(a) = X\setminus \{x\}$ for some $x\in X$.
+
+    We have,
+    \begin{align}
+        B_\rho(x, q)\cap (X\setminus \{x\}) \neq \emptyset,\quad\text{for all } q\in \mathbb{Q},\label{e:ballsIntersect}
+    \end{align}
+    where $\rho$ is the distance function on $X$. Otherwise, $X\setminus \{x\}$ would be a closed and compact subspace of $X$ and equal to $\C(X\setminus \{x\})$.
+
+    By~(\oldref{e:ballsIntersect}) it is sound to choose a sequence $(a_n)_{n=1}^\infty$ (using (CDC)) such that
+    \begin{align*}
+        a_1 &\in X\setminus \{x\},\text{ and} \\
+        a_{n+1} &\in B_\rho\left(x, \frac{\rho(x,a_n)}{2}\right)\cap (X\setminus \{x\}).
+    \end{align*}
+
+    % diameter set $\diam_\rho S = \sup \Set{\rho(x,y) | x,y\in X}.$
+    \noindent For $i = 1,2,\dots$, set $U_i = B_\rho(x,\rho(x,a_i)/2)\cap (X\setminus \{x\})$. Then $\closure{U}_{i+1}\subseteq U_i$ and $U_i\setminus \closure{U}_{i+1} \neq \emptyset$, for all $i$.
+    For a subspace $X_i = \closure{U}_{2i}\setminus U_{2i+3}$, set
+    $$ A_i = \closure{U}_{2i}\setminus U_{2i+1}\quad\text{and}\quad B_i = \closure{U}_{2i+2}\setminus U_{2i+3}. $$
+
+    \noindent $A_i$ and $B_i$ are disjoint closed subsets of $X_i$, therefore, from normality, there exists a continuous function $f_i$ such that
+    $$ f_i[A_i] = \begin{cases} 0 & \text{ if }i\text{ is odd} \\ 1 & \text{ if }i\text{ is even}\end{cases}
+       \quad\text{and}\quad
+       f_i[B_i] = \begin{cases} 1 & \text{ if }i\text{ is odd} \\ 0 & \text{ if }i\text{ is even}\end{cases}. $$
+
+    Set $X_0 = (X\setminus \{x\})\setminus U_2$. Observe that $X\setminus \{x\} = \bigcup_{i=0}^\infty X_i$, $X_i\cap X_j = \emptyset$ whenever $0<i<i+1<j$ and that $X_i\cap X_{i+1} = A_i = B_{i+1}$ for $i>0$.
+    And finally, set
+
+    $$ E = \bigcup_{i>0, \text{ odd}} A_i ~\cup \bigcup_{i>0, \text{ even}} B_i\quad\text{and}\quad F = \bigcup_{i>0, \text{ even}} A_i ~\cup \bigcup_{i>0, \text{ odd}} B_i. $$
+    We see that $E$ and $F$ are disjoint closed subsets of $X\setminus \{x\}$.
+
+    Define a constant function $f_0$ on $X_0$: $f_0(x) = 1$ for all $x\in X_0$, then $ f = \bigcup_{i=0}^{\infty} f_i $ is a function from $X\setminus \{x\}$ to $[0,1]$ separating $E$ and $F$. Since $[0,1]$ is compact, there exists an extension $\tilde f\colon X \to [0,1]$. However, the value of $f(x)$ should be equal to 0 ($B_\rho(x,q)$ intersects $E$ for every $q\in \mathbb Q$) and it should also be equal to 1 ($B_\rho(x,q)$ intersects $E$ for every $q\in \mathbb Q$). We obtained a contradiction, therefore, such $S\subsetneq K$ cannot exist.
+\end{proof}
 
 % \begin{lemma}
 %     For $L$ normal frame: $\sigma(x)\vee\sigma(x) = \sigma(x\vee y)$.
 % \end{lemma}
-

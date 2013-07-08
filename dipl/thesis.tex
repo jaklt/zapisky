@@ -6,6 +6,7 @@
 \usepackage[inline,shortlabels]{enumitem}
 \usepackage{a4wide}
 \usepackage{titlesec}
+\usepackage[titles]{tocloft}
 \usepackage{makeidx}
 \usepackage{tikz-cd}
 \usepackage{tikz}
@@ -20,6 +21,10 @@
 \tikzset{commutative diagrams/row    sep/normal=1.3cm}
 \tikzset{commutative diagrams/column sep/normal=1.3cm}
 \makeindex
+
+% Formating of Contents
+\renewcommand*\cftchapnumwidth{2.5em}
+\renewcommand*\cftsecnumwidth{2em}
 
 % Formating of theorems, lemmas, ...
 \titlelabel{\thetitle.\quad}
@@ -159,6 +164,7 @@
 \DeclareMathOperator{\Id}{Id}
 \DeclareMathOperator{\Lc}{Lc}
 \DeclareMathOperator{\Ult}{Ult}
+\DeclareMathOperator{\diam}{diam}
 
 % Function restriction
 % http://tex.stackexchange.com/questions/22252/how-to-typeset-function-restrictions
@@ -197,8 +203,7 @@
 \input{data/06-ConstructionOfR.tex}
 \input{data/07-MoreAboutDeMorganFrames.tex}
 
-\chapter{Conclusion}
-TODO or Further work?
+\chapter{Further work}
 
 
 \nocite{*}
@@ -206,6 +211,6 @@ TODO or Further work?
 \bibliography{refs.bib}
 
 \clearpage
-% \addcontentsline{toc}{chapter}{Index}
+\addcontentsline{toc}{chapter}{Index}
 \printindex
 \end{document}

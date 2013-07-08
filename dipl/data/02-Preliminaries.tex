@@ -164,14 +164,14 @@ Similarly, an ideal $I$ is called \DEF{prime ideal}, \DEF{completely prime ideal
 From the Proposition we see that the definition of a maximal filter and a prime filter coincide for Boolean algebras, hence we call such filter simply an \DEF{ultrafilter}.
 
 % TODO say something
-\num When we refer to Axiom of Choice, we usually refer to its equivalent form -- Zorn's Lemma:
+\num When we refer to \DEF{Axiom of Choice}, we usually refer to its equivalent form -- Zorn's Lemma:
 \begin{center}\em
-    \emph{(AC)}\quad Let $X$ be a non-empty partially ordered set such that every non-empty chain has an upper bound, then $X$ has at least one maximal element.
+    \DEF{(AC)}\quad Let $X$ be a non-empty partially ordered set such that every non-empty chain has an upper bound, then $X$ has at least one maximal element.
 \end{center}
 
-\noindent By Boolean Ultrafilter Theorem we mean the following choice principle
+\noindent By \DEF{Boolean Ultrafilter Theorem} we mean the following choice principle
 \begin{center}\em
-    \emph{(BUT)}\quad Let $B$ be a Boolean algebra and let $F$ be a filter of $B$, then there exists a prime filter $G$ extending $F$.
+    \DEF{(BUT)}\quad Let $B$ be a Boolean algebra and let $F$ be a filter of $B$, then there exists a prime filter $G$ extending $F$.
 \end{center}
 
 \noindent Which is equivalent to
@@ -179,9 +179,9 @@ From the Proposition we see that the definition of a maximal filter and a prime 
     \emph{(BUT')}\quad Let $B$ be a Boolean algebra and let $F$ and $I$ be a filter and ideal of $B$ such that $F\cap I = \emptyset$, then there exists a prime filter $G$ extending $F$ such that $G\cap I=\emptyset$.
 \end{center}
 
-\noindent Finally, the last choice principle we will need to know is Axiom of Countable Dependent Choice
+\noindent Finally, the last choice principle we will need to know is \DEF{Axiom of Countable Dependent Choice}
 \begin{center}\em
-    \emph{(ACC)}\quad Let $R$ be a binary relation on a set $X$ such that for every $a\in X$ there exists $b\in X$ satisfying $aRb$, then there exist a countable sequence $(a_i)_{i=1}^\infty$ such that $a_iRa_{i+1}$ for all $i=1,2,\dots$.
+    \DEF{(CDC)}\quad Let $R$ be a binary relation on a set $X$ such that for every $a\in X$ there exists $b\in X$ satisfying $aRb$, then there exist a countable sequence $(a_i)_{i=1}^\infty$ such that $a_iRa_{i+1}$ for all $i=1,2,\dots$.
 \end{center}
 
 Axiom of Choice is ``stronger'' than Boolean Ultrafilter Theorem or Axiom of Countable Dependent Choice, Axiom of Choice logically implies both of them.
@@ -206,7 +206,7 @@ To simplify the notation even more, we will write $f g$ instead of $f\cdot g$, $
 \begin{block*}{Examples}
     The most natural example of a category is the category $\categoryStyle{Set}$ of all sets, all maps between them and composition defined as map composition.
 
-    Another examples: the category \Bool{} of all Boolean algeras and all Boolean homomorphisms; an arbitrary partially ordered set $(X,\leq)$ is a category with the set $X$ as objects and one morphism between $x,y\in X$ whenever $x\leq y$ (composition holds thanks to transitivity of $\leq$).
+    Another examples: the category \DEF{\Bool} of all Boolean algeras and all Boolean homomorphisms; an arbitrary partially ordered set $(X,\leq)$ is a category with the set $X$ as objects and one morphism between $x,y\in X$ whenever $x\leq y$ (composition holds thanks to transitivity of $\leq$).
 
     Observe that the dual category of $(X,\leq)$ is precisely the category of the partially ordered set with the opposite order to $(X,\leq)$.
 \end{block*}
@@ -400,14 +400,21 @@ $$ \open(a) = \Set{ a\to x | x\in L}\quad\text{resp.}\quad \clos(c) = \upset a.$
 $$ j\colon (O, \Set{U\in\tau | U\subseteq O})\to (X,\tau) $$
 and an onto frame homomorphisms $\Omega(j)\colon U\mapsto U\cap O$. Hence, we have the formula 
 $$ \Lc(j)\colon U\mapsto O\to U,$$
-for the associated localic embedding, the right adjoint to $\Omega(j)$. ``As one could expect'', $\clos(a)$ and $\open(a)$ are mutually complemented in $\Sl(L)$ ($\clos(a)\vee \open(a) = L$ and $\clos(a)\wedge \open(a) = \emptyFrm$).
+for the associated localic embedding, the right adjoint to $\Omega(j)$. ``As one could expect'', $\clos(a)$ and $\open(a)$ are mutually complemented in $\Sl(L)$ ($\clos(a)\vee \open(a) = L$ and $\clos(a)\wedge \open(a) = \emptyFrm$). Moreover, we have
+    \begin{alignat*}{2}
+        \bigvee_i \open(a_i) &= \open(\bigvee_i a_i), &\open(a)\wedge\open(b) = \open(a\wedge b), \\
+        \bigwedge_i \clos(a_i) &= \clos(\bigvee_i a_i),\quad\text{and}\quad &\clos(a)\vee\clos(b) = \clos(a\wedge b).
+    \end{alignat*}
 
 For a sublocale $S\subseteq L$, its \DEF{closure}[ of a sublocale], the least closed sublocale containing $S$, is given by the following formula
 $$ \closure S = \upset (\bigwedge S). $$
 From that, we immediately see that a sublocale $S\subseteq L$ is \emph{dense} (that is, $\closure S = L$) iff $0_L\in S$.
 
-\begin{proposition*}
-    Preimage of closed (resp. open) sublocale under a localic map is again a closed (resp. open).
+The closure of sublocales satisfies the desired properties: $S\subseteq \closure S$, $\closure\emptyFrm = \emptyFrm$, $\closure{\closure S} = \closure S$ and $\closure S\vee \closure T = \closure{S\vee T}$.
+
+\begin{proposition*}\label{p:preimageOfSublocales}
+    Preimage of closed (resp. open) sublocale under a localic map $f$ is again a closed (resp. open). Moreover,
+    $$ f^{-1}[\clos(a)] = \clos(f^*(a))\quad\text{and}\quad f^{-1}[\open(a)] = \open(f^*(a)). $$
 \end{proposition*}
 
 \begin{block*}{Note}

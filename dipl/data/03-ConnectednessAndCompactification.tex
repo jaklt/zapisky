@@ -161,7 +161,7 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
     $$I = \bigcup \Set{ \sigma(a) | a\in I} = \bigvee \Set{ \sigma(a) | a\in I} = \bigvee \Set{ \sigma(a) | a\crbelow b\in I}.$$
 
     We know that $a\crbelow b$ implies $\sigma(a) \rbelow \sigma(b)$ and we also know that $b\in I$ implies $\sigma(b)\subseteq I$, hence
-    $$I \subseteq \bigvee \Set{ \sigma(a) | \sigma(a)\rbelow \sigma(b)\subseteq I} = \bigvee \Set{ \sigma(a) | \sigma(a)\rbelow I} \subseteq \bigvee \Set{ K | K\rbelow I}\subseteq I.\qedhere$$
+    $$I \subseteq \bigvee \Set{ \sigma(a) | \sigma(a)\rbelow \sigma(b)\subseteq I} \subseteq \bigvee \Set{ \sigma(a) | \sigma(a)\rbelow I} \subseteq \bigvee \Set{ K | K\rbelow I}\subseteq I.\qedhere$$
 \end{proof}
 
 
@@ -243,6 +243,11 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
     A topological space is \emph{compact} if the frame of its open sets is compact.
 \end{definition}
 
+\num As a consequence of Hofmann--Lawson's Duality~\cite{hofmann1978spectral} we obtain
+\begin{theorem}
+    Each regular compact frame is spatial.\ACP
+\end{theorem}
+
 
 \section{Properties of compactification with respect to disconnectedness}
 
@@ -262,18 +267,38 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
     Let $U = \open(a)$, for some $a$, then $\bigwedge (\open(a)\cap S) = \bigwedge \Set{ a\to s | s \in S } = a\to \bigwedge S$. And $\bigwedge S = 0$, since $S$ is dense in $L$ (and includes $0_L$). Hence $\closure{U\cap S}^L = \upset (\bigwedge (U\cap S)) = \upset(a\to 0) = \clos(a^*) = \closure{U}^L$.
 \end{proof}
 
+To simplify the notation, we will omit the superscript for the closure of in a sublocales compactification if there is no danger in confusion.
+
 \begin{lemma}\label{p:closureOfClopen}
     Let $L$ be a completely regular frame and let $M$ be a clopen sublocale of $L$, then the closure of $M$ in $\C L$, the $\closure{M}^{\C L}$, is also clopen.
 \end{lemma}
 \begin{proof}
-to be done
+    Let $N$ be the complement sublocale of $M$ in $L$. We have
+    $$ \closure M\vee \closure N = \closure {M\vee N} = \closure {\closure{M\vee N}^L} = \closure L = \C L. $$
+
+    Since $M$ and $N$ are complemented in $L$, there exists an onto localic map $f\colon L\to B_2$ such that
+    $$ f[M] \subseteq \upset a\quad\text{and}\quad f[N]\subseteq \upset b. $$
+
+    \noindent Where $a$ and $b$ are the two complemented elements of $B_2$ different from $0$ and $1$.
+    From Theorem~\ref{p:universalCompactification}, we know that there exists a localic map $\tilde f\colon \C L\to B_2$ such that $\restr{\tilde f}{M} = f$.
+    Since localic maps preserve meets, we know that $f[\closure M]\subseteq \closure{f[M]}$, hence
+    $$ \tilde f[\closure{M}] \subseteq \closure{\tilde f[M]} = \closure{f[M]} \subseteq \upset a\quad\text{and}\quad \tilde f[\closure{N}] \subseteq \upset b. $$
+
+    \noindent By the Proposition in~\ref{p:preimageOfSublocales},
+    $$ M \subseteq f^{-1}[\upset a] = \upset f^*(a) \quad\text{and}\quad N \subseteq f^{-1}[\upset b] = \upset f^*(b), $$
+    and therefore, for $m = \bigwedge M$ and $n = \bigwedge N$,
+    $$ m \geq f^*(a)\quad\text{and}\quad n \geq f^*(b).$$
+
+    \noindent Finally, from $m\vee n \geq f^*(a)\vee f^*(b) = f^*(a\vee b) = 1$, we have
+    $$ \closure{M}\wedge \closure{N} = \clos(m)\wedge \clos(n) = \clos(m\vee n) = \clos(1) = \emptyFrm. $$
+    Hence, $\closure{M}$ and $\closure{N}$ are mutually complemented sublocales of $\C L$.
 \end{proof}
 
 \begin{proposition}\label{p:extrDiscPreserv}
     Let $L$ be an extremally disconnected frame, then $\C L$ is also extremally disconnected.
 \end{proposition}
 \begin{proof}
-    To simplify the notation we will omit the superscript for the closure of a sublocale in $\C L$. Let $U$ be an open sublocale of $\C L$. Take $V = U\cap L$ open sublocale of $L$. We know that $\closure V^L = \closure{U\cap L}^L = \closure{U\cap L}\cap L = \closure U\cap L$ (the last equality follows from Lemma~\ref{p:closureIntersectedByDense}). From extremal disconnected, $\closure V^L$ is clopen in $L$ and, from Lemma~\ref{p:closureOfClopen}, $\closure{\closure V^L}$ is clopen in $\C L$. Then
+    Let $U$ be an open sublocale of $\C L$. Take $V = U\cap L$ open sublocale of $L$. We know that $\closure V^L = \closure{U\cap L}^L = \closure{U\cap L}\cap L = \closure U\cap L$ (the last equality follows from Lemma~\ref{p:closureIntersectedByDense}). From extremal disconnected, $\closure V^L$ is clopen in $L$ and, from Lemma~\ref{p:closureOfClopen}, $\closure{\closure V^L}$ is clopen in $\C L$. Then
 
     $$ \closure U = \closure{U\cap L} \subseteq \closure{\closure{V}^L} = \closure{\closure U\cap L} \subseteq \closure{\closure U} = \closure U.$$
 \end{proof}
