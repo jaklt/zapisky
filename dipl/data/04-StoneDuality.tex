@@ -65,7 +65,7 @@ and similarly $a^c\wedge b^c$ is complement of $a\vee b$.), one can see that $\B
     $\BcO\colon \StoneFrm \to \Bool$ is a functor.
 \end{observation}
 
-\num\label{p:BoolEquivalence} For a Boolean algebra $B$, define \DEFSYM{istar}{$i_B$}$\colon B \to \BcO\JO(B)$ as follows
+\num\label{p:BoolEquivalence}For a Boolean algebra $B$, define \DEFSYM{istar}{$i_B$}$\colon B \to \BcO\JO(B)$ as follows
     $$i_B\colon b \mapsto \downset b.$$
     The definition is sound by Lemma \ref{p:complIdeal} and $i_B$ is a Boolean homomorphism, indeed $\downset a \vee \downset b = \downset (a \vee b)$, $\downset a \wedge \downset b = \downset (a \wedge b)$, $\downset 1 = B$ respectively $\downset 0 = \{0\}$ is top respectively bottom of $\BcO\JO(B)$.
 
@@ -82,7 +82,7 @@ From Lemma \ref{p:complIdeal}, we also see, $i_B$ is an isomorphism and the foll
     The collection $i_*$ of Boolean homomorphisms forms a natural equivalence between $\BcO\JO$ and the identity functor on \Bool.
 \end{proposition*}
 
-\num\label{p:StoneFrmEquivalence} Similarly for a Stone frame $L$, we have a mapping \DEFSYM{vstar}{$v_L$}$\colon \JO\BcO(L) \to L$ defined as
+\num\label{p:StoneFrmEquivalence}Similarly for a Stone frame $L$, we have a mapping \DEFSYM{vstar}{$v_L$}$\colon \JO\BcO(L) \to L$ defined as
     $$v_L\colon I \mapsto \bigvee I,$$
     and a mapping in the opposite direction $\iota\colon L \to \JO\BcO(L)$:
     $$\iota\colon e \mapsto \downset e \cap \BcO L.$$
@@ -156,7 +156,7 @@ Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $
     $E$ is also an ultrafilter. For $a, b\in A$ such that $a\vee b \in E$, $f(a)\vee f(b) = f(a\vee b) \in F$ and so $f(a)$ or $f(b)$ is in $F$ and therefore $a$ or $b$ is in $E$.
 \end{proof}
 
-\num\label{p:SpMorphisms} Let $f\colon A \to B$ be a Boolean homomorphism, denote by $\Sp f\colon \Sp B \to \Sp A$ the map defined as
+\num\label{p:SpMorphisms}Let $f\colon A \to B$ be a Boolean homomorphism, denote by $\Sp f\colon \Sp B \to \Sp A$ the map defined as
     $$\Sp f\colon F \mapsto f^{-1}[F].$$
 
 \noindent From the previous Lemma, we see the definition is sound. We will show $\Sp f$ is also continuous. Take any $O_I \in \tau_B$, we have
