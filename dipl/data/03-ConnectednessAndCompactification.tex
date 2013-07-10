@@ -1,6 +1,7 @@
 \chapter{Connectedness and Compactification}
 
-Compactness, connectedness and variants of disconnectedness are commonly studied properties of topological spaces. In this chapter, we will prove some results which are well known from Set theoretical topology and we will prove them in the context of point--free topology.
+Compactness, connectedness and variants of disconnectedness are commonly studied properties of topological spaces.
+In this chapter, we will prove some well--known facts from Set theoretical topology in the context of point--free topology.
 
 \section{Connectedness and variants of disconnectedness}
 \begin{definition}
@@ -52,10 +53,8 @@ Compactness, connectedness and variants of disconnectedness are commonly studied
 
 \begin{definition}
     A frame satisfying conditions 1., 2.\ and 3.\ from the previous Lemma is called \DEF{extremally disconnected} or \DEF{De Morgan}.
-\end{definition}
 
-\begin{definition}
-    A frame $L$ is called \DEF{zero--dimensional} if it has basis consisting only of complemented elements.
+    A frame $L$ is said to be \DEF{zero--dimensional} if every element is a join of complemented elements.
 \end{definition}
 
 \begin{observation}
@@ -77,17 +76,18 @@ Compactness, connectedness and variants of disconnectedness are commonly studied
 
 \num Similarly for topological spaces, we say a topological space is \emph{connected}, \emph{disconnected}, \emph{zero--dimensional} or \emph{extremally disconnected} if the frame of its open sets is connected, disconnected, zero--dimensional or extremally disconnected.
 
+\newpage
 \section{Compactness and compactification}
 
 \begin{definition}
-    A frame $L$ is \DEF{compact} if for every subset $C \subseteq L$ such that $\bigvee C = 1$ there exists a finite $F \subseteq C$ such that $\bigvee F = 1$.
+    A frame $L$ is \DEF{compact} if for every \DEF{cover}, that is a subset $C \subseteq L$ such that $\bigvee C = 1$, there exists a finite subcover (a finite $F \subseteq C$ such that $\bigvee F = 1$).
 \end{definition}
 
 \begin{proposition}\label{p:compRegIsCR}
     If $L$ is a compact regular frame, then $L$ is completely regular.
 \end{proposition}
 \begin{proof}
-    It suffices to check that $L$ is normal. Then by~\ref{p:normalRegular}, $L$ is also completely regular. Let $a, b \in L$ and satisfy $a\vee b = 1$, then from regularity, we know that
+    It suffices to check that $L$ is normal. Then by the Proposition in \ref{p:normalRegular}, $L$ is also completely regular. Let $a, b \in L$ and let $a\vee b = 1$, then from regularity, we know that
     $$ a = \bigvee \Set{ x | x \rbelow a}\quad\text{and}\quad b = \bigvee \Set{ y | y \rbelow b}.$$
 
     Set $A = \Set{ x | x \rbelow a}$ and $B = \Set{ y | y \rbelow b}$. Since $\bigvee A \vee \bigvee B = 1$, by compactness, there exists a finite $F \subseteq A\cup B$, such that $\bigvee F = 1$. From~\ref{p:rbellowProperties}, $f_a = \bigvee (F\cap A) \rbelow a$ and $f_b = \bigvee (F\cap B) \rbelow b$. Further,
@@ -120,7 +120,7 @@ Compactness, connectedness and variants of disconnectedness are commonly studied
 \begin{definition}
     We say a frame homomorphism $f\colon L \to M$ is \DEF{dense}[ frame homomorphism] if $f(a) = 0$ implies $a = 0$.
 
-    We say a compact frame $K$ together with a frame homomorphism $c\colon K \to L$ is the \DEF[Cech--Stone compactification@]{(Čech--Stone) compactification} of a frame $L$ if $c$ is dense and for every dense frame homomorphism $d\colon K' \to L$, with $K'$ compact, there exists an unique frame homomorphism $\tilde d\colon K \to K$ such that the following diagram commutes
+    We say a compact frame $K$ together with a frame homomorphism $c\colon K \to L$ is the \DEF[Cech--Stone compactification@]{(Čech--Stone) compactification} of a frame $L$ if $c$ is dense and for every dense frame homomorphism $d\colon K' \to L$, with $K'$ compact regular, there exists an unique frame homomorphism $\tilde d\colon K \to K$ such that the following diagram commutes
     \begin{diagram}
         K\ar{r}{c}& L \\
         K'\ar[dashed]{u}{\tilde d} \ar{ur}{d} &
@@ -137,7 +137,7 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
 
     For two regular ideals $I_1, I_2\in \R L$, their set intersection is again a regular ideal. Indeed, take any $a \in I_1\cap I_2$, then $a\crbelow b_i$ for some $b_i \in I_i$ and $a\crbelow b_1 \wedge b_2\in I_1\cap I_2$ from~\ref{p:crbellowProperties}.
 
-    For any regular ideals $J$ and $I_i$ of $L$, for $i \in J$, from previous we know that $\bigvee_{i\in J} I_i$ is an ideal. We will show that it is a regular ideal. For $a \in \bigvee_{i\in J} I_i$, by~(\oldref{e:idealJoin}), there exists a finite $F \subseteq \bigcup_{i\in J} I_i$ such that $a = \bigvee F$. For every $f \in F$ there exists an $e_f \in I_j$, for some $j\in J$, such that $f \crbelow e_f$. But $\bigvee_{f\in F} e_f \in \bigvee_{i\in J} I_i$ and from~\ref{p:crbellowProperties}$, \bigvee F \crbelow \bigvee_{f\in F} e_f$.
+    For any regular ideals $J$ and $I_i$ of $L$, for $i \in J$, from previous we know that $\bigvee_{i\in J} I_i$ is an ideal. We will show that it is a regular ideal. For $a \in \bigvee_{i\in J} I_i$, by~(\oldref{e:idealJoin}), there exists a finite $F \subseteq \bigcup_{i\in J} I_i$ such that $a = \bigvee F$. For every $f \in F$ there exists an $e_f \in I_j$, for some $j\in J$, such that $f \crbelow e_f$. But $\bigvee_{f\in F} e_f \in \bigvee_{i\in J} I_i$ and, from~\ref{p:crbellowProperties}$, \bigvee F \crbelow \bigvee_{f\in F} e_f$.
 
     Hence, the set $\R L$ is a subframe of $\J L$. Consequently, $\R L$ is compact.
 
@@ -171,11 +171,11 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
     \noindent the following two mappings. On objects:
     $$\C(A) = \R A,$$
 
-    \noindent for every $A \in \CRegFrm$, and on morphisms:
+    \noindent for every completely regular frame $A$, and on morphisms:
     $$ (\C f)(I) = \downset f[I],$$
-    \noindent for every morphism $f\colon L \to M \in \CRegFrm$ and $I \in \R L$.
+    \noindent for every morphism frame homomorphism $f\colon L \to M$ and $I \in \R L$.
 
-    The set $f[I]$ is obviously closed under finite meets, hence $\downset f[I]$ is an ideal. From the fact that, $a\crbelow b$ implies $f(a)\crbelow f(b)$, we see that $\downset f[I]$ is a regular ideal. Now, we observe that
+    The set $f[I]$ is obviously closed under finite meets, hence $\downset f[I]$ is an ideal. From the fact that $a\crbelow b$ implies $f(a)\crbelow f(b)$, we see that $\downset f[I]$ is a regular ideal. Further, we observe that
 
     \begin{itemize}
         \item $\C f$ preserves joins:
@@ -202,8 +202,7 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
 \num For a completely regular frame $L$, define \DEFSYM{compactification}{$\comp_L$}$\colon \C L\to L$ as follows:
     $$\comp_L\colon I \mapsto \bigvee I.$$
 
-    And we see that
-
+    We see that
     \begin{align}
         \comp_L\sigma(a) = a\quad\text{and}\quad \sigma\comp_L(I) \subseteq I.\label{e:compactificationInequality}
     \end{align}
@@ -213,17 +212,17 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
     Consequently, $\comp_L$ is a frame homomorphism and $\sigma$ is a localic map. Observe that $\comp_L$ is also dense, $\bigvee I = 0$ implies $I = \{0\}$.
 
 
-\num We see that $\comp_*\colon \C{} \natto \Id$ is a natural transformation because the following diagram commutes
+\num We also see that $\comp_*\colon \C{} \natto \Id$ is a natural transformation because the following diagram commutes
 
 \begin{diagram}
     \C L\ar{r}{\comp_L}\ar{d}{\C f} & L\ar{d}{f} \\
     \C M\ar{r}{\comp_M}             & M
 \end{diagram}
 
-\noindent for any frame homomorphism $f\colon L\to M$ between completely regular frames (since $\comp_M(\C f)(I) = \bigvee (\downset f[I]) = \bigvee f[I] = f[\bigvee I] = f \comp_M(I)$).
+\noindent for any frame homomorphism $f\colon L\to M$ between completely regular frames (since $(\comp_M\cdot \C f)(I) = \bigvee (\downset f[I]) = \bigvee f[I] = f[\bigvee I] = f \comp_M(I)$).
 
 \begin{lemma}
-    If $L$ is a compact regular frame, then $\comp_L$ is an isomorphism and $L \cong \R L$.
+    If $L$ is a compact regular frame, then $\comp_L$ is an isomorphism and $L \cong \C L$.
 \end{lemma}
 \begin{proof}
     Let $I$ be a regular ideal of $L$. We already know that $\sigma\comp_L(I) \supseteq I$. For $x \in \sigma\comp_L(I)$, we have $x \crbelow \bigvee I$, hence $x^*\vee \bigvee I= 1$. By compactness of $L$, there exists a finite $F \subseteq I$ such that $x^*\vee \bigvee F = 1$. But $\bigvee F\in I$ and $x\crbelow \bigvee F$, hence $x$ belongs to $I$ and $\sigma\comp_L(I) \subseteq I$.
@@ -243,10 +242,12 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
     A topological space is \emph{compact} if the frame of its open sets is compact.
 \end{definition}
 
-\num As a consequence of Hofmann--Lawson's Duality~\cite{hofmann1978spectral} we obtain
-\begin{theorem}
-    Each regular compact frame is spatial.\ACP
-\end{theorem}
+\num As a consequence of Hofmann--Lawson's Duality~\cite{hofmann1978spectral} (which depends on the Axiom of Choice), we obtain
+\begin{theorem*}\label{p:HLDuality}
+    The category of compact regular frames is isomorphic to the dual of the category of compact regular spaces.
+
+    Specially, each regular compact frame is spatial.\ACP
+\end{theorem*}
 
 
 \section{Properties of compactification with respect to disconnectedness}
@@ -255,25 +256,25 @@ The following construction is due to Banaschewski and Mulvey~\cite{banaschewski1
     A completely regular frame is disconnected iff its Čech--Stone compactification is disconnected.
 \end{proposition}
 \begin{proof}
-    For a completely regular frame $L$, if $L$ is disconnected, then by~\ref{p:disconnectednessEquivalently} there exists an one-one frame homomorphism $f\colon B_2\to L$. From~\ref{p:universalCompactification} we know that there exists an extension, a frame homomorphism $\tilde f\colon B_2\to \C L$, such that $\comp_L \tilde f = f$. Since $f$ is one-one, $\tilde f$ is also one-one.
+    For a completely regular frame $L$, if $L$ is disconnected, then by~\ref{p:disconnectednessEquivalently} there exists an one-one frame homomorphism $f\colon B_2\to L$. From~\ref{p:universalCompactification}, we know that there exists an extension, a frame homomorphism $\tilde f\colon B_2\to \C L$, such that $\comp_L \tilde f = f$. Since $f$ is one-one, $\tilde f$ is also one-one.
 
     For converse, suppose $\C L$ is disconnected. There exists a non-trivial clopen sublocale $S$ of $\C L$; and $S\cap L$ is a non-trivial clopen sublocale of $L$.
 \end{proof}
 
+For the clarity of proofs, when there is no danger of confusion, we will write just $\closure{S}$ instead of $\closure{S}^{\C L}$ for the closure of a sublocale $S\subseteq \C L$, whereas we will write $\closure{S}^L$ for the closure of $S$ in $L$.
+
 \begin{lemma}\label{p:closureIntersectedByDense}
-    Let $S$ be a closed sublocale of $L$ and let $U\subseteq L$ be an open sublocale. Then $\closure{U\cap S}^L = \closure{U}^L$.
+    Let $S$ be a dense sublocale of $L$ and let $U\subseteq L$ be an open sublocale. Then $\closure{U\cap S}^L = \closure{U}^L$.
 \end{lemma}
 \begin{proof}
     Let $U = \open(a)$, for some $a$, then $\bigwedge (\open(a)\cap S) = \bigwedge \Set{ a\to s | s \in S } = a\to \bigwedge S$. And $\bigwedge S = 0$, since $S$ is dense in $L$ (and includes $0_L$). Hence $\closure{U\cap S}^L = \upset (\bigwedge (U\cap S)) = \upset(a\to 0) = \clos(a^*) = \closure{U}^L$.
 \end{proof}
 
-To simplify the notation, we will omit the superscript for the closure of in a sublocales compactification if there is no danger in confusion.
-
 \begin{lemma}\label{p:closureOfClopen}
-    Let $L$ be a completely regular frame and let $M$ be a clopen sublocale of $L$, then the closure of $M$ in $\C L$, the $\closure{M}^{\C L}$, is also clopen.
+    Let $L$ be a completely regular frame and let $M$ be a clopen sublocale of $L$, then the closure of $M$ in $\C L$ is also clopen.
 \end{lemma}
 \begin{proof}
-    Let $N$ be the complement sublocale of $M$ in $L$. We have
+    Let $N$ be the complement sublocale of $M$ in $L$. $L$ is dense in $\C L$, hence we have
     $$ \closure M\vee \closure N = \closure {M\vee N} = \closure {\closure{M\vee N}^L} = \closure L = \C L. $$
 
     Since $M$ and $N$ are complemented in $L$, there exists an onto localic map $f\colon L\to B_2$ such that
@@ -285,7 +286,7 @@ To simplify the notation, we will omit the superscript for the closure of in a s
     $$ \tilde f[\closure{M}] \subseteq \closure{\tilde f[M]} = \closure{f[M]} \subseteq \upset a\quad\text{and}\quad \tilde f[\closure{N}] \subseteq \upset b. $$
 
     \noindent By the Proposition in~\ref{p:preimageOfSublocales},
-    $$ M \subseteq f^{-1}[\upset a] = \upset f^*(a) \quad\text{and}\quad N \subseteq f^{-1}[\upset b] = \upset f^*(b), $$
+    $$ \closure M \subseteq f^{-1}[\upset a] = \upset f^*(a) \quad\text{and}\quad \closure N \subseteq f^{-1}[\upset b] = \upset f^*(b), $$
     and therefore, for $m = \bigwedge M$ and $n = \bigwedge N$,
     $$ m \geq f^*(a)\quad\text{and}\quad n \geq f^*(b).$$
 
@@ -298,7 +299,7 @@ To simplify the notation, we will omit the superscript for the closure of in a s
     Let $L$ be an extremally disconnected frame, then $\C L$ is also extremally disconnected.
 \end{proposition}
 \begin{proof}
-    Let $U$ be an open sublocale of $\C L$. Take $V = U\cap L$ open sublocale of $L$. We know that $\closure V^L = \closure{U\cap L}^L = \closure{U\cap L}\cap L = \closure U\cap L$ (the last equality follows from Lemma~\ref{p:closureIntersectedByDense}). From extremal disconnected, $\closure V^L$ is clopen in $L$ and, from Lemma~\ref{p:closureOfClopen}, $\closure{\closure V^L}$ is clopen in $\C L$. Then
+    Let $U$ be an open sublocale of $\C L$. Take $V = U\cap L$ an open sublocale of $L$. We know that $\closure V^L = \closure{U\cap L}^L = \closure{U\cap L}\cap L = \closure U\cap L$ (the last equality follows from Lemma~\ref{p:closureIntersectedByDense}). From extremal disconnected, $\closure V^L$ is clopen in $L$ and, from Lemma~\ref{p:closureOfClopen}, $\closure{\closure V^L}$ is clopen in $\C L$. Then
 
     $$ \closure U = \closure{U\cap L} \subseteq \closure{\closure{V}^L} = \closure{\closure U\cap L} \subseteq \closure{\closure U} = \closure U.$$
 \end{proof}

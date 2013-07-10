@@ -1,10 +1,10 @@
 \chapter{Stone duality}
 
-In 1936 Marshall Stone published paper called ``The Theory of Representations of Boolean Algebras''~\cite{??}, describing a duality of two categories the category of Boolean algebras and Boolean homomorphisms and the category of compact, Hausdorff, zero--dimensional topological spaces and continuous maps; at that time, not in the language of Category Theory.
+In 1936 Marshall Stone published a paper called ``The Theory of Representations of Boolean Algebras''~\cite{stone1936theory}, describing a duality of two categories the category of Boolean algebras and Boolean homomorphisms and the category of compact, Hausdorff, zero--dimensional topological spaces and continuous maps; at that time, not in the language of Category Theory.
 
-The word ``duality'' means that one category is isomorphic to the dual of the other category, or in other words, the isomorphism of categories is captured by a contravariant functor.
+The word ``duality'' means that one category is isomorphic to the dual of the other category, or in other words, the isomorphism of categories is captured by a contravariant functors.
 
-The duality at that time was a big surprise because it has shown similarities between a objects with nice algebraic structure with, another mathematical objects witch was thought to have no algebraic structure at all, topological spaces.
+The duality at that time was a big surprise because it has shown similarities between a objects with nice algebraic structure, the Boolean algebras, with, another mathematical objects witch was thought to have no algebraic structure at all, topological spaces.
 
 In this chapter, we will first discuss the Stone duality in the point--free context. Since the adjunction between topological spaces and frames is contravariant, the whole construction will be covariant, hence the name Stone correspondence. In the second part, we will prove the standard Stone duality for topological spaces.
 
@@ -40,7 +40,7 @@ In this chapter, we will first discuss the Stone duality in the point--free cont
     $\JO B$ is a compact frame by~\ref{p:frameOfIdeals}. Lemma~\ref{p:complIdeal} implies that $\downset a$ is complemented and $\downset a \rbelow \downset a$ for all $a \in B$. Thus for any ideal $I \in \JO B$, we obtain
     $$ I = \bigvee \Set{ \downset a | a \in I } = \bigvee \Set{ \downset a | \downset a \rbelow I } \subseteq \bigvee \Set{ J | J \rbelow I } \subseteq I.$$
 
-\noindent Hence, $\JO B$ is zero--dimensional. If $f$ is a Boolean homomorphism, then for precisely the same reason as in~\ref{p:compactificationFunctor} is $\JO f$ a frame homomorphism.
+\noindent Hence, $\JO B$ is zero--dimensional. If $f$ is a Boolean homomorphism, then $\JO f$ is a frame homomorphism (for the same reason the $\C f$ is in \ref{p:compactificationFunctor}).
 \end{proof}
 
 \begin{definition}
@@ -58,7 +58,7 @@ From the fact that a homomorphic image of a complemented element is a complement
             &= ((a\wedge b)\wedge a^c)\vee ((a\wedge b)\wedge b^c)
             = 0 \vee 0 = 0;
     \end{align*}
-and similarly $a^c\wedge b^c$ is complement of $a\vee b$.), one can see that $\BcO f$ is well--defined Boolean homomorphism.
+and similarly $a^c\wedge b^c$ is complement of $a\vee b$.), one can see that $\BcO L$ is a Boolean algebra and $\BcO f$ is well--defined Boolean homomorphism.
 
 % TODO some comment's before this statement
 \begin{observation}
@@ -67,9 +67,9 @@ and similarly $a^c\wedge b^c$ is complement of $a\vee b$.), one can see that $\B
 
 \num\label{p:BoolEquivalence}For a Boolean algebra $B$, define \DEFSYM{istar}{$i_B$}$\colon B \to \BcO\JO(B)$ as follows
     $$i_B\colon b \mapsto \downset b.$$
-    The definition is sound by Lemma \ref{p:complIdeal} and $i_B$ is a Boolean homomorphism, indeed $\downset a \vee \downset b = \downset (a \vee b)$, $\downset a \wedge \downset b = \downset (a \wedge b)$, $\downset 1 = B$ respectively $\downset 0 = \{0\}$ is top respectively bottom of $\BcO\JO(B)$.
+    The definition is sound by Lemma \ref{p:complIdeal} and $i_B$ is a Boolean homomorphism, indeed $\downset a \vee \downset b = \downset (a \vee b)$, $\downset a \wedge \downset b = \downset (a \wedge b)$, and $\downset 1 = B$ respectively $\downset 0 = \{0\}$ is top respectively bottom of $\BcO\JO(B)$.
 
-From Lemma \ref{p:complIdeal}, we also see, $i_B$ is an isomorphism and the following diagram commutes
+From Lemma \ref{p:complIdeal}, we also see that $i_B$ is an isomorphism and the following diagram commutes
 
 \begin{diagram}
     A \ar{r}{i_A} \ar{d}[swap]{f} & \BcO\JO(A) \ar{d}{\BcO\JO(f)}\\
@@ -82,32 +82,32 @@ From Lemma \ref{p:complIdeal}, we also see, $i_B$ is an isomorphism and the foll
     The collection $i_*$ of Boolean homomorphisms forms a natural equivalence between $\BcO\JO$ and the identity functor on \Bool.
 \end{proposition*}
 
-\num\label{p:StoneFrmEquivalence}Similarly for a Stone frame $L$, we have a mapping \DEFSYM{vstar}{$v_L$}$\colon \JO\BcO(L) \to L$ defined as
+\num\label{p:StoneFrmEquivalence}Similarly, for a Stone frame $L$, we have a mapping \DEFSYM{vstar}{$v_L$}$\colon \JO\BcO(L) \to L$ defined as
     $$v_L\colon I \mapsto \bigvee I,$$
     and a mapping in the opposite direction $\iota\colon L \to \JO\BcO(L)$:
     $$\iota\colon e \mapsto \downset e \cap \BcO L.$$
 
 We can see that both $v_L$ and $\iota$ are monotone maps, $v_L \iota = \id_L$ (by zero--dimensionality of $L$) and $\id_{\JO\BcO(L)} \subseteq \iota v_L$, therefore $v_L$ is the left Galois adjoint to $\iota$, hence $v_L$ preserves all suprema.
-Since $\bigvee I_1 \wedge \bigvee I_2 = \bigvee \Set{a_1 \wedge a_2 | a_i \in I_i} \leq \bigvee \Set{ a | a \in I_1 \cap I_2 } = \bigvee (I_1 \cap I_2) \leq \bigvee I_1 \wedge \bigvee I_2$, $v_L$ also preserves finite infima which makes it a frame homomorphism.
+Since $\bigvee I_1 \wedge \bigvee I_2 = \bigvee \Set{a_1 \wedge a_2 | a_i \in I_i} \leq \bigvee \Set{ a | a \in I_1 \cap I_2 } = \bigvee (I_1 \cap I_2) \leq \bigvee I_1 \wedge \bigvee I_2$, $v_L$ also preserves finite infima which makes $v_L$ a frame homomorphism.
 
 Finally, $\id_{\JO\BcO(L)} = \iota v_L$: take any $x \in \iota v_L(I)$. From the definitions we immediately see $x \leq \bigvee I$ and $x$ is complemented in $L$. By the fact that
     $$1 = x \vee x^c \leq \bigvee I \vee x^c$$
     and by compactness of $L$ there is a finite $F \subseteq I$ such that $\bigvee F \vee x^c = 1$. Since $x = 1 \wedge x = (\bigvee F \vee x^c) \wedge x = (\bigvee F \wedge x) \vee (x^c \wedge x) = \bigvee F \wedge x$ we get that $x \leq \bigvee F$ and therefore $x \in I$.
 
-Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $\JO\BcO(L)$, also by direct computation, for any homomorphism of Stone frames $f\colon L \to M$, the following diagram commutes
+From previous observations, we know that $v_L$ is an isomorphism of $L$ and $\JO\BcO(L)$, also by direct computation, for any homomorphism of Stone frames $f\colon L \to M$, the following diagram commutes
 
 \begin{diagram}
     \JO\BcO(L) \ar{d}[swap]{\JO\BcO(f)} \ar{r}{v_L} & L \ar{d}{f} \\
     \JO\BcO(M) \ar{r}{v_M}    & M
 \end{diagram}
 
-\noindent (for any $I\in \JO\BcO(L)$, $v_M\,\JO\BcO(f) (I) = \bigvee (\downset f[I]) = \bigvee f[I] = f(\bigvee I) = f\,v_L (I)$). Again, as conclusion of previous paragraphs we obtain
+\noindent (for any $I\in \JO\BcO(L)$, $(v_M\cdot\JO\BcO(f)) (I) = \bigvee (\downset f[I]) = \bigvee f[I] = f(\bigvee I) = f\,v_L (I)$). Again, as conclusion of previous paragraphs we obtain
 
 \begin{proposition*}
     The collection $v_*$ of frame homomorphisms is a natural equivalence between $\JO\BcO$ and the identity functor on \StoneFrm.
 \end{proposition*}
 
-\num Using previous facts we get the main result of this section.
+\num Using previous facts we obtain the main result of this section.
 
 \begin{theorem*}\label{p:stonefrmBoolIso}
     Functor \BcO{} is the right adjoint to the functor \JO{} with $i_*$ as unit of adjunction and $v_*$ as counit. Moreover, \BcO{} and \JO{} constitute an isomorphism of categories \StoneFrm{} and \Bool.
@@ -115,18 +115,24 @@ Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $
 
 \section{Stone duality for \StoneSp}
 
+The classical spatial version of Stone duality follows simply from the Stone correspondence between Stone frames and Boolean algebras from previous section. We have the duality between the category of compact zero--dimensional frames and the category compact zero--dimensional spaces (restricted Hofmann--Lawson's Duality, Theorem~\ref{p:HLDuality}).
+
+However the Hofmann--Lawson's Duality depends on the Axiom of Choice. In this section we will prove the Stone duality by assuming only the Boolean Ultrafilter Theorem.
+
 \num Similarly to frames:
 \begin{definition*}
     We say a topological space is \DEF{Stone space} if it is compact, Hausdorff and zero--dimensional.
+
+    By \DEF{\StoneSp{}} denote the category of Stone spaces and continuous mappings.
 \end{definition*}
 
 \num Let $B$ be a Boolean algebra, define
     $$
-    X_B  = \Set{F \subseteq B | F \text{ is an ultrafilter on } B}
+    X_B  = \Set{F \subseteq B | F \text{ is an ultrafilter of } B}
     \quad\text{ and }\quad
     \tau_B = \Set{ O_I | I \in \JO B},
     $$
-\noindent where \DEFSYM{OI}{$O_I$} is the set $\Set{ F \text{ ultrafilter} | F \cap I \neq \emptyset }$. Now, $(X_B, \tau_B)$ is a topological space:
+\noindent where \DEFSYM{OI}{$O_I$} is the set $\Set{ F \in X_B | F \cap I \neq \emptyset }$. The pair $(X_B, \tau_B)$ is a topological space:
 
 \begin{enumerate}[label=(T\arabic*)]
     \item $\tau_B$ contains $\emptyset = O_{\downset 0}$ and $X_B = O_{\downset 1}$.
@@ -142,16 +148,16 @@ Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $
     Let $B$ be a Boolean algebra, then $\Sp B$ is a Stone space.
 \end{lemma}
 \begin{proof}
-    Compactness follows directly from compactness of $\JO B$. Notice, complemented elements are of the form $O_{\downset a}$ for some $a\in B$: $O_{\downset a}\cup O_{\downset a^c} = O_{\downset (a\vee a^c)} = X_B$ and $O_{\downset a}\cap O_{\downset a^c} = O_{\downset (a\wedge a^c)} = \emptyset$. Since every open set is an union of sets of the form $O_{\downset a}$, the $X_B$ is zero--dimensional.
+    Compactness follows directly from compactness of $\JO B$. Notice, complemented elements are of the form $O_{\downset a}$ for some $a\in B$: $O_{\downset a}\cup O_{\downset a^c} = O_{\downset (a\vee a^c)} = X_B$ and $O_{\downset a}\cap O_{\downset a^c} = O_{\downset (a\wedge a^c)} = \emptyset$. Since every open set is an union of sets of the form $O_{\downset a}$, the $\Sp B$ is zero--dimensional.
 
-    To show that $X_B$ is also Hausdorff, take any ultrafilters $E \neq F$. Without any loss of generality there is some $e \in E \setminus F$. We have $e\vee e^c = 1$, since $F$ is an ultrafilter we have $e^c \in F$. We also have $e\wedge e^c = 0$ and so $O_{\downset e}$ and $O_{\downset e^c}$ separates $E$ and $F$.
+    To show that $\Sp B$ is also Hausdorff, take any ultrafilters $E \neq F$. Without any loss of generality there is some $e \in E \setminus F$. We have $e\vee e^c = 1$, since $F$ is an ultrafilter we have $e^c \in F$. We also have $e\wedge e^c = 0$ and so $O_{\downset e}$ and $O_{\downset e^c}$ separates $E$ and $F$.
 \end{proof}
 
 \begin{lemma}
     Let $f\colon A \to B$ be a Boolean homomorphism and let $F$ be an ultrafilter of $B$. Then $f^{-1}[F]$ is an ultrafilter of $A$.
 \end{lemma}
 \begin{proof}
-    Set $E = f^{-1}[F]$. Firstly, we will show $E$ is a filter. Trivially, $1 \in E$ and $0 \not\in E$. For $x, y \in E$, there are $x', y' \in F$ such that $x' = f(x)$ and $y' = f(y)$. Hence $x'\wedge y' = f(x) \wedge f(y) = f(x\wedge y)$ and $x\wedge y \in E$. For the upwards closeness, take any $x \in E$ and $y \geq x$. $y \in E$ as $f(y) \geq f(x) \in F$.
+    Set $E = f^{-1}[F]$. Firstly, we will show that $E$ is a filter. Trivially, $1 \in E$ and $0 \not\in E$. For $x, y \in E$, there are $x', y' \in F$ such that $x' = f(x)$ and $y' = f(y)$. Hence $x'\wedge y' = f(x) \wedge f(y) = f(x\wedge y)$ and $x\wedge y \in E$. For the upwards closeness, take any $x \in E$ and $y \geq x$. $y \in E$ as $f(y) \geq f(x) \in F$.
 
     $E$ is also an ultrafilter. For $a, b\in A$ such that $a\vee b \in E$, $f(a)\vee f(b) = f(a\vee b) \in F$ and so $f(a)$ or $f(b)$ is in $F$ and therefore $a$ or $b$ is in $E$.
 \end{proof}
@@ -159,7 +165,7 @@ Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $
 \num\label{p:SpMorphisms}Let $f\colon A \to B$ be a Boolean homomorphism, denote by $\Sp f\colon \Sp B \to \Sp A$ the map defined as
     $$\Sp f\colon F \mapsto f^{-1}[F].$$
 
-\noindent From the previous Lemma, we see the definition is sound. We will show $\Sp f$ is also continuous. Take any $O_I \in \tau_B$, we have
+\noindent From the previous Lemma, we see the definition is sound. We will show that $\Sp f$ is also continuous. Take any $O_I \in \tau_B$, we have
 \begin{align*}
     (\Sp f)^{-1}[O_I] &= \Set{ (\Sp f)^{-1}(F) | F \cap I \neq \emptyset } \\
                       &= \Set{ E | \exists F \subseteq B \text{ ultrafilter, } (\Sp f)(E)=F, \text{ and } F \cap I \neq \emptyset } \\
@@ -188,11 +194,11 @@ Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $
     The collection of morphisms $\pi_B\colon \JO B \to \Omega\Sp(B)$ defined $I \mapsto O_I$, for $B \in \Bool$, constitutes a natural equivalence $\JO \cong \Omega\circ\Sp$.\ACP
 \end{proposition}
 \begin{proof}
-    From the definition of $\Sp B$, we can see $\pi_B$ is an onto frame homomorphism.
+    From the definition of $\Sp B$, we can see that $\pi_B$ is an onto frame homomorphism.
 
     Take any $I \neq J$, $I,J \in \JO B$. Without lost of generality take $e \in I \setminus J$. Now the filter $\upset e$ is disjoint with the ideal $J$ and by Boolean Ultrafilter Theorem there exists an ultrafilter $U \supseteq \upset e$ disjoint with $J$. Also $U \cap I$ is not empty, it contains $e$, and therefore $O_I \neq O_J$.
 
-    To prove naturalness of $\pi_*$, the following diagram commutes
+    The naturalness of $\pi_*$ follows from the commutativity of the following diagram
 
     \begin{diagram}
         \JO A \ar{r}{\pi_A} \ar{d}[swap]{\JO f} & \Omega\Sp(A) \ar{d}{\Omega\Sp(f)}\\
@@ -216,7 +222,7 @@ Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $
     The collection of morphisms $\rho_X\colon X \to \Sp\BcO\Omega(X)$ defined $x \mapsto F_x = \Set{U\text{ clopen} | x\in U }$, for $X \in \StoneSp$, constitutes a natural equivalence $\Id_\StoneSp \cong \Sp\circ\BcO\circ\Omega$.
 \end{proposition}
 \begin{proof}
-    We will show $\rho_X$ is a homeomorphism.
+    We will show that $\rho_X$ is a homeomorphism.
     \begin{itemize}
         \item $\rho_X$ is one--one: For two points $x_1 \neq x_2$ of $X$, from Hausdorff property there are $U_1, U_2$ such that $U_1\cap U_2 = \emptyset$ and $x_i\in U_i$. From zero--dimensionality of $X$ there are two clopen subsets $M_1 \subseteq U_1, M_2 \subseteq U_2$, and $x_i \in M_i$. Hence $F_{x_1} \neq F_{x_2}$.
 
@@ -224,10 +230,10 @@ Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $
 
         And so $F \subseteq F_x$. But $F$ is an ultrafilter, maximal filter, and therefore $F = F_x$.
 
-        \item $\rho_X$ and $\rho_X^{-1}$ are continuous: From previous ($\bullet$), we know that each ultrafilter of $X$ is of the form $F_x$, for some $x$. Hence,
+        \item $\rho_X$ and $\rho_X^{-1}$ are continuous: From previous ($\bullet$), we know that each ultrafilter of $X$ is of the form $F_x$, for some $x$. Hence
         \begin{align*}
             \rho_X^{-1}[O_I] &= \Set{ \rho_X^{-1}(F_x) = x | F_x \cap I \neq \emptyset}
-                = \Set{ x | x \in M \in I } = \bigcup I \in \tau_X \\
+                = \Set{ x | x \in M \in I } = \bigcup I \in \tau_X, \text{ and}\\
             \rho_X[O] &= \Set{ F_x | x \in M \subseteq O, M \text{ is clopen}} \\
                       &= \Set{ F | F \cap (\downset O \cap \BcO\Omega(X)) \neq \emptyset} = O_{\downset O \cap \BcO\Omega(X)} \in \tau_{\Sp\BcO\Omega(X)}.
         \end{align*}
@@ -253,18 +259,20 @@ Previous observations give us the fact that $v_L$ is an isomorphism of $L$ and $
     Functors $\Omega\circ\BcO$ and \Sp{} are mutually inverse. Specially categories \Bool{} and $\StoneSp^{\text{op}}$ are isomorphic.\ACP
 \end{theorem*}
 
-\num As in the previous section, we obtained an isomorphism of categories. The functors creating this adjunction are contravariant, thus we got instead of correspondence between categories, the duality of two categories. However we can make the correspondence from previous section to duality simply using the duality between the category of frames and the category of locales (by taking Galois adjoints of all frame homomorphisms).
+\num Similarly to the previous section, we obtained an isomorphism of categories. However, the adjoint functors of this isomorphism are contravariant, thus we obtained a duality of two categories instead of a correspondence.
+
+Note that we can make the correspondence, from the previous section, into duality simply by the duality between the category of frames and the category of locales.
 
 \section{Notes on constructivity}
 
-One can check, the whole correspondence between Stone frames and Boolean algebras is given constructively. Therefore, the necessity of a choice principle needed in classical Stone duality between Stone spaces and Boolean algebras is only to show that spaces constructed from Boolean algebras have enough points.
+One can check, the whole correspondence between Stone frames and Boolean algebras is given constructively. Therefore, the necessity of a choice principle needed in classical Stone duality between Stone spaces and Boolean algebras is necessary only to show that spaces constructed from Boolean algebras have enough points.
 
 Analogously, in the previous chapter we described the compactification of completely regular frames. The proof is constructive and its counterpart for topological spaces is equivalent to Boolean Ultrafilter Theorem~\cite{??}.
 
 To be more precise, in the proof of the compactification we used the fact that compact regular frames are completely regular (Proposition~\ref{p:compRegIsCR}).
 We construct an interpolative relation $\crbelow$ using the Axiom of Countable Dependent Choice (CDC). By Banaschewski and Pultr~\cite{banaschewski2002constructive}, we can avoid using CDC at all by working with strongly regular frames instead of completely regular. The whole construction can then be made constructive, even in the sense of Topos Theory.
 
-Strongly regular frames are frames, in which for every element $x$ the following holds
+Strongly regular frames are frames in which, for every element $x$, the following equation holds
 $$ x = \bigvee \Set{ y | y\;(\rbelow)_o\;x }, $$
 
 \noindent where $(\rbelow)_o$ is the largest interpolative relation contained in $\rbelow$. Such a relation can be constructed as the union of all interpolative relations contained in $\rbelow$. Moreover, under CDC, complete regularity is precisely the same as strong regularity~\cite{banaschewski2002constructive}.

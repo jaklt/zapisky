@@ -75,9 +75,9 @@ The whole (point-free) situation is depicted in the diagram below.
 \end{tikzpicture}
 \end{center}
 
-Where the symbol $\subseteq^{\text{obj}}$ denotes inclusion of objects of one category to another. New categories in the diagram: \categoryStyle{CBool} denotes the category of complete Boolean algebras and \emph{all} Boolean homomorphisms. The category \categoryStyle{KDMRFrm} is the category of all extremally disconnected Stone spaces, or in other words all compact De Morgan regular frames, and \emph{all} frame homomorphisms. \categoryStyle{RegKFrm} denotes the category of compact regular frames, \categoryStyle{CRegFrm} the category of completely regular frames.
+Where the symbol $\subseteq^{\text{obj}}$ denotes an inclusion of objects of one category to another. (New categories in the diagram: \categoryStyle{CBool} denotes the category of complete Boolean algebras and \emph{all} Boolean homomorphisms. The category \categoryStyle{KDMRFrm} is the category of all extremally disconnected Stone spaces, or in other words all compact De Morgan regular frames, and \emph{all} frame homomorphisms. \categoryStyle{RegKFrm} denotes the category of compact regular frames, \categoryStyle{CRegFrm} the category of completely regular frames.)
 
-In the diagram, Stone duality is drawn in the area surrounded by the dotted rectangle and the compactification is drawn in the area surrounded by the dashed curve. As we know from the discussion above, the construction on objects is exactly the same for both marked parts of the diagram. However, the Stone correspondence is an isomorphism of categories, whereas the compactification is just a coreflection (of completely regular frames onto compact regular frames).
+In the diagram, Stone duality is drawn in the area surrounded by the dotted rectangle and the compactification is drawn in the area surrounded by the dashed curve. As we know from the discussion above, the construction on objects is exactly the same for both marked parts of the diagram. However, the Stone correspondence is an isomorphism of categories, whereas the compactification is just a coreflection.
 
 Taking the frame of all regular ideals of a bounded pseudocomplemented lattice is a general construction of compact frames. A natural question arises: Is it possible to extend the category \ComplBool{} to a wider subcategory of \categoryStyle{DMRFrm} and again obtain an isomorphism of categories witnessed by \R{}? From the following diagram we can see why it is not possible.
 
@@ -103,13 +103,13 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
 \end{definition}
 
 \begin{proposition}
-    Let $H$ be a Heyting meet--semilattice, then $\Bo H$, with joins and meets defined
+    Let $H$ be a Heyting algebra, then $\Bo H$, with joins and meets defined
     $$ a \sqcup b = (a^* \wedge b^*)^* \quad\text{and}\quad a\sqcap b = a \wedge b,$$
 
     \noindent is a Boolean algebra.
 \end{proposition}
 \begin{proof}
-    First, we will show that the operations $\sqcap$ and $\sqcup$ really are the meet and join for $\Bo H$. Let $a,b,c \in \Bo H$:
+    First, we will show that the operations $\sqcap$ and $\sqcup$ are really the meet and the join on $\Bo H$. Let $a,b,c \in \Bo H$:
 
     \begin{itemize}
         \item From~\ref{p:pseudcomplProperties}, $a\sqcap b = a^{**}\wedge b^{**} = (a\wedge b)^{**} \in \Bo H$.
@@ -122,7 +122,7 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
 \num\label{p:propertiesBooleanization}Let $L$ be a frame, the mapping defined as $a \mapsto a^{**}$ is a nucleus:
     \begin{enumerate}[label=(N\arabic*)]
         \item $a \leq a^{**}$: it is a standard inequality (from \ref{p:pseudcomplProperties});
-        \item $(a \leq b \implies a^{**} \leq b^{**})$: holds, since taking pseudocomplements is antitone;
+        \item $a \leq b$ implies $a^{**} \leq b^{**}$: since taking pseudocomplements is antitone;
         \item $a^{**\;**} = a^{**}$: simply from $a^* = a^{***}$; and
         \item $(a \wedge b)^{**} = a^{**} \wedge b^{**}$: it is again a standard equality.
     \end{enumerate}
@@ -137,7 +137,7 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
 
 
 \begin{definition}\label{d:BooleanizationMorph}
-    For a frame homomorphism $f\colon H \to K$, set \DEFSYM{BooleanizationMorph}{$\Bo f$}$\colon \Bo H \to \Bo K$ to be the mapping
+    For a frame homomorphism $f\colon L \to M$, set \DEFSYM{BooleanizationMorph}{$\Bo f$}$\colon \Bo L \to \Bo M$ to be the mapping
     $$\Bo f\colon a \mapsto f(a)^{**}.$$
 \end{definition}
 
@@ -168,7 +168,7 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
 
     Now, take any $a\in A$, from $f(a) \leq \bigvee f[A]$ we have $f(a)^{**} \leq (\bigvee f[A])^{**}$. Since $a$ was chosen arbitrary, we also have $\bigvee_{a\in A} f(a)^{**} \leq (\bigvee f[A])^{**}$ and therefore $(\bigvee_{a\in A} f(a)^{**})^{**} \leq (\bigvee f[A])^{**}$. The opposite inequality is trivial, hence $\bigsqcup (\Bo f)[A] = (\bigvee f[A])^{**}$.
 
-    To sum up everything, we have
+    Together with previous, we have
     $$ \bigsqcup (\Bo f)[A] = (\bigvee f[A])^{**} = (\Bo f)(\bigsqcup A),$$
     \noindent which is what we wanted.
 \end{proof}
@@ -182,14 +182,14 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
     % TODO do not reference inside a proof -- ref{e:2202iff20leq02}
 \end{proposition}
 \begin{proof}
-    From~\ref{p:propertiesBooleanization} we know $\Bo L$ is a complete Boolean algebra. As a direct implication of Proposition~\ref{p:boolenizationCond} we get that for any morphism $f\colon L \to M$ in $\p C$, the following diagram commutes.
+    From~\ref{p:propertiesBooleanization} we know that $\Bo L$ is a complete Boolean algebra. As a direct implication of Proposition~\ref{p:boolenizationCond} we get that for any morphism $f\colon L \to M$ in $\p C$, the following diagram commutes.
 
     \begin{diagram}
         L \ar{r}{\beta_L} \ar{d}{f} & \Bo L \ar{d}{\Bo f}\\
         M \ar{r}{\beta_M}           & \Bo M
     \end{diagram}
 
-    \noindent $\Bo f$ is a frame homomorphisms, but it is also a complete Boolean homomorphisms, as we know from~\ref{p:kappaCompleteBAfromMeets}. Since the following diagram also commutes, for any morphisms $f, g$, we can see $\Bo$ respect morphisms composition.
+    \noindent $\Bo f$ is a frame homomorphisms, but it is also a complete Boolean homomorphisms, as we know from~\ref{p:kappaCompleteBAfromMeets}. Since the following diagram also commutes, for any morphisms $f, g$, we see that $\Bo$ respect morphisms composition.
 
     \begin{diagram}
         L \ar{r}{\beta_L}
@@ -202,7 +202,7 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
         N \ar{r}{\beta_N}           & \Bo N
     \end{diagram}
 
-    Finally, for any identity frame homomorphism $i_L$, $\Bo i_L$ is the identity on $\Bo L$. Consequently, $\Bo$ is a functor.
+    Finally, for any identity frame homomorphism $i_L$, $\Bo(i_L)$ is the identity on $\Bo L$. Consequently, $\Bo$ is a functor.
 \end{proof}
 
 \begin{lemma}\label{p:basicalMorphs}
@@ -219,7 +219,7 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
         f(a^{**}) \wedge f(a^*) &= f(a^{**} \wedge a^*)  =  0.
     \end{align*}
 
-    Hence $f(a^{**})$ is complemented and $f(a^*)$ is its complement. From distributivity of $M$ we know, complements are unique, hence $f(a^*) = f(a^{**})^*$.
+    Hence, $f(a^{**})$ is complemented and $f(a^*)$ is its complement. From distributivity of $M$ we know that complements are unique, thus $f(a^*) = f(a^{**})^*$.
 \end{proof}
 
 \num\label{p:BooleanizationFunctorOnExtrDSF}For any frame homomorphism between two extremally disconnected Stone frames $f\colon L\to M$, by Lemma~\ref{p:basicalMorphs}, $f(a^{**})^* = f(a^*)$ for all $a\in L$. Observe, we have
@@ -229,9 +229,9 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
 
     \noindent (Indeed, the $f(a^*) \leq f(a)^*$ is always true and $f(a^*) = f(a^{**})^* \geq f(a)^{***} = f(a)^*$, the opposite direction is straightforward).
 
-    Hence, for a category of extremally disconnected frames, in order to satisfy conditions of Proposition~\ref{p:BooleanizationFunctor}, we need to restrict morphisms only to those frame homomorphisms satisfying~(\oldref{e:1001}).
+    Hence, for a category of extremally disconnected frames, in order to satisfy the conditions of Proposition~\ref{p:BooleanizationFunctor}, we need to restrict morphisms only to those frame homomorphisms satisfying~(\oldref{e:1001}).
 
-    However, this is exactly the case with morphisms of the category \ExtrStoneFrm{}. For a frame homomorphism, to be basically complete is precisely the same as to satisfy~(\oldref{e:1001}).
+    Observe that the category \ExtrStoneFrm{} satisfies the conditions of Proposition~\ref{p:BooleanizationFunctor}. For a frame homomorphism, to be basically complete is precisely the same condition as to satisfy~(\oldref{e:1001}).
 
 \begin{conclusion*}
     $\Bo\colon \ExtrStoneFrm \to \ComplBool$ is a functor.
@@ -271,9 +271,9 @@ In literature are frame homomorphisms satisfying (\oldref{e:2202iff20leq02}) cal
     The functor $\Bo\circ\JI$ is naturally equivalent to the identity functor on \ComplBool{}.
 \end{proposition}
 \begin{proof}
-    Let $B$ be a Boolean frame. We see $J \in \Bo\JI(B)$ iff $J = J^{**} = \downset \bigvee J$.
+    Let $B$ be a Boolean frame. We see that $J \in \Bo\JI(B)$ iff $J = J^{**} = \downset \bigvee J$.
 
-    Denote by \DEFSYM{istar2}{$\tilde i_B$}$\colon B \to \Bo\JI(B)$ the mapping $a \mapsto \downset a$. From the previous Observation we know the definitions of $\tilde i_B$ and $i_B$ coincide, therefore by~\ref{p:BoolEquivalence} $\tilde i_B$ is a Boolean isomorphism. From~\ref{p:completePartUnits}, $\tilde i_B$ is a morphisms of \ComplBool{}.
+    Denote by $\tilde i_B\colon B \to \Bo\JI(B)$ the mapping $a \mapsto \downset a$. From the previous Observation, we know that the definitions of $\tilde i_B$ and $i_B$ coincide, therefore by~\ref{p:BoolEquivalence}, $\tilde i_B$ is a Boolean isomorphism. And from~\ref{p:completePartUnits}, we see that $\tilde i_B$ is a morphisms of \ComplBool{}.
 
     Now, for any complete Boolean algebras $A$ and $B$, for any complete Boolean homomorphism $f\colon A \to B$, the following diagram commutes
     \begin{diagram}
@@ -293,7 +293,7 @@ In literature are frame homomorphisms satisfying (\oldref{e:2202iff20leq02}) cal
     The functor $\JI\circ\Bo$ is naturally equivalent to the identity functor on \ExtrStoneFrm{}.
 \end{proposition}
 \begin{proof}
-    Let $L$ be an extremally disconnected Stone frame. Similarly to the general case, define \DEFSYM{vstar2}{$\tilde v_L$}$\colon \JI\Bo(L) \to L$ as
+    Let $L$ be an extremally disconnected Stone frame. Similarly to the general case, define $\tilde v_L\colon \JI\Bo(L) \to L$ as
     $$ \tilde v_L\colon I \mapsto \bigvee I.$$
 
     \noindent From Observation~\ref{p:boEQbc}, we know the definitions of $\tilde v_L$ and $v_L$ are the same, and $\tilde v_L$ is a frame isomorphism by~\ref{p:StoneFrmEquivalence}. From~\ref{p:completePartUnits}, $\tilde v_L$ is a morphism of \ExtrStoneFrm.

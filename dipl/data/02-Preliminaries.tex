@@ -1,13 +1,15 @@
 \chapter{Preliminaries}
-We assume basic knowledge of Set Theory, mainly basic facts about cardinals, cardinalities, classes and Axiom of Choice.
+In this chapter we present a summary of all relevant and well--known facts to point--free topological which we will need in the following chapters.
 
-We refer to the monograph \emph{Frames and Locales} written by Pultr and Picado~\cite{picado2011frames} as a basic introduction to point--free topology.
+We assume the reader has a basic knowledge of Set Theory, mainly that he knows basic facts about cardinal numbers, cardinalities and Axiom of Choice.
+We refer to the monograph \emph{Frames and Locales} written by Pultr and Picado~\cite{picado2011frames} as an introduction to point--free topology.
 
-\begin{block*}{A few comments on notation}
-For sets $X,Y$ and a mapping $f\colon X\to Y$, denote $f[S] = \Set{ f(s) | s\in S}$ and $f^{-1}[M] = \Set{ x\in X | f(x)\in M}$ for $S\subseteq X$ and $M\subseteq Y$.
+\subsubsection*{A few comments on notation}
+For sets $X,Y$ and a mapping $f\colon X\to Y$, denote $f[S] = \Set{ f(s) | s\in S}$ and $f^{-1}[M] = \Set{ x\in X | f(x)\in M}$ for any subsets $S\subseteq X$ and $M\subseteq Y$.
+$[0,1]$ is the closed interval of real numbers greater than or equal to 0 and less than or equal to 1, similarly, $[0,\infty)$ is the set of all non-negative real numbers.
 
-The rightmost unary operation is applied first, for example $\downset \bigvee a_i^*$ means $\downset \left(\bigvee_i (a_i^*)\right)$.
-\end{block*}
+We will often denote a mathematical structure, such as lattice, topological space, frame etc., by the same symbol as we use for its underlying set.
+In expressions, the rightmost unary operation is applied first. For example $\downset \bigvee_i a_i^*$ is the same as $\downset \left(\bigvee_i (a_i^*)\right)$.
 
 \section{Partially ordered set}
 
@@ -18,21 +20,20 @@ The rightmost unary operation is applied first, for example $\downset \bigvee a_
     \item \emph{transitivity:} $a \leq b$ and $b\leq c$ implies $a \leq c$ for all $a,b,c \in A$.
 \end{enumerate}
 
-A partially ordered set $(A,\leq)$ is said to be \emph{with 1 -- the top} (resp. \emph{with 0 -- the bottom}), if $1\in A$ (resp. $0\in A$) and $1\geq x$ (resp. $0\leq x$) for all $x\in A$.
-A partially ordered set with 0 and with 1 is said to be \emph{bounded}.
+A partially ordered set $(A,\leq)$ is said to be \emph{with 1} or \emph{with the top} (resp. \emph{with 0} or \emph{with the bottom}) if $1\in A$ (resp. $0\in A$) and $1\geq a$ (resp. $0\leq x$) for all $a\in A$.
+A partially ordered set is said to be \emph{bounded} if it is both with 0 and with 1.
 Denote by $(A,\leq)\op$ the partially ordered set $(A,\leq')$ where $(\leq') = \Set{ (b,a) \in A\times A | a\leq b}$.
 
-% TODO better wording
 Let $S$ be a subset of $A$.
-We say that $u$ is an upper bound for $S$ if $u \geq x$ for all $x$ of $S$. We say that $s$ is a supremum for $S$ if $s$ is the least upper bound for $S$. We write $s = \bigvee S$.
-We say that $l$ is an lower bound for $S$ if $l \leq x$ for all $x$ of $S$. We say that $i$ is a infimum for $S$ if $i$ is the supremum for $S$ in $A\op$, i.e. if $i$ is the greatest lower bound for $S$. We write $i = \bigwedge S$.
+We say that $u$ is an \emph{upper bound} of $S$ if $u \geq x$ for all $x\in S$. We say that $s$ is a \emph{supremum} of $S$, and we write $s = \bigvee S$, if $s$ is the least upper bound of $S$.
+We say that $l$ is an \emph{lower bound} or an \emph{infimum} if $l$ is an upper bound or the supremum of $S$ in $A\op$.
 
-A partially ordered set $(A,\leq)$ is \emph{join semilattice} if each two element subset has a supremum. Similarly, \emph{meet semilattice} has an infimum for each two element subset.
-A \DEF{lattice} is partially ordered set which is both join-- and meet-- semilattice. We write $a\vee b$ (\emph{meet}) for the supreum of $\{a,b\}$ and $a\wedge b$ (\emph{join}) for the infimum.
+A partially ordered set $(A,\leq)$ is \emph{join--semilattice} if every two element subset has a supremum. Similarly, \emph{meet--semilattice} has an infimum for every two element subset.
+A \DEF{lattice} is partially ordered set which is both join-- and meet--semilattice. We write $a\vee b$ for the supreum (the \emph{meet}) of $\{a,b\}$ and $a\wedge b$ for the infimum (the \emph{join}).
 
 A mapping $f\colon A\to B$ between two partially ordered sets is called \emph{monotone} if $f(x)\leq f(y)$ wherever $x\leq y$. If, moreover, $A$ and $B$ are lattices and $f(x\vee y) = f(x)\vee f(y)$ and $f(x\wedge y) = f(x)\wedge f(y)$ for all $x,y\in A$, we say that $f$ is a \emph{lattice homomorphism}.
 
-\num A lattice is called a \DEF{complete lattice} if every subset has an infimum and a supremum.
+\num A lattice is called a \DEF{complete lattice} if each of its subsets has an infimum and a supremum.
 
 \begin{proposition*}
     For a lattice $L$ are the following conditions equivalent:
@@ -44,9 +45,9 @@ A mapping $f\colon A\to B$ between two partially ordered sets is called \emph{mo
 \end{proposition*}
 
 For a complete lattice we therefore have two infinitary operations the meet $\bigvee$ and the join $\bigwedge$.
-Note that every complete lattice contains two distinguished elements: 0 and 1, where $0 = \bigvee \emptyset$ and $1 = \bigwedge \emptyset$.
+Note that every complete lattice is bounded, $0 = \bigvee \emptyset = \bigwedge L$ and $1 = \bigwedge \emptyset = \bigvee L$.
 
-A lattice homomorphism $f\colon A\to B$ between two complete lattices is \DEF{complete lattice homomorphism} if $f(\bigvee X) = \bigvee f[X]$ and $f(\bigwedge X) = \bigwedge f[X]$ for each subset $X \subseteq A$.
+A lattice homomorphism $f\colon A\to B$ between two complete lattices is a \DEF{complete lattice homomorphism} if $f(\bigvee X) = \bigvee f[X]$ and $f(\bigwedge X) = \bigwedge f[X]$ for each subset $X \subseteq A$.
 
 \num A lattice $D$ is \DEF{distributive} if the following equation holds for all $a,b,c\in D$:
 \begin{align*}
@@ -54,11 +55,11 @@ A lattice homomorphism $f\colon A\to B$ between two complete lattices is \DEF{co
 \end{align*}
 
 \begin{proposition*}
-    For a lattice $D$, the following conditions are equivalent:
+    For a lattice $L$, the following conditions are equivalent:
     \begin{itemize}
-        \item $D$ is a distributive lattice,
-        \item $a\vee (b\wedge c) = (a\vee b)\wedge (a\vee c)$ for all $a,b,c \in D$,
-        \item For each $a,b,c\in D$ there exists at most one $x$ such that
+        \item $L$ is a distributive lattice,
+        \item $a\vee (b\wedge c) = (a\vee b)\wedge (a\vee c)$ for all $a,b,c \in L$,
+        \item For each $a,b,c\in L$ there exists at most one $x\in L$ such that
             \begin{align*}
                 a\vee x &= b\\
                 a\wedge x &= c.
@@ -72,8 +73,8 @@ $$ f(x) \leq y\quad\text{iff}\quad x\leq g(y)\quad\text{for all } x\in A, y\in B
 \noindent Or equivalently
 $$ fg(y) \leq y\quad\text{and}\quad x\leq gf(y)\quad\text{for all } x\in A, y\in B.$$
 
-Then we say that $f$ is a left Galois adjoing and a $g$ is a right Galois adjoing.
-For a monotone map, its left or right Galois adjoint do not need to exists but if it does, it is uniquely determined.
+Then, we say that $f$ is a left Galois adjoing of $g$ and the $g$ is a right Galois adjoing of $f$.
+For a monotone map $f$, its left or right Galois adjoint do not need to exists but if it does, it is uniquely determined. We will write $f^*$ for the right adjoint and $f_*$ for the left adjoint.
 
 For two monotone maps in Galois connection $f,g$ we have that
 $$ f g f = f\quad\text{and}\quad g f g = g. $$
@@ -244,18 +245,22 @@ for all $f\colon A\to B$, morphisms of $\p C$.
 
 If a natural transformation $m_*$ is a collection of isomorphism, we say that $m_*$ is a \emph{natural equivalence}. For two functors $F$ and $G$, if there exists a natural equivalence $m_*\colon F\natto G$, we say that $F$ and $G$ are \emph{naturally equivalent} and write $F\cong G$.
 
-\num A \emph{limit} of a \emph{diagram} (that is, of a functor $D\colon \p D\to \p C$ for a small category $\p D$) is a constant functor $L\colon \p D\to \p C$ and a natural transformation $l_*\colon L\natto D$ such that $l_*$ is universal among natural transformations from constant functors.
+\begin{block*}{Example}
+    For a functor $F\colon \p C\to \p D$, the collection of morphisms $(1_{F(A)})_{A\in \p C}$ is an \emph{identity natural transformation} $F\natto F$.
+\end{block*}
 
-Or in other words, for any constant functor $K\colon \p D\to \p C$ and a natural transformation $k_*\colon K\natto D$ there exists an unique natural transformation $m_*\colon K\natto L$ such that the following diagram commutes
+\num A \emph{limit} of a \emph{diagram} $D$ in the category $\p C$ (that is, of a functor $D\colon \p D\to \p C$ for a small category $\p D$) is a constant functor $L\colon \p D\to \p C$ and a natural transformation $l_*\colon L\natto D$ satisfying universal property.
+
+In other words, $l_*$ is such that for any constant functor $K\colon \p D\to \p C$ and a natural transformation $k_*\colon K\natto D$ there exists an unique natural transformation $m_*\colon K\natto L$ such that the following diagram commutes
 \begin{diagram}
     L\ar{r}{l_*} & D\\
     K\ar[dashed]{u}{m_*}\ar{ur}{k_*} &
 \end{diagram}
 
-\noindent (in the category $[\p D,\p C]$ of all functors from $\p D$ to $\p C$ and natural transformations as morphisms).
+\noindent (in the category $[\p D,\p C]$ of all functors from $\p D$ to $\p C$ and natural transformations as morphisms). From the definition, we see that limits are determined uniquely up to isomorphisms.
 
-A \emph{colimit} is defined dually to limit, that is, with all natural transformations from the definition of limit reversed. % TODO? use [\p D,\p C]\op ?
-We say that a category is \emph{(co)complete} if there is a (co)limit for every diagram.
+A \emph{colimit} is defined dually to limit, that is, a colimit of a diagram $D$ is the limit of $D$ in the category $\p C\op$.
+A category is said to be \emph{(co)complete} if there is a (co)limit for every diagram.
 
 \begin{block*}{Examples}
     A well--known example of a limit in \categoryStyle{Set} is the (cartesian) product of sets $\prod_{i\in I} X_i$ together with projections $(\prod_{i\in I} X_i\to X_j)_{j\in I}$.
@@ -263,7 +268,7 @@ We say that a category is \emph{(co)complete} if there is a (co)limit for every 
     Similarly, a natural example of colimit in \categoryStyle{Set} is the coproduct, the disjoint union, of sets $\coprod_{i\in I} X_i$ together with injections $(X_j\to \coprod_{i\in I} X_i)_{j\in I}$.
 \end{block*}
 
-\num Functors $F\colon \p C\to \p D$ and $G\colon \p D\to \p C$ are \emph{adjoint} (with $F$ on the left and $G$ on the right) if there exist a natural transformations (\emph{units of adjuction})
+\num Functors $F\colon \p C\to \p D$ and $G\colon \p D\to \p C$ are \emph{adjoint} (with $F$ on the left and $G$ on the right) if there exist \emph{units of adjuction}, that is, natural transformations (\emph{an unit and a counit})
 $$ \lambda_*\colon FG\natto \Id_{\p D}\quad\text{and}\quad \rho_*\colon \Id_{\p C}\natto GF,$$
 
 \noindent such that the following compositions of natural transformations
@@ -330,10 +335,6 @@ Denote the category of frames and localic maps as morphisms by $\Loc$. We will r
 Again, we have a functor $\Lc\colon \Top\to \Loc$ (covariant this time)
 $$ \Lc(X,\tau) = \tau\quad\text{and}\quad \Lc(f) = \Omega(f)^*.$$
 
-\num adjunction $\Sigma$ and $\Omega$, Spatiality, some spatiality theorems (II.5.3, Hofmann--Lawson's Duality), points!
-
-\num completeness and cocompleteness of \Top{} and \Frm{}
-
 \num {\bf Separation axioms.} For a topological space $(X,\tau)$, we say that it is
 \begin{itemize}
     \item[$T_0$:] if for every two distinct points $x,y\in X$ there exist an open $U\in \tau$ such that $x\in U\not\ni y$ or $x\not\in U\ni y$.
@@ -387,6 +388,8 @@ $$ a\vee b = 1\quad\implies\quad \exists c\text{ such that } a\vee c = 1\text{ a
     \item $a \lhd b$ implies $b^* \lhd a^*$.
 \end{enumerate}
 \end{observation*}
+
+\num TODO spatiality and points, the functor $\Sigma$ % adjunction of $\Sigma$ and $\Omega$, Spatiality, some spatiality theorems, points!
 
 \num A \emph{subspace} $(Y\subseteq X,\restr{\tau}{Y})$ of a topological space $(X,\tau)$ (where $\restr{\tau}{Y} = \Set{ Y\cap O | O\in \tau}$) determines the one-one inclusion (and continuous) mappings $j\colon Y\subseteq X$. The associated localic map $\Lc(j)\colon \Lc(Y)\subseteq \Lc(X)$ is one-one and its adjoint is an onto frame homomorphisms $\Omega(j)\colon \Omega(X)\to \Omega(Y)$.
 
