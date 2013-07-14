@@ -176,10 +176,9 @@
 }}
 
 % Other stuff
-% \newcommand\DEF[2][]{\emph{#2}\index{#1#2}}
 \NewDocumentCommand\DEF{O{} m O{}}{\emph{#2}\index{#1#2#3}}
   % example \DEF[0-dimensional@]{zero-dimensional}[|see{null-dimensional}]
-\newcommand\DEFSYM[3][a ]{\emph{#3}\index{#1#2@#3}}
+\NewDocumentCommand\DEFSYM{O{1 } m m O{}}{\emph{#3}\index{#1#2@#3#4}}
 
 \newenvironment{diagram}{\begin{center}\begin{tikzcd}}{\end{tikzcd}\end{center}}
 \newcommand\ACPStar{\textbf{($\star$)}}
