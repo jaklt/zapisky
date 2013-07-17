@@ -1,11 +1,65 @@
 \chapter{Introduction}
-% \cite{picado2011frames}
-%
-% In point-free Topology it is always a nice surprise when classical result from point-set Topology relying heavily on Axiom of Choice is obtained without use of any choice principle.
-%
-%
-% Notation:
-% - Proposition using some choice principe will be denoted by \ACPStar.
-% - Referencing: VI.1.2 (VI is chapter), if the chapter number is omitted we refer to somewhere inside the current chapter
-%
-% ``The Preliminaries chapter is a little more verbose, than it is usual. Point--free topology is still not commonly taught in basic mathematical courses.''
+
+In 1936 Marshall Stone made a great breakthrough in algebra and topology by publishing a paper called ``The Theory of Representations of Boolean Algebras''~\cite{stone1936theory}.
+In this paper he described structural similarities between Boolean algebras and a certain class of topological spaces.
+Besides that, he was also the first who constructed an example of a space which did not have the origin in geometry (as a subset of Euclidean space) and was constructed from an algebraic structure~\cite{johnstone1986stone}.
+
+% The Stone representation theorem, or in other words the Stone duality, had a great impact in topology, functional analysis or representation theory of rings~\cite{johnstone1986stone}.
+% TODO introduce Stone duality and Stone type dualities -- as an important example of a Stone type duality is Hofmann--Lawson's duality/... between .../spatial frames and sober? topological spaces
+
+Frames and locales in point--free topology are natural generalizations of the notion of topological space.
+These generalized spaces come out from an algebraical description of properties of the open set lattice.
+Results from point--free topology often brings a new insight to classical results from general topology.
+In contrast to general (set--theoretical) topology, a large part of the theory of frames and locales is given constructively.
+This phenomenon is nicely expressed by the famous slogan of Banaschewski~\cite{banaschewski1990proving}:
+\begin{center}\em
+    Choice--free localic argument + suitable choice principle = classical result in spaces.
+\end{center}
+
+
+In this thesis, we present the Stone representation theorem, or later known as Stone duality, in point--free contex.
+% In our case, it is a correspondence between Boolean algebras and Stone frames.
+The slogan of Banaschewski has been fulfilled again even though we present the theorem in the language of frames instead of locales.
+With Boolean Ultrafilter Theorem, we obtain the classical Stone duality for topological spaces.
+It is not a surprise that the Stone duality in point--free setting happened to be a lot simpler than the original.
+We do not have to be concerned about points.
+% We work only with purely algebraic structures.
+
+The point--free approach allow us to easily analyse particular parts of Stone duality.
+For each infinite regular cardinal $\kappa$, we show that the counterpart to the $\kappa$--complete Boolean algebras on the frame side are the $\kappa$--basically disconnected Stone frames.
+We also give a precise characterisation of the morphisms which correspond to the $\kappa$--complete Boolean homomorphisms.
+
+Booleanization is the construction of Boolean algebra from Heyting algebra by taking the set of elements of the form $a = a^{**}$.
+For a topological space, Booleanization of its frame of open sets is the set of all regular open subsets and it forms a complete Boolean algebra.
+In point--free topology, one has an another useful property.
+Booleanization of a locale is the smallest dense sublocale of that locale~\cite{banaschewski1996booleanization}.
+
+Analogously to Stone duality for topological spaces, the frames corresponding to the complete Boolean algebras are precisely the extremally disconnected Stone frames.
+Hence, we have a proper class of variants of disconnectedness in between zero--dimensionality and extremal disconnectedness. % TODO
+Interestingly, Booleanization is functorial for this part of duality and it is an isomorphism of the complete parts of the duality.
+
+At the end of the thesis we focus on De Morgan (or extremally disconnected) frames.
+We show a new characterisation of completely regular De Morgan frames.
+A completely regular frame is De Morgan if and only if each dense sublocale of the frame is superdense.
+Counter to that are the compact metric frames, they have no non--trivial superdense sublocale.
+Consequently, a non--trivial \v{C}ech--Stone compactification of metrizabile frame is never metrizabile.
+
+% TODO Consider:  So compact regular frm is de morgan <=> compactification of Booleanization is the original frame?
+
+\subsection*{Organization of the thesis}
+
+In Chapter II we present necessary facts from order theory, category theory and topology which we will need in the subsequent chapters.
+In Chapter III are discussed several disconnected properties and \v{C}ech--Stone compactification. % TODO
+In Chapter IV we present the Stone duality in both point--free and set--theoretical setting.
+Chapter V is devoted to particular parts of Stone duality.
+In Chapter VI we show that Booleanization is an isomorphisms of the complete parts of Stone duality.
+Finally, in Chapter VII we present a new characterisation of De Morgan frames and non--metrizability of non--trivial \v{C}ech--Stone compactification.
+
+% Chapters II and III consist of well--known facts and I am not an author of any of them.
+The theorems in the last chapter as well as the idea to take a look at Booleanization are due to Professor Pultr.
+
+We assume from the reader experiences with abstract algebra, topology and set theory.
+A familiarity with the basic notions of category theory is an advantage but not necessity.
+
+The propositions which rely on Axiom of Choice or Boolean Ultrafilter Theorem are marked by  \ACPStar{}.
+The chapter numbers are omitted whenever we refer to the same chapter.
