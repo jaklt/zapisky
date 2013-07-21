@@ -1,9 +1,7 @@
-\chapter{More about De Morgan Frames}
+\chapter{More about De Morgan frames}
 
-In this chapter we present a new characterisation of completely regular frames which are also De Morgan (or extremally disconnectedness).
+In this chapter we present a new characterisation of De Morgan (that is, extremally disconnectedness) completely regular frames.
 In the second part we extend the classical spacial result, that the compactification of a metrizable space is not metrizable, to context of point--free topology.
-
-Both constructions are due to Professor Pultr.
 
 \section{Density and superdensity}
 % TODO
@@ -27,7 +25,7 @@ Both constructions are due to Professor Pultr.
     $\Rightarrow$: Suppose $S$ is dense sublocale, then pseudocomplements in $S$ are also pseudocomplements in $L$ (from the fact that $0_L\in S$ and $a^{*S} = a\to 0_L = a^{*L}$).
     From the definition of sublocale, we know $\Bo L = \Set{ x\to 0_L | x\in L}$ is a subset of $S$. Hence, if $x = x^{**}\in \Bo L$ then $x \in S$ and also $x \in \Bo S$. The other inequality, the $\Bo S\subseteq \Bo L$, is trivial.
 
-    $\Leftarrow$: Follows simply from the fact that $a\leq a^{**}$, for any $a\in L$, and that $0_L = 0_L^{**} \in \Bo L = \Bo S$.
+    $\Leftarrow$: Follows from the fact that $a\leq a^{**}$, for any $a\in L$, and that $0_L = 0_L^{**} \in \Bo L = \Bo S$.
 \end{proof}
 
 \begin{proposition}\label{p:denseReflectDeMorgan}
@@ -38,7 +36,7 @@ Both constructions are due to Professor Pultr.
 \end{proof}
 
 \begin{definition}
-    Let $f\colon L\to S$ be a dense onto frame homomorphism. We say $S$ is \DEF{superdense} in $L$ or $f$ is \emph{superdense} if, for any compact regular $K$ and any frame homomorphism $h\colon K\to S$, there exists a frame homomorphism $g\colon K\to L$ such that the following diagram commutes
+    Let $f\colon L\to S$ be a dense onto frame homomorphism. We say that $S$ is \DEF{superdense} in $L$ or that $f$ is \emph{superdense} if, for any compact regular $K$ and any frame homomorphism $h\colon K\to S$, there exists a frame homomorphism $g\colon K\to L$ such that the following diagram commutes
 
     \begin{diagram}
         L\ar{r}{f} & S\\
@@ -57,12 +55,11 @@ Both constructions are due to Professor Pultr.
     Let $L$ be a completely regular frame and let $S$ be a sublocale of $\C L$ such that $L\subseteq S\subseteq \C L$. Then $\C S\cong \C L$.
 \end{proposition}
 \begin{proof}
-    We will translate the proposition to the language of frames and frame homomorphisms. For an onto frame homomorphisms $i\colon S\to L$ and a $j\colon \C L \to S$ such that $ij$ equals to $\comp_L$, the compactification of $L$, we will prove that $\C S\cong \C L$.
+    We will translate the proposition to the language of frames and frame homomorphisms. For an onto frame homomorphisms $i\colon S\to L$ and a $j\colon \C L \to S$ such that $ij$ equals to $\comp_L$, the compactification of $L$, we will prove that $\C j$ is an isomorphism.
 
-    TODO $\C j$ is one-one
-    % Because $\C$ is a functor, we have $\C i\cdot \C j = \C(\comp_L)$. From the fact that $\comp_L\colon \C L\to L$ is a coreflection, we get that $\C(\comp_L) = 1_{\C L}$ and $\C i$ is a monomorphism in $\Frm$. Hence, it is one-one.
+    From the fact that $\comp_L\colon \C L\to L$ is a coreflection, we get that $\C(\comp_L)$ is an isomorphism, hence $\C j = \C j\cdot \C(\comp_L)^{-1}\cdot \C i\cdot \C j$. From the previous Lemma, we know that $\C j$ is onto, hence $1_{\C S} = \C j\cdot \C(\comp_L)^{-1}\cdot \C i$. Therefore $\C j$ is one-one (monomorphisms in \Frm{} are one-one).
 
-    From the previous Lemma, we know that $\C j$ is onto. A frame homomorphism which is both onto and one-one is an isomorphism.
+    A frame homomorphism which is both onto and one-one is an isomorphism.
 \end{proof}
 
 \begin{observation}\label{p:superdenseProperties}
@@ -73,7 +70,7 @@ Both constructions are due to Professor Pultr.
     \end{enumerate}
 \end{observation}
 \begin{proof}
-    1. and 2. are straightforward. For 3., the $\Rightarrow$ implication follows from 1. and the $\Leftarrow$ implication follows from 2.
+    1 and 2 are straightforward. For 3, the $\Rightarrow$ implication follows from 1 and the $\Leftarrow$ implication follows from 2.
 \end{proof}
 
 \begin{theorem}
@@ -83,7 +80,7 @@ Both constructions are due to Professor Pultr.
     $\Rightarrow$:
     Given a dense sublocale $S$ of $L$ and an onto frame homomorphism $i\colon L\to S$. Let $M$ be a compact regular frame and let $h\colon M\to S$ be a frame homomorphism. We know that $S$ is dense in $\C L$ from Lemma~\ref{p:denseProperties}, and $\Bo S = \Bo\C(L)$ from Lemma~\ref{p:denseProperties2}. By Theorem~\ref{p:completePart2} for the complete part of Stone correspondence, we know that $\C L\cong \C\Bo\C(L)$.
 
-    Hence, $\Bo S = \Bo\C(L) \subseteq S \subseteq \C L\cong \C\Bo\C(L).$. By Proposition~\ref{p:compactificationFromInside} we have that $\C S\cong \C L$ and $S$ is superdense in $\C L$. Therefore, there exists a frame homomorphism $g\colon M\to \C L$ such that the following diagram commutes
+    Hence, $\Bo S = \Bo\C(L) \subseteq S \subseteq \C L\cong \C\Bo\C(L).$. By Proposition~\ref{p:compactificationFromInside} we have that $\C S\cong \C L$ and $S$ is superdense in $\C L$. Therefore there exists a frame homomorphism $g\colon M\to \C L$ such that the following diagram commutes
     \begin{diagram}
         \C L\ar{r}{\comp_L} & L\ar{r}{i} & S\\
         M\ar{u}{g}\ar{urr}{h}
@@ -99,8 +96,7 @@ Both constructions are due to Professor Pultr.
 
 \section{Non--metrizability of compactification}
 
-In this section, we will show that the fact that some property, such as the extremal disconnectedness, is preserved by compactification is not automatic.
-We will prove that non-trivial compactification of metrizable frame is never metrizable.
+In contrast with a De Morgan frame, a metric frame has no non-trivial superdense sublocale. That is a non-trivial \v{C}ech--Stone compactification of a metrizable frame is never metrizable.
 
 \begin{lemma}
     Let $L$ be a regular frame. Then, for each prime $p\in L$, $\clos(p) = \upset p = \{p,1\}$.
@@ -135,7 +131,7 @@ We will prove that non-trivial compactification of metrizable frame is never met
     Let $K = \Omega(X)$ be a spatial compact regular frame with $X$ metrizable. Then $K\not\cong \C S$ for every sublocale $S\subsetneq K$.
 \end{theorem}
 \begin{proof}
-    Suppose $S\subsetneq K$ is a sublocale such that $\C S\cong K$. By Proposition~\ref{p:spatialCompactifAndPrime}, $\C(\clos(a))\cong K$ for some prime $a$ and $\clos(a) = X\setminus \{x\}$ for some $x\in X$.
+    Suppose $S\subsetneq K$ is a sublocale such that $\C S\cong K$. By Proposition~\ref{p:spatialCompactifAndPrime}, $\C(\open(a))\cong K$ for some prime $a$ and $\open(a) = X\setminus \{x\}$ for some $x\in X$.
 
     We have,
     \begin{align}
@@ -165,9 +161,5 @@ We will prove that non-trivial compactification of metrizable frame is never met
     $$ E = \bigcup_{i>0, \text{ odd}} A_i ~\cup \bigcup_{i>0, \text{ even}} B_i\quad\text{and}\quad F = \bigcup_{i>0, \text{ even}} A_i ~\cup \bigcup_{i>0, \text{ odd}} B_i. $$
     We see that $E$ and $F$ are disjoint closed subsets of $X\setminus \{x\}$.
 
-    Define a constant function $f_0$ on $X_0$: $f_0(x) = 1$ for all $x\in X_0$, then $ f = \bigcup_{i=0}^{\infty} f_i $ is a function from $X\setminus \{x\}$ to $[0,1]$ which separates $E$ and $F$. Since $[0,1]$ is compact, there exists an extension $\tilde f\colon X \to [0,1]$. However, the value of $\tilde f(x)$ should be equal to 0 ($B_\rho(x,q)$ intersects $E$ for every $q\in \mathbb Q$) and it should also be equal to 1 ($B_\rho(x,q)$ intersects $E$ for every $q\in \mathbb Q$). We obtained a contradiction, therefore, such $S\subsetneq K$ cannot exist.
+    Define a constant function $f_0$ on $X_0$: $f_0(x) = 1$ for all $x\in X_0$, then $ f = \bigcup_{i=0}^{\infty} f_i $ is a function from $X\setminus \{x\}$ to $[0,1]$ which separates $E$ and $F$. Since $[0,1]$ is compact, there exists an extension $\tilde f\colon X \to [0,1]$. However, the value of $\tilde f(x)$ should be equal to 0 ($B_\rho(x,q)$ intersects $E$ for every positive $q\in \mathbb Q$) and it should also be equal to 1 ($B_\rho(x,q)$ intersects $E$ for every positive $q\in \mathbb Q$). We obtained a contradiction, therefore, such $S\subsetneq K$ cannot exist.
 \end{proof}
-
-% \begin{lemma}
-%     For $L$ normal frame: $\sigma(x)\vee\sigma(x) = \sigma(x\vee y)$.
-% \end{lemma}
