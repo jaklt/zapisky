@@ -1,4 +1,13 @@
 \documentclass[12pt,a4paper]{report}
+\setlength\textwidth{145mm}
+\setlength\textheight{247mm}
+\setlength\oddsidemargin{15mm}
+\setlength\evensidemargin{15mm}
+\setlength\topmargin{0mm}
+\setlength\headsep{0mm}
+\setlength\headheight{0mm}
+\let\openright=\clearpage
+
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{amsthm,amsfonts,amssymb}
@@ -15,6 +24,20 @@
 \usepackage{relsize}
 \usepackage{xparse} % for NewDocumentCommand
 
+\usepackage{indentfirst}
+\usepackage[nottoc]{tocbibind}
+
+% \usepackage[unicode]{hyperref}
+% \hypersetup{pdftitle=Thesis Title, 
+%             pdfauthor=Name Surname,
+%             ps2pdf,
+%             colorlinks=false,
+%             urlcolor=blue,
+%             pdfstartview=FitH,
+%             pdfpagemode=UseOutlines,
+%             pdfnewwindow,
+%             breaklinks
+%           }
 
 \usetikzlibrary{matrix, calc, arrows, fit}
 \tikzset{commutative diagrams/.cd}
@@ -187,13 +210,8 @@
 \def\DotsUp{\rotatebox[origin=c]{90}{\dots}}
 
 
-\title{Some point--free aspects of connectedness}
-\author{Tom\'a\v s Jakl}
-
 \begin{document}
-\maketitle
-\tableofcontents
-
+\input{data/00.tex}
 \input{data/01-Introduction.tex}
 \input{data/02-Preliminaries.tex}
 \input{data/03-ConnectednessAndCompactification.tex}
@@ -202,14 +220,11 @@
 \input{data/06-ConstructionOfR.tex}
 \input{data/07-MoreAboutDeMorganFrames.tex}
 
-\chapter{Further work}
-
 
 \nocite{*}
 \bibliographystyle{plain}
 \bibliography{refs.bib}
 
 \clearpage
-\addcontentsline{toc}{chapter}{Index}
 \printindex
 \end{document}
