@@ -36,11 +36,11 @@ In the second part we extend the classical spacial result, that the compactifica
 \end{proof}
 
 \begin{definition}
-    Let $f\colon L\to S$ be a dense onto frame homomorphism. We say that $S$ is \DEF{superdense} in $L$ or that $f$ is \emph{superdense} if, for any compact regular $K$ and any frame homomorphism $h\colon K\to S$, there exists a frame homomorphism $g\colon K\to L$ such that the following diagram commutes
+    Let $f\colon L\to S$ be a dense onto frame homomorphism. We say that $S$ is \DEF{superdense} in $L$ or that $f$ is \emph{superdense} if, for any compact regular $K$ and any frame homomorphism $h\colon K\to S$, there exists a frame homomorphism $\tilde h\colon K\to L$ such that the following diagram commutes
 
     \begin{diagram}
         L\ar{r}{f} & S\\
-        K\ar[dashed]{u}{g}\ar{ur}{h}
+        K\ar[dashed]{u}{\tilde h}\ar{ur}{h}
     \end{diagram}
 \end{definition}
 
@@ -57,7 +57,7 @@ In the second part we extend the classical spacial result, that the compactifica
 \begin{proof}
     We will translate the proposition to the language of frames and frame homomorphisms. For an onto frame homomorphisms $i\colon S\to L$ and a $j\colon \C L \to S$ such that $ij$ equals to $\comp_L$, the compactification of $L$, we will prove that $\C j$ is an isomorphism.
 
-    From the fact that $\comp_L\colon \C L\to L$ is a coreflection, we get that $\C(\comp_L)$ is an isomorphism, hence $\C j = \C j\cdot \C(\comp_L)^{-1}\cdot \C i\cdot \C j$. From the previous Lemma, we know that $\C j$ is onto, hence $1_{\C S} = \C j\cdot \C(\comp_L)^{-1}\cdot \C i$. Therefore $\C j$ is one-one (monomorphisms in \Frm{} are one-one).
+    From the fact that $\comp_L\colon \C L\to L$ is a coreflection, we get that $\C(\comp_L)$ is an isomorphism. Therefore $\C j$ is one-one (monomorphisms in \Frm{} are one-one) since $\C(\comp_L) = \C i\;\C j$. From the previous Lemma, we know that $\C j$ is onto.
 
     A frame homomorphism which is both onto and one-one is an isomorphism.
 \end{proof}
@@ -67,10 +67,22 @@ In the second part we extend the classical spacial result, that the compactifica
         \item Let $f$ and $g$ be superdense, then $fg$ is also superdense.
         \item If $fg$ is superdense, then $f$ is superdense.
         \item Let $L$ be a completely regular and $S$ its sublocale. $S$ is superdense in $L$ iff $S$ is superdense in $\C L$.
+        \item Let $S$ be a dense sublocale of a completely regular locale $L$. $S$ is superdense in $L$ iff the \v Cech--Stone compactifications of $L$ and $S$ are isomorphic.
     \end{enumerate}
 \end{observation}
 \begin{proof}
     1 and 2 are straightforward. For 3, the $\Rightarrow$ implication follows from 1 and the $\Leftarrow$ implication follows from 2.
+
+    For 4, the $\Leftarrow$ implication is again straightforward and for the $\Rightarrow$ implication, take $i\colon L\to S$ the sublocale frame homomorphism. We have the commutative diagram
+    \begin{diagram}
+        \C L\ar{r}{\comp_L}\ar{d}{\C i} & L\ar{d}{i} \\
+        \C S\ar{r}{\comp_S} & S
+    \end{diagram}
+
+    From superdensity, there exists a frame homomorphism $\tilde \comp_S\colon \C S\to L$ such that $\comp_S = i \tilde\comp_S$. Further, there exists an unique frame homomorphism $\tilde{\tilde \comp}_S\colon \C S\to \C L$ such that $\tilde \comp_S = \comp_L \tilde{\tilde \comp}_S$. Thus we obtain
+    $$ i\;\comp_L = \comp_S\;\C i = i\;\tilde\comp_S\;\C i = i\;\comp_L\;\tilde{\tilde \comp}_S\;\C i.$$
+
+    From the uniques of compactification, we know that $\C i$ is one-one since $1_{\C L} = \tilde{\tilde \comp}_S\;\C i$. $\C i$ is also onto, hence it is an isomorphism.
 \end{proof}
 
 \begin{theorem}
@@ -80,7 +92,7 @@ In the second part we extend the classical spacial result, that the compactifica
     $\Rightarrow$:
     Given a dense sublocale $S$ of $L$ and an onto frame homomorphism $i\colon L\to S$. Let $M$ be a compact regular frame and let $h\colon M\to S$ be a frame homomorphism. We know that $S$ is dense in $\C L$ from Lemma~\ref{p:denseProperties}, and $\Bo S = \Bo\C(L)$ from Lemma~\ref{p:denseProperties2}. By Theorem~\ref{p:completePart2} for the complete part of Stone correspondence, we know that $\C L\cong \C\Bo\C(L)$.
 
-    Hence, $\Bo S = \Bo\C(L) \subseteq S \subseteq \C L\cong \C\Bo\C(L).$. By Proposition~\ref{p:compactificationFromInside} we have that $\C S\cong \C L$ and $S$ is superdense in $\C L$. Therefore there exists a frame homomorphism $g\colon M\to \C L$ such that the following diagram commutes
+    Hence, $\Bo S = \Bo\C(L) \subseteq S \subseteq \C L\cong \C\Bo\C(L)$. By Proposition~\ref{p:compactificationFromInside} we have that $\C S\cong \C L$ and $S$ is superdense in $\C L$. Therefore there exists a frame homomorphism $g\colon M\to \C L$ such that the following diagram commutes
     \begin{diagram}
         \C L\ar{r}{\comp_L} & L\ar{r}{i} & S\\
         M\ar{u}{g}\ar{urr}{h}

@@ -1,7 +1,7 @@
 \chapter{Preliminaries}
 In this chapter we present a summary of all relevant and well--known facts to point--free topology which we will need in the following chapters.
 
-We assume the reader has a basic knowledge of Set Theory, mainly that he knows basic facts about cardinal numbers, cardinalities and Axiom of Choice.
+We assume the reader has a basic knowledge of set theory, mainly that he knows basic facts about cardinal numbers, cardinalities and Axiom of Choice.
 We refer to the monograph \emph{Frames and Locales} written by Pultr and Picado~\cite{picado2011frames} as an introduction to point--free topology.
 
 \subsubsection*{A few comments on notation}
@@ -10,6 +10,8 @@ $[0,1]$ is the closed interval of real numbers greater than or equal to 0 and le
 
 We will often denote a mathematical structure, such as lattice, topological space, frame etc., by the same symbol we use for its underlying set.
 In expressions, the rightmost unary operation is applied first. For example $\downset \bigvee_i a_i^*$ is the same as $\downset \left(\bigvee_i (a_i^*)\right)$.
+
+The propositions which rely on Axiom of Choice or Boolean Ultrafilter Theorem are marked by \ACPStar{}.
 
 \section{Partially ordered set}
 
@@ -165,25 +167,29 @@ Principal ideals will be denoted by $\downset a = \Set{ x | x\leq a}$.
 
 From the Proposition we see that the definition of a maximal filter and a prime filter coincide for Boolean algebras, hence we call such filter simply \DEF{ultrafilter}.
 
+\newcommand\axiom[2]{
+    \vspace{1em}
+    \begin{tabular}{c p{12.5cm}}
+        \em #1 & \em #2
+    \end{tabular}
+    \vspace{1em}
+}
+
 \num \DEF{Axiom of Choice} will be mostly used in its equivalent form -- Zorn's Lemma:
-\begin{center}\em
-    \DEF{(AC)}\quad Let $X$ be a non-empty partially ordered set such that every non-empty chain has an upper bound, then $X$ has at least one maximal element.
-\end{center}
+
+\axiom{\DEF{(AC)}}{Let $X$ be a non-empty partially ordered set such that every non-empty chain has an upper bound, then $X$ has at least one maximal element.}
 
 \noindent By \DEF{Boolean Ultrafilter Theorem} we mean the following choice principle
-\begin{center}\em
-    \DEF{(BUT)}\quad Let $B$ be a Boolean algebra and let $F$ be a filter of $B$, then there exists a ultrafilter extending $F$.
-\end{center}
+
+\axiom{\DEF{(BUT)}}{Let $B$ be a Boolean algebra and let $F$ be a filter of $B$, then there exists a ultrafilter extending $F$.}
 
 \noindent This is equivalent to
-\begin{center}\em
-    \emph{(BUT')}\quad Let $B$ be a Boolean algebra and let $F$ be a filter and let $I$ be an ideal of $B$ such that $F\cap I = \emptyset$, then there exists a prime filter $G$ extending $F$ such that still $G\cap I=\emptyset$.
-\end{center}
+
+\axiom{\emph{(BUT')}}{Let $B$ be a Boolean algebra and let $F$ be a filter and let $I$ be an ideal of $B$ such that $F\cap I = \emptyset$, then there exists a prime filter $G$ extending $F$ such that still $G\cap I=\emptyset$.}
 
 \noindent Finally, the last choice principle we will need to know is \DEF{Axiom of Countable Dependent Choice}
-\begin{center}\em
-    \DEF{(CDC)}\quad Let $R$ be a binary relation on a set $X$ such that for every $a\in X$ there exists $b\in X$ satisfying $aRb$, then there exist a countable sequence $(a_i)_{i=1}^\infty$ such that $a_iRa_{i+1}$ for all $i=1,2,\dots$.
-\end{center}
+
+\axiom{\DEF{(CDC)}}{Let $R$ be a binary relation on a set $X$ such that for every $a\in X$ there exists $b\in X$ satisfying $aRb$, then there exist a countable sequence $(a_i)_{i=1}^\infty$ such that $a_iRa_{i+1}$ for all $i=1,2,\dots$.}
 
 Axiom of Choice is stronger than Boolean Ultrafilter Theorem or Axiom of Countable Dependent Choice; it logically implies both of them.
 
@@ -308,7 +314,7 @@ A full subcategory $\p C$ of a category $\p D$ is \emph{reflexive} (or \emph{cor
 \end{enumerate}
 
 A subset of $X$ which is an elements of $\tau$ is called \emph{open} and the complement of an open set is called \emph{closed}. A subset of $X$ is said to be \emph{clopen} if it is both open and closed.
-\emph{The closure} of a set is the least closed set containing it.
+The \emph{closure} of a set is the least closed set containing it.
 
 Let $(X,\tau), (Y,\sigma)$ be topological spaces and a mapping $f\colon X\to Y$ is said to be \emph{continuous (with respect to $\tau$ and $\sigma$)} if
 $$ f^{-1}[U] \in \tau,\quad\text{for all } U\in \sigma.$$
@@ -393,17 +399,16 @@ $$ a\vee b = 1\quad\implies\quad \exists c\text{ such that } a\vee c = 1\text{ a
 \end{enumerate}
 \end{observation*}
 
-\num Points of a topological space $X$ are in one-one correspondence with (continuous) maps of the form $i\colon \{\star\}\to X$.  We have the frame homomorphisms $\Omega(i)\colon \Omega(X)\to \mathbf 2$, where $\mathbf 2 = \{0 < 1\}$.
-For a frame $L$, we can think of points of $L$ as of frame homomorphisms $L\to \mathbf 2$.
+\num For a topological space $X$, a continuous map $i\colon \{\star\}\to X$ is identified with a point of $X$. For each such map we have the associated frame homomorphism $\Omega(i)\colon \Omega X\to \mathbf 2$, where $\mathbf 2$ is the frame $\Omega(\{\star\}) = \{0 < 1\}$. Therefore, it is convenient to define a \emph{point} of a frame $L$ as a frame homomorphism $L\to \mathbf 2$.
 
-Every frame homomorphism $p\colon L\to \mathbf 2$ uniquely determines a completely prime filter (as $p^{-1}(1)$) and vice versa.
+Note that every frame homomorphism $p\colon L\to \mathbf 2$ determines a completely prime filter (as $p^{-1}[\{1\}]$), and vice versa. The completely prime filters in topological spaces represents the neighbourhoods of points.
 
-We have another characterisation of points. An element $p\neq 1$ is \DEF{prime}[ element] or \DEF{meet--irreducible}[ element] if $a\wedge b\leq p$ implies $a\leq p$ or $b\leq p$.
-Again, frame homomorphisms are in one-one correspondence with prime elements (as $\bigvee p^{-1}(0)$).
+Another way of defining points of a frame is by prime elements.
+An element $p\neq 1$ is \DEF{prime}[ element] or \DEF{meet--irreducible}[ element] if $a\wedge b\leq p$ implies $a\leq p$ or $b\leq p$.
+Then, the frame homomorphisms $L\to \mathbf 2$ are in one-one correspondence with prime elements (as $\bigvee p^{-1}[\{0\}]$).
+The prime elements of topological space approximate the open sets $X\setminus \closure{\{x\}}$.
 
-An intuition about those definitions is that the completely prime filters are the neighboug point and prime elements approximate the open sets $X\setminus \closure{\{x\}}$.
-
-A frame $L$ is said to be \DEF{spatial} or \emph{has enough points} if $L = \Omega(X)$ for some space $X$.
+A frame $L$ is said to be \DEF{spatial} or has \DEF{enough points} if $L = \Omega(X)$ for some space $X$.
 
 \begin{proposition*}
     A frame is spatial iff each of its elements is a meet of prime elements.
