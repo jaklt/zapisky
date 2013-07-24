@@ -6,7 +6,7 @@ We refer to the monograph \emph{Frames and Locales} written by Pultr and Picado~
 
 \subsubsection*{A few comments on notation}
 For sets $X,Y$ and a mapping $f\colon X\to Y$, denote $f[S] = \Set{ f(s) | s\in S}$ and $f^{-1}[M] = \Set{ x\in X | f(x)\in M}$ for any subsets $S\subseteq X$ and $M\subseteq Y$.
-$[0,1]$ is the closed interval of real numbers greater than or equal to 0 and less than or equal to 1, similarly, $[0,\infty)$ is the set of all non-negative real numbers.
+$[0,1]$ is the closed interval of real numbers greater than or equal to 0 and less than or equal to 1, similarly, $[0,\infty)$ is the set of all non-negative real numbers, and $\mathbb Q$ is the set of all rational numbers.
 
 We will often denote a mathematical structure, such as lattice, topological space, frame etc., by the same symbol we use for its underlying set.
 In expressions, the rightmost unary operation is applied first. For example $\downset \bigvee_i a_i^*$ is the same as $\downset \left(\bigvee_i (a_i^*)\right)$.
@@ -31,7 +31,7 @@ We say that $u$ is an \emph{upper bound} of $S$ if $u \geq x$ for all $x\in S$. 
 We say that $l$ is an \emph{lower bound} or an \emph{infimum} if $l$ is an upper bound or the supremum of $S$ in $A\op$.
 
 A partially ordered set $(A,\leq)$ is \emph{join--semilattice} if every two element subset has a supremum. Similarly, \emph{meet--semilattice} has an infimum for every two element subset.
-A \DEF{lattice} is partially ordered set which is both join-- and meet--semilattice. We write $a\vee b$ for the supreum (the \emph{meet}) of $\{a,b\}$ and $a\wedge b$ for the infimum (the \emph{join}).
+A \emph{lattice} is partially ordered set which is both join-- and meet--semilattice. We write $a\vee b$ for the supreum (the \emph{meet}) of $\{a,b\}$ and $a\wedge b$ for the infimum (the \emph{join}).
 
 A mapping $f\colon A\to B$ between two partially ordered sets is called \emph{monotone} if $f(x)\leq f(y)$ wherever $x\leq y$. If, moreover, $A$ and $B$ are lattices and $f(x\vee y) = f(x)\vee f(y)$ and $f(x\wedge y) = f(x)\wedge f(y)$ for all $x,y\in A$, we say that $f$ is a \emph{lattice homomorphism}.
 
@@ -51,7 +51,7 @@ Note that every complete lattice is bounded, $0 = \bigvee \emptyset = \bigwedge 
 
 A lattice homomorphism $f\colon A\to B$ between two complete lattices is a \DEF{complete lattice homomorphism} if $f(\bigvee X) = \bigvee f[X]$ and $f(\bigwedge X) = \bigwedge f[X]$ for each subset $X \subseteq A$.
 
-\num A lattice $D$ is \DEF{distributive} if the following equation holds for all $a,b,c\in D$:
+\num A lattice $D$ is \DEF{distributive}[ lattice] if the following equation holds for all $a,b,c\in D$:
 \begin{align*}
     a\vee (b\wedge c) = (a\vee b)\wedge (a\vee c).
 \end{align*}
@@ -69,13 +69,13 @@ A lattice homomorphism $f\colon A\to B$ between two complete lattices is a \DEF{
     \end{itemize}
 \end{proposition*}
 
-\num Let $A$ and $B$ be two partially ordered sets. Two monotone mappings $f\colon A \to B$ and $g\colon B\to A$ are in \DEF{Galois connection} or are \DEF{Galois adjoint} if
+\num Let $A$ and $B$ be two partially ordered sets. Monotone mappings $f\colon A \to B$ and $g\colon B\to A$ are in \DEF{Galois connection} or are \DEF{Galois adjoint} if
 $$ f(x) \leq y\quad\text{iff}\quad x\leq g(y)\quad\text{for all } x\in A, y\in B.$$
 
 \noindent Or equivalently
 $$ fg(y) \leq y\quad\text{and}\quad x\leq gf(y)\quad\text{for all } x\in A, y\in B.$$
 
-Then, we say that $f$ is a left Galois adjoint of $g$ and the $g$ is a right Galois adjoint of $f$.
+Then, we say that $f$ is a left Galois adjoint of $g$ and $g$ is a right Galois adjoint of $f$.
 For a monotone map $f$, its left or right Galois adjoint do not need to exists but if it does, it is uniquely determined. We will write $f^*$ for the right adjoint and $f_*$ for the left adjoint.
 
 For two monotone maps in Galois connection $f,g$ we have that
@@ -88,7 +88,7 @@ $$ f g f = f\quad\text{and}\quad g f g = g. $$
     Moreover, the converse implication also holds if $A$ and $B$ are complete lattices.
 \end{proposition*}
 
-\num Let $L$ be a lattice with 0. A \emph{pseudocomplement} $a^*$ for an element $a\in L$ is the greatest element $x$ such that
+\num Let $L$ be a lattice with 0. A \emph{pseudocomplement} $a^*$ of an element $a\in L$ is the greatest element $x$ such that
 $$ x\wedge a = 0. $$
 
 \noindent Equivalently, $a^*$ is the pseudocomplement of $a$ if
@@ -103,7 +103,7 @@ A lattice is called \DEF{pseudocomplemented}[ lattice] if every element has a ps
     \item $(a \wedge b)^{**} = a^{**} \wedge b^{**}$.
 \end{enumerate}
 
-\num Let $L$ be a meet semilattice with 0 and with a binary operation $\to$, $L$ is said to be a \DEF{Heyting algebra} if the following holds
+\num Let $L$ be a meet semilattice with 0 and with a binary operation $\to$. Then $L$ is said to be a \DEF{Heyting algebra} if the following holds
 $$ a\wedge x\leq b\quad\text{iff}\quad a\leq x\to b\quad\text{for all } a,b,x\in L.$$
 
 Note that each Heyting algebra is pseudocomplemented semilattice with pseudocomplements defined
@@ -113,9 +113,9 @@ From the definition we see that the operation $x\to (-)$ is the right Galois adj
 Therefore, each meet semilattice admits at most one Heyting operation.
 
 \begin{proposition*}
-    Let $H$ be pseudocomplemented, in particular a Heyting algebra, then
+    Let $H$ be pseudocomplemented, in particular a Heyting algebra. Then
     $$ (\bigvee_i a_i)^* = \bigwedge_i a_i^*$$
-    holds whenever $\bigvee_i a_i$ exists.
+    holds whenever $\bigvee_i a_i$ exists in $H$.
 \end{proposition*}
 
 \begin{proposition*}
@@ -123,19 +123,19 @@ Therefore, each meet semilattice admits at most one Heyting operation.
     $$ (\bigvee_i a_i)\wedge b = \bigvee_i (a_i\wedge b)\quad\text{for all } a_i, b. $$
 \end{proposition*}
 
-\num Let $B$ be a bounded distributive lattice, we say that $B$ is a \DEF{Boolean algebra} if for every element $a\in B$ there exists a (\emph{complement}) $a^c\in B$ such that
+\num Let $B$ be a bounded distributive lattice. We say that $B$ is a \DEF{Boolean algebra} if for every element $a\in B$ there exists a (\emph{complement}) $a^c\in B$ such that
 $$ a\vee a^c = 1\quad\text{and}\quad a\wedge a^c=0. $$
 
 Since $B$ is a distributive lattice, such $a^c$ is uniquely determined. Each Boolean algebra is a Heyting algebra with the Heyting operation defined as follows
 $$ a\to b = a^c\vee b.$$
 Hence, it is also a pseudocomplemented lattice with pseudocomplements equal to complements.
 
-Let $f$ be a lattice homomorphism between two Boolean algebras, $f$ is said to be a \DEF{Boolean homomorphisms} if $f$ preserves 0 and 1.
+Let $f$ be a lattice homomorphism between two Boolean algebras. $f$ is said to be a \DEF{Boolean homomorphisms} if $f$ preserves 0 and 1.
 The following equations holds for any Boolean algebra
 $$ (\bigvee_i a_i)^c = \bigwedge_i a_i^c\quad\text{resp.}\quad (\bigwedge_i a_i)^c = \bigvee_i a_i^c,$$
 whenever $\bigvee_i a_i$ resp. $\bigwedge_i a_i$ exists.
 
-\num Let $L$ be a bounded distributive lattice, then a subset $F\subseteq L$ is a \DEF{filter} if
+\num Let $L$ be a bounded distributive lattice. Then a subset $F\subseteq L$ is a \DEF{filter} if
 \begin{enumerate}[(F1)]
     \item $0\not\in F$ and $1\in F$,
     \item $a\in F$ and $a\leq b\in L$ implies $b\in F$, and
@@ -151,9 +151,9 @@ Similarly, an ideal is a subset $I\subseteq L$ such that
 
 A filter $F\subseteq L$ is called \DEF{prime filter} if $a\vee b\in F$ implies $a\in F$ or $b\in F$.
 $F$ is called \DEF{completely prime filter} if $\bigvee A\in F$ implies $a\in F$ for some $a\in A$.
-A \DEF{principal filter} is any filter of $L$ of the form $\upset a = \Set{ x | x\geq a}$.
+A \emph{principal filter} is any filter of $L$ of the form $\upset a = \Set{ x | x\geq a}$.
 
-Similarly, an ideal $I$ is called \DEF{prime ideal}, \DEF{completely prime ideal} or \DEF{principal ideal} if $I$ is a prime filter, completely prime filter or principal filter of $L\op$.
+Similarly, an ideal $I$ is called \emph{prime ideal}, \emph{completely prime ideal} or \DEF{principal ideal} if $I$ is a prime filter, completely prime filter or principal filter of $L\op$.
 Principal ideals will be denoted by $\downset a = \Set{ x | x\leq a}$.
 
 \begin{proposition*}
@@ -165,7 +165,7 @@ Principal ideals will be denoted by $\downset a = \Set{ x | x\leq a}$.
     \end{itemize}
 \end{proposition*}
 
-From the Proposition we see that the definition of a maximal filter and a prime filter coincide for Boolean algebras, hence we call such filter simply \DEF{ultrafilter}.
+From the Proposition we see that the definition of a maximal filter and a prime filter coincide for Boolean algebras, hence we call such filter \DEF{ultrafilter}.
 
 \newcommand\axiom[2]{
     \vspace{1em}
@@ -177,29 +177,29 @@ From the Proposition we see that the definition of a maximal filter and a prime 
 
 \num \DEF{Axiom of Choice} will be mostly used in its equivalent form -- Zorn's Lemma:
 
-\axiom{\DEF{(AC)}}{Let $X$ be a non-empty partially ordered set such that every non-empty chain has an upper bound, then $X$ has at least one maximal element.}
+\axiom{\DEF{(AC)}}{Let $X$ be a non-empty partially ordered set such that every non-empty chain has an upper bound. Then $X$ has at least one maximal element.}
 
 \noindent By \DEF{Boolean Ultrafilter Theorem} we mean the following choice principle
 
-\axiom{\DEF{(BUT)}}{Let $B$ be a Boolean algebra and let $F$ be a filter of $B$, then there exists a ultrafilter extending $F$.}
+\axiom{\DEF{(BUT)}}{Let $B$ be a Boolean algebra and let $F$ be a filter of $B$. Then there exists a ultrafilter extending $F$.}
 
 \noindent This is equivalent to
 
-\axiom{\emph{(BUT')}}{Let $B$ be a Boolean algebra and let $F$ be a filter and let $I$ be an ideal of $B$ such that $F\cap I = \emptyset$, then there exists a prime filter $G$ extending $F$ such that still $G\cap I=\emptyset$.}
+\axiom{\emph{(BUT')}}{Let $B$ be a Boolean algebra and let $F$ be a filter and let $I$ be an ideal of $B$ such that $F\cap I = \emptyset$. Then there exists a prime filter $G$ extending $F$ such that still $G\cap I=\emptyset$.}
 
 \noindent Finally, the last choice principle we will need to know is \DEF{Axiom of Countable Dependent Choice}
 
-\axiom{\DEF{(CDC)}}{Let $R$ be a binary relation on a set $X$ such that for every $a\in X$ there exists $b\in X$ satisfying $aRb$, then there exist a countable sequence $(a_i)_{i=1}^\infty$ such that $a_iRa_{i+1}$ for all $i=1,2,\dots$.}
+\axiom{\DEF{(CDC)}}{Let $R$ be a binary relation on a set $X$ such that for every $a\in X$ there exists $b\in X$ satisfying $aRb$. Then there exist a countable sequence $(a_i)_{i=1}^\infty$ such that $a_iRa_{i+1}$ for all $i=1,2,\dots$.}
 
 Axiom of Choice is stronger than Boolean Ultrafilter Theorem or Axiom of Countable Dependent Choice; it logically implies both of them.
 
-\section{Category Theory}
+\section{Category theory}
 \num A category $\p C$ is a class of objects ($\obj \p C$), a class of morphisms ($\morph \p C$) and two mappings $\dom,\codom\colon \morph\p C\to \obj\p C$ (\emph{domain} and \emph{codomain}) satisfying conditions (C1)--(C3) bellow.
 
 Notation: For a morphism $f\in \morph \p C$, we write $f\colon A\to B$ or $A \stackrel{f}{\to} B$ whenever we want to express the fact that $A = \dom(f)$ and $B = \codom(f)$.
 
 \begin{enumerate}[(C1)]
-    \item Let $f\colon A\to B, g\colon B\to C$ be two morphisms of $\p C$, then there exists their \emph{composition}, the morphism $g\cdot f\colon A\to C$.
+    \item Let $f\colon A\to B, g\colon B\to C$ be two morphisms of $\p C$. Then there exists their \emph{composition}, the morphism $g\cdot f\colon A\to C$.
     \item The composition satisfies the \emph{associativity law}: $(f\cdot g)\cdot h = f\cdot (g\cdot h)$ whenever the compositions are defined.
     \item For each object $A\in \obj \p C$ there exists an \emph{identity morphism} $1_A$ satisfying $1_A\cdot f = f$ and $g\cdot 1_A = g$ whenever the compositions are defined.
 \end{enumerate}
@@ -235,14 +235,14 @@ It is sometimes possible to think of the contravariant functor as of the functor
 The composition of functors $F\colon \p C\to \p D$ and $G\colon \p D\to \p E$ is denoted by $G\circ F\colon \p C\to \p E$ or simply $GF$.
 
 \begin{block*}{Examples}
-    Let $\p C$ be a category, the \DEF{identity functor} on $\p C$ is defined by the mappings
+    Let $\p C$ be a category. The \DEF{identity functor} on $\p C$ is defined by the mappings
     $$\Id_{\p C}(A) = A\colon \obj\p C\to \obj\p C,\quad\text{and}\quad \Id_{\p C}(f) = f\colon \morph\p C\to \morph\p C.$$
 
-    Let $\p D$ be a non-empty category and let $T$ be an object of $\p D$, then the \emph{constant functor} is defined as follows
+    Let $\p D$ be a non-empty category and let $T$ be an object of $\p D$. Then the \emph{constant functor} is defined as follows
     $$K(A)=T\quad\text{and}\quad K(f)=1_T\quad\text{for all } A,f\in \p C.$$
 \end{block*}
 
-\num Let $F,G\colon \p C\to \p D$ be two functors, a collection of morphisms $m = (m_A)_{A\in \obj\p C}$ is a \emph{natural transformation} between $F$ and $G$, $m\colon F\natto G$, if
+\num Let $F,G\colon \p C\to \p D$ be two functors. A collection of morphisms $m = (m_A)_{A\in \obj\p C}$ is a \emph{natural transformation} between $F$ and $G$, $m\colon F\natto G$, if
 $$ m_A\colon F(A)\to G(A),\quad\text{for all } A\in \obj\p C, $$
 
 % TODO first use of the word ``diagram'', it should be explained
@@ -261,15 +261,18 @@ If a natural transformation $m$ is a collection of isomorphism, we say that $m$ 
 
 \num A \emph{limit} of a \emph{diagram} $D$ in the category $\p C$ (that is, of a functor $D\colon \p D\to \p C$ for a small category $\p D$) is a constant functor $L\colon \p D\to \p C$ and a natural transformation $l\colon L\natto D$ satisfying universal property.
 
-In other words, $l$ is such that for any constant functor $K\colon \p D\to \p C$ and a natural transformation $k\colon K\natto D$ there exists an unique natural transformation $m\colon K\natto L$ such that the following diagram commutes
+In other words, $l$ is such that for any constant functor $K\colon \p D\to \p C$ and a natural transformation $k\colon K\natto D$ there exists an unique natural transformation $\tilde k\colon K\natto L$ such that the following diagram commutes
 \begin{diagram}
     L\ar{r}{l} & D\\
-    K\ar[dashed]{u}{m}\ar{ur}{k} &
+    K\ar[dashed]{u}{\tilde k}\ar{ur}{k} &
 \end{diagram}
 
 \noindent (in the category $[\p D,\p C]$ of all functors from $\p D$ to $\p C$ and natural transformations as morphisms). From the definition, we see that limits are determined uniquely up to isomorphisms.
 
-A \emph{colimit} is defined dually to limit, that is, a colimit of a diagram $D$ is the limit of $D$ in the category $\p C\op$.
+A colimit is defined dually to limit.
+A \emph{colimit} of a diagram is a constant functor $L\colon \p D\to \p C$ and a natural transformation $l\colon D\natto L$ such that 
+for any constant functor $K\colon \p D\to \p C$ and a natural transformation $k\colon D\natto K$ there exists an unique natural transformation $\tilde k\colon L\natto K$ satisfying  $k = \tilde k\,l$.
+
 A category is said to be \emph{(co)complete} if there is a (co)limit for every diagram.
 
 \begin{block*}{Examples}
@@ -290,7 +293,7 @@ $$ F\xrightarrow{~F\rho~} FGF\xrightarrow{~\lambda_{F}~} F\quad\text{and}\quad G
     Right adjoinits preserve limits and left adjoinits preserve colimits.
 \end{proposition*}
 
-Two categories $\p C,\p D$ are said to be \emph{isomorphic}\index{isomorphisms of categories}, and we write $\p C\cong \p D$, if there exists adjoint functors $F\colon \p C\to \p D$ and $G\colon \p D\to \p C$ with units of adjunction consisting of natural equivalences.
+Two categories $\p C,\p D$ are said to be \emph{equivalent}\index{equivalence of categories}, and we write $\p C\cong \p D$, if there exists adjoint functors $F\colon \p C\to \p D$ and $G\colon \p D\to \p C$ with units of adjunction consisting of natural equivalences.
 
 \num A category $\p C$ is said to be \emph{subcategory} of a category $\p D$ if $\obj\p C\subseteq \obj\p D$, $\morph\p C\subseteq \morph\p D$ and the composition of morphisms in $\p C$ coincide with that in $\p D$. Further, if $\Set{f | f\colon A\to B\in \p C} = \Set{f | f\colon A\to B\in \p D}$ for every $A, B\in \obj\p C$, we say that $\p C$ is a \emph{full subcategory} of $\p D$.
 
@@ -306,7 +309,7 @@ A full subcategory $\p C$ of a category $\p D$ is \emph{reflexive} (or \emph{cor
 
 \section{Topology and point--free topology}
 
-\num Let $X$ be a set and $\tau$ an arbitrary set of subsets of $X$, then the pair $(X,\tau)$ is a \emph{topological space} if
+\num Let $X$ be a set and $\tau$ an arbitrary set of subsets of $X$. Then the pair $(X,\tau)$ is a \emph{topological space} if
 \begin{enumerate}[(T1)]
     \item $\emptyset, X \in \tau$,
     \item $\p M \subseteq \tau$ implies $\bigcup \p M \in \tau$, and
@@ -316,7 +319,7 @@ A full subcategory $\p C$ of a category $\p D$ is \emph{reflexive} (or \emph{cor
 A subset of $X$ which is an elements of $\tau$ is called \emph{open} and the complement of an open set is called \emph{closed}. A subset of $X$ is said to be \emph{clopen} if it is both open and closed.
 The \emph{closure} of a set is the least closed set containing it.
 
-Let $(X,\tau), (Y,\sigma)$ be topological spaces and a mapping $f\colon X\to Y$ is said to be \emph{continuous (with respect to $\tau$ and $\sigma$)} if
+Let $(X,\tau), (Y,\sigma)$ be topological spaces. A mapping $f\colon X\to Y$ is said to be \emph{continuous (with respect to $\tau$ and $\sigma$)} if
 $$ f^{-1}[U] \in \tau,\quad\text{for all } U\in \sigma.$$
 
 \noindent Denote by \Top{} the category of all topological spaces and continuous mappings. Isomorphisms of \Top{} are called \emph{homeomorphisms}.
@@ -332,7 +335,7 @@ $$ a^* = \bigvee \Set{ x | x\wedge a = 0}. $$
 
 \noindent For an open set of a space, taking pseudocomplements in the corresponding frame of open sets is the same as taking the interior of the complement.
 
-Let $L$ and $M$ be frames and $f\colon L\to M$ a monotone map, $f$ is said to be a \DEF{frame homomorphism} if $f$ preserves all joins, finite meets, the top and the bottom (1 and 0).
+Let $L$ and $M$ be frames and $f\colon L\to M$ a monotone map. $f$ is said to be a \DEF{frame homomorphism} if $f$ preserves all joins, finite meets, the top and the bottom (1 and 0).
 Denote by \Frm{} the resulting category of all frames and frame homomorphisms.
 
 We have the obvious (contravariant) functor $\Omega\colon \Top\to \Frm$
@@ -351,7 +354,7 @@ $$ \Lc(X,\tau) = \tau\quad\text{and}\quad \Lc(f) = \Omega(f)^*.$$
     \item[$T_1$:] if for every two distinct points $x,y\in X$ there exist an open $U\in \tau$ such that $x\in U\not\ni y$.
     \item[$T_2$:] if for every two distinct points $x,y\in X$ there exist disjoint open sets $U,V\in \tau$ separating $x$ and $y$, i.e. $x\in U\not\ni y$ and $x\not\in V\ni y$.
     \item[$T_3$:] if for each point $x\in X$ and each closed $F\subseteq X$ such that $x\notin F$ there exist disjoint open sets separating $x$ and $F$.
-    \item[$T_{3.5}$:] if for each point $x\in X$ and each closed $F\subseteq X$ such that $x\notin F$ there exist a continuous function $f\colon X\to [0,1]$ separating $x$ and $F$, i.e. $f(x) = 0$ and $f[F] = 1$.
+    \item[$T_{3.5}$:] if for each point $x\in X$ and each closed $F\subseteq X$ such that $x\notin F$ there exist a continuous function $f\colon X\to [0,1]$ separating $x$ and $F$, i.e. $f(x) = 0$ and $f[F]\subseteq \{1\}$.
     \item[$T_{4}$:] if for every two disjoin closed subsets of $X$ there exist two disjoint open sets separating them, or equivalently, there exists a continuous function separating them.
 \end{itemize}
 
@@ -391,7 +394,7 @@ $$ a\vee b = 1\quad\implies\quad \exists c\text{ such that } a\vee c = 1\text{ a
 \end{center}
 \vspace{0.5em}
 
-\begin{observation*}\label{p:rbellowProperties}\label{p:crbellowProperties} Let $\lhd\in \{\rbelow, \crbelow\}$, then
+\begin{observation*}\label{p:rbellowProperties}\label{p:crbellowProperties} Let $\lhd\in \{\rbelow, \crbelow\}$. Then
 \begin{enumerate}
     \item $a'\leq a\lhd b\leq b$ implies $a'\lhd b'$,
     \item $a_1\lhd b_1$ and $a_2\lhd b_2$ implies $a_1\wedge a_2 \lhd b_1 \wedge b_2$ and $a_1\vee a_2 \lhd b_1 \vee b_2$,\text{ and}
@@ -399,16 +402,16 @@ $$ a\vee b = 1\quad\implies\quad \exists c\text{ such that } a\vee c = 1\text{ a
 \end{enumerate}
 \end{observation*}
 
-\num For a topological space $X$, a continuous map $i\colon \{\star\}\to X$ is identified with a point of $X$. For each such map we have the associated frame homomorphism $\Omega(i)\colon \Omega X\to \mathbf 2$, where $\mathbf 2$ is the frame $\Omega(\{\star\}) = \{0 < 1\}$. Therefore, it is convenient to define a \emph{point} of a frame $L$ as a frame homomorphism $L\to \mathbf 2$.
+\num For a topological space $X$, a continuous map $i\colon \{\star\}\to X$ is identified with a point of $X$. For each such map, we have the associated frame homomorphism $\Omega(i)\colon \Omega X\to \mathbf 2$, where $\mathbf 2$ is the frame $\Omega(\{\star\}) = \{0 < 1\}$. Therefore, it is convenient to define a \emph{point} of a frame $L$ as a frame homomorphism $L\to \mathbf 2$.
 
 Note that every frame homomorphism $p\colon L\to \mathbf 2$ determines a completely prime filter (as $p^{-1}[\{1\}]$), and vice versa. The completely prime filters in topological spaces represents the neighbourhoods of points.
 
 Another way of defining points of a frame is by prime elements.
 An element $p\neq 1$ is \DEF{prime}[ element] or \DEF{meet--irreducible}[ element] if $a\wedge b\leq p$ implies $a\leq p$ or $b\leq p$.
-Then, the frame homomorphisms $L\to \mathbf 2$ are in one-one correspondence with prime elements (as $\bigvee p^{-1}[\{0\}]$).
-The prime elements of topological space approximate the open sets $X\setminus \closure{\{x\}}$.
+Then, the frame homomorphisms $p\colon L\to \mathbf 2$ are in one-one correspondence with prime elements (as $\bigvee p^{-1}[\{0\}]$).
+The prime elements of topological space corresponds to the open sets $X\setminus \closure{\{x\}}$.
 
-A frame $L$ is said to be \DEF{spatial} or has \DEF{enough points} if $L = \Omega(X)$ for some space $X$.
+A frame $L$ is said to be \DEF{spatial}[ frame] or has \emph{enough points} if $L = \Omega(X)$ for some space $X$.
 
 \begin{proposition*}
     A frame is spatial iff each of its elements is a meet of prime elements.
@@ -466,7 +469,7 @@ For a frame $L$ and a nucleus $\nu\colon L \to L$, set $S = \nu(L)$. The set $S$
 \noindent is a sublocale of $L$. Indeed, from (N4), we know that $\sqcap$ is the infimum and, from (N2), we know that $\bigsqcup$ is the supremum. Moreover, we have
 $$ (\bigsqcup a_i)\sqcap b = \nu(\bigvee a_i) \wedge \nu(b) = \nu(\bigvee(a_i \wedge b)) = \bigsqcup (a_i \sqcap b).$$
 
-\noindent Hence $\nu(L)$ is a frame, we will show that the monotone map defined as $(\nu^*\colon a \mapsto \nu(a))\colon L \to \nu(L)$ is an onto frame homomorphism. Then, we know that $\nu(L)$ is a sublocale of $L$. It is enough to show that
+\noindent Hence $\nu(L)$ is a frame, we will show that the monotone map defined as $(\bar\nu\colon a \mapsto \nu(a))\colon L \to \nu(L)$ is an onto frame homomorphism. Then, we know that $\nu(L)$ is a sublocale of $L$. It is enough to show that
     $$\nu(\bigvee a_i) = \nu(\bigvee \nu(a_i)) \quad( = \bigsqcup \nu(a_i)).$$
 
     \noindent We have $\bigvee a_i \leq \bigvee \nu(a_i)$ by (N1) and $\nu(\bigvee a_i) \leq \nu(\bigvee \nu(a_i))$ by (N2). On the other hand $\nu(a_i) \leq \nu(\bigvee a_i)$ by (N2). Hence $\bigvee \nu(a_i) \leq \nu(\bigvee a_i)$ and $\nu(\bigvee \nu(a_i)) \leq \nu\nu(\bigvee a_i) = \nu(\bigvee a_i)$ by (N2) and (N3).

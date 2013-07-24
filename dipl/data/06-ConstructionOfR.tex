@@ -72,9 +72,9 @@ The whole (point-free) situation is depicted in the diagram below.
 
 where the symbol $\subseteq^{\text{obj}}$ denotes an inclusion of objects of one category to another. (New categories in the diagram: \categoryStyle{CBool} denotes the category of complete Boolean algebras and \emph{all} Boolean homomorphisms. The category \categoryStyle{KDMRFrm} is the category of all extremally disconnected Stone spaces, or in other words all compact De Morgan regular frames, and \emph{all} frame homomorphisms. \categoryStyle{RegKFrm} denotes the category of compact regular frames, \categoryStyle{CRegFrm} the category of completely regular frames.)
 
-In the diagram, Stone duality is drawn in the area surrounded by the dotted rectangle and the compactification is drawn in the area surrounded by the dashed curve. As we know from the discussion above, the construction on objects is exactly the same for both marked parts of the diagram. However, the Stone correspondence is an isomorphism of categories, whereas the compactification is just a coreflection.
+In the diagram, Stone duality is drawn in the area surrounded by the dotted rectangle and the compactification is drawn in the area surrounded by the dashed curve. As we know from the discussion above, the construction on objects is exactly the same for both marked parts of the diagram. However, the Stone correspondence is an equivalence of categories, whereas the compactification is just a coreflection.
 
-Taking the frame of all regular ideals of a bounded pseudocomplemented lattice is a general construction of compact frames. A natural question arises: Is it possible to extend the category \ComplBool{} to a wider subcategory of \categoryStyle{DMRFrm} and again obtain the isomorphism of categories carried by \R{}? From the following diagram we can see why it is not possible.
+Taking the frame of all regular ideals of a bounded pseudocomplemented lattice is a general construction of compact frames. A natural question arises: Is it possible to extend the category \ComplBool{} to a wider subcategory of \categoryStyle{DMRFrm} and again obtain the equivalence of categories carried by \R{}? From the following diagram we can see why it is not possible.
 
 \begin{diagram}
     \categoryStyle{KDMRFrm} \ar[<->, thick]{r}{} & \categoryStyle{CBool} \ar{r}{\subseteq^{\text{obj}}} & \categoryStyle{DMRFrm} \ar[bend right=20,swap]{ll}{\restr{\C}{\categoryStyle{DMRFrm}}} \\
@@ -82,11 +82,6 @@ Taking the frame of all regular ideals of a bounded pseudocomplemented lattice i
 \end{diagram}
 
 Objects of \categoryStyle{CBool} are in correspondence with objects of \categoryStyle{KDMRFrm}. On the other hand, \R{} provides a coreflection of the category \categoryStyle{DMRFrm} onto \categoryStyle{KDMRFrm}. Since \ComplBool{} is a subcategory of \categoryStyle{CBool}, we cannot hope to expand the correspondence by extending the category \ComplBool{} into a wider subcategory of \categoryStyle{DMRFrm}.
-
-% we have in the category all (regular) De Morgan frames as objects, we cannot expect from \R{} to form an isomorphism, because we know, the category of compact (regular) De Morgan frames is (non--isomorphically) coreflexive in the category of (regular) De Morgan frames~\ref{p:extrDiscPreserv} (certainly, there exists a non--compact (regular) De Morgan frame).
-
-% TODO Compare compactification in classical and in point-free setting. Mention that \JI{} correspond to compactification, the topology of Ult is isomorphic to ideal lattice of Boolean algebra and that this was known~\cite{monk1989handbook}.
-% (note: Taken from the big picture of Stone duality)
 
 \section{Booleanization}
 
@@ -114,12 +109,12 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
     For $a \in \Bo H$: $a^* = a^{***} \in \Bo H$ too, $a\sqcup a^* = (a^*\wedge a^{**})^* = 0^* = 1$ and also $a\sqcap a^* = a\wedge a^* = 0$. Hence, each element is complemented and $\Bo H$ is a Boolean algebra.
 \end{proof}
 
-\num\label{p:propertiesBooleanization}Let $L$ be a frame, the mapping defined as $a \mapsto a^{**}$ is a nucleus:
+\num\label{p:propertiesBooleanization}Let $L$ be a frame. The mapping defined as $a \mapsto a^{**}$ is a nucleus:
     \begin{enumerate}[label=(N\arabic*)]
         \item $a \leq a^{**}$: it is a standard inequality (from \ref{p:pseudcomplProperties});
         \item $a \leq b$ implies $a^{**} \leq b^{**}$: since taking pseudocomplements is antitone;
         \item $a^{**\;**} = a^{**}$: follows from $a^* = a^{***}$; and
-        \item $(a \wedge b)^{**} = a^{**} \wedge b^{**}$: it is again a standard equality.
+        \item $(a \wedge b)^{**} = a^{**} \wedge b^{**}$: it is again a standard equality (from \ref{p:pseudcomplProperties}).
     \end{enumerate}
 
     Therefore, by~\ref{p:nuclProp}, $\Bo L$ is a sublocale of $L$ and consequently a complete Boolean algebra. As a direct consequence of~\ref{p:nuclProp}, the mapping
@@ -138,7 +133,7 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
 
 \num\label{p:boolenizationCond}The following Proposition is taken from~\cite{banaschewski1996booleanization}.
 \begin{proposition*}
-    Let $f\colon L \to M$ be a frame homomorphism, then $\Bo f$ is a frame homomorphism such that the following diagram commutes
+    Let $f\colon L \to M$ be a frame homomorphism. Then $\Bo f$ is a frame homomorphism such that the following diagram commutes
     \begin{diagram}
         L \ar{r}{\beta_L} \ar{d}{f} & \Bo L \ar{d}{\Bo f}\\
         M \ar{r}{\beta_M}           & \Bo M
@@ -151,7 +146,7 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
         f(a^{**})^{**} = f(a)^{**} \iff f(a^{**}) \leq f(a)^{**},\quad\text{for all } a\in L.\label{e:2202iff20leq02}\tag{W.O.}
     \end{align}
 
-    $\Leftarrow$ is straightforward and $\Rightarrow$ follows simply from $f(a^{**}) \leq f(a^{**})^{**} $. Commutativity of the diagram is precisely the equality $f(a^{**})^{**} = f(a)^{**}$.
+    $\Leftarrow$ is straightforward and $\Rightarrow$ follows from $f(a^{**}) \leq f(a^{**})^{**} $. Commutativity of the diagram is precisely the equality $f(a^{**})^{**} = f(a)^{**}$.
 
     The last thing we need to show is that $f(a^{**}) \leq f(a)^{**}$ implies that $\Bo f$ is a frame homomorphism. It is straightforward to see that $\Bo f$ preserves $0$, $1$ and $\sqcap$. For $\sqcup$--preserving take $a, b \in \Bo L$ and compute
     $$(\Bo f)(a)\sqcup (\Bo f)(b) = (f(a)^{**}\vee f(b)^{**})^{**} \geq f(a^{**}\vee b^{**})^{**} = f(a\vee b)^{**} = (\Bo f)(a\sqcup b),$$
@@ -201,7 +196,7 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
 \end{proof}
 
 \begin{lemma}\label{p:basicalMorphs}
-    Let $f\colon L \to M$ be a frame homomorphism and $a \in L$ such that $a^{**}\vee a^* = 1$, then
+    Let $f\colon L \to M$ be a frame homomorphism and $a \in L$ such that $a^{**}\vee a^* = 1$. Then
     $$ f(a^{**})^* = f(a^*).$$
 
     In particular, for $a = a^{**}$ we have
@@ -232,14 +227,14 @@ Objects of \categoryStyle{CBool} are in correspondence with objects of \category
     $\Bo\colon \ExtrStoneFrm \to \ComplBool$ is a functor.
 \end{conclusion*}
 
-In literature the frame homomorphisms satisfying (\oldref{e:2202iff20leq02}) are called \DEF{weakly open} and frame homomorphisms satisfying (\oldref{e:1001}) are called \DEF{nearly open}~\cite{banaschewski1994variants}.
+In literature the frame homomorphisms satisfying (\oldref{e:2202iff20leq02}) are called \emph{weakly open} and frame homomorphisms satisfying (\oldref{e:1001}) are called \DEF{nearly open}[ homomorphism]~\cite{banaschewski1994variants}.
 % TODO topological interpretation
 
 \begin{observation}\label{p:boEQbc}
     $\Bo L = \BcI L$ for any extremally disconnected Stone frame $L$.
 \end{observation}
 \begin{proof}
-    $\Bo L \supseteq \BcI L$ holds always. Let $x \in \Bo L$, then $x = x^{**}$ and from extremal disconnectedness also $x^{**}\vee x^*=1$, hence $x \in \BcI L$.
+    $\Bo L \supseteq \BcI L$ holds always. Let $x \in \Bo L$. Then $x = x^{**}$ and from extremal disconnectedness also $x^{**}\vee x^*=1$, hence $x \in \BcI L$.
 \end{proof}
 
 
@@ -268,7 +263,7 @@ In literature the frame homomorphisms satisfying (\oldref{e:2202iff20leq02}) are
 \begin{proof}
     Let $B$ be a Boolean frame. We see that $J \in \Bo\JI(B)$ iff $J = J^{**} = \downset \bigvee J$.
 
-    Denote by $\tilde i_B\colon B \to \Bo\JI(B)$ the mapping $a \mapsto \downset a$. From the previous Observation we know that the definitions of $\tilde i_B$ and $i_B$ coincide, therefore by~\ref{p:BoolEquivalence}, $\tilde i_B$ is a Boolean isomorphism. And from~\ref{p:completePartUnits}, we see that $\tilde i_B$ is a morphisms of \ComplBool{}.
+    Denote by $\tilde i_B\colon B \to \Bo\JI(B)$ the mapping $a \mapsto \downset a$. From the previous Observation we know that the definitions of $\tilde i_B$ and $i_B$ coincide, therefore by~\ref{p:BoolEquivalence}, $\tilde i_B$ is a Boolean isomorphism. From~\ref{p:completePartUnits}, we see that $\tilde i_B$ is a morphisms of \ComplBool{}.
 
     Now, for any complete Boolean algebras $A$ and $B$ and for any complete Boolean homomorphism $f\colon A \to B$, the following diagram commutes
     \begin{diagram}
@@ -317,10 +312,5 @@ In literature the frame homomorphisms satisfying (\oldref{e:2202iff20leq02}) are
 \num From \ref{p:BooleanizationFunctorOnExtrDSF}---\ref{p:JOBoIdentity}, we obtain the main result of this section.
 
 \begin{theorem*}\label{p:completePart2}
-    The functors \Bo{} and \JI{} provide an isomorphism between the categories \\\ExtrStoneFrm{} and \ComplBool{}.
+    The functors \Bo{} and \JI{} provide an equivalence between the categories \\\ExtrStoneFrm{} and \ComplBool{}.
 \end{theorem*}
-
-% TODO
-% \num Observe that $\Bo$ provides an isomorphism precisely for this part of Stone correspond. For a frame $L$, $\Bo L$ is always a complete Boolean algebra and the frame $\JI\Bo(L)$ is extremally disconnected.
-
-% TODO and by \ref{e:1001} we cannot hope to ommit condition to have weakly open frame homomorphismsa?

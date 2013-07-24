@@ -2,7 +2,7 @@
 
 In 1936 Marshall Stone published a paper called ``The Theory of Representations of Boolean Algebras''~\cite{stone1936theory}, describing a duality of two categories, the category of Boolean algebras and Boolean homomorphisms and the category of compact Hausdorff zero--dimensional topological spaces and continuous maps. At that time he could not use the language of category theory, of course.
 
-The word ``duality'' means that one category is isomorphic to the dual of the other category.
+The word ``duality'' means that one category is equivalent to the dual of the other category.
 The duality at that time was a big surprise because it has shown similarities between a objects with nice algebraic structure, the Boolean algebras, with, another mathematical objects witch was thought to have no algebraic structure at all, topological spaces.
 
 In this chapter, we will first discuss the Stone duality in the point--free context. Since the adjunction between topological spaces and frames is contravariant, the construction will be covariant and we speak of the Stone correspondence. In the second part we will obtain the standard Stone duality for topological spaces.
@@ -47,14 +47,12 @@ In this chapter, we will first discuss the Stone duality in the point--free cont
 \end{proof}
 
 \begin{definition}
-    Let $L$ be a Stone frame. Define $\DEFSYM{BcO}{$\BcO{}$} L$ to be the set of all complemented elements of $L$ and for a frame homomorphism $f\colon L \to M$ define
+    Let $L$ be a Stone frame. Define $\DEFSYM{BcO}{$\BcO{}$} L$ to be the set of all complemented elements of $L$ and for a frame homomorphism between Stone frames $f\colon L \to M$ define
     $$\BcO f = \restr{f}{\BcO L}\colon \BcO L \to \BcO M.$$
 \end{definition}
-% TODO somehow mention that $f$ is between stone spaces
 
-From the fact that a homomorphic image of a complemented element is a complemented element and since join or meet of two complemented elements is again complemented (for two complemented elements $a$ and $b$, $a^c \vee b^c$ is the complement of $a\wedge b$ and $a^c\wedge b^c$ is the complement of $a\vee b$), one can see that $\BcO L$ is a Boolean algebra and $\BcO f$ is well--defined Boolean homomorphism.
+From the fact that a homomorphic image of a complemented element is a complemented element and since join or meet of two complemented elements is again complemented (for complemented elements $a$ and $b$, $a^c \vee b^c$ is the complement of $a\wedge b$ and $a^c\wedge b^c$ is the complement of $a\vee b$), one can see that $\BcO L$ is a Boolean algebra and $\BcO f$ is well--defined Boolean homomorphism.
 
-% TODO some comment's before this statement
 \begin{observation}
     $\BcO\colon \StoneFrm \to \Bool$ is a functor.
 \end{observation}
@@ -104,12 +102,12 @@ From previous observations, we know that $v_L$ is an isomorphism of $L$ and $\JO
 \num Using previous facts we obtain the main result of this section.
 
 \begin{theorem*}\label{p:stonefrmBoolIso}
-    Functor \BcO{} is the right adjoint to the functor \JO{} with $i$ as the unit of adjunction and $v$ as the counit. Moreover, \BcO{} and \JO{} constitute an isomorphism of categories \StoneFrm{} and \Bool.
+    Functors \BcO{} and \JO{} constitute an equivalence of categories \StoneFrm{} and \Bool.
 \end{theorem*}
 
 \section{Stone duality for spaces}
 
-The classical spatial version of Stone duality follows simply from the Stone correspondence between Stone frames and Boolean algebras from previous section. We have the duality between the category of compact zero--dimensional frames and the category compact zero--dimensional spaces (restricted Hofmann--Lawson's Duality, Theorem~\ref{p:HLDuality}).
+The classical spatial version of Stone duality follows from the Stone correspondence between Stone frames and Boolean algebras from previous section. We have the duality between the category of compact zero--dimensional frames and the category compact zero--dimensional spaces (restricted Hofmann--Lawson's Duality, Theorem~\ref{p:HLDuality}).
 
 However the Hofmann--Lawson's Duality depends on the Axiom of Choice. In this section we will prove the Stone duality by assuming only the Boolean Ultrafilter Theorem.
 
@@ -120,13 +118,13 @@ However the Hofmann--Lawson's Duality depends on the Axiom of Choice. In this se
     By \DEF{\StoneSp{}} denote the category of Stone spaces and continuous mappings.
 \end{definition*}
 
-\num Let $B$ be a Boolean algebra, define
+\num Let $B$ be a Boolean algebra. Define
     $$
     X_B  = \Set{F \subseteq B | F \text{ is an ultrafilter of } B}
     \quad\text{ and }\quad
     \tau_B = \Set{ W_I | I \in \JO B},
     $$
-\noindent where \DEFSYM{WI}{$W_I$} is the set $\Set{ F \in X_B | F \cap I \neq \emptyset }$. The pair $(X_B, \tau_B)$ is a topological space:
+\noindent where $W_I$ is the set $\Set{ F \in X_B | F \cap I \neq \emptyset }$. The pair $(X_B, \tau_B)$ is a topological space:
 
 \begin{enumerate}[label=(T\arabic*)]
     \item $\tau_B$ contains $\emptyset = W_{\downset 0}$ and $X_B = W_{\downset 1}$.
@@ -139,7 +137,7 @@ However the Hofmann--Lawson's Duality depends on the Axiom of Choice. In this se
 \noindent We will denote the topological space $(X_B, \tau_B)$ by \DEFSYM{S B}{$\Sp B$}.
 
 \begin{lemma}\label{p:SpObjects}
-    Let $B$ be a Boolean algebra, then $\Sp B$ is a Stone space.
+    Let $B$ be a Boolean algebra. Then $\Sp B$ is a Stone space.
 \end{lemma}
 \begin{proof}
     Compactness follows directly from compactness of $\JO B$. Note that the complemented elements are of the form $W_{\downset a}$ for some $a\in B$: $W_{\downset a}\cup W_{\downset a^c} = W_{\downset (a\vee a^c)} = X_B$ and $W_{\downset a}\cap W_{\downset a^c} = W_{\downset (a\wedge a^c)} = \emptyset$. Since every open set is an union of sets of the form $W_{\downset a}$, the $\Sp B$ is zero--dimensional.
@@ -190,9 +188,9 @@ However the Hofmann--Lawson's Duality depends on the Axiom of Choice. In this se
 \begin{proof}
     From the definition of $\Sp B$, we can see that $\pi_B$ is an onto frame homomorphism.
 
-    Take any $I \neq J$, $I,J \in \JO B$. Without loss of generality take $e \in I \setminus J$. Now the filter $\upset e$ is disjoint with the ideal $J$ and by Boolean Ultrafilter Theorem there exists an ultrafilter $U \supseteq \upset e$ disjoint with $J$. Also $U \cap I$ is not empty, it contains $e$, and therefore $W_I \neq W_J$.
+    Take any $I \neq J$, $I,J \in \JO B$. Without loss of generality take $e \in I \setminus J$. Now the filter $\upset e$ is disjoint with the ideal $J$ and by Boolean Ultrafilter Theorem there exists an ultrafilter $U \supseteq \upset e$ disjoint with $J$. The intersection $U \cap I$ is not empty, it contains $e$, and therefore $W_I \neq W_J$.
 
-    The naturalness of $\pi_*$ follows from the commutativity of the following diagram
+    The naturalness of $\pi$ follows from the commutativity of the following diagram
 
     \begin{diagram}
         \JO A \ar{r}{\pi_A} \ar{d}[swap]{\JO f} & \Omega\Sp(A) \ar{d}{\Omega\Sp(f)}\\
@@ -250,21 +248,21 @@ However the Hofmann--Lawson's Duality depends on the Axiom of Choice. In this se
 
 \num From the previous, we have
 \begin{theorem*}
-    Functors $\Omega\circ\BcO$ and \Sp{} are mutually inverse. Thus, categories \Bool{} and $\StoneSp^{\text{op}}$ are isomorphic.\ACP
+    Functors $\Omega\circ\BcO$ and \Sp{} are mutually inverse. Thus, categories \Bool{} and $\StoneSp^{\text{op}}$ are equivalent.\ACP
 \end{theorem*}
 
-\num Similarly to the previous section, we obtained an isomorphism of categories. However, the adjoint functors of this isomorphism are contravariant, thus we obtained a duality of two categories instead of a correspondence.
+\num Similarly to the previous section, we obtained an equivalence of categories. However, the adjoint functors of this equivalence are contravariant, thus we obtained a duality of two categories instead of a correspondence.
 
-Note that we can make the correspondence, from the previous section, into duality simply by the duality between the category of frames and the category of locales.
+Note that we can make the correspondence, from the previous section, into duality by the duality between the category of frames and the category of locales.
 
 \section{Notes on constructivity}
 
 One can check that the whole correspondence between Stone frames and Boolean algebras has been proved constructively. Therefore, the necessity of a choice principle needed in classical Stone duality between Stone spaces and Boolean algebras is necessary only to show that spaces constructed from Boolean algebras have enough points.
 
-Analogously, the compactification of completely regular frames described in the previous chapter was constructive; its counterpart for topological spaces is equivalent to Boolean Ultrafilter Theorem~\cite{??}.
+Analogously, the compactification of completely regular frames described in the previous chapter was constructive; its counterpart for topological spaces is equivalent to Boolean Ultrafilter Theorem~\cite{banaschewski1984stone}.
 
 To be more precise, in the proof of the compactification we used the fact that compact regular frames are completely regular (Proposition~\ref{p:compRegIsCR}).
-We construct an interpolative relation $\crbelow$ using the Axiom of Countable Dependent Choice (CDC), but by Banaschewski and Pultr~\cite{banaschewski2002constructive}, we can avoid using CDC by working with strongly regular frames instead of completely regular. The whole construction can then be made constructive, even in the sense of Topos Theory.
+We construct an interpolative relation $\crbelow$ using the Axiom of Countable Dependent Choice (CDC), but by Banaschewski and Pultr~\cite{banaschewski2002constructive}, we can avoid using CDC by working with strongly regular frames instead of completely regular. The whole construction can then be made constructive, even in the sense of topos theory.
 
 Strongly regular frames are frames in which, for every element $x$, the following equation holds
 $$ x = \bigvee \Set{ y | y\;(\rbelow)_o\;x }, $$

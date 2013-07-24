@@ -11,7 +11,7 @@ For the rest of this section, let $\kappa$ be a fixed infinite regular cardinal.
 \begin{definition}
     A lattice is \DEFSYM[completeKL]{}{$\kappa$--complete}[ lattice], if any subset of cardinality less than $\kappa$ has a supremum and an infimum. A homomorphism is said to be \DEFSYM[completeKH]{}{$\kappa$--complete}[ homomorphism] if it preserves all suprema and infima of subsets of cardinality less than $\kappa$.
 
-    Let $L$ be a Stone frame and let $s$ be an element of $L$. We say that $s$ is \DEFSYM[generated]{}{$\kappa$--generated} if $s = \bigvee S$ for some $S \subseteq \BcO L$ of cardinality less than $\kappa$.
+    Let $L$ be a Stone frame and let $s$ be an element of $L$. We say that $s$ is \DEFSYM[generated]{}{$\kappa$--generated}[ element] if $s = \bigvee S$ for some $S \subseteq \BcO L$ of cardinality less than $\kappa$.
 \end{definition}
 
 \num The following Lemma will be often expedient for computations.
@@ -21,18 +21,17 @@ For the rest of this section, let $\kappa$ be a fixed infinite regular cardinal.
 \begin{proof}
     $I$ is of the form $\bigvee \Set{\downset s | s\in S}$ for some $S\subseteq B$ of cardinality less than $\kappa$. Since $b\wedge s = 0$ iff $b\leq s^c$, we have
     \begin{align*}
-        I^* = (\bigvee \Set{\downset s | s\in S})^* &= \bigvee \Set{ \downset b | b\in B,~b\wedge s = 0, \text{ for all }s\in S} \\
-                &= \bigvee \set{ \downset b | b\in B,~b\leq \bigwedge_{s\in S} s^c} \\
-                &= \bigvee \set{ \downset b | b\in B,~b\leq (\bigvee S)^c} \\
-                &= \downset (\bigvee S)^c = \downset (\bigvee I)^c.
+        I^* &= (\bigvee \Set{\downset s | s\in S})^* = \bigvee \Set{ \downset b | b\in B,~b\wedge s = 0, \text{ for all }s\in S} \\
+                &= \bigvee \set{ \downset b | b\in B,~b\leq \bigwedge_{s\in S} s^c} 
+                 = \bigvee \set{ \downset b | b\in B,~b\leq (\bigvee S)^c} 
+                 = \downset (\bigvee S)^c = \downset (\bigvee I)^c.
     \end{align*}
     \paragraph{}
     \vspace{-2em}
 \end{proof}
 
 \begin{definition}
-
-    Let $L$ be a Stone frame, we say that $L$ is \DEFSYM[basically disconnected]{}{$\kappa$--basically disconnected} if $m^{**} \vee m^* = 1$ for all $\kappa$--generated elements $m \in L$.
+    Let $L$ be a Stone frame. We say that $L$ is \DEFSYM[basically disconnected]{}{$\kappa$--basically disconnected} if $m^{**} \vee m^* = 1$ for all $\kappa$--generated elements $m \in L$.
 \end{definition}
 
 \begin{lemma}\label{p:kappaCompleteBA}
@@ -77,11 +76,11 @@ For the rest of this section, let $\kappa$ be a fixed infinite regular cardinal.
 Now, we will focus on morphisms.
 
 \begin{observation}
-    Let $f\colon A \to B$ be a $\kappa$--complete Boolean homomorphism and let $I$ be a $\kappa$--generated ideal of $A$, then
+    Let $f\colon A \to B$ be a $\kappa$--complete Boolean homomorphism and let $I$ be a $\kappa$--generated ideal of $A$. Then
     $$(\JO f)(I^*) = (\JO f)(I)^*.$$
 \end{observation}
 \begin{proof}
-    The result is obtained by simple computation,
+    It is straightforward. We have
     \begin{align*}
         (\JO f)(I^*) &= (\JO f)(\downset (\bigvee I)^c) & \text{(Lemma~\ref{p:idealsFrame})}\\
                 &= \downset f[\downset (\bigvee I)^c] = \downset f((\bigvee I)^c) \\
@@ -101,7 +100,7 @@ Now, we will focus on morphisms.
 In other words, the last observation states that the functor \JO{} sends any $\kappa$--complete Boolean homomorphism to a $\kappa$--basically complete frame homomorphism. As we will see in the following Lemma, morphisms of the image of $\kappa$--complete part of Boolean algebras in Stone correspondence are characterised precisely this way.
 
 \begin{lemma}
-    Let $f\colon L \to M$ be a $\kappa$--basically complete frame homomorphism, then $\BcO f\colon \BcO L \to \BcO M$ is a $\kappa$--complete Boolean homomorphism.
+    Let $f\colon L \to M$ be a $\kappa$--basically complete frame homomorphism. Then $\BcO f\colon \BcO L \to \BcO M$ is a $\kappa$--complete Boolean homomorphism.
 \end{lemma}
 \begin{proof}
     Let $A$ be an arbitrary subset of $\BcO L$ such that $|A| < \kappa$. We have
@@ -123,24 +122,23 @@ If we set \DEF{\kComplBool{}} to be the category of $\kappa$--complete Boolean a
     \DEFSYM{BcK}{\BcK}&\colon \kBDStoneFrm \to \kComplBool,
 \end{align*}
 
-\noindent as the restriction of \JO{} and \BcO{} to the corresponding subcategories. And we get the following
+\noindent as the restriction of \JO{} and \BcO{} to the corresponding subcategories. Note that the notation is consistent with the previously defined $\JO$ and $\BcO$. We get the following
 
 \begin{theorem*}\label{p:kappaDuality}
-    The functors \JK{} and \BcK{} constitute an isomorphism between categories \\ \kComplBool{} and \kBDStoneFrm.
+    The functors \JK{} and \BcK{} constitute an equivalence between categories \\ \kComplBool{} and \kBDStoneFrm.
 \end{theorem*}
 \begin{proof}
     The only thing we need to show is that the morphisms of natural equivalences for identity functors and functors $\BcO\JO$ and $\JO\BcO$ are morphisms of our categories.
 
-    For the first part, we will show that $i_B\colon B \to \BcO\JO(B)$ is a $\kappa$--complete Boolean homomorphisms for any $\kappa$--complete Boolean algebra $B$. Let $B'$ be an arbitrary subset of $B$ of cardinality less than $\kappa$, then by straightforward computation we get
+    For the first part, we will show that $i_B\colon B \to \BcO\JO(B)$ is a $\kappa$--complete Boolean homomorphisms for any $\kappa$--complete Boolean algebra $B$. Let $B'$ be an arbitrary subset of $B$ of cardinality less than $\kappa$. Then by straightforward computation we get
 
     $$
         \bigsqcup_{b\in B'} i_B(b) = \bigsqcup_{b\in B'} \downset b = (\bigvee_{b\in B'} \downset b)^{**} = \downset (\bigvee_{b\in B'} b) = i_B(\bigvee_{b\in B'} b),
     $$
 
-    \noindent where the third equality follows from~\ref{p:idealsFrame}.
+    \noindent where the third equality follows from Lemma~\ref{p:idealsFrame}.
 
     For the second part, we need to show that $v_L\colon \JO\BcO(L) \to L$ is $\kappa$--basically complete for any $\kappa$--basically disconnected Stone frame $L$. We will show that $v_L$ is $\lambda$--basically complete for any regular cardinal $\lambda$. Take any $I \in \JO\BcO(L)$, we have
-
     \begin{align*}
         v_L(I^*) &= v_L(\bigvee \Set{ \downset s | \downset s \wedge I = 0 })
                   = \bigvee \Set{ v_L(\downset s) | \downset s \wedge I = 0 } \\
@@ -152,7 +150,7 @@ If we set \DEF{\kComplBool{}} to be the category of $\kappa$--complete Boolean a
 
 \section{Complete Boolean algebras}
 
-By Theorem~\ref{p:kappaCompleteThm} we know that there is an isomorphism between the category of $\kappa$--complete Boolean algebras and $\kappa$--complete Boolean homomorphisms and the category of $\kappa$--basically disconnected Stone frames and $\kappa$--basically complete frame homomorphisms. Since, there is no limitation or upper bound for the cardinal $\kappa$ in Theorem~\ref{p:kappaDuality}, let us have a look at the part of the correspondence where $\kappa$ is arbitrary large.
+By Theorem~\ref{p:kappaCompleteThm} we know that there is an equivalence between the category of $\kappa$--complete Boolean algebras and $\kappa$--complete Boolean homomorphisms and the category of $\kappa$--basically disconnected Stone frames and $\kappa$--basically complete frame homomorphisms. Since, there is no limitation or upper bound for the cardinal $\kappa$ in Theorem~\ref{p:kappaDuality}, let us have a look at the part of the correspondence where $\kappa$ is arbitrary large.
 
 \num It is interesting to see, how the Stone frame part of the correspondence looks like. Take any object $L$ and an element $a\in L$. From zero--dimensionality, we know that $a$ is $\lambda$--generated for some regular cardinal $\lambda$, but $L$ is $\lambda$--basically disconnected so that
 
@@ -160,12 +158,12 @@ $$a^{**}\vee a^* = 1$$
 
 \noindent holds. Since $a$ has been chosen arbitrarily we see that $L$ extremally disconnected. Similarly, any morphism of this part of the duality $f$ with domain $L$ is $\lambda$--basically complete, hence the following holds
 \begin{align}
-    f(a^*) = f(a)^*.\label{e:no0}
+    f(a^*) = f(a)^*.\label{e:no0}\tag{B.C.}
 \end{align}
 
-\noindent We will call morphisms satisfying (\oldref{e:no0}) for all elements \DEF{basically complete} frame homomorphisms.
+\noindent We will call morphisms satisfying (\oldref{e:no0}) for all elements a \DEF{basically complete} frame homomorphisms.
 
-Thus, the resulting category is the category of extremally disconnected Stone frames and basically complete frame homomorphisms. We will denote this category by \DEF{\ExtrStoneFrm}.
+We will denote the resulting category of extremally disconnected Stone frames and basically complete frame homomorphisms by \DEF{\ExtrStoneFrm}.
 
 \num On the side of Boolean algebras, we have that Boolean algebras with arbitrary large joins and Boolean homomorphisms preserving such joins. Thus the observed category is the category of complete Boolean algebras and complete Boolean homomorphisms. We will denote it by \DEF{\ComplBool}.
 
@@ -193,7 +191,7 @@ Thus, the resulting category is the category of extremally disconnected Stone fr
 \noindent as the restriction of \JO{} and \BcO{} to the corresponding categories and obtain the following
 
 \begin{theorem*}
-    The categories \ExtrStoneFrm{} and \ComplBool{} are isomorphic.
+    The categories \ExtrStoneFrm{} and \ComplBool{} are equivalent.
 \end{theorem*}
 
 The whole situation is depicted in Figure~\oldref{f:inclusionsOfDuality} where $\kappa$ is a regular cardinals greater or equal to $\omega_1$, $\sigma$--\ComplBool{} denotes the category $\omega_1$--\ComplBool{} and $\sigma$--\categoryStyle{BDStoneFrm} denotes the category $\omega_1$--\categoryStyle{BDStoneFrm}.
@@ -242,12 +240,12 @@ The whole situation is depicted in Figure~\oldref{f:inclusionsOfDuality} where $
 \num Here we present an alternative point of view on what we already know from the discussion above.
 
 \begin{proposition*}\label{p:complBool2}
-    Let $B$ be a complete Boolean algebra. Then the frame $\J B$ is an extremally disconnected Stone frame.
+    Let $B$ be a complete Boolean algebra. Then the frame $\JO B$ is an extremally disconnected Stone frame.
 \end{proposition*}
 \begin{proof}
-    In a Boolean algebra the relations $\rbelow$ and $\leq$ coincide. Moreover, each complete Boolean algebra is a (completely regular extremally disconnected) Boolean frame. Thus $\J{B}$ equals $\C{B}$.
+    In a Boolean algebra the relations $\rbelow$ and $\leq$ coincide. Moreover, each complete Boolean algebra is a (completely regular extremally disconnected) Boolean frame. Thus $\JO{B}$ equals $\C{B}$.
 
-    From Lemma~\ref{p:extrDiscPreserv}, we know that compactification preserves extremal disconnectedness and therefore $\J{B}$ is also extremally disconnected. We also know that $\J{B}$ is a Stone frame by Lemma~\ref{p:JisFunctor}.
+    From Lemma~\ref{p:extrDiscPreserv}, we know that compactification preserves extremal disconnectedness and therefore $\JO{B}$ is also extremally disconnected. We also know that $\JO{B}$ is a Stone frame by Lemma~\ref{p:JisFunctor}.
 \end{proof}
 
-The proof of the previous Proposition unveils an important fact about the complete part of Stone correspondence. It shows that this part of the correspondence is an isomorphism of two subcategories of the category of frames (on Boolean side, without any restriction to frame homomorphisms) and that the correspondence is provided by a purely topological construction by compactification.
+The proof of the previous Proposition unveils an important fact about the complete part of Stone correspondence. It shows that this part of the correspondence is an equivalence of two subcategories of the category of frames (on Boolean side, without any restriction to frame homomorphisms) and that the correspondence is provided by a purely topological construction by compactification.
