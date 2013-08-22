@@ -1,0 +1,344 @@
+\documentclass{beamer} % [handout] pro zakazani pauz
+\usepackage{amsmath,amssymb}
+\usetheme{boxes}
+\usecolortheme{orchid}
+
+\usepackage[czech]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\uselanguage{czech}
+\languagepath{czech}
+\deftranslation[to=czech]{Definition}{Definice}
+\deftranslation[to=czech]{Theorem}{Věta}
+
+\usepackage{braket}
+\usepackage{tikz-cd}
+\usepackage{tikz}
+\usetikzlibrary{matrix, calc, arrows, fit}
+
+% Special symbols
+\newcommand\rbelow{\prec}
+\newcommand\crbelow{\rbelow\mkern-8mu\rbelow}
+\newcommand\comp{\ensuremath{\gamma}}
+\def\InclUp{\rotatebox[origin=c]{90}{$\subseteq$}}
+\def\DotsUp{\rotatebox[origin=c]{90}{\dots}}
+\newcommand\p[1]{\ensuremath{\mathcal{ #1 }}}
+
+\newenvironment{diagram}{\begin{center}\begin{tikzcd}}{\end{tikzcd}\end{center}}
+
+% Categories
+\newcommand\categoryStyle[1]{\ensuremath{\mathbf{#1}}}
+\newcommand\Frm{\categoryStyle{Frm}}
+\newcommand\Loc{\categoryStyle{Loc}}
+\newcommand\StoneFrm{\categoryStyle{StoneFrm}}
+\newcommand\kBDStoneFrm{\ensuremath{\kappa\text{--}\categoryStyle{BDStoneFrm}}}
+\newcommand\ExtrStoneFrm{\categoryStyle{ExtrDStoneFrm}}
+\newcommand\Top{\categoryStyle{Top}}
+\newcommand\StoneSp{\categoryStyle{StoneSp}}
+\newcommand\Bool{\categoryStyle{Bool}}
+\newcommand\ComplBool{\categoryStyle{ComplBool}}
+\newcommand\kComplBool{\ensuremath{\kappa\text{--}\categoryStyle{ComplBool}}}
+\newcommand\CRegFrm{\categoryStyle{CRegFrm}}
+\newcommand\RegKFrm{\categoryStyle{RegKFrm}}
+
+% Functors
+\newcommand\R{\ensuremath{\mathfrak{R}}}
+\newcommand\C{\ensuremath{\mathcal{R}}}
+\newcommand\Bo{\ensuremath{\mathfrak{B}}} % booleanization
+\newcommand\Bc{\ensuremath{\mathbb{B}}}   % boolean/complemented elements
+\newcommand\BcO{\ensuremath{\Bc_{\omega}}}
+\newcommand\BcK{\ensuremath{\Bc_{\kappa}}}
+\newcommand\BcI{\ensuremath{\Bc_{\infty}}}
+\newcommand\J{\ensuremath{\mathfrak{J}}}
+\newcommand\JO{\ensuremath{\J_{\omega}}}
+\newcommand\JK{\ensuremath{\J_{\kappa}}}
+\newcommand\JI{\ensuremath{\J_{\infty}}}
+\newcommand\Sp{\ensuremath{\mathcal{S}}}
+
+\title{N\v ekter\'e bezbodov\' e aspekty souvislosti}
+\author{Tom\'a\v s~Jakl}
+\date{2. z\'a\v r\'i 2013}
+
+\begin{document}
+\frame{\titlepage}
+
+\frame{
+    \frametitle{Předběžnosti z bezbodové topologie}
+    \begin{itemize}
+        \item Úplný svaz $L$ je \emph{frame} pokud pro všechny $A\subseteq L$ a $b\in L$ platí:
+        \begin{align*}
+            (\bigvee A)\wedge b = \bigvee \Set{ a\wedge b | a\in A}
+        \end{align*}
+
+        Příklad: Nechť $(X,\tau)$ topologický prostor, pak $\Omega((X,\tau)) = \tau$ při uspořádaní inkluzí je frame.
+
+        \item Nechť $L$ a $M$ jsou framy. Zobrazení $f\colon L\to M$ je \emph{frameový homomorfismus} pokud zachovává $\bigvee$, $\wedge$, $0$ a $1$.
+
+        \medskip
+        \pause
+
+        \item Pseudokomplement: $a^* = \bigvee \Set{ x | x\wedge a = 0 }$
+        \item $a\rbelow b \stackrel{def}{\equiv} a^*\vee b = 1$
+        \item $\crbelow$ je největší interpolativní relace obsažená v $\rbelow$.
+        \item Frame je \emph{úplně regulární} pokud $a = \bigvee \Set{ x | x\crbelow a}$ pro všechna $a$.
+        \item Frame $L$ je \emph{kompaktní} pokud ke každému $M\subseteq L$, t.ž. $\bigvee M = 1$, existuje konečné $F\subseteq M$, že $\bigvee F = 1$.
+    \end{itemize}
+}
+
+\frame{
+    \frametitle{Kompaktifikace}
+
+    \begin{theorem}
+        Nechť $L$ je úplně regulární a nechť $\C L$ je frame regulářních ideálů $I$, tzn. ideálů pro které platí, že kdykoliv $a \in I$, tak existuje $b\in I$ t.ž. $a \crbelow b$.
+
+        \medskip
+        Potom frameový homomorfismus $\comp_L\colon \C L\to L$ definovaný předpisem $I\mapsto \bigvee I$ je kompaktifikace $L$.
+    \end{theorem}
+
+    \bigskip
+    \pause
+
+    \begin{theorem}
+        Pro $L$ úplně regulární platí:
+        \begin{itemize}
+            \item $L$ je nesouvislý právě tehdy když $\C L$ je nesouvislý.
+            \item Pokud je $L$ extremálně nesouvislý, pak $\C L$ je také extremálně nesouvislý.
+        \end{itemize}
+    \end{theorem}
+}
+
+\frame{
+    \frametitle{Stoneova dualita}
+    \begin{itemize}
+        \item Frame je \emph{Stoneův} právě když je kompaktní a 0-dimenzionální.
+    \end{itemize}
+
+    \medskip
+
+    \begin{theorem}[Stoneova dualita pro bezbodovou topologii]
+        Funktory $\BcO$ a $\JO$ tvoří ekvivalenci kategorie Booleových algeber a Booleových homomorfismů a kategorie Stoneových framů a frameových homomorfismů.
+    \end{theorem}
+
+    \medskip
+    \pause
+
+    \begin{columns}[b]
+    \begin{column}{6.5cm}
+        \begin{theorem}[Klasická Stoneova dualita]
+            Za předpokladu Boolean Ultrafilter Theoremu je kategorie Booleových algeber ekvivalentní s kategorií duální ke kategorii Booleových algeber.
+        \end{theorem}
+    \end{column}
+    \begin{column}{3cm}
+        \vspace{3em}
+        \hspace{3em}
+        \begin{tikzcd}[ampersand replacement=\&, scale = 0.7, transform canvas={scale=0.7}]
+            \StoneFrm \ar[bend left=15]{rr}{\BcO} \& \& \Bool{} \ar[bend left=15]{ll}{\JO} \ar{ldd}{\Sp} \\
+            \\
+            \& \StoneSp \ar{uul}{\Omega}
+        \end{tikzcd}
+    \end{column}
+    \end{columns}
+}
+
+\frame{
+    \frametitle{Části Stoneovy duality}
+
+    Buď $\kappa$ nekonečný kardinál.
+
+    \begin{itemize}
+        \item Element Stoneova framu je $\kappa$--\emph{generovaný} pokud je supremem množiny obojetných prvků kardinality menší než $\kappa$.
+
+        \item Stoneův frame je $\kappa$--\emph{bazicky nesouvislý} pokud pro každý jeho $\kappa$--generovaný element $a$ platí, že 
+        \begin{align*}
+            a^{**}\vee a^* = 1.
+        \end{align*}
+
+        \item Frameový homomorfismus $f$ mezi Stoneovými framy je $\kappa$--\emph{bazicky úplných} pokud platí, že
+        \begin{align*}
+            f(a^*) = f(a)^*
+        \end{align*}
+        pro každý $\kappa$--generovaný element $a$.
+    \end{itemize}
+
+    \pause
+
+    \begin{theorem}
+        Kategorie $\kappa$--úplných Booleových algeber a $\kappa$--úplných Booleových homomorfismů je ekvivalentní kategorii $\kappa$--bazicky nesouvislých Stoneových framů a $\kappa$--bazicky úplných frameových homomorfismů.
+    \end{theorem}
+}
+
+\frame{
+    \frametitle{Extremálně nesouvislé Stoneovy framy}
+
+    \begin{columns}[c]
+    \begin{column}{6.5cm}
+        Obraz podkategorie úplných Booleových algeber funktorem \JO{} je kategorie framů a frameových homomorfismů splňujících:
+        \begin{align*}
+            a^{**}\vee a^* = 1 \quad\text{a}\quad f(a^*) = f(a)^* \tag{N.O.}
+        \end{align*}
+        pro všechna $a$.
+
+        \bigskip
+
+        \visible<2>{
+        \begin{theorem}
+            Kategorie extremálně nesouvislých Stoneových framů a frameových homomorfismů splňujících (N.O.) je ekvivalentní kategorii úplných Booleových algeber a úplných Booleových homomorfismů.
+        \end{theorem}
+        }
+    \end{column}
+    \begin{column}{3cm}
+    \vspace{-3em}
+    \begin{diagram}[row sep=0.7cm, ampersand replacement=\&, scale = 0.7, transform canvas={scale=0.7}]
+        \StoneFrm
+            \ar[yshift=0.2em]{r}{\scalebox{1.5}\BcO}
+        \& \Bool
+            \ar[yshift=-0.2em]{l}{\scalebox{1.5}\JO} \\
+        \\
+        \omega_1\text{--}\categoryStyle{BDStoneFrm}
+            \ar[yshift=0.2em]{r}{\scalebox{1.5}{$\Bc$}_{\omega_1}}
+            \ar{uu}{\InclUp}
+        \& \omega_1\text{--}\ComplBool
+            \ar{uu}{\InclUp}
+            \ar[yshift=-0.2em]{l}{\scalebox{1.5}{$\J$}_{\omega_1}} \\
+
+        {} \ar{u}{\InclUp} \& {} \ar{u}{\InclUp} \\
+        \DotsUp \& \DotsUp \\
+
+
+        \kBDStoneFrm
+            \ar[yshift=0.2em]{r}{\scalebox{1.5}\BcK}
+            \ar{u}{\InclUp}
+        \& \kComplBool
+            \ar{u}{\InclUp}
+            \ar[yshift=-0.2em]{l}{\scalebox{1.5}\JK} \\
+
+        \DotsUp
+            \ar{u}{\InclUp}
+        \& \DotsUp
+            \ar{u}{\InclUp} \\
+        {} \& {} \\
+
+        \ExtrStoneFrm
+            \ar[yshift=0.2em]{r}{\scalebox{1.5}{\BcI}}
+            \ar{u}{\InclUp}
+        \& \ComplBool
+            \ar{u}{\InclUp}
+            \ar[yshift=-0.2em]{l}{\scalebox{1.5}\JI}
+    \end{diagram}
+    \end{column}
+    \end{columns}
+}
+
+\frame{
+    \frametitle{Vztah kompaktnosti a Stoneovy duality}
+
+    \begin{itemize}
+        \item V Booleově algebře $a \crbelow b$ právě když $a \leq b$.
+    \end{itemize}
+
+    \bigskip
+
+\begin{center}
+\begin{tikzpicture}[descr/.style={fill=white,inner sep=2.5pt}, ampersand replacement=\&]
+    \tikzset{
+      mymx/.style={
+        matrix of nodes,
+        row sep=3.5em,
+        column sep=3.5em,
+      },
+      lbl/.style={
+        below,
+        auto,
+      }
+    }
+    \tikzstyle{bigbox} = [draw=gray, thick, rounded corners, rectangle]
+
+    \pgfmathsetmacro{\H}{1.2}
+    \pgfmathsetmacro{\W}{0.6}
+
+    \matrix (m) [mymx]
+        { \RegKFrm \& \& \CRegFrm \\
+          \StoneFrm \& \Bool \& \\
+          \ExtrStoneFrm \& \ComplBool \& \categoryStyle{DMRFrm} \\
+        };
+    \path[->,font=\scriptsize,every node/.style=lbl]
+        (m-2-1)     edge node {\InclUp} (m-1-1)
+        (m-3-1)     edge node {\InclUp} (m-2-1)
+        (m-3-3)     edge node {\InclUp} (m-1-3)
+        (m-3-2)     edge node {\InclUp} (m-2-2)
+        (m-3-2)     edge node {$\subseteq$} (m-3-3)
+
+        % Stone duality
+        (m-2-2) edge[transform canvas={yshift=1.5pt}]  node[swap] {\JO}  (m-2-1)
+        (m-2-1) edge[transform canvas={yshift=-1.5pt}] node[swap] {\BcO} (m-2-2)
+
+        (m-3-2) edge[transform canvas={yshift=1.5pt}]  node[swap] {\JI}  (m-3-1)
+        (m-3-1) edge[transform canvas={yshift=-1.5pt}] node[swap] {\BcI} (m-3-2)
+
+        % Compact. Reflection
+        (m-1-1.355) edge node[swap] {$\subseteq$} (m-1-3.185)
+        (m-1-3.175) edge node[swap] {\C} (m-1-1.5);
+
+
+%   \path[<->, thick]
+%       (m-3-1) edge node {} (m-3-2);
+
+
+    \node[bigbox, dotted] [fit = (m-2-1) (m-3-2)] {};
+    \draw[gray, rounded corners, loosely dashed]
+           ($(m-1-1) + (-\H,   0)$)
+        -- ($(m-1-1) + (-\H, +\W)$)
+        -- ($(m-1-3) + (+\H, +\W)$)
+        -- ($(m-3-3) + (+\H, -\W)$)
+        -- ($(m-3-3) + (-\H, -\W)$)
+        -- ($(m-1-3) + (-\H, -\W)$)
+        -- ($(m-1-1) + (-\H, -\W)$)
+        -- ($(m-1-1) + (-\H,   0)$);
+\end{tikzpicture}
+\end{center}
+}
+
+\frame{
+    \frametitle{Booleanizace}
+
+    Buď $L$ frame, pak \emph{Booleanizace} $L$ (značíme ji $\Bo L$) je Booleovský frame/úplná Booleova algebra sestávající z elementů splňujících
+    $$a = a^{**}.$$
+
+    Na frameových homomorfismech máme zobrazení:
+    $$(\Bo f)(x) = f(x)^{**}.$$
+
+    \pause
+
+    \begin{block}{Tvrzení}
+        $\Bo\colon \ExtrStoneFrm\to \ComplBool$ je funktor.
+    \end{block}
+
+    \pause
+
+    \begin{theorem}
+        Funktory $\Bo$ a $\JI$ tvoří ekvivalenci kategorií \ExtrStoneFrm{} a \ComplBool.
+    \end{theorem}
+}
+
+\frame{
+    \frametitle{Charakterizace extremální nesouvislosti}
+
+    \begin{itemize}
+        \item Nechť $f\colon L\to M$ je hustý a na frameový homomorfismus mezi úplně regulárními framy, pak říkáme, že $M$ je hustý \emph{v} $L$.
+        \item Pokud navíc $\C L \cong \C M$, říkáme, že $M$ je \emph{superhustý v} $L$.
+    \end{itemize}
+
+    \bigskip
+    \pause
+
+    \begin{theorem}
+        Úplně regulární frame je extremálně nesouvislý/De Morganovský právě tehdy když každý frame v něm hustý je v něm superhustý.
+    \end{theorem}
+
+    \begin{theorem}
+        Kompaktní metrizovatelné prostory nemají žádné superhusté sublokály.
+    \end{theorem}
+}
+
+\end{document}
