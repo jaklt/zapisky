@@ -82,7 +82,7 @@
         \item $a\rbelow b \stackrel{def}{\equiv} a^*\vee b = 1$
         \item $\crbelow$ je největší interpolativní relace obsažená v $\rbelow$.
         \item Frame je \emph{úplně regulární} pokud $a = \bigvee \Set{ x | x\crbelow a}$ pro všechna $a$.
-        \item Frame $L$ je \emph{kompaktní} pokud ke každému $M\subseteq L$, t.ž. $\bigvee M = 1$, existuje konečné $F\subseteq M$, že $\bigvee F = 1$.
+        \item Frame $L$ je \emph{kompaktní} pokud ke každému $M\subseteq L$, t.ž. $\bigvee M = 1$, existuje konečné $F\subseteq M$, t.ž. $\bigvee F = 1$.
     \end{itemize}
 }
 
@@ -147,14 +147,16 @@
     Buď $\kappa$ nekonečný kardinál.
 
     \begin{itemize}
-        \item Element Stoneova framu je $\kappa$--\emph{generovaný} pokud je supremem množiny obojetných prvků kardinality menší než $\kappa$.
+        \item Element Stoneova framu je $\kappa$--\emph{generovaný} pokud je surremem množiny komplementárních prvků kardinality menší než $\kappa$.
+
+        \pause
 
         \item Stoneův frame je $\kappa$--\emph{bazicky nesouvislý} pokud pro každý jeho $\kappa$--generovaný element $a$ platí, že 
         \begin{align*}
             a^{**}\vee a^* = 1.
         \end{align*}
 
-        \item Frameový homomorfismus $f$ mezi Stoneovými framy je $\kappa$--\emph{bazicky úplných} pokud platí, že
+        \item Frameový homomorfismus $f$ mezi Stoneovými framy je $\kappa$--\emph{bazicky úplný} pokud platí, že
         \begin{align*}
             f(a^*) = f(a)^*
         \end{align*}
@@ -220,11 +222,11 @@
         {} \& {} \\
 
         \ExtrStoneFrm
-            \ar[yshift=0.2em]{r}{\scalebox{1.5}{\BcI}}
+            \ar[yshift=0.2em]{r}{\visible<2>{\scalebox{1.5}{\BcI}}}
             \ar{u}{\InclUp}
         \& \ComplBool
             \ar{u}{\InclUp}
-            \ar[yshift=-0.2em]{l}{\scalebox{1.5}\JI}
+            \ar[yshift=-0.2em]{l}{\visible<2>{\scalebox{1.5}\JI}}
     \end{diagram}
     \end{column}
     \end{columns}
@@ -305,7 +307,7 @@
     Buď $L$ frame, pak \emph{Booleanizace} $L$ (značíme ji $\Bo L$) je Booleovský frame/úplná Booleova algebra sestávající z elementů splňujících
     $$a = a^{**}.$$
 
-    Na frameových homomorfismech máme zobrazení:
+    Pro frameové homomorfismy máme zobrazení:
     $$(\Bo f)(x) = f(x)^{**}.$$
 
     \pause
@@ -325,7 +327,7 @@
     \frametitle{Charakterizace extremální nesouvislosti}
 
     \begin{itemize}
-        \item Nechť $f\colon L\to M$ je hustý a na frameový homomorfismus mezi úplně regulárními framy, pak říkáme, že $M$ je hustý \emph{v} $L$.
+        \item Nechť existuje $f\colon L\to M$ na frameový homomorfismus, t.ž. $f(x) = 0$ implikuje $x=0$. Pak říkáme, že $M$ je \emph{hustý v} $L$.
         \item Pokud navíc $\C L \cong \C M$, říkáme, že $M$ je \emph{superhustý v} $L$.
     \end{itemize}
 
@@ -337,7 +339,10 @@
     \end{theorem}
 
     \begin{theorem}
-        Kompaktní metrizovatelné prostory nemají žádné superhusté sublokály.
+        Pro kompaktní metrizovatelný prostor neexistuje netriviální frame v něm superhustý.
+
+        % \smallskip
+        % Neboli: Kompaktifikace je metrizovatelná jen tehdy, když už původní frame byl kompaktní a metrizovatelný.
     \end{theorem}
 }
 
