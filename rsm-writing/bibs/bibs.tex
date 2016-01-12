@@ -1,0 +1,52 @@
+\documentclass[a4paper]{article}
+
+\newcommand\bbu{Robin Milner, a Craftsman of Tools for the Mind}
+\newcommand\bbd{A language for biochemical systems: design and formal specification}
+\newcommand\bbt{A Model of Cooperative Threads}
+\newcommand\bbc{On Protection by Layout Randomization}
+\newcommand\bbp{Configuration structures, event structures and Petri nets}
+
+\newcommand\WS{ -- Web of Science:}
+\newcommand\GS{ -- Google Scholar:}
+\newcommand\SC{ -- Scopus:}
+
+\newcommand\bib[2]{
+    \renewcommand\refname{#1}
+    \bibliography{#2}
+}
+
+
+\begin{document}
+
+\nocite{*}
+
+
+% \bib{\bbd\GS}{cit2.gs}
+% \bib{\bbd\WS}{cit2.wos}
+% \bib{\bbd\SC}{cit2.sc}
+
+
+% \bib{\bbt\GS}{cit3.gs}
+% \bib{\bbt\WS}{cit3.wos}
+% \bib{\bbt\SC}{cit3.sc}
+
+
+% \bib{\bbc\GS}{cit4.gs}
+% \bib{\bbc\WS}{cit4.wos}
+  \bib{\bbc\SC}{cit4.sc}
+
+
+% \bib{\bbp\GS}{cit5.gs}
+% \bib{\bbp\WS}{cit5.wos}
+% \bib{\bbp\SC}{cit5.sc}
+
+\bibliographystyle{ieeetr}
+
+
+% \bibliography{cit5.gs, cit5.wos}
+% \bibliography{cit3.gs, cit3.sc}
+% \bibliography{cit5.sc, cit5.wos}
+% \bibliographystyle{plain}
+
+\end{document}
+
